@@ -1,0 +1,97 @@
+// Import main style settings
+@import '../_Styles/mixins';
+
+.frame-loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
+}
+
+.payment-accordion {
+  border: 1px solid #e6e6e6;
+  border-bottom: 0;
+  border-radius: 0;
+  margin: 0 0 1rem 0;
+  background: #fefefe;
+  overflow-y: hidden;
+
+  .collapse-title {
+    border-bottom: 1px solid #e6e6e6;
+    &[aria-expanded="true"]{
+      .custom-radio {
+        .custom-control-label:before {
+          content: url("/static/accord_checkbox_tick.gif");
+        }
+      }
+    }
+    &:hover, &:active {
+      background-color: #ecf0f1;
+      color: #000;
+      cursor: pointer;
+    }
+    .custom-radio {
+      padding: 1.5rem 0 1.5rem 3rem;
+      margin-right: 0;
+      width: 100%;
+    }
+    .custom-control-label {
+      margin-bottom: 0;
+      font-weight: 700;
+      line-height: 1;
+      font-size: .9rem;
+      color: #000;
+      &:before {
+        content: url("/static/accord_checkbox.gif");
+        position: absolute;
+        left: 1rem;
+        top: 36%;
+      }
+      &:after {
+        content: '';
+        background-image: url("/static/checkout-sprite.png");
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        width: 250px;
+        height: 30px;
+        @include retina {
+          background-image: url("/static/checkout-sprite@2x.png");
+          background-size: cover;
+        }
+      }
+    }
+    label.custom-control-label[for="paymentRadioWorldPay"]:after {
+      background-position: 0 0;
+    }
+    label.custom-control-label[for="paymentRadioPayPal"]:after {
+      background-position: 0 -50px;
+    }
+    label.custom-control-label[for="paymentRadioCheque"]:after {
+      background-position: 0 -100px;
+    }
+    label.custom-control-label[for="paymentRadioUnionPay"]:after {
+      background-position: 0 -150px;
+      top: .8rem;
+      height: 33px;
+    }
+    label.custom-control-label[for="paymentRadioAliPay"]:after {
+      background-position: 0 -200px;
+      top: .8rem;
+      height: 36px;
+    }
+    label.custom-control-label[for="paymentRadioKlarna"]:after {
+      background-position: 0 -250px;
+      top: .8rem;
+      height: 33px;
+    }
+    img {
+      margin: 0 auto;
+      max-height: 100%;
+    }
+  }
+  .collapse, .collapsing {
+    border-bottom: 1px solid #e6e6e6;
+  }
+}

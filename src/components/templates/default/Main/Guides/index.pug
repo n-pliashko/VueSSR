@@ -1,0 +1,53 @@
+section.guides
+  .container-fluid
+    .row
+      .col-12.py-5.text-center
+        h2.main-header Guides & Useful Information
+        hr.short-hr
+        .container-fluid
+          .row.row-eq-height
+            PreviewBlock(v-for="item in boxContents", :key="item.id",
+            :header="item.header", :text="item.text", :alt="item.alt",
+            :img="item.img", :links="item.links", :blockType="blockType")
+          //.row.row-eq-height
+            .col-12.col-md-6.col-lg-3
+              .guide-wrapper
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/content-guides.jpg?20170829201433")
+                .text-wrapper
+                  p.large
+                    strong Buying Guides
+                  p.small View our guides to helping you choose the right product for you and your vision.
+                  br
+                  br
+                router-link#linkToGuides(to="/guides/").btn.big-button View Guides »
+            .col-12.col-md-6.col-lg-3
+              .guide-wrapper
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/home/content-how-to.jpg?20171130143530")
+                .text-wrapper
+                  p.large
+                    strong 'How To' Guides
+                  p.small Learn how to get the best out of your glasses or sunglasses.
+                  br
+                  br
+                router-link#linkToHowTo(to="/guides/how-to/").btn.big-button View Guides »
+            .col-12.col-md-6.col-lg-3
+              .guide-wrapper
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/content-health.jpg?20170829201433")
+                .text-wrapper
+                  p.large
+                    strong Eye Health & Advice
+                  p.small View our central resource of eye health information to help explain different eye conditions.
+                  br
+                  br
+                router-link#linkToEyeHealth(to="/eye-health/").btn.big-button More »
+            .col-12.col-md-6.col-lg-3
+              .guide-wrapper
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/about/about-us-banner.jpg?20170829201433")
+                .text-wrapper
+                  p.large
+                    strong About Us
+                  p.small Find out more about our company, our background, our team, and our cutting edge laboratory.
+                  br
+                  br
+                router-link#linkToAboutUs(to="/about-us/").btn.big-button More »
+

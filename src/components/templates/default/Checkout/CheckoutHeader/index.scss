@@ -1,0 +1,44 @@
+@import '../../_Styles/mixins';
+
+.logo-section-big {
+  .logo {
+    background-size: 620px;
+    background-position: 30px -7px;
+    width: 270px;
+    height: 95px;
+  }
+}
+
+.usp-section-big {
+  background-color: #f5f5f5;
+  .sprite-pic {
+    float: left;
+    background: url('/static/layout-sprite.png') no-repeat;
+    background-size: 825px;
+    height: 2.5rem;
+    width: 75px;
+  }
+  .delivery {
+    background-position: -22px -2px;
+    margin-right: .25rem;
+  }
+  .glasses {
+    background-position: -300px 5px;
+    margin-right: .25rem;
+  }
+  .trust-pilot {
+    background-position: -150px 0;
+    margin-right: .25rem;
+    width: 88px;
+  }
+  .usp-text {
+    padding: .25rem 0 .25rem 5rem;
+    p {
+      margin:0;
+      font-size: .75rem;
+      @include desktop-down {
+        line-height: 1.1;
+      }
+    }
+  }
+}

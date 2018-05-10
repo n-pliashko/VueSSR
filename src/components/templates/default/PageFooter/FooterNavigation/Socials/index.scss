@@ -1,0 +1,45 @@
+.socials-links {
+  .black-button, input[type="email"] {
+    border-radius: 0;
+    width: 100%;
+  }
+  input[type="email"] {
+    background-color: #fff;
+    line-height: 1.35;
+  }
+  .black-button {
+    font: {
+      size: 1.2rem;
+      weight: 400;
+    }
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+    box-shadow: none;
+    &:hover {
+      background-color: #ad1100;
+      border-color: #ad1100;
+    }
+  }
+
+  .social-sprite {
+    font: {
+      size: 1rem;
+      weight: 400;
+    }
+    a {
+      background: url('/static/layout-sprite@2x.png') no-repeat;
+      background-size: 750px;
+      background-position-y: -572px;
+      padding: 16.5px 23px;
+      text-decoration: none;
+    }
+    .fb { background-position-x: 0; }
+    .tw { background-position-x: -167px; }
+    .pi { background-position-x: -111px; }
+    .ig { background-position-x: -224px; }
+    .yt { background-position-x: -279px; }
+  }
+}

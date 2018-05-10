@@ -1,0 +1,36 @@
+ <div v-if="data.email">
+    <div v-if='loading'>Loading...</div>
+
+    <div v-if="meta.formError" class="error">{{meta.formError}}</div>
+
+    <div v-if="meta.formSuccess" class="success">{{meta.formSuccess}}</div>
+
+    <h2>Create Account</h2>
+    <form @submit="e => onSubmit(e)">
+        <select v-model="data.title">
+            <option v-for="index in ['Mr.', 'Ms.', 'Mrs.', 'Miss', 'Dr.']" :value='index'>{{index}}</option>
+        </select>
+
+        <input type="text" v-model="data.first_name">
+
+        <input type="text" v-model="data.last_name">
+
+        <input type="checkbox" v-model="data.subscribed">
+
+        <select v-model="data.country_number">
+            <option v-for="index in countries" :value='index.country_number'>{{index.country_name}}</option>
+        </select>
+
+        <input type="phone" v-model="data.phone">
+
+        <input type="text" disabled v-model="data.email">
+
+        <input type="password" v-model="data.password">
+
+        <input v-model="billing_as_delivery" type="checkbox">
+
+        <address-form :address='billing_address' :countries='countries' :onSubmitAction="onSubmit" />
+
+        <address-form v-if="!billing_as_delivery" :address='delivery_address' :countries='countries' :onSubmitAction="onSubmit" />
+    </form>
+ </div>

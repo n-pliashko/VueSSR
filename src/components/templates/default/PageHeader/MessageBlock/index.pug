@@ -1,0 +1,7 @@
+section.message-wrapper(v-if="meta.formError || meta.formSuccess")
+  #errorMessageBlock(v-if="meta.formError", role="alert").error-block
+    p
+      //i.fa.fa-exclamation-triangle.mr-2
+      | {{ meta.formError }}
+  #success-message(v-if="meta.formSuccess", role="alert").success-block
+    p {{ meta.formSuccess }}

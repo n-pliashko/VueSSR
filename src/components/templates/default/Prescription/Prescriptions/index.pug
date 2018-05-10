@@ -1,0 +1,54 @@
+#dispens-content-title.text-center.prescriptions
+  div(v-show='!currentComponent')
+    h2.text-center
+      strong Entering your prescription is quick and easy
+    p.font-weight-bold.larger.text-center You can choose to:
+    br
+    ul.nav.nav-pills.flex-column.flex-sm-row(role="tablist")
+      li.nav-item.mb-3
+        a.nav-link.p-2.active(data-toggle="tab", href="#add-new-prescription", role="tab")
+          strong Add new prescription
+      li.nav-item.mb-3
+        a.nav-link.p-2(data-toggle="tab", href="#use-prescription", role="tab")
+          strong Use a previous prescription
+      li.nav-item.mb-3
+        a.nav-link.p-2(data-toggle="tab", href="#upload-prescription", role="tab")
+          strong Upload a new prescription
+      li.nav-item.mb-3
+        a.nav-link.p-2(data-toggle="tab", href="#skip-prescription", role="tab")
+          strong Skip & send it later
+    hr
+    .tab-content.py-5
+      .container#add-new-prescription(role="tabpanel").tab-pane.fade.active.show
+        .row
+          p
+            em Enter your prescription in our form, it takes 2 minutes and we can save this for you for future orders.
+        hr
+        .row
+          a.btn.big-orange-button.float-lg-right.text-capitalize.col-12.col-sm-7.col-md-5(v-on:click="swapComponent('Add')") Add your prescription >
+      .container#use-prescription(role="tabpanel").tab-pane.fade
+        .row
+          p
+            em If you have used us before, you can use saved prescription.
+        hr
+        .row
+          a.btn.big-orange-button.w-50.float-lg-right.text-capitalize.col-12.col-sm-7.col-md-5(v-on:click="swapComponent('Add')") Use a previous prescription >
+      .container#upload-prescription(role="tabpanel").tab-pane.fade
+        .row
+          p
+            em Quickly and easily upload a prescription for this pair of glasses.
+        hr
+        .row
+          a.btn.big-orange-button.w-50.float-lg-right.text-capitalize.col-12.col-sm-7.col-md-5(v-on:click="swapComponent('UsePrevious')") Upload a new prescription >
+      .container#skip-prescription(role="tabpanel").tab-pane.fade
+        .row
+          //p
+            em Don't worry about your prescription now, we'll advise you how to send it to us after you order is placed.
+          h5
+            strong Send your prescription later
+          p.small Whether you've used our services before or are a new customer, you can provide us with your prescription later either by email, photo, phone, fax or post.  We'll provide full instructions on how to do this in the order confirmation page and email.
+          p.small If you'd prefer to enter your prescription and recieve a recommendation for the best lens to suit you, click Add Prescription above.
+        hr
+        .row
+          router-link.btn.big-orange-button.w-50.float-lg-right.text-capitalize.col-12.col-sm-7.col-md-5(:to='{ name: $parent.nextStep}') I will send my prescription later >
+  div(:is='currentComponent')

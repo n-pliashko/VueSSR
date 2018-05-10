@@ -1,0 +1,88 @@
+@import "../../_Styles/mixins";
+
+.hidden{
+  display: none;
+}
+
+#saveDetailsBlock {
+  border: 2px solid #a8d264;
+  background-color: #fff;
+  margin: 0.5rem auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  .form-group {
+    margin-bottom: 1rem;
+    .form-control {
+      @include desktop-down {
+        width: 60%;
+        margin: 0 auto;
+      }
+    }
+    #createAccountButton {
+      width: 100%;
+      color: #fff;
+      background-color: #fc4c02;
+      height: 38px;
+      @include desktop-down {
+        width: 60%;
+      }
+      @include largeDesktop-down {
+        font-size: .875rem;
+      }
+      @include desktop {
+        margin-top: 31px;
+      }
+      &:hover, &:focus {
+        background-color: #c00;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.big-tick {
+  margin: 1rem auto;
+  height: 100px;
+  width: 100px;
+  background: url("/static/check.svg") center no-repeat;
+  background-size: 100px;
+}
+
+#orderNumberText {
+  color: #3f4080;
+  letter-spacing: 1px;
+}
+
+#mainPageLink {
+  margin: 2rem 0;
+}
+
+.printer {
+  display: inline;
+}
+
+.collapse-wrapper {
+  &:not(:last-of-type) {
+    margin-bottom: .5rem;
+  }
+  .info-link-wrapper {
+    display: block;
+    padding: .8rem;
+    background-color: #eeeeee;
+    font-size: .875rem;
+    font-weight: 700;
+    &:hover, &:active, &:focus {
+      color: #000;
+    }
+    &[aria-expanded="true"] > .fa-chevron-up, &[aria-expanded="false"] > .fa-chevron-down {
+      display: inline;
+    }
+    &[aria-expanded="true"] > .fa-chevron-down, &[aria-expanded="false"] > .fa-chevron-up {
+      display: none;
+    }
+  }
+  .help-text-wrapper {
+    padding: .5rem;
+    background: #f7f5f6;
+  }
+}

@@ -1,0 +1,173 @@
+@import '../../_Styles/mixins';
+
+.logo-line {
+  background-color: #f6f6f6;
+  i {
+    vertical-align: middle;
+  }
+
+  .sprite-pic {
+    text-align: center;
+    float: left;
+    background: url('/static/layout-sprite.png') no-repeat;
+    background-size: 750px;
+    padding-top: 3.2rem;
+    width: 150px;
+    line-height: .9;
+    @include retina {
+      background-image: url("/static/layout-sprite@2x.png");
+    }
+  }
+  .delivery {
+    background-position: 24px 5px;
+    margin-right: .25rem;
+  }
+  .trust-pilot {
+    background-position: -102px 8px;
+  }
+
+  .logo-text {
+    font-size: .7rem;
+    margin-bottom: 0;
+    a {
+      line-height: inherit;
+    }
+  }
+
+  .logo-wrapper {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -112px;
+  }
+
+  .icon-button {
+    margin: 0 .7rem;
+    font-size: 1.6rem;
+    color: #304258 !important;
+    text-transform: uppercase;
+    vertical-align: middle;
+    cursor: pointer;
+    word-spacing: normal;
+    span {
+      font-size: .65rem;
+      font-weight: bold;
+      vertical-align: middle;
+      margin-right: .5rem;
+    }
+    .nav-icons {
+      font-size: 1.6rem;
+      color: #304258;
+    }
+    &:hover {
+      span {
+        color: #2ba6cb;
+      }
+      .nav-icons {
+        color: #fc4c02;
+      }
+    }
+    @include desktop-down {
+      margin: 0;
+      font-size: .6rem;
+    }
+    &#basketLink {
+      @include desktop-down {
+        line-height: 3;
+      }
+    }
+  }
+
+  .menu-open {
+    position: relative;
+    cursor: pointer;
+    width: 20px;
+    height: 16px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: .75rem;
+    margin-right: .5rem;
+    background-color: transparent;
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 0;
+      top: -1px;
+      background: #000;
+      box-shadow: 0 7px 0 #000, 0 14px 0 #000;
+      height: 3px;
+      width: 89%;
+    }
+  }
+  #sidebarOpenButtonTablet {
+    background-color: transparent;
+    text-transform: capitalize;
+    padding: 0;
+    line-height: 1;
+  }
+  .title-bar-title {
+    font-size: 1rem;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: 700;
+  }
+
+  .big-menu {
+    background-color: #f0f0f0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .icons-list {
+    float: right;
+    margin: 0 .25rem;
+    @include largeDesktop {
+      padding: 1rem 0;
+    }
+    @include largeDesktop-down {
+      padding: 0;
+    }
+    .list-inline-item {
+      @include largeDesktop-down {
+        margin-left: 0;
+      }
+    }
+  }
+
+  #orderedAmountTextMobile, #orderedAmountText {
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #fc4c02;
+    color: #304258;
+    padding: .3rem .6rem;
+    font-size: .9rem;
+    font-weight: bold;
+    margin-left: .25rem;
+  }
+
+  @include desktop-down {
+    line-height: 2.5;
+    .xs-button {
+      font-size: .875rem;
+      line-height: 1;
+      i {
+        color: #304258;
+      }
+    }
+    .logo-mobile {
+      height: 2.2rem;
+      width: 130px;
+      vertical-align: top;
+      background: url('/static/layout-sprite-uk.png') 0 -114px;
+      background-size: 500px;
+      display: inline-block;
+      @include retina {
+        background-image: url("/static/layout-sprite-uk@2x.png");
+      }
+    }
+
+    #orderedAmountText {
+      border-radius: 0;
+    }
+  }
+}

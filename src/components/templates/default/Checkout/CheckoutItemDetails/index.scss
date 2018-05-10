@@ -1,0 +1,17 @@
+u:hover {
+  text-decoration: underline;
+  cursor: default;
+}
+
+.table {
+  text-align: center;
+  font-size: .8rem;
+  margin: .5rem 0;
+  border: 1px solid #eaeaea;
+  thead {
+    background-color: #eaeaea;
+  }
+  td[scope="row"] {
+    background-color: #f6f6f6;
+  }
+}

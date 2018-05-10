@@ -1,0 +1,235 @@
+section
+  ul#productInfoAccordion(role='tablist').info-accordion
+    li#overviewHeading(role="tab", v-if='$parent.item.translation && $parent.item.translation.description')
+      a#overviewCollapseLabel(data-toggle="collapse", href='#overviewCollapse',
+      aria-controls='overviewCollapse', aria-expanded='false').collapse-title Product Overview
+      #overviewCollapse(role='tabpanel', aria-labelledby='overviewCollapseLabel',
+      data-parent="#productInfoAccordion").collapse
+        .col-12
+          br
+          p(itemprop='description', v-html="$parent.item.translation.description")
+          br
+          br
+    li#detailsHeading(role="tab")
+      a#detailsCollapseLabel(data-toggle="collapse", href='#detailsCollapse',
+      aria-controls='detailsCollapse', aria-expanded='false').collapse-title Product Details
+      #detailsCollapse(role='tabpanel', aria-labelledby='detailsCollapseLabel',
+      data-parent="#productInfoAccordion").collapse
+        br
+        .col-12
+          .row
+            .col-5
+              p.small
+                strong Product
+            .col-7
+              p.small Vista M208
+          .row
+            .col-5
+              p.small
+                strong Product SKU
+            .col-7
+              p.small
+                span(itemprop='sku') ss60.13
+          .row
+            .col-5
+              p.small
+                strong Suitable for
+            .col-7
+              p.small
+                i.fi-torso.fa-lg.blue
+                | &nbsp;
+                i.fi-torso-female.fa-lg.pink
+          .row
+            .col-5
+              p.small
+                strong Single Vision
+            .col-7
+              p.small
+                i.fa.fa-check.fa-lg.green(aria-hidden='true')
+          .row
+            .col-5
+              p.small
+                strong Progressives
+            .col-7
+              p.small
+                i.fa.fa-check.fa-lg.green(aria-hidden='true')
+                em
+                  | Freeform varifocal from&nbsp;
+                  strong {{calculatePrice(1247.95/33.47, false, true)}}
+          .row
+            .col-5
+              p.small
+                strong Spring hinge
+            .col-7
+              p.small
+                i.fa.fa-times.fa-lg.red(aria-hidden='true')
+          .row
+            .col-5
+              p.small
+                strong Available as Sunglasses
+            .col-7
+              p.small
+                i.fa.fa-check.fa-lg.green(aria-hidden='true')
+          br
+          p.small
+            i.fa.fa-thumbs-o-up.fa-lg.blue(aria-hidden='true')
+            | &nbsp;&nbsp;
+            strong 12 Months Warranty
+          p.small
+            i.fa.fa-gift.fa-lg.blue(aria-hidden='true')
+            | &nbsp;&nbsp;
+            strong Includes Case & Cloth
+          .text-center
+            hr.short-hr
+            p.small.info-links
+              router-link(to='/price-list/', target='_blank').blue-ul Our Lens Prices
+              | &nbsp;&nbsp;|&nbsp;&nbsp;
+              router-link(to='/info/shipping-delivery/', target='_blank').blue-ul Production & Delivery
+              | &nbsp;&nbsp;|&nbsp;&nbsp;
+              router-link(to='/info/returns/', target='_blank').blue-ul 14-Day Returns
+
+        br
+        br
+    li#helpHeading(role="tab")
+      a#helpCollapseLabel(data-toggle="collapse", href='#helpCollapse',
+      aria-controls='helpCollapse', aria-expanded='false').collapse-title Product Help
+      #helpCollapse(role='tabpanel', aria-labelledby='helpCollapseLabel',
+      data-parent="#productInfoAccordion").collapse
+        br
+        .frame-help
+          .col-12
+            h3 Will this frame suit me?
+            p.smaller
+              | Not sure if this frame is right for you? See our guide to face shapes & frame styles&nbsp;
+              router-link(to='/info/face-shapes/').blue-ul here
+              | .
+            br
+          .col-12
+            h3 What lenses should I choose?
+            p.smaller
+              | Our virtual dispenser can recommend you the perfect lenses for your prescription - You can also find out more about our lenses&nbsp;
+              router-link(to='/guides/lenses/').blue-ul here
+              | &nbsp;or see our lens price list&nbsp;
+              router-link(to='/price-list/').blue-ul here
+              | .
+            br
+          .col-12
+            h3 How and where are my glasses made?
+            p.smaller
+              | All prescription glasses are made to an incredibly high standard in one of our labs. Find out more&nbsp;
+              router-link(to='/about-us/lab/').blue-ul here
+              | .
+            br
+        .sunglasses-help
+          .col-12
+            h3 Will these sunglasses suit me?
+            p.small
+              | Not sure if these sunglasses will suit you? Take a look at our guide to face shapes & frame styles&nbsp;
+              router-link(to='/info/face-shapes/').blue-ul here
+              | .
+            br
+          .col-12
+            h3 Different sun lens technologies
+            p.small
+              | Unsure of the difference between polarised or transitions/photochromic technologies? Our handy guide to lenses explains all&nbsp;
+              router-link(to='/guides/lenses/').blue-ul here
+              | .
+            br
+          .col-12
+            h3 What sunglasses do I need for driving?
+            p.small
+              | We always recommend polarised lenses for driving. Check out our guide to choosing safe sunglasses&nbsp;
+              router-link(to='/guides/how-to-choose-safe-sunglasses-for-driving/').blue-ul here
+              | .
+            br
+        br
+        br
+    li#reviewsHeading(role="tab")
+      a#reviewsCollapseLabel(data-toggle="collapse", href='#reviewsCollapse',
+      aria-controls='reviewsCollapse', aria-expanded='false').collapse-title Customer Reviews (71)
+      #reviewsCollapse(role='tabpanel', aria-labelledby='reviewsCollapseLabel',
+      data-parent="#productInfoAccordion").collapse
+        .container.px-3
+          br
+          .text-center
+            p.smaller
+              | 78 Review(s) -&nbsp;
+              a.blue-ul(href='#', rel='nofollow') Add your review
+            p.smaller
+              strong 94%
+              | &nbsp;of customers recommend this product&nbsp;
+              em (64 of 68)
+            br
+            .pr-review.row.mb-3
+              .col-12.col-md-4.review-meta.text-left
+                a(name='review_id')
+                p.review-author(itemprop='author', itemscope='', itemtype='http://schema.org/Person')
+                  strong
+                    span(itemprop='name') J Spencer
+                    | ,&nbsp;
+                    span(itemprop='nationality') IE
+                p.smallest
+                  em POSTED: 23rd August 2017
+                div(itemprop='reviewRating', itemscope='', itemtype='http://schema.org/Rating')
+                  .product-rating.my-1
+                    p
+                      strong OVERALL
+                    .rateit(data-rateit-value='4.00',
+                    data-rateit-ispreset='true',
+                    data-rateit-readonly='true',
+                    data-rateit-mode="font")
+                  .review-helpful.my-3.mx-0
+                    | Was this review useful?  
+                    span.text-nowrap
+                      a.helpful(data-helpful='17561_1', href='#')
+                        i.fa.fa-thumbs-up
+                        | &nbsp;Yes
+                      a.helpful(data-helpful='17561_0', href='#')
+                        i.fa.fa-thumbs-down
+                        | &nbsp;No
+              .col-12.col-md-8.review-body.text-left
+                .container-fluid
+                  .row
+                    .product-rating.float-left
+                      p
+                        strong
+                          em Style
+                      .rateit(data-rateit-value='5.00',
+                      data-rateit-ispreset='true',
+                      data-rateit-readonly='true',
+                      data-rateit-mode="font")
+                    .product-rating.float-left
+                      p
+                        strong
+                          em Quality
+                      .rateit(data-rateit-value='3.00',
+                      data-rateit-ispreset='true',
+                      data-rateit-readonly='true',
+                      data-rateit-mode="font")
+                    .product-rating.float-left
+                      p
+                        strong
+                          em Value
+                      .rateit(data-rateit-value='4.00',
+                      data-rateit-ispreset='true',
+                      data-rateit-readonly='true',
+                      data-rateit-mode="font")
+                  hr.row.mt-0
+                  .row
+                    p(itemprop='name')
+                      strong Quality Matches the Price
+                  .row
+                    p.small(itemprop='description') The left arm has broken, but it was good for the price. They lasted for three months.
+                  hr.row
+                  .row
+                    p.small
+                      span.text-nowrap
+                        | [
+                        strong  Fit -
+                        |  As expected ]&nbsp;&nbsp;
+                      br
+                      span.text-nowrap [ I would recommend this product to others ]
+            .row
+              #reviewShowMore.btn.big-orange-button + Show 5 more
+          br
+          br

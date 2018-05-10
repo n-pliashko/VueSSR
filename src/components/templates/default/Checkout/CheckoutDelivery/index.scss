@@ -1,0 +1,153 @@
+@import '../../_Styles/mixins';
+
+.shipping {
+  border: none;
+
+  .sub-text {
+    padding: .5rem 0;
+    text-align: center;
+    background-color: #f7f7f7;
+    @include desktop {
+      margin-top: .15rem;
+    }
+  }
+  .options-wrapper {
+    @include desktop-down {
+      padding: .5rem 0;
+      & > .col-12 {
+        padding: 0;
+      }
+    }
+  }
+
+  .custom-control-indicator {
+    height: 1.2rem;
+    width: 1.2rem;
+    top: 35%; right: 1.5rem;
+    left: unset;
+    border: 1px solid rgba(51, 51, 51, .5);
+    background-color: #fff;
+  }
+  .custom-radio.active {
+    .custom-control-indicator {
+      color: #000;
+      background-size: 1.2rem;
+      background-image: url('/static/radio-dot.png');
+    }
+  }
+  /*
+  .custom-radio.active .custom-control-input:checked ~ .custom-control-indicator {
+    color: #000;
+    background-size: 1.2rem;
+    background-image: url(http://smarthistory.org/wp-content/uploads/leaflet-maps-marker-icons/Dot-128.png);
+  }
+  */
+  .custom-control-input:focus ~ .custom-control-indicator {
+    box-shadow: 0 0 0 1px #fff;
+  }
+
+  .shipping-method {
+    width: 100%;
+    color: #000;
+    font-size: .875rem;
+    text-align: left;
+    margin: 0;
+    @include tablet-down {
+      padding: 1rem;
+      min-height: 90px;
+    }
+    @include desktop {
+      //min-height: 200px;
+      padding: .5rem 0;
+      //border-radius: 10px;
+      //box-shadow: 3px 3px 10px 0 rgba(73, 80, 87, 0.7);
+    }
+    .custom-control-description {
+      width: inherit;
+      @include desktop {
+        width: inherit;
+      }
+      .shipping-price {
+        @include largeDesktop-down {
+          text-align: left;
+        }
+        @include largeDesktop {
+          text-align: center;
+        }
+      }
+      .img-wrapper {
+        width: inherit;
+        text-align: center;
+        @include desktop-down {
+          .img-fluid {
+            width: inherit;
+            max-width: 98px;
+          }
+        }
+        @include desktop {
+          max-height: 100px;
+          img {
+            height: 50px;
+            width: auto;
+            max-width: 100px;
+          }
+        }
+      }
+    }
+  }
+  .shipping-method.active, .shipping-method:hover {
+    cursor: pointer;
+    background-color: #fffdde;
+    @include desktop {
+      //box-shadow: inset 3px 3px 10px 0 rgba(73, 80, 87, 0.7);
+    }
+  }
+
+  /*
+  .shipping-method.active:disabled,
+  .shipping-method.active[disabled],
+  .shipping-method:active:disabled {
+    //box-shadow: inset 3px 3px 10px 0 rgba(73, 80, 87, 0.7);
+    @include desktop-down {
+      box-shadow: none;
+      background-color: #eaeaea;
+      border-bottom: none;
+    }
+  }
+  */
+
+  /*
+  .shipping-method[disabled],
+  .shipping-method:disabled,
+  .shipping-method.disabled,
+  .shipping-method:disabled:hover,
+  .shipping-method[disabled]:hover {
+    cursor: default;
+    pointer-events: none;
+    background-color: #f5f5f5;
+    @include desktop-down {
+      box-shadow: none;
+      border-bottom: 1px solid rgba(192, 192, 192, 0.55);
+    }
+    @include desktop {
+      //box-shadow: 3px 3px 10px 0 rgba(73, 80, 87, 0.7);
+    }
+  }
+  */
+
+  .selected-method {
+    text-align: right;
+    font-weight: 700;
+    font-size: .8rem;
+    margin: .5rem 0;
+    @include tablet-down {
+      display: none;
+    }
+  }
+
+  .form-check {
+    width: 185px;
+    margin: 0 .5rem;
+    display: inline-block;
+  }
+}

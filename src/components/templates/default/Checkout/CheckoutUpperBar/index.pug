@@ -1,0 +1,64 @@
+section.checkout-upper-bar
+  .container-fluid.checkout-upper-bar-small.d-md-none
+    .row
+      .col-12
+        p.small.text-center.m-0.py-1
+          strong FREE Delivery
+          |  on orders £75.00+
+          |  |
+          | (+44) 03303 801 190
+  .container-fluid.checkout-upper-bar-big.d-none.d-md-block
+    .row
+      .col-6.col-xl-4.mr-auto.pr-0
+        ul.nav.justify-content-start
+          li.nav-item
+            a#callToLink(href="tel:03303 801 190").nav-link
+              i.fa.fa-phone.mr-1
+              strong 03303 801 190
+          li.nav-item
+            a#contact-us(href="#").nav-link Contact us
+          li.nav-item
+            a#help(href="#").nav-link Help
+          li.nav-item
+            a#about-us(href="#").nav-link About us
+          li.nav-item
+            a#guides(href="#").nav-link Guides
+      .col-6.col-xl-4.ml-auto.pl-0
+        ul.nav.justify-content-end
+          li.nav-item
+            span
+              strong {{user.profile.first_name}}:
+              a#account-orders(href="#").nav-link.d-inline-block Account and Orders
+          li.nav-item
+            span.fa.fa-circle.nav-link.px-1
+
+            // new
+          li#site-flag.nav-item.dropdown.currency-section
+            a#currency-dropdown(data-toggle="dropdown",
+            href="#", aria-expanded="false").dropdown-toggle.nav-link
+              span
+                img.mr-1.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/uk-small.png")
+              span(v-if="currencies[selectedCurrency]")
+                span(v-html="currencies[selectedCurrency].symbol")
+                | {{currencies[selectedCurrency].currency_name}}
+              span.arrow
+            #currency-dropdown-menu.currency.dropdown-menu
+              p.dropdown-header Change currency
+              form#currency_form(method="post").dropdown-item
+                input(type="hidden", name="current_url", value="/auth/login/")
+                input#hash(type="hidden", name="hash")
+                select.form-control.p-1(v-model='selectedCurrency', @input="setCurrency")
+                  option(v-for='currency in currencies',
+                  :value='currency.number',
+                  v-html='`${currency.symbol} ${currency.currency_name}`')
+              p.dropdown-header Other country sites
+              a.dropdown-item(href="#") English
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/uk.png")
+              a.dropdown-item(href="#") Deutsch
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/de.png")
+              a.dropdown-item(href="#") Chinese
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/cn.png")
+              a.dropdown-item(href="#") Canadian
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/ca.png")
+              a.dropdown-item(href="#") Australian
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/au.png")

@@ -1,0 +1,17 @@
+#versionBlock {
+  position: fixed;
+  top: 1px;
+  left: 0;
+  background-color: yellow;
+  color: black;
+  z-index: 9999999;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 12px;
+  font: 0.75rem Arial;
+  font-width: bolder;
+
+  p {
+    font: 9px Arial;
+  }
+}

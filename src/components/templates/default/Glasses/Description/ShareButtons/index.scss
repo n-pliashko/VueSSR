@@ -1,0 +1,14 @@
+@import "../../../_Styles/mixins";
+
+a {
+  transition: all .2s ease-in-out;
+  &:hover:not(.plus) {
+    transform: translateY(-4px);
+  }
+  .icon-wrapper {
+    @include size(32px);
+    line-height: 32px;
+    color: white;
+    text-align: center;
+  }
+}

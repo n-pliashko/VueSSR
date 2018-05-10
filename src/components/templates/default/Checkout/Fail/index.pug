@@ -1,0 +1,25 @@
+#checkoutFailPage.page
+  PageHeader
+  main
+    .container-fluid
+      .row
+        .col-12.text-center
+          br
+          h1.font-weight-bold
+            p(style="font-size: 14px;") There has been an error with the details submitted during payment, please try again.
+            p(style="font-size: 14px;") Kindly check your card details and billing address before submitting your payment.
+          br
+          p Unfortunately an error occurred while our payment merchant were processing your payment and no payment was taken by your chosen payment method.
+          br
+          p
+            strong Please return to the&nbsp;
+              router-link#orderDetailsLink(:to='`/payment/${order.hash}/`').blue-ul order details
+              |  page to try again.
+          br
+          p
+            router-link#tryAgainLink(:to='`/payment/${order.hash}/`').btn.big-button.font-weight-normal Try Again »
+          br
+  //TrustpilotWidget
+  PageFooter
+  ScrollToTop
+

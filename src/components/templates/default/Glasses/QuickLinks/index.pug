@@ -1,0 +1,83 @@
+section.quick-links.text-center
+  .container-fluid.pt-5.pb-3
+    .row.row-eq-height
+      .col-12.col-md-6.col-lg-3
+        .type-wrapper.mb-5
+          p
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/sweet-deal.jpg?20171030191515')
+          .text-wrapper
+            p.largest World's Cheapest Glasses
+            p.small Prescription glasses for&nbsp;
+              strong {{calculatePrice(250.00/33.47, false, true)}}&nbsp;
+              |  including lenses & coatings. That's what we call a&nbsp;
+              strong sweet deal!
+          br
+          p
+            a.btn.big-button(href='/cheap-glasses/') Shop {{calculatePrice(250/33.47, false, true)}} Glasses »
+      .col-12.col-md-6.col-lg-3
+        .type-wrapper.mb-5
+          p
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/two-for-one.jpg?20171030191515')
+          .text-wrapper
+            p.largest 2 for 1 - Glasses from {{calculatePrice(1221.63/33.47, false, true)}}
+            p.small Two stylish pairs of single vision glasses for the price of one. Complete with lenses & coatings.
+          br
+          p.small
+            a.btn.big-button(href='/2for1-glasses/') Shop Now »
+      .col-12.col-md-12.col-lg-6
+        .type-wrapper
+          br
+          .text-wrapper
+            p.largest Shop Frames by Style
+            p.small Find your perfect frame style by selecting one of the below options.
+          br
+          br
+          .row.tiles-container
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/aviator/c25/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-aviator.png?20171030191515', alt='Aviator', width='100px')
+                  br
+                  strong Aviator »
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/wayfarer/c89/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-retro.png?20171030191515', alt='Wayfarer Style', width='100px')
+                  br
+                  strong Wayfarer Style »
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/round-or-oval/c44/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-round.png?20171030191515', alt='Round', width='100px')
+                  br
+                  strong Round »
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/square-or-rectangular/c80/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-square.png?20171030191515', alt='Square', width='100px')
+                  br
+                  strong Square »
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/cat-eye/c279/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-cateye.png?20171030191515', alt='Cat Eye', width='100px')
+                  br
+                  strong Cat Eye »
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/horn-rimmed/c278/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-horn.png?20171030191515', alt='Horn Rimmed', width='100px')
+                  br
+                  strong Horn Rimmed »
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/semi-rimless/c15/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-sr.png?20171030191515', alt='Semi-Rimless', width='100px')
+                  br
+                  strong Semi-Rimless »
+            .tile-wrapper.col-12.col-md-3.col-lg-3
+              p
+                router-link(to='/glasses/prescription/rimless/c14/').tile
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-rimless.png?20171030191515', alt='Rimless', width='100px')
+                  br
+                  strong Rimless »

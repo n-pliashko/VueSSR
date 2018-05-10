@@ -1,0 +1,18 @@
+section
+  .page-banner.d-none.d-lg-block
+    .container-fluid.content-wrapper.text-center
+      .text-wrapper
+        br.d-none.d-md-block
+        p.large
+          strong Ski, MX & swimming goggles available
+        p.small Start your search now...
+      br
+      router-link#skiGogglesLink(to="/goggles/snow-ski-goggles/c352/").btn.big-button Ski »
+      router-link#mxGogglesLink(to="/goggles/mx-goggles/c365/").btn.big-button MX »
+      router-link#swimGogglesLink(to="/accessories/swimming-goggles/c100/").btn.big-button Swim »
+
+  // Slick(aria-label='Ski Goggles', ref="slick", :options="slickOptions").d-lg-none
+    router-link#skiGogglesMobileLink(to="/goggles/snow-ski-goggles/c352/")
+      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ski-goggles.jpg?20171023183726', alt='Ski / Snow Goggles')
+    router-link#mxGogglesMobileLink(to="/goggles/mx-goggles/c365/")
+      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mx-goggles.jpg?20171023183726', alt='Motocross Goggles')

@@ -1,0 +1,33 @@
+.lens-price {
+  width: 100%;
+  margin: .9375rem auto 1.875rem;
+  font-size: .8rem;
+  text-align: center;
+  padding: .5rem .1875rem;
+  th, td {
+    padding: .5rem .625rem .625rem;
+  }
+  td {
+    background-color: #f6f6f6;
+  }
+  .first-theader > th {
+    border: 3px solid #fff;
+    background-color: #545454;
+    color: #fff;
+  }
+  .sub-row > th {
+    background-color: #a7d163;
+    font-weight: bold;
+    padding: .25rem 0;
+    border: none;
+  }
+  .row-clear-lens > td, th {
+    font-weight: bold;
+    background-color: #daf2d4;
+    border: none;
+  }
+  .row-divide > td {
+    background-color: #fff;
+    padding: .75rem 0;
+  }
+}

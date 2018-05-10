@@ -1,0 +1,138 @@
+#printPage.page
+  main
+    .container-fluid
+      .row.mb-3
+        .col-6
+          br
+          h1
+            strong Order Confirmation
+          h2 Your order number is&nbsp;
+            strong {{ order.order_number }}
+          br
+          .row.mb-3
+            .col-6
+              p
+                strong Billing Address:
+              p.small
+                | {{ order.billingAddress.line1 }}
+                br
+              p(v-if="order.billingAddress.line2 && order.billingAddress.line2.length > -1").small
+                | {{ order.billingAddress.line2 }}
+                br
+              p.small {{ order.billingAddress.town }}
+                br
+                | {{ order.billingAddress.state }}
+                br
+                | {{ order.billingAddress.zip }}
+            .col-6
+              p
+                strong Delivery Address:
+              p.small
+                | {{ order.deliveryAddress.line1 }}
+                br
+              p(v-if="order.billingAddress.line2 && order.billingAddress.line2.length > -1").small
+                | {{ order.deliveryAddress.line2 }}
+                br
+              p.small {{ order.deliveryAddress.town }}
+                br
+                | {{ order.deliveryAddress.state }}
+                br
+                | {{ order.deliveryAddress.zip }}
+          .row.mb-4
+            .col-12
+              p
+                strong Delivered by: COURIER_NAME - DELIVERY_PRICE
+        .col-6
+          .row
+            .col-8.ml-auto
+              img(src="/static/ss_logo_black.png", align="right").img-fluid.mb-3
+          .row.text-right
+            .col-4
+            .col-4
+              p.small
+                strong Head Office
+              p.small Lockwoods Yard
+              p.small The Grove
+              p.small Westgate on Sea
+              p.small Kent, UK
+              p.small.mb-3 CT8 8AS
+            .col-4
+              p.small
+                strong Store
+              p.small 37 Station Road
+              p.small Westgate on Sea
+              p.small Kent, UK
+              p.small.mb-3 CT8 8QY
+            .col-12
+              p.small.mb-3
+                strong Telephone Support:&nbsp;
+                | 0330 380 1190
+              p.small.mb-3
+                strong Email:&nbsp;
+                | ticketsupport@selectspecs.com
+      .row
+        .col-12.mb-3
+          h3
+            strong Summary of order
+          hr
+          .print-order-item(v-for='(item, index) in order.orderItems', :id="'printItem' + index").row
+            .col-4
+              img(src="https://d9qzjwuieyamt.cloudfront.net/public/en/res/images/items/fullsized/271_18_1.jpg").img-fluid
+            .col-8
+              p.small
+                strong ITEM_CODE
+                | &nbsp;-&nbsp;
+                span(v-if="item.brand_name") {{ item.brand_name }}
+                span(v-else) BRAND_NAME
+              .row
+                .col-5
+                  p.small {{ item.description }}
+                  p.small OPTIONS
+                  p.small.mb-3 Size SIZE
+                  p.small.mb-3
+                    strong Frame Price:&nbsp;
+                    | {{decodeHtml(currency.symbol)}}{{ parseFloat(item.price) }}
+                  p.small.mb-3
+                    strong Quantity:&nbsp;
+                    | {{ item.quantity }}
+                  p.small.mb-3
+                    strong Total Price:&nbsp;
+                    | TOTAL_PRICE
+                .col-7
+                  p.small Distance (Single Vision)
+                  p.small Trivex 1.53 Index - $80.00
+                  p.small.mb-3 NXT Photochromic Grey - $80.00
+                  table.table
+                    thead
+                      tr
+                        th(scope="col")
+                        th(scope="col") SPH
+                        th(scope="col") CYL
+                        th(scope="col") AXIS
+                        th(scope="col") ADD
+                    tbody
+                      tr
+                        th(scope="row") Right
+                        td - 1.00
+                        td - 1.00
+                        td - 1.00
+                        td - 1.00
+                      tr
+                        th(scope="row") Left
+                        td - 1.00
+                        td - 1.00
+                        td - 1.00
+                        td - 1.00
+                  p.text-center
+                    strong Pupillary Distance (PD):&nbsp;
+                    | 63
+            hr.col-12
+      .row
+        .col-12.text-right.mb-4
+          h3
+            strong Total inc delivery:&nbsp
+            | TOTAL_INC_DELIVERY
+        .col-12.text-center
+          p.mb-2 Order completion is normally within 7-10 working days. You order will ship upon completion and you'll receive a shipping notification
+          p.mb-2 Please see our shipping information for more information: https://www.selectspecs.com/info/shipping-delivery
+          p.mb-2 If you have any questions, please contact via the number or email address at the top of this receipt

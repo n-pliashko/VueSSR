@@ -1,0 +1,80 @@
+#kidsPage.page
+  PageHeader
+
+  .loading(v-if="loading")
+  main.kids-glasses-wrapper
+    Breadcrumbs
+    .container-fluid
+      .row
+        .col-12.text-center
+          h1.super-heading How to Guides
+          p A series of 'how to' guides advising you on how to get the best out of your glasses or sunglasses.
+    .grey-container
+      .container-fluid.text-center
+        .row.row-eq-height
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/howto-adjust.jpg?20171207190136').img-fluid
+              p
+                strong Making adjustments to your glasses
+              p.small Learn how to make simple adjustments to your glasses for a better fit.
+              br
+              p
+                router-link(to='/guides/how-to/adjust-your-glasses/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/howto-sizes.jpg?20171207190136').img-fluid
+              p
+                strong Finding the right size glasses
+              p.small We'll decipher the numbers on your glasses and explain what they mean.
+              br
+              p
+                router-link(to='/guides/how-to/find-right-sized-glasses/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/howto-fix-scratches.jpg?20171207190136').img-fluid
+              p
+                strong Removing scratches from your lenses
+              p.small 5 tips worth knowing to help removing scratches from your glasses lenses.
+              br
+              p
+                router-link(to='/guides/how-to/fix-scratches-on-lenses//').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/howto-slipping.jpg?20171207190136').img-fluid
+              p
+                strong Stop your glasses from slipping
+              p.small
+                | 5 tips worth knowing to prevent your glasses from slipping down your nose.
+              br
+              p
+                router-link(to='/guides/how-to/stop-glasses-slipping/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/howto-fog.jpg?20171207190136').img-fluid
+              p
+                strong Stop your glasses from fogging up
+              p.small
+                | 7 tips worth knowing to prevent your glasses from fogging up.
+              br
+              p
+                router-link(to='/guides/how-to/stop-glasses-fogging-up/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                br
+                br
+                br
+              p.large
+                strong Looking for more guides?
+              p.small Find more comprehensive guides to help you with your buying research.
+              br
+              p
+                router-link(to='/guides/').btn.big-button More Guides »
+
+  PageFooter

@@ -1,0 +1,231 @@
+@import '../../_Styles/mixins';
+
+.cheap-glasses-wrapper {
+  .catalogue-title {
+    font: {
+      size: 1.5rem;
+      weight: 700;
+    }
+  ;
+    margin: 1rem 0;
+    letter-spacing: 0;
+    @include desktop-down {
+      margin: .75rem 0;
+      font-size: 1rem;
+    }
+  }
+
+  .banner-wrapper {
+    padding: 2.4rem 1rem;
+    height: 350px;
+    background: url('/static/cg-bg-banner.jpg') center center no-repeat #e0e0e0;
+
+    .title-wrapper {
+      padding: 1rem;
+      background: #fff;
+      width: 32rem;
+      border-radius: 5px;
+
+      .catalogue-title {
+        margin: 0 0 .5rem;
+      }
+    }
+  }
+
+  .more-styles-row {
+    border: 2px solid #fff;
+    background: #ffe7ab;
+    padding: .75rem;
+    margin: 1rem 0;
+
+    .more-styles-button {
+      background: #2d3e50;
+      color: #fff;
+      padding: .4rem .5rem;
+      margin: 0 .3rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      &:hover, &:focus {
+        background-color: #48647c;
+      }
+    }
+  }
+
+  #cheap-items {
+    .cheap-loader {
+      z-index: 999;
+      height: 2em;
+      width: 2em;
+      margin-left: 50%;
+      margin-top: 3%;
+
+      &:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+        &:after {
+          content: '';
+          display: block;
+          font-size: 10px;
+          width: 1em;
+          height: 1em;
+          margin-top: -0.5em;
+          animation: spinner 1500ms infinite linear;
+          border-radius: 0.5em;
+          box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0,
+          rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0,
+          rgba(0, 0, 0, 0.75) 0 1.5em 0 0,
+          rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0,
+          rgba(0, 0, 0, 0.75) -1.5em 0 0 0,
+          rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0,
+          rgba(0, 0, 0, 0.75) 0 -1.5em 0 0,
+          rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+        }
+      }
+    }
+
+    //margin: 0 -1.1875rem;
+    .shop-item {
+      .item-wrapper {
+        position: relative;
+        text-align: center;
+        background-color: #fff;
+        border: 1px solid #fff;
+        padding: .2rem;
+        transition: border-color .25s ease-out, color .25s ease-out;
+        cursor: pointer;
+        &:hover {
+          border: 1px solid #ffa200;
+        }
+        .item-photo {
+          position: relative;
+          margin: .65rem auto;
+          max-width: 230px;
+          min-height: 116px;
+        }
+        .item-feature {
+          margin: 0;
+          padding: 0;
+          z-index: 3;
+          position: absolute;
+          width: 45px;
+          height: 45px;
+          left: 0;
+          top: 0;
+          background: url('/static/layout-sprite-uk.png');
+          background-size: 500px;
+        }
+        .new-item {
+          background-position: -50px -209px;
+        }
+        .sale-item {
+          background-position: 0 -209px;
+        }
+        .item-prescription {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: .65rem;
+          padding: .1rem .25rem;
+          background-color: #ecf0f1;
+        }
+        .item-designer-name {
+          font-weight: 700;
+          font-size: .85rem;
+        }
+
+        .item-price > span {
+          font-size: 2rem;
+          color: #8d0e00;
+          cursor: pointer;
+          margin: 0;
+        }
+
+        $options-height: .875rem;
+        .item-no-options {
+          height: $options-height;
+        }
+        .item-options {
+          font-size: .7rem;
+          line-height: .9rem;
+          color: #707070;
+          width: 100%;
+          margin-bottom: .2rem;
+          text-align: center;
+        }
+
+        .item-description {
+          height: .9rem;
+          font-size: .7rem;
+          line-height: .9rem;
+          color: #707070;
+        }
+
+        $rating-height: 1.125rem;
+        .item-no-rating {
+          height: $rating-height;
+        }
+        .item-rating {
+          font-size: .7rem;
+          color: #000;
+          width: 6rem;
+          opacity: .6;
+          cursor: pointer;
+          .stars {
+            height: $rating-height;
+            background: url('/static/layout-sprite.png') 0 -157px no-repeat;
+            background-size: 750px;
+          }
+        }
+        .input-wrapper {
+          height: 6px;
+        }
+        .choose-lenses-button {
+          padding: .6rem 2rem .55rem;
+          margin-bottom: 1rem;
+          border: 1px solid transparent;
+          background: #fc4c02;
+          color: #fff !important;
+          text-transform: uppercase;
+          font-weight: 700;
+          &:hover {
+            background: #c00;
+          }
+        }
+
+        .item-info {
+          padding: .25rem 0;
+          text-decoration: underline;
+          font: {
+            weight: 700;
+            size: .75rem;
+          }
+        }
+
+        .item-sizes {
+          font-size: .7rem;
+        }
+      }
+      .bigger-img-modal {
+        .fullsize-img {
+          width: 100%;
+          margin-bottom: 1rem;
+        }
+        .preview-options {
+          min-height: 1rem;
+        }
+      }
+    }
+  }
+
+  .details-questions-wrapper {
+    background: #fafafa;
+    border-top: 1px solid #e0e0e0;
+    padding: 4rem 0;
+  }
+}
+
+

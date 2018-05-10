@@ -1,0 +1,31 @@
+li(role="tab", v-if='categories && Object.values(categories).length > 0 && $parent.$parent.filters[filterName]')
+  a(:id="blockId + 'CollapseLabel'",
+    :href="'#' + blockId",
+    :aria-controls="filterName + 'CollapseMobile'",
+    data-toggle="collapse",
+    aria-expanded='false').filters-collapse-title
+    | {{title}}
+  .collapse(:id="blockId",
+    :aria-labelledby="blockId + 'CollapseLabel'",
+    data-parent="#categoriesMobile",
+    role='tabpanel')
+    ul.refine-control-mobile
+      li(v-for='(cat, key) in categories').collapse-item
+        a(:id='filterName + cat.id',
+        :class="cat.count_items && cat.count_items > 0 || isLink ? '' : 'disabled'",
+        :href="isLink && linkTemplate ? reverseRoute(linkTemplate, cat) : null").search-element
+          input(v-if='onlyOne == 0',
+          type='checkbox',
+          :name='filterName',
+          :value='cat.id',
+          :id="'input-' + filterName + cat.id + 'InputMobile'",
+          v-model='$parent.$parent.filters[filterName]')
+          input(v-if='onlyOne == 1',
+          type='radio',
+          :name='filterName',
+          :value='cat.id',
+          :id="'input-' + filterName + cat.id + 'InputMobile'",
+          v-model='$parent.$parent.filters[filterName]')
+          label(:for="'input-' + filterName + cat.id + 'InputMobile'").m-0
+            span.refine-category {{cat.name ? cat.name : ''}}
+            span.refine-count  {{cat.count_items && cat.count_items > 0 ? '(' + cat.count_items + ')' : ''}}

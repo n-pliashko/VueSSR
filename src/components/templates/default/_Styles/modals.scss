@@ -1,0 +1,79 @@
+// Modals
+
+@import "mixins";
+
+.modal {
+  .modal-dialog {
+    z-index: 5;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #cacaca;
+    background-color: #fefefe;
+    border-radius: 3px;
+    color: #000;
+    width: 600px;
+    max-width: 89.0625rem;
+    &.centered {
+      @include desktop {
+        margin-top: 20%;
+      }
+      @include desktop-down {
+        margin-top: 30%;
+      }
+    }
+    @include tablet-down {
+      width: 100%;
+      max-width: 100%;
+    }
+    .modal-content {
+      border: none;
+      padding: 1rem;
+      position: relative;
+      overflow-y: auto;
+      .close {
+        position: absolute;
+        cursor: pointer;
+        opacity: 1;
+        color: #d20000;
+        float: right;
+        font-size: 2rem;
+        right: 1rem;
+        top: .5rem;
+        z-index: 10;
+      }
+      .modal-header {
+        border-bottom: none;
+        padding: 0;
+        display: block;
+        .modal-title {
+          font-size: 1.2rem;
+          line-height: 1.6;
+          margin: 0;
+        }
+      }
+      .modal-body {
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    }
+  }
+  &.large {
+    .modal-dialog {
+      @include desktop {
+        width: 90%;
+        max-width: 89.0625rem;
+      }
+    }
+  }
+  &.small {
+    .modal-dialog {
+      @include desktop {
+        width: 50%;
+        max-width: 89.0625rem;
+      }
+    }
+  }
+}
+

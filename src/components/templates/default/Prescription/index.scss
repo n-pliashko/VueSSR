@@ -1,0 +1,123 @@
+.logo-horizontal {
+  width: 14em;
+  height: 6em;
+  background: url('/static/sprite-uk.png') 0 0;
+}
+
+.star-sprite {
+  height: 15px;
+  width: 15px;
+  padding: 0 2px;
+  margin-right: 2px ;
+  border-radius: 2px;
+  background-color: #00aa18;
+  line-height:.8;
+  img {
+    // @include size(10px);
+  }
+}
+
+.black-bar {
+  height: 2em;
+  background-color: black;
+}
+
+.main-section {
+  .wizard {
+    margin-top: -10px;
+    background-color: #ecf0f1;
+    border-radius: 0;
+    border-top:1px solid #ffffff;
+    border-right:2px solid #ffffff;
+    border-bottom:2px solid #dddddd;
+    border-left:2px solid #ffffff;
+    :disabled > a:hover {
+      font-weight: initial;
+    }
+
+    .order-step {
+      font: {
+        size: .75em;
+        weight: 700;
+      };
+      .fa-chevron-right {
+        float: right;
+        color: #fc4c02;
+        font-size: 2em;
+      }
+    }
+  }
+}
+
+.nav-item {
+  display: inline-block;
+  margin: 0 .5rem;
+
+  .nav-link {
+    vertical-align: middle;
+    height: 5em;
+    line-height: 1.5;
+    text-align: center;
+    background-color: #404048;
+    color: white;
+    border: 5px solid transparent;
+    border-radius: 0;
+    &:hover, &.active {
+      background-color: #fafafa ;
+      color: #404048;
+      border-color: #ffa200;
+      border-radius: 0;
+    }
+  }
+}
+
+.card {
+  margin: 0 .25rem 1rem;
+  background-color: #f6f6f6;
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  .card-header, .card-block, .card-footer {
+    background-color: transparent;
+  }
+
+  &:hover {
+    background-color: white;
+    border: 1px solid #fc4c02;
+  }
+}
+
+.show-modal-link {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.table {
+  th, td { padding: .25em .75em; }
+  th {
+    width: 20%;
+    text-align: center;
+  }
+  th.eye { text-align: left; }
+  th.eye, th.value {
+    font-size: small;
+  }
+  .rightEye { background-color: #f0f0f0; }
+  .leftEye { background-color: #e0e0e0; }
+  .pd-option {  }
+
+  .pupillary-distance {
+    td { width: 30%; }
+  }
+
+}
+
+.footer-payment-logo {
+  background: url('/static/sprite-uk.png') 0 -125px;
+  height: 50px;
+  width: 75%;
+}

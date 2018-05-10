@@ -1,0 +1,55 @@
+section.account-links
+  .container
+    .row
+      .col-12.col-lg-10.mx-auto
+        .acct-wrapper
+          .acct-menu.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#myOrdersLink(:to='{name: "Account/orders"}', rel='nofollow').blue-ul Orders »
+            p View any outstanding orders or orders in your order history.
+        .acct-wrapper
+          .acct-script.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#myPrescriptionsLink(:to='{name: "Account/prescriptions"}', rel='nofollow').blue-ul Prescriptions »
+            p Store your Prescription for easy ordering.
+        .acct-wrapper
+          .acct-helpdesk.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#myHelpDeskLink(to='customer-services', rel='nofollow').blue-ul Customer Services »
+            p Get support and view any logged helpdesk tickets.
+        .acct-wrapper
+          .acct-wishlist.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#myWishlistLink(:to='{name: "Wishlist"}', rel='nofollow').blue-ul Wishlist »
+            p View items in your wishlist
+        .acct-wrapper
+          .acct-profile.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#myProfileLink(:to='{name: "Account/update"}', rel='nofollow').blue-ul Profile »
+            p Change your addresses, email address, and contact details.
+        .acct-wrapper
+          .acct-setting.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#mySettingsLink(:to='{name: "Account/password/"}', rel='nofollow').blue-ul Account Settings »
+            p Change your Password and Newsletter Subscription Options.
+        .acct-wrapper
+          .acct-reviews.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#myReviewsLink(:to='{name: "Account/reviews"}', rel='nofollow').blue-ul Product Reviews »
+            p View your product reviews
+        .acct-wrapper
+          .acct-basket.account-sprite.col-12.col-md-9.col-lg-8.col-xl-6.mx-auto
+            p
+              strong
+                router-link#myBasketLink(:to='{name: "Basket"}', rel='nofollow').blue-ul View Cart »
+            p
+              | You currently have&nbsp;
+              strong %item%
+              |  Item(s) in your shopping basket.

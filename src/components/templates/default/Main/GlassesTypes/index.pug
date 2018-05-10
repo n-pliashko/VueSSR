@@ -1,0 +1,46 @@
+section.glasses-types.text-center
+  .container-fluid.mt-3
+    .row.row-eq-height
+      PreviewBlock(v-for="item in boxContents", :key="item.id",
+      :header="item.header", :text="item.text", :alt="item.alt",
+      :img="item.img", :links="item.links", :blockType="blockType")
+    br
+    //.row.row-eq-height
+      .col-lg-3
+        .type-wrapper
+          img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/sweet-deal.jpg?20170829201433")
+          .text-wrapper
+            strong.type-header World's Cheapest Glasses
+            p.type-description Prescription glasses for
+              strong  ₴250
+              |  including lenses & coatings. That's what we call a
+              strong  sweet deal!
+            br
+          router-link(to="/cheap-glasses/").btn.big-button Shop ₴250 Glasses »
+      .col-lg-3
+        .type-wrapper
+          img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/sunglasses-banner_v2.jpg?20170829201433")
+          .text-wrapper
+            strong.type-header Designer Sunglasses
+            p.type-description The hottest sunglasses and fashion brands at the lowest prices.
+            br
+          .button-wrappers
+            router-link(to="/sunglasses/designer/mens/c10/").btn.big-button Men's »
+            router-link(to="/sunglasses/designer/ladies/c11/").btn.big-button Women's »
+      .col-lg-3
+        .type-wrapper
+          img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/contact-lens-banner_v2.jpg?20170829201433")
+          .text-wrapper
+            strong.type-header Contact Lenses
+            p.type-description Daily, weekly, monthly, and coloured disposable lenses from the leading brands.
+            br
+          router-link(to="/contact-lenses/").btn.big-button Shop Lenses »
+      .col-lg-3
+        .type-wrapper
+          img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/goggles-banner_v2.jpg?20170829201433")
+          .text-wrapper
+            strong.type-header Goggles
+            p.type-description Ski, motocross and swimming goggles available from the leading brands.
+            br
+          router-link.btn.big-button(:to="{ name: 'Goggles' }") Shop Goggles »
+    hr

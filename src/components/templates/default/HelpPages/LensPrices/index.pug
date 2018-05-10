@@ -1,0 +1,1700 @@
+#kidsPage.page
+  PageHeader
+
+  main.kids-glasses-wrapper
+    Breadcrumbs
+    .container-fluid
+      .row
+        .col-12.text-center
+          br.d-md-none
+          h1.black Lens Prices
+          p
+            | We firmly believe the prices of our prescription lenses offer the best value when compared with other online retailers and high street opticians - see for yourself below. We're currently in the process of adding Essilor and other branded lenses to our database to offer the customer the best possible selection of lenses. This price list will be updated in due course.
+            br
+            br
+            em
+              u
+                strong Please note
+              br
+              | Prices displayed are for lenses from within our stock range when purchased with one of our frames. Prices may differ for higher prescriptions or for frames with a curvature (base curve 4+).
+          br
+          ShareButtons
+          br
+          br
+          p.largest Single Vision Prices
+          p
+            em
+              strong Please Note:
+              |  If your prescription includes a prism then you will need to add&nbsp;
+              span(v-html="currency.symbol")
+              | {{convertPrice(12.50)}} to the checkout price.
+          br
+        .col-12
+          p.large
+            strong Reading, Intermediate or Distance Single Vision
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              // 1.5 Index Lenses
+              tr.row-clear-lens
+                th 1.50 Index - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens FREE
+            tbody
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(10)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(45)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(75)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr
+                td + Drivewear
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(180)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 Index Lenses
+              tr.row-clear-lens
+                td 1.56 Index - Clear Lenses
+                td
+                  i.fi-x.red
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens FREE
+              tr
+                td + Photochromic
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(25)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(70)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 High Impact Lenses
+              tr.row-clear-lens
+                td 1.56 High Impact - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(15)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.53 Trivex Lenses
+              tr.row-clear-lens
+                td Trivex 1.53 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(70)}}
+              tr
+                td + Sun Lens NXT
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(50)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr
+                td + Photochromic NXT
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.59 PC Index Lenses
+              tr.row-clear-lens
+                td 1.59 Polycarbonate - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(10)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.61 Index Lenses
+              tr.row-clear-lens
+                td 1.60 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(20)}}
+              tr
+                td + Photochromic
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(40)}}
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(40)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(130)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(150)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(120)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.61 Blue Block Lenses
+              tr.row-clear-lens
+                td 1.61 - Blue Block Optimize Defender
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(30)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.67 Index Lenses
+              tr.row-clear-lens
+                td 1.67 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(40)}}
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(50)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(150)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(180)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(120)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.67 Blue Block Lenses
+              tr.row-clear-lens
+                td 1.67 - Blue Block Optimize Defender
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(50)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.67 Index Double Concave Lenses
+              tr.row-clear-lens
+                td 1.67 Index Double Concave - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(130)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.74 Index Lenses
+              tr.row-clear-lens
+                td 1.74 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(60)}}
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(260)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.74 Double Aspheric Lenses
+              tr.row-clear-lens
+                td 1.74 Double Aspheric - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.76 Lenses
+              tr.row-clear-lens
+                td 1.76 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(180)}}
+
+
+
+        .col-12.text-center
+          p.largest Bifocal Prices
+          p
+            em
+              strong Please Note:
+              |  If your prescription includes a prism then you will need to add&nbsp;
+              span(v-html="currency.symbol")
+              | {{convertPrice(12.50)}} to the checkout price.
+          br
+        .col-12
+          p.large
+            strong R28 Round Segment Bifocal
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              tr.row-clear-lens
+                th 1.50 R28 Round Segment - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(25)}}
+            tbody
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(10)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 Bifocal R28 Lenses
+              tr.row-clear-lens
+                td.na 1.56 R28 Round Segment - Clear Lenses
+                td -
+                td -
+                td -
+                td.lens NA
+              tr
+                td + Photochromic
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(65)}}
+
+        .col-12
+          p.large
+            strong D28 Flat Top Bifocal
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              // 1.50 Bifocal D28 Lenses
+              tr.row-clear-lens
+                th 1.50 D28 Flat Top - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                   | {{convertPrice(25)}}
+            tbody
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(10)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(30)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(95)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 Bifocal D28 Lenses
+              tr.row-clear-lens
+                td.na 1.56 D28 Flat Top - Clear Lenses
+                td -
+                td -
+                td -
+                td.lens NA
+              tr
+                td + Photochromic
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(65)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(70)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 Bifocal D28 High Impact
+              tr.row-clear-lens
+                td 1.56 D28 High Impact - Clear Lenses
+                td
+                  i.fi-x.red
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(70)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.59 Bifocal D28 PC
+              tr.row-clear-lens
+                td 1.59 D28 Polycarbonate - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(50)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.60 Bifocal D28
+              tr.row-clear-lens
+                td 1.60 D28 Flat Top - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(25)}}
+
+
+        .col-12
+          p.large
+            strong D35 Flat Top Bifocal
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              tr.row-clear-lens
+                th 1.50 D35 Flat Top - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(30)}}
+            tbody
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(10)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.60 Bifocal D35
+              tr.row-clear-lens
+                td 1.56 D35 Flat Top - Clear Lenses
+                td -
+                td -
+                td -
+                td.lens NA
+              tr
+                td + Photochromic
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                   | {{convertPrice(100)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.60 Bifocal D35
+              tr.row-clear-lens
+                td 1.60 D35 Flat Top - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+          br
+          br
+
+        .col-12
+          p.large
+            strong C28 Curve Top Bifocal
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              tr.row-clear-lens
+                th 1.61 C28 Curve Top - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+              tr.row-divide
+                td(colspan='5')
+              tr.row-clear-lens
+                th 1.67 C28 Curve Top - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(180)}}
+          br
+          br
+        .col-12.text-center
+          p.largest Varifocal & Progressive Prices
+          p
+            em
+              strong Please Note:
+              |  If your prescription includes a prism then you will need to add&nbsp;
+              span(v-html="currency.symbol")
+              | {{convertPrice(12.50)}} to the checkout price.
+          br
+        .col-12
+          p.large
+            strong Standard - Freeform Varifocal
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              // 1.5 Varifocal Lenses
+              tr.row-clear-lens
+                th 1.50 Index - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(40)}}
+            tbody
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(20)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(40)}}
+              tr.row-divide
+                td(colspan='5')
+              tr.row-clear-lens
+                td Trivex 1.53 - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(120)}}
+              tr
+                td + Sun Lens NXT
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr
+                td + Photochromic NXT
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 Lenses
+              tr.row-clear-lens
+                td.na 1.56 Index - Clear Lenses
+                td -
+                td -
+                td -
+                td.lens NA
+              tr
+                td + Photochromic
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 High Impact Lenses
+              tr.row-clear-lens
+                td 1.56 High Impact - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.59 PC
+              tr.row-clear-lens
+                td 1.59 Polycarbonate - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(80)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(80)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.60 Lenses
+              tr.row-clear-lens
+                td 1.60 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.len
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(80)}}
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(10)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(140)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(170)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.67
+              tr.row-clear-lens
+                td 1.67 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(20)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(140)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(180)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.74
+              tr.row-clear-lens
+                td 1.74 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(200)}}
+              tr
+                td + Tints
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(60)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+
+        .col-12
+          p.large
+            strong Premium - Freeform Varifocal
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              // 1.50 Lenses
+              tr.row-clear-lens
+                th 1.50 Index - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(50)}}
+            tbody
+              tr
+                td + NuPolar (Polarised)
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(40)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr
+                td + Drivewear
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+              tr.row-divide
+                td(colspan='5')
+              tr.row-clear-lens
+                td Trivex 1.53 - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(130)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(70)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.59 PC
+              tr.row-clear-lens
+                td 1.59 Polycarbonate - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(80)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(80)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.60
+              tr.row-clear-lens
+                td 1.60 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(140)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(170)}}
+              tr
+                td + NuPolar (Polarised)
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.67
+              tr.row-clear-lens
+                td 1.67 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(120)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(140)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(180)}}
+              tr
+                td + NuPolar (Polarised)
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.74
+              tr.row-clear-lens
+                td 1.74 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(210)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.76 Lenses
+              tr.row-clear-lens
+                td 1.76 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(240)}}
+
+        .col-12
+          p.large
+            strong Elite - Freeform Varifocal
+          table.lens-price
+            thead
+              tr.first-theader
+                th(width='540px') Choice of Lens
+                th(width='500px', colspan='3') Coatings included (FREE)
+                th(width='180px') Price
+              tr.sub-row
+                th
+                th UV
+                th AR
+                th SR
+                th from...
+              // 1.50 Lenses
+              tr.row-clear-lens
+                th 1.50 Index - Clear Lenses
+                th
+                  i.fi-x.red
+                th
+                  i.fi-check.green
+                th
+                  i.fi-check.green
+                th.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(60)}}
+            tbody
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.53 Trivex Lenses
+              tr.row-clear-lens
+                td Trivex 1.53 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(140)}}
+              tr
+                td + Sun Lens NXT
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr
+                td + Photochromic NXT
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.59 Polycarbonate Lenses
+              tr.row-clear-lens
+                td 1.59 Polycarbonate - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(80)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(80)}}
+              tr.row-divide
+                td(colspan='5')
+              tr.row-clear-lens
+                td.na 1.56 Index - Clear Lenses
+                td -
+                td -
+                td -
+                td.lens NA
+              tr
+                td + Photochromic
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(110)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.56 High Impact Lenses
+              tr.row-clear-lens
+                td 1.56 High Impact - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(120)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.61 Lenses
+              tr.row-clear-lens
+                td 1.60 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(100)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(140)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(170)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.67 Lenses
+              tr.row-clear-lens
+                td 1.67 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(130)}}
+              tr
+                td + Polarised
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(90)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(140)}}
+              tr
+                td + Transitions ® XTRActive
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(180)}}
+              tr.row-divide
+                td(colspan='5')
+              // 1.74 Lenses
+              tr.row-clear-lens
+                td 1.74 Index - Clear Lenses
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(210)}}
+              tr
+                td + Transitions ®
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td
+                  i.fi-check.green
+                td.lens
+                  span(v-html="currency.symbol")
+                  | {{convertPrice(160)}}
+        .col-12
+          p
+            em Prices subject to change at any time. Prices in GBP correct as of October 2016
+          br
+          p.small
+            em
+              | *All lenses with the exception of 1.5 and 1.56 clear lenses have 100% UV protection.
+          br
+
+  PageFooter
+  ScrollToTop

@@ -1,0 +1,28 @@
+#reviewGuideModal(tabindex='-1', role='dialog', aria-hidden='true').modal
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        p
+          strong Writing a review - Guidelines
+        button(type='button',
+          data-dismiss='modal',
+          aria-label='Close').btn.close
+          span ×
+      .modal-body.text-left
+        br
+        p   We want to publish your review, so please:
+        br
+        ul.list-styled
+          li
+            | Keep your review focused on the product and include as much detail as possible to ensure your review is of great quality.
+          li
+            | Avoid writing about customer service or delivery. Contact us if you have an issue that requires immediate attention.
+          li    Do not include any personally identifiable information, such as full names.
+          li
+            | Product reviews that we consider 'low quality' with limited text (ie, 'great product', 'nice' or 'good job') may not be published.
+        br
+        p
+          strong Please note
+          | , if you have a problem with your glasses or order, please report this to our&nbsp;
+          router-link(to='/customer-services/').blue-hovered-link.underlined-link customer service team
+          | &nbsp;who will be able to rectify this problem for you.

@@ -1,0 +1,12 @@
+section#filters(v-if="selected && Object.keys(selected).length > 0")
+  .col-12
+    span.label
+      i.fi-filter.mr-1
+      strong Filtered by »
+
+    div(v-for="(filter, filterName) in selected")
+      span.filter-label(v-if="filter", v-for="value in filter")
+        | {{value.name}}
+        a.delete-filter(:id="'delete-filter' + value.id", v-on:click="clearOne(filterName, value.id)")
+          i.fi-x.red.ml-1
+  hr

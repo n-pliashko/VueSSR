@@ -1,0 +1,17 @@
+@import "../../_Styles/mixins";
+
+.feat-kids-sun {
+  @include desktop-down {
+    height: 250px;
+    max-width: 100%;
+    background: url('/static/kidssun_mob.jpg') center center;
+    margin-bottom: 1rem;
+  }
+  @include desktop {
+    height: 400px;
+    max-width: 100%;
+    background: url('/static/kidssun_desk.jpg') center center no-repeat;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+}

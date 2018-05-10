@@ -1,0 +1,15 @@
+@import '../../_Styles/mixins';
+
+.guides {
+  .text-wrapper {
+    @include desktop-down {
+      padding: 0;
+    }
+  }
+  @include desktop-down {
+    background-color: #fff;
+  }
+  @include desktop {
+    background-color: #fefefe;
+  }
+}

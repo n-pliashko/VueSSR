@@ -1,0 +1,18 @@
+.payments {
+  .pay-sprite {
+    height: 45px;
+    width: 63px;
+    margin: 0 .1rem;
+    background: url('/static/layout-sprite-uk@2x.png') no-repeat;
+    background-size: 500px;
+    background-position-y: -308px;
+  }
+  .visa { background-position-x: 0; }
+  .master { background-position-x: -66px; }
+  .maestro { background-position-x: -133px; }
+  .paypal { background-position-x: -200px; }
+  .secure {
+    background-position-x: -290px;
+    width: 75px;
+  }
+}

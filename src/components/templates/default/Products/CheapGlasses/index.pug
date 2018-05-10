@@ -1,0 +1,185 @@
+#cheap-glasses.page
+  PageHeader
+  main
+    Breadcrumbs
+    section
+      .cheap-glasses-wrapper
+        .banner-wrapper-mobile.d-lg-none
+          .container-fluid
+            .row.text-center
+              .title-wrapper.col-12
+                h1 The World's Cheapest Glasses
+                img.img-fluid.w-100(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/cheap/cheap-glasses_v2.jpg?20171106165029')
+                p.small.mb-2
+                  | Try a pair of our high quality prescription glasses from only&nbsp;
+                  strong
+                    span(v-html="calculatePrice(250/33.47, false, true)")
+                  |  with lenses & coatings. You can also upgrade to thinner lenses for a little more -&nbsp;
+                  a#detailsModalMobile(href='#offerModal',
+                  data-toggle='modal',
+                  aria-controls='offerModal').blue-ul.nowrap Full details
+
+        .banner-wrapper.d-none.d-lg-block
+          .container-fluid
+            .row.text-center
+              .title-wrapper
+                h1.catalogue-title The World's Cheapest Glasses
+                p.small
+                  | Try a pair of our high quality prescription glasses from only
+                  strong
+                    span(v-html="calculatePrice(250/33.47, false, true)")
+                  |  with lenses & coatings.
+                br
+                p.small
+                  | You can also upgrade to thinner lenses for a little more -&nbsp;
+                  a#detailsModal(href='#offerModal',
+                  data-toggle='modal',
+                  aria-controls='offerModal').blue-ul.nowrap Full details
+                  OffersModal
+                  br
+                  br
+                  strong 100% Satisfaction - Guaranteed.
+                  br
+                  |  If you're not 100% happy with your new glasses, we'll give you your money back!
+                br
+                ShareButtons
+
+        .grey-background
+          .container-fluid.py-3
+            .row
+              .col-12.text-center
+                .more-styles-row
+                  .d-none.d-lg-inline
+                    p.small
+                      strong Looking for more styles?
+                      |  We also offer rimless or semi-rimless frames at great prices.  
+                      strong
+                        router-link#rimlessLink(to='/glasses/prescription/rimless/c14').more-styles-button Rimless »
+                        router-link#semirimlessLink(to='/glasses/prescription/semi-rimless/c15').more-styles-button Semi-Rimless »
+                  .d-lg-none
+                    p.small
+                      strong Looking for more styles?
+                    br
+                    p.small
+                      strong
+                        router-link#rimlessLinkMobile(to='/glasses/prescription/rimless/c14').more-styles-button Rimless »
+                        router-link#semirimlessLinkMobile(to='/glasses/prescription/semi-rimless/c15').more-styles-button Semi-Rimless »
+            #cheap-items.row
+              .cheap-loader(v-if="loading")
+              .shop-item.col-12.col-md-6.col-lg-3.mb-3(v-for='item in items.data')
+                .item-wrapper(:id='item.item_number')
+                  .item-photo
+                    a(:href="'#biggerImg' + item.item_number + 'Modal'",
+                    data-toggle="modal",
+                    @click="showFullsizeImage(item.item_number)")
+                      img.img-fluid(:alt="item.model_name + ' ' + Object.values(item.options)[0].name",
+                      :src="item.options[item.def_option].thumbnail_images && item.options[item.def_option].thumbnail_images.length > 0 ? cdnUrl +  '/' + item.options[item.def_option].thumbnail_images[0].src : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'")
+                  .item-designer-name.w-100.ellipsis
+                    | {{item.designer_name}}
+                    | {{item.model_name}} - {{Object.values(item.options)[0].name}}
+                  .item-price
+                    span.now
+                      span(v-html="currency.symbol")
+                      | {{convertPrice(Object.values(item.options)[0].price)}}
+                  .item-options.hidden-md-down.mb-3 FREE Lenses & Coatings.
+                  //.item-no-rating.d-block.mt-2.mb-3.mx-auto
+                  form(:id="'submitForm-' + item.item_number",
+                  action='/prescription/',
+                  method='post')
+                    // Draft from the site
+                    .input-wrapper
+                      input(type='hidden', name='id', value='150090')
+                      input(type='hidden', name='option', value='1')
+                      input(type='hidden', name='frameSize', value='1')
+                      input(type='hidden', name='reglaze', value='0')
+                      input(type='hidden', name='designer_id', value='250')
+                    router-link(to="prescription/select_use",
+                    :id="'chooseLenses' + item.item_number +'Link'", name='submit',
+                    @click.native="chooseLenses(item.item_number)").btn.choose-lenses-button Choose Lenses
+                  .item-info Size Information
+                  .row(v-if="item.min_frame_size").mb-4
+                    .item-sizes.col-6
+                      strong Arm =
+                      |  {{item.min_frame_size.arm}}mm
+                    .item-sizes.col-6
+                      strong Bridge =
+                      |  {{item.min_frame_size.bridge}}mm
+                    .item-sizes.col-6
+                      strong Height =
+                      |  {{item.min_frame_size.height}}mm
+                    .item-sizes.col-6
+                      strong Lens =
+                      |  {{item.min_frame_size.lens}}mm
+                .bigger-img-modal(:id="'biggerImg' + item.item_number + 'Modal'",
+                v-if="modalData",
+                tabindex='-1',
+                role='dialog').modal.fade
+                  .modal-dialog(role='document')
+                    .modal-content
+                      .modal-header
+                        button(type="button",
+                        data-dismiss="modal",
+                        aria-label="Close").close
+                          span(aria-hidden="true") &times
+                      .modal-body.pt-0
+                        img.fullsize-img(:src="modalData.fullsized_images && modalData.fullsized_images.length > 0 ? cdnUrl + cdnUrlPrefix + modalData.fullsized_images[0].src : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'")
+                        .preview
+                          .preview-header
+                            p.font-weight-bold {{modalData.name}} {{modalData.description}}
+                          .preview-options
+                            ul(v-for="image in modalData.fullsized_images")
+                              li.sub-images
+                                img(width="78", :src="cdnUrl + cdnUrlPrefix + image.src").img-fluid
+          noscript
+            Pagination.text-center.mb-3
+          TrustpilotWidget
+        .details-questions-wrapper
+          .container-fluid.px-4
+            .row
+              .col-12
+                p(style="font-size:1rem;")
+                  strong Details & Popular Questions
+                p
+                  | We offer an exclusive range of
+                  strong  Single Vision
+                  |  prescription glasses for just
+                  strong {{calculatePrice(250/33.47, false, true)}}
+                  | . We firmly believe in not hiding any hidden costs for highly recommended 'optional extras' so each pair in our cheap glasses range includes a
+                  strong  FREE
+                  |  scratch resistant coating and anti-reflection treatment!
+                  br
+                  br
+                  |  We strongly believe you will be hard pushed to find a better value pair of glasses complete with lenses & coatings anywhere else. Try us today and if you're not 100% satisfied with your new glasses, we'll give you your money back!
+                  br
+                  br
+                  strong Looking for something more exclusive?
+                  br
+                  |  We also sell an excellent range of designer glasses from high-end brands such as&nbsp;
+                  a.underlined-link(href='/glasses/prescription/prada/d111/') Prada
+                  | ,&nbsp;
+                  a.underlined-link(href='/glasses/prescription/gucci/d60/') Gucci
+                  |  and&nbsp;
+                  a.underlined-link(href='/glasses/prescription/ray-ban/d43/') Ray-Ban
+                  | , all available at affordable prices. If you have a favourite brand, you can specify your search so that you only see glasses that are made by them. To see the full list, have a look at&nbsp;
+                  a.underlined-link(href='/brands/') our brands page
+                  | .
+                  br
+                  br
+                  strong Looking for a particular style or material?
+                  br
+                  |  We stock numerous shapes and styles, including the classic and highly&nbsp;
+                  a.underlined-link(href='/glasses/prescription/wayfarer/c89/') popular wayfarer style frames
+                  | . We also have aviators, round and oval frames, cat eyes, horn rimmed glasses and square glasses. There is something to suit everyone’s face shape. You could shop for you, your loved one, your kids, your grandparents, your mum, dad, anyone! All you need to do is give us the prescription details and we’ll sort the rest. We can even replace old lenses. If you’re interested in replacing your old lenses, visit our&nbsp;
+                  a.underlined-link(href='/lens-replacement/') reglazing services page
+                  | .
+                  br
+                  br
+                  |  We have a wide variety of materials to shop by, including metal, plastic, titanium, bamboo & wood. We have flexible materials, sturdy ones; the lot. So whatever your preference you can find the perfect pair of cheap glasses.
+                  br
+                  br
+                  |  With so many specifications to shop by, you can find the ideal glasses for you in no time.
+                br
+              .col-12
+                ShareButtons.justify-content-start
+  PageFooter
+  ScrollToTop

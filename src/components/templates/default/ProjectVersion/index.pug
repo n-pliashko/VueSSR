@@ -1,0 +1,8 @@
+#versionBlock(v-if="showVersion")
+  p
+    span(v-if="version.front") F:
+      strong {{version.front.version}} &nbsp;
+      span(style="color:gray;") {{version.front.deployed}}
+    span(v-if="version.back", style="margin-left: 20px;") B:
+      strong {{version.back.version}} &nbsp;
+      span(style="color:gray;") {{version.back.deployed}}

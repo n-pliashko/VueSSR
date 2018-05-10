@@ -1,0 +1,55 @@
+#miniCartMobile
+  .container
+    .row
+      .checkout-item(v-for='(item, index) in order.orderItems',
+      :id='"item_" + index',
+      :class='{ "error-wrapper": item.warnmessage }').col-12.col-md-4.mx-auto
+        .row
+          .col-6.col-md-12
+            .item-image
+              img(v-if='!sspayMode', :src='item.option.image_src === null ? cdnUrl + "/res/images/items/140default_uk.jpg" : cdnUrl + \'/\' + item.option.image_src').img-fluid
+              img(v-else='', :src='item.thumbnail_url').img-fluid
+            .express-block(v-if='false')
+              p.smallest
+                strong
+                  i.fa.fa-thumbs-up
+                  |  Express
+                  span.d-none.d-lg-inline  service
+                  |  available
+          .col-6.col-md-12.text-md-center
+            p.small
+              strong(v-if='sspayMode') {{ item.item_description }} {{ item.modelName }}
+              strong(v-else='') {{ item.designerName }} {{ item.modelName }}
+            p.smaller
+              em.text-muted(v-if='sspayMode') {{ item.option_description }}
+              em.text-muted(v-else='')
+            p.small
+              strong.red  {{ decodeHtml(currency.symbol) }}
+                span(:id='"item" + index + "Price"') {{getPrice(item.option.price)}}&nbsp;
+              span(:id='"item" + index + "Qty"')
+                em (Qty: {{ item.quantity }})
+            p.small
+              //router-link(v-if='!sspayMode', :id="'checkoutItem' + index + 'Details'", :to="{ name: 'ItemPage', params: {item: parseFloat(item.item_number / 100).toFixed(2), category: null, designer: null, model: null}}").blue-ul More details »
+              a#itemDetailsModalCallMobile(v-if='!sspayMode',
+                href="#",
+                data-toggle="modal",
+                data-target='#detailsModal',
+                data-item-index='index').blue-ul More details »
+              a#itemDetailsModalCallMobileV4(v-else,
+                href="#",
+                data-toggle="modal",
+                data-target='#detailsModal',
+                data-item-index='index').blue-ul More details »
+          .col-12(v-if='item.warnmessage || item.has_restrictions').mt-3
+            .restriction-block
+              p(v-if='item.warnmessage').restriction-text.smaller {{item.warnmessage}}
+              p(v-else).restriction-text.smaller Due to manufacturers licensing restrictions, this product does not ship to your delivery country. Please remove this from your basket before continuing.
+              p
+                // TODO: add link for item removal
+                a(href="/").remove-item
+                  | remove
+
+  hr
+  .text-center
+    p.small
+      router-link(:to='{name: "Basket"}', rel='nofollow').blue-hovered-link Edit Items

@@ -1,0 +1,153 @@
+main
+  section.product-options
+    .container-fluid.my-md-3
+      .row.general
+        .col-9
+          h1.product-name(itemprop='name') Vista M208
+          .review-summary
+            .rateit.float-left(data-rateit-value='4.5',
+            data-rateit-ispreset='true',
+            data-rateit-readonly='true',
+            title='Product reviews from our customers')
+            .review-summary-text.float-left
+              p.smallest
+                strong
+                  span(itemprop='ratingValue') 4.7
+                  |  / 5
+                |  (
+                span(itemprop='reviewCount')
+                  a(href='#productReviewAnchor').blue-ul 71
+                | )
+        .col-3.text-right
+          router-link(:to='designerUrl')
+            img.img-fluid(v-if="item.designer && item.designer.logo", :src="cdnUrl + '/res/' + item.designer.logo",
+            :alt='item.designer.designer_name',
+            :title='item.designer.designer_name')
+      .row#item_images_block_mobile(v-if='!options[selected.option]')
+        .text-center
+          img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_gif/ajax-loader_big.gif')
+      .row(v-else)
+        Slick#item_images_block_mobile(ref="slick", :options="slickOptions").col-12
+          div(v-for="image in options[selected.option].fullsized_images", :key="image.image_id")
+            img.img-fluid(:src="cdnUrl + cdnUrlPrefix + image.src")
+          div(v-if="!options[selected.option].fullsized_images || options[selected.option].fullsized_images.length === 0")
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/650default_uk.jpg')
+      .row.prices
+        .col-10
+          .price-wrapper
+            span#oldPriceTextMobile_Test(v-if='options[selected.option] && parseFloat(options[item.def_option].price_old) > parseFloat(options[item.def_option].price)')
+              span(v-html="currency.symbol")
+              | {{$parent.convertPrice(options[selected.option].price_old)}}
+            span#finalPriceTextMobile(v-if='options[selected.option]')
+              span(v-html="currency.symbol")
+              | {{$parent.convertPrice(options[selected.option].price)}}
+            p.smallest
+              strong FREE&nbsp;
+              | Single Vision Lenses.
+        .col-2.text-right
+          .into-wishlist-wrapper
+            #confirmPanel
+              p.small.text-nowrap
+                strong {{ panelText }}
+            button#addToWishlistMobile(type='button', @click="toggleBasket",
+            :class="{ 'red-heart' : addedState }").btn.wishlist-mobile
+              i.fa.fa-heart-o.fa-2x(v-if="!addedState", aria-hidden='true')
+              i.fa.fa-heart.fa-2x(v-else, aria-hidden='true')
+    form#sbm_form.options-form.container-fluid
+      .row.available-colours
+        .col-12
+          br
+          br.d-none.d-md-block
+          p
+            strong Available Colours
+          select.option-list(name='option', disabled='disabled')
+            option(value='1', selected='') Selected: Black
+            option(value='2') Selected: Blue
+            option(value='3') Selected: Brown
+            option(value='4') Selected: Gold
+            option(value='5') Selected: Gunmetal
+          br
+          br.d-none.d-md-block
+        // Displayed vice-versa for test purposes
+        Slick#availColourBarMobile(v-if='options && selected.option', ref="color_mobile_slick", :options="slickOptionsColours").col-12
+          div(v-for='option in options',
+            :id='"option-" + option.option_number',
+            :class="selected.option === option.option_number ? 'selected': ''",
+            @click='$parent.setSelectedOption(option.option_number)')
+            span.has-tooltip(data-toggle="tooltip")
+              img(:src="option.thumbnail_images[0] ? cdnUrl + '/' + option.thumbnail_images[0].src : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'",
+              :style="selected.option === option.option_number ? 'selected': ''").img-fluid
+        //Slick#availColourBar(v-else, ref="slick", :options="slickOptionsColours").col-12
+          div
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_1.jpg', alt='Black ')
+          div
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_2.jpg', alt='Blue ')
+          div
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_3.jpg', alt='Brown ')
+          div
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_4.jpg', alt='Gold ')
+          div
+            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_5.jpg', alt='Gunmetal ')
+      .row.options-wrapper
+        .col-12
+          p.text-left
+            strong Size(s)
+          table#sizesTable.table(cellpadding='10')
+            thead.border-0
+              tr
+                th.select
+                th.arm
+                  span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Arm") Arm
+                th.bridge
+                  span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Bridge") Bridge
+                th.lensw
+                  span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Lens") Lens
+                th.lensh
+                  span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Height") Height
+                th.total
+                  a#sizeModalLinkMobile(href='#sizeGuideModal', data-toggle='modal',
+                  aria-controls='sizeGuideModal', tabindex='0').blue-ul Size help »
+            tbody.border-0(v-if="options[selected.option]")
+              tr(v-for='(frame_size, index) in options[selected.option].frame_sizes')
+                td.select-highlight
+                  input(type='radio', name='frame_size[]', :value='index',
+                  v-model='$parent.selected.frameSizeIndex',
+                  :disabled="frame_size.status == 'DISCONTINUED' || frame_size.status == 'BACK_ORDERED'")
+                td {{frame_size.arm}}
+                td {{frame_size.bridge}}
+                td.width-highlight {{frame_size.lens}}
+                td {{frame_size.height}}
+                td(v-if="frame_size.status === 'DISCONTINUED'")
+                  span Discontinued
+                td(v-else-if="frame_size.status === 'BACK_ORDERED'")
+                  span Current unavailable
+                td.total(v-else-if='index === defFrameSizeIndex')
+                  strong Fits Most
+                td(v-else='')
+
+          .customer-fit
+            p.smallest
+              em
+                | Customers suggest fit is&nbsp;
+                strong
+                  a#customerDescrModalButtonMobile(href="#customerDescriptionModal",
+                  data-toggle="modal", @click.native='animateBars').blue-ul As expected (91%
+        .col-12
+          .choose-lenses
+            button#basketModalButtonMobile(data-toggle='modal', data-target='#basketConfirmModal',
+              @click='$parent.setSelectedItem(item.item_number, $event)').btn.big-orange-button.mb-3 Choose Your Lenses »
+            .customer-recommendation
+              p.small
+                i.fa.fa-thumbs-up
+                strong  100%
+                |  of customers recommend this product
+    .shipping
+      p.smallest
+        i.fa.fa-clock-o(aria-hidden='true')
+        | &nbsp;&nbsp;Order completed and shipped within&nbsp;
+        strong 7-10
+        | &nbsp;working days
+  InfoAccordion
+  ShareButtons.py-5
+  div(style="padding: 2rem 0;background-color: #fafafa;border-top: 1px solid #e6e6e6;")
+    TrustpilotWidget

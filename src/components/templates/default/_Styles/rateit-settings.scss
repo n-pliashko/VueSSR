@@ -1,0 +1,28 @@
+.bigstars {
+  .rateit-range {
+    background: url('/static/star-white32.png');
+    height: 32px;
+  }
+  .rateit-hover {
+    background: url('/static/star-gold32.png');
+  }
+  .rateit-selected {
+    background: url('/static/star-red32.png');
+  }
+}
+
+.rateit-font {
+  font-size: 1.3rem;
+  letter-spacing: -0.1rem;
+  .rateit-preset, .rateit-selected {
+    color: #ffb50e !important;
+  }
+  .rateit-range {
+    div {
+      background: 0 0;
+      overflow: hidden;
+      cursor: default;
+      color: #ffb50e;
+    }
+  }
+}

@@ -1,0 +1,86 @@
+#miniCart
+  .container
+    .row
+      .col-12
+        h5
+          strong Order Summary
+          router-link#editMiniCartLink(v-if='!sspayMode', :to='{name: "Basket"}', rel='nofollow').btn.edit-button Edit
+          a(v-else, :href='integrationHost+"/cart/index/?sspay"').btn.edit-button Edit
+    hr
+    .row
+      .checkout-item(v-for='(item, index) in order.orderItems',
+      :id='"checkout" + index + "Item"',
+      :class='{ "error-wrapper" : (item.warnmessage || item.has_restrictions) }').container
+        .row
+          .col-6
+            img(v-if='!sspayMode', :src='item.option.image_src ? cdnUrl + \'/\' + item.option.image_src : cdnUrl + "/res/images/items/140default_uk.jpg"').img-fluid
+            img(v-else='', :src='item.thumbnail_url ? item.thumbnail_url : cdnUrl + "/res/images/items/140default_uk.jpg"').img-fluid
+            .express-block(v-if='item.isExpressable')
+              p.smallest
+                strong
+                  i.fa.fa-thumbs-up
+                  |  Express
+                  span.d-none.d-lg-inline  service
+                  |  available
+          .col-6
+            p.small
+              strong(v-if='sspayMode') {{ item.item ? item.item.brand_name : '' }} {{ item.item_description }} {{ item.modelName }}
+              strong(v-else='') {{ item.designerName }} {{ item.modelName }}
+            p.smaller
+              em.text-muted(v-if='sspayMode') {{ item.option_description }}
+              em.text-muted(v-else='')
+            p.small
+              strong.red  {{ decodeHtml(currency.symbol) }}
+                span(:id='"item" + index + "Price"') {{getPrice(item.option.price)}}&nbsp;
+              span(:id='"item" + index + "Qty"')
+                em (Qty: {{ item.quantity }})
+            p.small
+              //router-link(v-if='!sspayMode', :id="'checkoutItem' + index + 'Details'", :to="{ name: 'ItemPage', params: {item: parseFloat(item.item_number / 100).toFixed(2), category: null, designer: null, model: null}}").blue-ul More details »
+              a#itemDetailsModalCallDesktop(v-if='!sspayMode && item.prescription',
+                href="#",
+                data-toggle="modal",
+                data-target='#detailsModal',
+                data-item-index='index').blue-ul More details »
+              a#itemDetailsModalCallDesktopV4(v-else-if='item.prescription',
+                href="#",
+                data-toggle="modal",
+                :prescription='item.prescription',
+                data-target='#detailsModal',
+                @click='loadDataToPopup(item.prescription)',
+                data-item-index='index').blue-ul More details »
+          .col-12(v-if='item.warnmessage || item.has_restrictions')
+            .restriction-block
+              p(v-if='item.warnmessage').restriction-text.smaller {{item.warnmessage}}
+              p(v-if='item.has_restrictions').restriction-text.smaller Due to manufacturers licensing restrictions, this product does not ship to your delivery country. Please remove this from your basket before continuing.
+              p
+                // TODO: add link for item removal
+                a(@click.prevent='deleteItemSsv4(index, item.id)', href="#").remove-item
+                  | remove
+        // .popup(v-if='showPopup === index')
+
+    hr
+    .checkout-summary-prices.row
+      .col-12
+        p.py-2 Sub Total
+          span#subTotalMiniCart.float-right
+            | {{decodeHtml(currency.symbol)}}{{getPrice(order.final_total)}}
+        p.py-2 Delivery
+          span#shippingMiniCart.float-right(v-if='activeShippingId')
+            | {{ shippingCost == 0 ? 'FREE' : decodeHtml(currency.symbol) + shippingCost }}
+          span.float-right(v-else='')
+            | Shipping calculate fail
+        p.py-2(v-if='calculateDiscount() > 0') Discount
+          span#discountMiniCart.float-right
+            | {{ decodeHtml(currency.symbol) }}{{ calculateDiscount() }}
+        p(style="font-size: 1rem;").pt-2.pb-0
+          strong Order Total
+            span#orderTotalMiniCart.float-right
+              | {{ decodeHtml(currency.symbol) }}{{ subTotal }}
+
+    //.total
+      span.bl Sub Total: {{ decodeHtml(currency.symbol) }}
+        span#subTotalMiniCart {{exchange(parseFloat(basket.order.order_amount))}}
+      span.bl Delivery:&nbsp;
+        span#shippingMiniCart {{ shippingCost == 0 ? 'FREE' : decodeHtml(currency.symbol) + shippingCost }}
+      span.bl.order-total Order Total:&nbsp;{{ decodeHtml(currency.symbol) }}
+        span#orderTotalMiniCart {{ subTotal }}

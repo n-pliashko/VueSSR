@@ -1,0 +1,68 @@
+ul#navAccordion(role='tablist')
+  li#navHeading1(role="tab")
+    a#navCollapseLabel1(data-toggle="collapse", href='#navCollapse1', aria-controls='navCollapse1', aria-expanded='false').nav-collapse-title
+      | Glasses
+      span
+        | &nbsp;from
+        strong &nbsp
+          span(v-html="calculatePrice(311.99/33.47, false, true)")
+        | &nbsp;with lenses
+    #navCollapse1.collapse(role='tabpanel', aria-labelledby='navHeading1', data-parent="#navAccordion")
+      ul#navSubAccordion1.sub-collapse
+        li.collapse-item
+          router-link(to='/glasses/prescription/mens/c10/') Men's
+        li.collapse-item
+          router-link(to='/glasses/prescription/ladies/c11/') Women's
+        li.collapse-item
+          router-link(to='/glasses/prescription/') More Categories »
+  li#navHeading2(role="tab")
+    a#navCollapseLabel2(data-toggle="collapse", href='#navCollapse2', aria-controls='navCollapse2', aria-expanded='false').nav-collapse-title
+      | Sunglasses
+    #navCollapse2.collapse(role='tabpanel', aria-labelledby='navHeading2', data-parent="#navAccordion")
+      ul#navSubAccordion2.sub-collapse
+        li.collapse-item
+          router-link(to='/sunglasses/designer/mens/c10/') Men's
+        li.collapse-item
+          router-link(to='/sunglasses/designer/ladies/c11/') Women's
+        li.collapse-item
+          router-link(to='/sunglasses/designer/prescription-compatible/c274/') Prescription Sunglasses
+        li.collapse-item
+          router-link(to='/sunglasses/designer/') More Categories »
+  li#navHeading3(role="tab")
+    a#navCollapseLabel3(data-toggle="collapse", href='#navCollapse3', aria-controls='navCollapse3', aria-expanded='false').nav-collapse-title
+      | Contact Lenses
+    #navCollapse3.collapse(role='tabpanel', aria-labelledby='navHeading3', data-parent="#navAccordion")
+      ul#navSubAccordion3.sub-collapse
+        li.collapse-item
+          router-link(to='/contact-lenses/daily-disposables/c221/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/cl-daily.png?20171023132244', width='40px')
+            |  Daily
+        li.collapse-item
+          router-link(to='/contact-lenses/two-weekly-disposables/c257/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/cl-weekly.png?20171023132244', width='40px')
+            |  1-2 Weekly
+        li.collapse-item
+          router-link(to='/contact-lenses/monthly-disposables/c224/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/cl-monthly.png?20171023132244', width='40px')
+            |  Monthly
+        li.collapse-item
+          router-link(to='/contact-lenses/') More »
+  li#navHeading4(role="tab")
+    a#navCollapseLabel4(data-toggle="collapse", href='#navCollapse4', aria-controls='navCollapse4', aria-expanded='false').nav-collapse-title
+      | Goggles
+    #navCollapse4.collapse(role='tabpanel', aria-labelledby='navHeading4', data-parent="#navAccordion")
+      ul#navSubAccordion4.sub-collapse
+        li.collapse-item
+          router-link(to='/goggles/snow-ski-goggles/c352/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/ski.png?20171023132244', width='40px')
+            |  Ski
+        li.collapse-item
+          router-link(to='/goggles/mx-goggles/c365/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/mx.png?20171023132244', width='40px')
+            |  Motocross
+        li.collapse-item
+          router-link(to='/accessories/swimming-goggles/c100/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/swim.png?20171023132244', width='40px')
+            |  Swim
+        li.collapse-item
+          router-link(to='/goggles/') More »

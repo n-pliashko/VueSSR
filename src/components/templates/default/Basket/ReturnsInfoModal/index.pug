@@ -1,0 +1,59 @@
+#returnsInfoModal(tabindex='-1', role='dialog', aria-hidden='true').modal
+  .modal-dialog(role='document')
+    .modal-content(style="height:520px;")
+      .modal-header.mb-3
+        button(type='button',
+        data-dismiss='modal',
+        aria-label='Close').close
+          span ×
+      .modal-body.text-left
+        h2 Returns Policy
+        p
+          | You may return an item for exchange or refund if you’re unhappy with them for any reason, providing that the following conditions are met:
+          br
+          br
+          strong 1.
+          |  You will need to contact us within 14 days of receipt of the item.
+          br
+          strong 2.
+          |  You will need to return your item within 7 days of receiving our return authorisation form (this will be emailed to you). Your return authorisation form should be included with your returned item.
+          br
+          strong 3.
+          |  Returns must be in their original condition without marks and should include all free accessories such as cases, cloths and in the case of designer frames, the original demonstration (dummy) lenses.
+          br
+          strong 4.
+          |  Our customer support team did not advise you when you submitted your order that all, or part of the order was inappropriate for your needs, or we expressed concerns about the information submitted.
+          br
+          strong 5.
+          |  The item you wish to return is not an exchanged item.
+          br
+          strong 6.
+          |  The item you wish to return has not been purchased from our high street store.
+          br
+          br
+          |  Returned items will usually be processed by our returns department within 3 working days of receipt. We recommend obtaining proof of postage from the Post Office, as we are unable to take responsibility for packages lost in the post. Any postage fees incurred for returning items to us will need to be covered by the sender, unless we have made an error, where a maximum of £8.50 will be refunded or held as a credit.
+          br
+          br
+          |  Three or more items returned for a refund will incur a&nbsp;
+          strong £5.00
+          |  restocking fee per item.
+        br
+        h2 Exchange & Refund Policy
+        p
+          | Should you wish to obtain a refund for any reason, the cost of the frames and lenses, or in the case of a reglaze the cost of the lenses will be refunded in full, postage costs are non-refundable. Refunds are normally processed within 5 working days of cancellation or from the day we receive any returned items for refund.
+          br
+          br
+          |  If you wish to exchange your item for a new item with a higher or lower value we will either refund the difference or notify you of the additional payment required. Only one exchange is permitted per item ordered. Exchanged items returned will only be subject to a refund for the price of the frame, lenses will be non-refundable ( "free lenses" will be subject to a £5 charge).
+          br
+          br
+          |  See&nbsp;
+          router-link(to='/info/returns/').blue-ul here
+          |  for our complete returns policy.
+
+        //.row
+          .col-12.col-md-6
+            button(@click='$parent.removeItem(itemID)',
+              data-dismiss='modal',
+              aria-label='Close').btn.big-orange-button Yes
+          .col-12.col-md-6
+            button(data-dismiss='modal', aria-label='Close').btn.big-orange-button Cancel

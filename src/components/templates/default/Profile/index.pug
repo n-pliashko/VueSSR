@@ -1,0 +1,115 @@
+.main-section
+  PageHeader
+  NavigationLinks(v-if="auth == 'authorized'")
+  Flash(
+  v-if="meta.formSuccess",
+  :message="{text: 'Your profile has been saved successfully.', type: 'success'}",
+  :hide="loading")
+
+  .loading(v-if='loading')
+  main.profile-page
+    //.container-fluid(v-if="auth == 'authorized'")
+    .container-fluid(v-if="true")
+      .row
+        .col-12.col-md-8.col-lg-6.mx-auto
+          .row
+            .col-12
+              br
+              br
+              h5.font-weight-bold Account Details
+              hr
+            .col-12
+              form#accountProfile(name='profile',
+                @submit='onSubmit',
+                novalidate="true",
+                role='form')
+                .form-row.px-0
+                  .form-group.col-12.col-sm-2
+                    label(for='title').col-form-label Title
+                    select(v-model='data.profile.title')#title.form-control
+                      option(v-for="index in ['Mr.', 'Ms.', 'Mrs.', 'Miss', 'Dr.']",
+                      :value='index') {{index}}
+                  .form-group.col-6.col-sm-5
+                    label(for='fName').col-form-label First Name
+                    input(type='text',
+                    v-model='data.profile.first_name')#fName.form-control
+                  .form-group.col-6.col-sm-5
+                    label(for='lName').col-form-label Last Name
+                    input(type='text',
+                    v-model='data.profile.last_name')#lName.form-control
+                  .form-group.col-12.col-sm-5
+                    label(for='pNumber').col-form-label Telephone number
+                    input(type='tel',
+                    v-model='data.profile.phone')#pNumber.form-control
+                  .form-group.col-12.col-sm-7
+                    label(for='eMail').col-form-label Your email address
+                      span.text-danger &nbsp;*
+                    input(type='email',
+                    name='email',
+                    value='data.email',
+                    v-model='data.profile.email',
+                    required="true")#eMail.form-control
+                    em(v-if="!data.profile.email").invalid-feedback.smaller This field is required.
+                  //.form-group.col-12.col-sm-7
+                    label(for='cPassword').col-form-label Current Password
+                      em.smaller.text-danger.font-weight-normal &nbsp;-&nbsp;Req'd to change email
+                    input(type='password',
+                    v-model='data.password',
+                    data-minlength="7",
+                    required="true")#cPassword.form-control
+                    em(v-if="!data.profile.password").invalid-feedback.smaller This field is required.
+                .alert.alert-danger(v-if='meta.profile && meta.profile.formError', role="alert")
+                  p(v-if='meta.profile.formError')
+                    i.fa.fa-exclamation-triangle.mr-2
+                    | {{meta.profile.formError}}
+                  p(v-else='')
+                    i.fa.fa-exclamation-triangle.mr-2
+                    | Ensure you correct any highlighted errors before continuing.
+                button#updateAccountButton(type='submit').btn.big-orange-button.text-white
+                  | update account »
+              br
+              //form#secondaryProfileForm(name='secondary',
+                @submit='onSubmit',
+                novalidate="true",
+                role='form')
+                .form-row.px-0
+                  .form-check.col-12
+                    label(for='subscribed').form-check-label
+                      input(type='checkbox',
+                      v-model='data.profile.subscribed',
+                      value='1')#subscribed.form-check-input.mr-1
+                      | Subscribed
+                  .form-group.col-8.col-sm-4
+                    label(for='dateBirth').col-form-label Date of Birth:
+                    input(type="datetime-local",
+                    v-model='data.profile.date_of_birth')#dateBirth.form-control
+                  .form-group.col-6.offset-sm-2.col-sm-3
+                    label(for='language_id').col-form-label Language:
+                    select(v-model='data.profile.language_id')#language_id.form-control.text-uppercase
+                      option(v-for='language in languages', :value='language.number') {{language.code}}
+                  .form-group.col-6.col-sm-3
+                    label(for='currency_id').col-form-label Currency:
+                    select(v-model='data.profile.currency_id')#currency_id.form-control.text-uppercase
+                      option(v-for='currency in currencies', :value='currency.number',
+                      v-html='`${currency.symbol}  (${currency.code})`')
+                .alert.alert-danger(v-if='meta.secondary && meta.secondary.formError', role="alert")
+                  p(v-if='meta.secondary.formError')
+                    i.fa.fa-exclamation-triangle.mr-2
+                    | {{meta.secondary.formError}}
+                  p(v-else='')
+                    i.fa.fa-exclamation-triangle.mr-2
+                    | Ensure you correct any highlighted errors before continuing.
+                .form-group
+                  button#updateSecAccountButton(type='submit').btn.big-orange-button.text-white
+                    | Submit
+              br
+              h5.font-weight-bold.text-capitalize Your Address Details
+            address-form(:address='delivery_address', :countries='countries', :onSubmitAction='onSubmit', :errors='meta.formError.deliveryAddress')
+            address-form(:address='billing_address', :countries='countries', :onSubmitAction='onSubmit', :errors='meta.formError.billingAddress')
+            address-form(:address='alt_delivery_address', :countries='countries', :onSubmitAction='onSubmit', :errors='meta.formError.alt_deliveryAddress')
+
+    .wrapper.text-center
+      br
+      router-link(to='/login', v-if="auth == 'unauthorized'").blue-link Sign In
+
+  PageFooter

@@ -1,0 +1,32 @@
+#dispens-content-title.text-center.container
+  div(v-show='!currentComponent')
+    h2
+      strong Finally, choose your lenses
+    p Now choose a 'SelectSpecs' package, or choose your own lenses & coating
+    hr
+    section.container
+      .row.card-group
+        .card(v-for='option in lensOptions')
+          .card-block
+            p.card-title {{option.name}}
+            p
+              em.card-text.small £{{option.price === 0 ? 'FREE' : option.price}}
+            img.card-img.img-fluid(:src='option.image')
+            router-link.card-continue-button(:to="{ name: 'Basket', params: {addPrice: option.price}}") Add to Basket >
+            hr
+            p.card-text.smaller(v-html='option.description')
+          .card-footer
+            a.show-modal-link(:id="'option' + option.name", data-toggle="modal", data-target="# + 'option' + option.name") Learn more...
+        .card
+          .card-block
+            p.card-title Tailor Made
+            p
+              em.card-text.small Be one of a kind
+            br
+            br
+            a.card-continue-button(v-on:click="swapComponent('LensPackage')") Lens Package >
+            hr
+            p.card-text.smaller Varifocal & Bifocal. For seeing things both close and in the distance
+          .card-footer
+            a#lens-package-modal-link.show-modal-link(data-toggle="modal", data-target="#lens-package-modal") Learn more...
+  div(:is='currentComponent')

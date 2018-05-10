@@ -1,0 +1,37 @@
+<div v-if="auth == 'authorized'">
+    <h1>Your order: {{id}}</h1>
+    <div v-if="order">
+        <div>
+            <p>Order Status: {{order.payment.status}}</p>
+
+            <p>
+                <span>Order Date: {{moment(order.created_at).format('D MMM YY')}}</span>
+                <span>|</span>
+                <span v-html='`Total: ${currencies[order.currency_id].symbol}${calculatePrice(order.final_total)}`'></span>
+            </p>
+        </div>
+
+        <div>
+            <p>Shipping to {{order.profile.last_name}},{{order.profile.first_name}}</p>
+        </div>
+
+        <div v-if="order.deliveryAddress">
+            <p>{{deliveryAddressLine}}
+                <small>
+                    <i>
+                        <strong v-if="order.deliveryMethod" v-html='`(by ${order.deliveryMethod.delivery_method_name} - ${currencies[order.currency_id].symbol}${calculatePrice(order.shipping_cost)})`'></strong>
+                    </i>
+                </small>
+            </p>
+        </div>
+
+        <div v-for="item, key in order.items">
+            <h4>{{item.supplier_name}}, {{item.item_description}}, Option {{item.option.order}}; {{item.option.name}}; {{item.option.description}}, Size: {{item.option.arm}}/{{item.option.bridge}}/{{item.option.lens}}/{{item.option.frame_number}}</h4>
+            <p>
+                <i><strong>Part {{key + 1}}: {{item.status}} Quantity: {{item.quantity}} Price: {{calculatePrice(item.option.price, false, true)}}</strong></i>
+            </p>
+        </div>
+    </div>
+
+    <div v-if="loading">Loading...</div>
+</div>

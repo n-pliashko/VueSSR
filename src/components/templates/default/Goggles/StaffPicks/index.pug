@@ -1,0 +1,31 @@
+section.staff-picks.py-4.py-lg-5
+  .container-fluid
+    .row
+      .col-12.text-center
+        h2.main-header Staff Picks
+        p.small.d-none.d-lg-inline-block Just a few of our favourites to help inspire you.
+        hr.short-hr.d-none.d-lg-block
+        .container-fluid.d-none.d-lg-block.px-0
+          .row.mb-3.justify-content-around
+            //.col-12.col-md-4
+              router-link(to="#")
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/oakley-flight-deck-xm.jpg?20171002142954")
+            .col-12.col-md-6
+              router-link(to="/goggles/bolle/scarlett/ss1412.05.html")
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/bolle-scarlett.jpg?20171002142954")
+            .col-12.col-md-6
+              router-link(to="/goggles/vuarnet/vk1101/ss1280.01.html")
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/vuarnet-vk1101.jpg?20171002142954")
+          .row.d-none.d-lg-block
+            .col-12.text-center
+              router-link(to="/goggles/snow-ski-goggles/c352/").btn.big-button More Ski Goggles »
+              router-link(to="/goggles/mx-goggles/c365/").btn.big-button More MX Goggles »
+
+        // Slick(aria-label='Featured Glasses', ref="slick", :options="slickOptions").d-lg-none
+          //router-link(to="#")
+            img.img-fluid.mx-auto(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/oakley-flight-deck-xm.jpg?20171002142954")
+          router-link(to="/goggles/bolle/scarlett/ss1412.05.html")
+            img.img-fluid.mx-auto(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/bolle-scarlett.jpg?20171002142954")
+          router-link(to="/goggles/vuarnet/vk1101/ss1280.01.html")
+            img.img-fluid.mx-auto(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/vuarnet-vk1101.jpg?20171002142954")
+

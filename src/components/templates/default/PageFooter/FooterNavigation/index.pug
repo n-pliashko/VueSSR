@@ -1,0 +1,44 @@
+section.footer-nav
+  SettingsForms.d-lg-none
+
+  section.footer-links.container-fluid.pt-3
+    .row.text-center.justify-content-center.link-list
+      .col-6.col-sm-4.col-lg-3
+        p.map-header help
+        p.map-link
+          router-link#contactUsLink(to="/customer-services/").blue-hovered-link contact us
+        p.map-link
+          router-link#faqsLink(to="/info/faq/").blue-hovered-link faqs
+        p.map-link
+          router-link#lensesLink(to="/guides/lenses/").blue-hovered-link our lenses
+        p.map-link
+          router-link#lensPricesLink(to="/price-list/").blue-hovered-link lens prices
+        p.map-link
+          router-link#sizeGuideLink(to="/guides/how-to/find-right-sized-glasses/").blue-hovered-link size guide
+      .col-6.col-sm-4.col-lg-2
+        p.map-header  your order
+        p.map-link
+          router-link#deliveryLink(to="/info/shipping-delivery/").blue-hovered-link delivery
+        p.map-link
+          router-link#returnsLink(to="/info/returns/").blue-hovered-link returns
+        p.map-link
+          router-link#trackOrderLink(to="/account/orders").blue-hovered-link track order
+        p.map-link
+          router-link#accountLink(to="/account/profile/").blue-hovered-link your account
+      .col-sm-4.col-lg-3.d-none.d-sm-block
+        p.map-header about us
+        p.map-link
+          router-link#aboutUsLink(to="/about-us/").blue-hovered-link about us
+        p.map-link
+          router-link#ourStoryLink(to="/about-us/story/").blue-hovered-link our story
+        p.map-link
+          router-link#ourLabLink(to="/about-us/lab/").blue-hovered-link our lab
+        p.map-link
+          router-link#promisesLink(to="/about-us/promise/").blue-hovered-link our promise
+        p.map-link
+          router-link#customerReviewsLink(to="/about-us/reviews/").blue-hovered-link customer reviews
+  hr
+  Socials(v-if="['Login', 'Register', 'Profile/edit', 'User/settings', 'Account/orders', 'Account', 'Prescriptions', 'Checkout'].indexOf($route.name) < 0")
+  PaymentsTypes
+  hr.mb-0
+

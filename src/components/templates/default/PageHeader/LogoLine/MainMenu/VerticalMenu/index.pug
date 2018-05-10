@@ -1,0 +1,12 @@
+div
+  ul(v-for="(menu, key) in treeData",
+    :key="key", :class="menu.content ? 'sidebar-links-wrapper' : 'sidebar-menu-wrapper'")
+    div.sidebar-text.mx-1(v-if="menu.content")
+      strong.orange-text(v-html="convertMenuContext(menu.content)")
+    ul(v-if="menu.children").sidebar-menu.text-left
+      VerticalMenuItem(v-for="(menu, key) in menu.children",
+        :menu="menu",
+        :id="menu.id + 'Mobile'",
+        :key="menu.id ? menu.id : 'menu-id' + key",
+        :class="menu.children ? 'has-submenu' : ''",
+        :target="'.submenu' + key")

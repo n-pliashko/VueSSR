@@ -1,0 +1,72 @@
+// Form styles
+
+@import "mixins";
+
+.col-form-label {
+  font-weight: 700;
+  font-size: .8rem;
+  @include desktop-down {
+    font-size: .75rem;
+  }
+}
+.form-check-label {
+  font-size: .8rem;
+  @include desktop-down {
+    font-size: .75rem;
+  }
+}
+
+.form-control {
+  border-radius: 0;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  border: 1px solid #cacaca;
+  background-color: #fffeec;
+  color: #000;
+  padding: .5rem;
+  text-overflow: ellipsis;
+  &:focus, &:active {
+    transition: box-shadow .5s, border-color .25s ease-in-out;
+    background-color: #edf7ec;
+    box-shadow: 0 0 5px #cacaca;
+    border: 1px solid #cacaca;
+  }
+  &:disabled, &[readonly] {
+    background-color: #e0e0e0;
+    color: #535353;
+    cursor: not-allowed;
+    &:-webkit-autofill {
+      background-color: #e0e0e0;
+    }
+    &:focus {
+      border: 1px solid #cacaca;
+      box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);;
+    }
+  }
+}
+
+.input-group-addon {
+  background-color: #fff;
+  border-color: #cacaca;
+  & + input.form-control {
+    background-color: #fff;
+    border-left-color: transparent;
+    box-shadow: none;
+    &:-webkit-autofill {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+select.form-control {
+  background: #fffeec url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: rgb%2851, 51, 51%29"></polygon></svg>')
+    right center no-repeat;
+  border-radius: 0;
+  background-origin: content-box;
+  background-size: 9px 6px !important;
+  padding: .5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  &::-ms-expand {
+    display: none;
+  }
+}

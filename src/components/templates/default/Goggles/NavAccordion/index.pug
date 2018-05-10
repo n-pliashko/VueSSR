@@ -1,0 +1,36 @@
+section.nav-section
+  ul#navGogglesTypes.goggles-nav
+    li.collapse-item.with-arrows
+      router-link(to="/goggles/snow-ski-goggles/c352/")
+        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/ski.png?20171023183726', width='40px')
+        |  Ski
+    li.collapse-item.with-arrows
+      router-link(to="/goggles/mx-goggles/c365/")
+        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/mx.png?20171023183726', width='40px')
+        |  MX
+    li.collapse-item.with-arrows
+      router-link(to="/goggles/snow-ski-goggles/c352/")
+        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/mob/swim.png?20171023183726', width='40px')
+        |  Swim
+  ul#navAccordionBrands(role='tablist').goggles-nav
+    li#navHeadingBrands(role="tab")
+      a#navCollapseLabelBrands(data-toggle="collapse", href='#navCollapseBrands',
+        aria-controls='navCollapseBrands', aria-expanded='false').nav-collapse-title Brands
+      #navCollapseBrands(role='tabpanel', aria-labelledby='navCollapseLabelBrands',
+        data-parent="#navAccordionBrands").collapse
+        li.collapse-item
+          router-link(to='/goggles/bolle/d57/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/designers/logo/57-bolle.jpg', width='85px')
+        li.collapse-item
+          router-link(to='/goggles/nike/d410/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/designers/logo/410-nike.jpg', width='85px')
+        //li.collapse-item
+          router-link(to='#')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/designers/logo/391-oakley.jpg', width='85px')
+        li.collapse-item
+          router-link(to='/goggles/revo/d31756/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/designers/logo/31756-Revo-logo.jpg', width='85px')
+        li.collapse-item
+          router-link(to='/goggles/dragon/d31611/')
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/designers/logo/31611-dragon.jpg', width='85px')
+

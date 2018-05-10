@@ -1,0 +1,93 @@
+section#SiteHeader.upper-bar
+  .container-fluid
+    .row
+      .col-12.px-lg-3.py-md-2.small
+        .float-md-left.text-center.text-md-left
+          p.text-nowrap(style="line-height:1.3rem;").d-none
+            strong FREE
+            span.d-none.d-md-inline  Standard
+            |  Tints   //  
+            strong  10% OFF
+            |  frames
+            strong  {{calculatePrice(2200/33.47, false, true)}}+
+            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            a(data-open='promoBox',
+              aria-controls='promoBox',
+              aria-haspopup='true',
+              tabindex='0').code-link.underlined-link
+              span Get&nbsp;
+              span.d-none.d-md-inline-block Your Code »
+              span.d-md-none Codes »
+          p.text-nowrap(style="line-height:1.3rem;").small
+            strong  10% OFF
+            |  frames
+            strong  {{calculatePrice(2200/33.47, false, true)}}+
+            | &nbsp;&nbsp;&nbsp;&nbsp;
+            span Code:&nbsp;
+            a#promoBoxLink(data-toggle='modal',
+              data-target='#promoBox').text-uppercase
+              u.code-link Autumn
+          PromoModal
+        ul.float-right.nav.d-none.d-md-inline-block
+          li.nav-item.call-section
+            strong
+              i.fa.fa-volume-control-phone.mr-1
+              a#callToLink(href="tel:03303801190").text-white 03303 801 190
+              | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          li#site-help.nav-item.dropdown.help-section.text-left
+            a#help-dropdown(data-toggle="dropdown", aria-expanded="false").dropdown-toggle
+              span
+                u Help
+              span.arrow
+            #help-dropdown-menu(aria-labelledby="help-dropdown").help.dropdown-menu
+              router-link.dropdown-item(to="/information/")
+                i.fa.fa-question-circle
+                | Help & Information
+              router-link.dropdown-item(to="/info/shipping-delivery/")
+                i.fa.fa-plane
+                | Delivery Info
+              router-link.dropdown-item(to="/info/returns/")
+                i.fa.fa-reply
+                | Returns
+              router-link.dropdown-item(to="/account/orders")
+                i.fa.fa-check-square-o
+                | Track Order
+              router-link.dropdown-item(to="/info/pupillary-distance/")
+                i.fa.fa-eye
+                | Your PD
+              router-link.dropdown-item(to="/info/help-with-prescription/")
+                i.fa.fa-newspaper-o
+                | Your Prescription
+              router-link.dropdown-item(to="/about-us/")
+                i.fa.fa-users
+                | About Us
+              router-link.dropdown-item(to="/customer-services/")
+                i.fa.fa-envelope-open-o
+                | Contact Us
+          li#site-flag.nav-item.dropdown.currency-section
+            a#currency-dropdown(data-toggle="dropdown", aria-expanded="false").dropdown-toggle
+              img.mr-1(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/uk-small.png")
+              span(v-if="currencies[selectedCurrency]")
+                span(v-html="currencies[selectedCurrency].symbol")
+                |  {{currencies[selectedCurrency].currency_name}}
+              span.arrow
+            #currency-dropdown-menu.currency.dropdown-menu
+              p.dropdown-header Change currency
+              form#currency_form(method="post").dropdown-item.mb-3.p-0
+                input(type="hidden", name="current_url", value="/auth/login/")
+                input#hash(type="hidden", name="hash")
+                select#curr.form-control.p-1(@input="setCurrency", :value="selectedCurrency").custom-select
+                  option(v-for='currency in currencies',
+                    :value='currency.number',
+                    v-html='`${currency.symbol} ${currency.currency_name}`')
+              p.dropdown-header Other country sites
+              router-link#linkToEn(to="/welcome/lang/en/").dropdown-item English
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/uk.png")
+              router-link#linkToDe(to="/welcome/lang/de/").dropdown-item Deutsch
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/de.png")
+              router-link#linkToCn(to="/welcome/lang/cn/").dropdown-item Chinese
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/cn.png")
+              router-link#linkToCa(to="/welcome/lang/ca/").dropdown-item Canadian
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/ca.png")
+              router-link#linkToAu(to="/welcome/lang/au/").dropdown-item Australian
+                img.mr-2.float-left(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/au.png")

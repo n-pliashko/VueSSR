@@ -1,0 +1,84 @@
+.page
+  PageHeader
+
+  main
+    .container-fluid.pb-1
+      .row
+        .col-12.text-center
+          .loading(v-if="loading")
+          br
+          h1.font-weight-bold Wishlist
+          p Save items to your wishlist. Buy them later.
+          br
+          .not-logged-in-block(v-if="!user")
+            p
+              strong Please note:
+              |  your wishlist is only saved locally. Please create or sign in to your account to use it anywhere!
+            br
+          .not-empty-block(v-if="!!$store.getters.wishlistCount")
+            button#cleanWishlistLink(@click.stop='cleanWishlist').btn.dark-button Remove all items from your wishlist
+            br
+            br
+    .grey-background
+      .container-fluid
+        .row.py-3.px-4
+          .col-12
+            .row(v-if="!!$store.getters.wishlistCount")
+              .wishlist-item.col-6.col-md-4.col-lg-3.p-1(v-for="item in $store.state.wishlist.filter(function (item) { return item.params.type == fgrname})")
+                .item-wrapper.section-style.px-sm-3.py-3.py-sm-4(:id='item.id + "ItemBlock"', @click.stop='setSelected(item.id, item.params.params.option, item.params.type)')
+                  i(:id="'remove' + item.id + 'ItemButton'", @click='switchWishlist(item.id, item.params.type, item.params.params)').remove-button
+                    span.sr-only Remove image
+                  router-link(:to='{name: item.params.type == "basket" ? "Basket" : "ItemPage", params: {item: parseFloat(item.id / 100).toFixed(2), category: reverseRouteName(item.category_name), designer: reverseRouteName(item.designer_name), model: reverseRouteName(item.model_name)}}')
+                    // Draft code for corner preview
+                    .item-feature.two-for-one-item.d-none.d-md-block
+                    em.item-prescription Prescription ready
+                    div.productImg
+                      img.item-photo.img-fluid.mb-2(v-if="item.src.length === 0", src="https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg", :alt="item.designer_name + ' - ' + item.model_name")
+                      // Slick(v-else, :ref="'slick_' + item.id", :options="slickOptions")
+                        div(v-for="img in item.src")
+                          img.item-photo.img-fluid.mb-2(:src="img ? cdnUrl + '/' + img : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'", :alt="item.designer_name + ' - ' + item.model_name")
+                    .item-designer-name.w-100.ellipsis
+                      | {{item.designer_name}} {{item.model_name}}
+                    // Draft code for options preview
+                    .item-options(v-if='!item.options').d-none.d-md-block.mb-md-3 {{item.count_options > 1 ? item.count_options + ' options' : item.name}}
+                    .item-no-options(v-else='item.options').d-none.d-md-block
+                    .item-price
+                      span.was(v-if="parseFloat(item.price_old) > parseFloat(item.price)")
+                        span(v-html="currency.symbol")
+                        | {{convertPrice(item.price_old)}}
+                      span.now
+                        span(v-html="currency.symbol")
+                        | {{convertPrice(item.price)}}
+                    .item-advantages
+                      | FREE Lenses & Coatings.
+                      br.d-sm-none
+                    // Draft code for review stars preview
+                    .item-rating(v-if='!item.rating').text-right.font-italic.mt-2.mb-3.mx-auto
+                      .stars
+                        // Draft code for reviews number preview
+                        span (1)
+                    .item-no-rating(v-else='item.rating').d-block.mt-2.mb-3.mx-auto
+                    //router-link(to="/").btn.accent-button.text-uppercase.mb-3 Details В»
+                  .item-buttons
+                    button.btn.accent-button.text-uppercase.mb-2.d-none.d-md-inline More details »
+            .row(v-else).grey-container
+              #emptyWishlistText.col-12.text-center
+                p
+                  br
+                  br
+                  br
+                  br
+                  br
+                  br
+                  span Your wishlist is currently empty.
+                  br
+                  br
+                  br
+                  br
+                  br
+                  br
+                  br
+                  br
+                  br
+            //this.loadWishlist
+  PageFooter

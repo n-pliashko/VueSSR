@@ -1,0 +1,192 @@
+.filter-desktop {
+  .refine-block-header {
+    display: block;
+    clear: both;
+    padding: 1rem .5rem .5rem;
+    .filter-title {
+      font-size: .95rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-right: .25rem;
+    }
+  }
+
+  .sub-clear-link {
+    a.highlight {
+      background: #ffe4a2;
+      white-space: nowrap;
+      padding: 3px 6px;
+      color: #000;
+      text-decoration: underline;
+      font-size: 1rem;
+      height: auto;
+      line-height: 1.5;
+      &:hover {
+        background: #fbcf62;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .refine-control {
+    line-height: 1.6;
+    margin: 0 1px;
+    padding: 0 .5rem .5rem .5rem;
+    font-size: .9rem;
+    list-style: none;
+    max-height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border-bottom: 1px solid #e2e6e7;
+    li {
+      max-height: 30px;
+      line-height: 1.9rem;
+      font-size: .875rem;
+      &.disactive {
+        opacity: 0.4;
+        &:hover {
+          opacity: 1;
+        }
+      }
+      a {
+        width: 100%;
+        display: block;
+        text-decoration: none;
+        &:hover {
+          color: #e84b3a;
+        }
+        &.ellipsis {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: inline-block;
+          margin: 0;
+          padding: 0;
+        }
+        .refine-count {
+          margin-left: 2px;
+          color: gray;
+          font-size: .8em;
+          line-height: .8em;
+        }
+      }
+    }
+  }
+
+  $boxes-background:  #ecf0f1;
+  $boxes-border:      1px solid #919191;
+  $boxes-size:        1.4em;
+
+  // Checkboxes
+  // Base for label styling
+  [type=checkbox]:not(:checked), [type=checkbox]:checked {
+    position: absolute;
+    left: -9999px;
+    & + label {
+      position: relative;
+      padding-left: 1.95em;
+      cursor: pointer;
+      // Unchecked enabled checkbox container
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0; top: 4px;
+        width: $boxes-size; height: $boxes-size;
+        border: $boxes-border;
+        background: $boxes-background;
+      }
+
+      // Checked enabled checkbox container
+      &:after {
+        content: '✔';
+        position: absolute;
+        top: -6px; left: 3px;
+        font-size: 1.4em;
+        line-height: 2;
+        color: #00aa18;
+        transition: all .2s;
+      }
+    }
+  }
+  // Checked mark aspect changes
+  [type=checkbox]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+  }
+  [type=checkbox]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  // Disabled checkbox
+  [type=checkbox]:disabled:not(:checked) + label:before,
+  [type=checkbox]:disabled:checked + label:before {
+    border-color: #bbb;
+    background-color: #999;
+    opacity: .1;
+  }
+  [type=checkbox]:disabled:checked + label:after {
+    color: #999;
+  }
+  [type=checkbox]:disabled + label {
+    opacity: .3;
+  }
+
+
+  // Radios
+  // Base for label styling
+  [type=radio]:not(:checked), [type=radio]:checked {
+    position: absolute;
+    left: -9999px;
+    & + label {
+      position: relative;
+      padding-left: 1.95em;
+      cursor: pointer;
+      // Unchecked enabled radio container
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0; top: .3em;
+        width: $boxes-size; height: $boxes-size;
+        border: $boxes-border;
+        border-radius: 50%;
+        background: $boxes-background;
+      }
+
+      // Checked enabled radio dot
+      &:after {
+        content: '';
+        position: absolute;
+        top: .7em; left: 5.5px;
+        width: $boxes-size/2; height: $boxes-size/2;
+        border-radius: 50%;
+        background: #00aa18;
+        transition: all .2s;
+      }
+    }
+  }
+  // Checked mark aspect changes
+  [type=radio]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+  }
+  [type=radio]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  // Disabled radio
+  [type=radio]:disabled:not(:checked) + label:before,
+  [type=radio]:disabled:checked + label:before {
+    box-shadow: none;
+    border-color: #bbb;
+    background-color: #ddd;
+  }
+  [type=radio]:disabled:checked + label:after { color: #999; }
+  [type=radio]:disabled + label { color: #aaa; }
+
+  a.disabled, li.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

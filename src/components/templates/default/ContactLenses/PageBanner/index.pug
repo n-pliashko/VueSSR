@@ -1,0 +1,16 @@
+section
+  .page-banner.d-none.d-lg-block
+    .container-fluid.content-wrapper.text-center
+      .text-wrapper
+        br.d-none.d-md-block
+        p.large
+          strong From only {{calculatePrice(10.57/33.47, false, true)}} per day
+        p.small Find your lenses now
+      br
+      router-link#dailyLensesLink(to="/contact-lenses/daily-disposables/c221/").btn.big-button Dailies »
+      router-link#monthlyLensesLink(to="/contact-lenses/monthly-disposables/c224/").btn.big-button Monthlies »
+      router-link#weeklyLensesLink(to="/contact-lenses/two-weekly-disposables/c257").btn.big-button Weeklies »
+
+  // Slick(aria-label='Contact Lenses', ref="slick", :options="slickOptions").d-lg-none
+    router-link#contactLensesMobileLink(to="/")
+      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/home/slider/contact-lenses.jpg?20171207190136', alt='Contact lenses')

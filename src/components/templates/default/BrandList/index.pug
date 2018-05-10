@@ -1,0 +1,22 @@
+#brands-page.page
+  PageHeader
+  main
+    section.container-fluid
+      Breadcrumbs
+    section.container-fluid
+      .row
+        .col-12
+          br.d-sm-none
+          h1.text-center Brand Directory
+          .row.row-eq-height(v-if="brands")
+            .col-12.col-md-6.col-lg-3(v-for="(brand, key) in brands")
+              p.brand-AZ {{key}}
+              hr
+              .container
+                .row
+                  .brand-entry.col-6(v-for="one in brand")
+                    router-link(:to="path + '/' + reverseRouteName(one.name)").blue-hovered-link {{one.name}}
+          br
+          br
+  PageFooter
+  ScrollToTop

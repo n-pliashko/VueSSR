@@ -1,0 +1,103 @@
+.page
+  section.prescription-select-page
+    section.upper-logo-bar
+      a#link-back(@click='goBack').btn.accent-button < {{ backText }}
+      .container-fluid
+        .row
+          .col-12.col-xl-7.mx-auto
+            .clearfix
+              .logo-horizontal.d-block.float-none.float-sm-left.mx-auto
+              hr.hidden-sm-up
+              a#link-to-trustpilot(href='https://uk.trustpilot.com/review/selectspecs.com?utm_medium=Trustbox&utm_source=MicroCombo',
+                target='_blank',
+                rel='follow').d-block.float-none.float-sm-right.text-center.my-sm-4
+                p.font-weight-bold.d-inline-block.mx-2.mb-1.mb-sm-0.text-muted Excellent
+                .stars-container.d-inline-block.mx-2
+                  - for(var i = 0; i < 5; i++)
+                    .star-sprite.d-inline-block
+                      img(src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/sprite_star.png")
+                p.small.mb-1.mb-sm-0.text-muted based on&nbsp;
+                  strong 17,283
+                  |  reviews
+                .trust-pilot-logo.col-3.col-sm-6.col-lg-4.mx-auto.mb-1.mb-sm-0
+              br
+    .black-bar.w-100
+    section.main-section
+      .container
+        .row
+          .col-12.col-lg-11.mx-auto
+            section.wizard.container.py-3
+              h3.font-weight-bold.text-center.text-md-left Virtual Dispenser
+              .container
+                .row
+                  .col-12.col-md-5(v-if="basket.order && basket.order.totalItems > 0")
+                    .item-preview.row.py-2
+                      .col-12.col-md-4
+                        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg').img-fluid
+                      .col-12.col-md-8
+                        p
+                          strong
+                            a(href="#").blue-hovered-link {{basket.order.orderItems[activeItemIndex].option.name}} {{basket.order.orderItems[activeItemIndex].designerName}}
+                        p.small
+                          strong Colour:&nbsp;
+                          | {{basket.order.orderItems[activeItemIndex].option.description}}
+                        p.small
+                          strong Size:&nbsp;
+                          | {{basket.order.orderItems[activeItemIndex].option.arm}}-{{basket.order.orderItems[activeItemIndex].option.bridge}}-{{basket.order.orderItems[activeItemIndex].option.lens}}-{{basket.order.orderItems[activeItemIndex].option.height}}
+                        p.small
+                          strong Frame Price:&nbsp;
+                            span.text-danger
+                              span(v-html="currency.symbol")
+                              | {{convertPrice(basket.order.orderItems[activeItemIndex].option.price)}}
+                          span(v-model='basket.order.orderItems[activeItemIndex].quantity')
+
+                  .col-12.col-md-7
+                    .wizard-inner
+                      .row
+                        h5.font-weight-bold Summary & Progress
+                      ol(role='tablist', type="1").row.list-inline
+                        li(role='presentation', v-for='step in steps',
+                          :class="step.disabled ? 'disabled' : 'active'",
+                          v-if='!!step.visible').col-12.col-md-3.px-1
+                          router-link(:to='{ name: step.route}').order-step {{step.index}} {{step.title}}
+                            //span.float-right.arrow-next-stage {{step.route != lastStep ? '>' : ''}}
+                            i.fa.fa-chevron-right(v-if="step.route != lastStep", aria-hidden="true")
+                          p -
+            section.container.step-description-wrapper
+              p.larger.text-danger
+                strong {{steps[activeStep].question}}
+              p
+                em.small {{steps[activeStep].note}}
+              br
+
+            section.tab-pane(role='tabpanel', :id='stage')
+              component(:is='stage').py-4.mx-auto
+            br
+
+            p.float-right.mb-0
+              strong Subtotal:&nbsp;
+                span(v-html="currency.symbol")
+                | {{basket.order ? parseFloat(convertPrice(basket.order.orderItems[activeItemIndex].option.price) * basket.order.orderItems[activeItemIndex].quantity).toFixed(2) : '0.00'}}
+
+    br
+    Carousel
+    section.grey-background
+      br
+      .container
+        .footer-payment-logo
+      br
+    section.grey-background
+      .container.footer-payment-copyright.py-3.text-center
+        p.small.my-0
+          strong SelectSpecs.com.
+          | &nbsp;&nbsp;37 Station Road, Westgate-on-Sea, Kent, UK. CT8 8QY.&nbsp;&nbsp;
+          br.hidden-sm-up
+          strong UK Company No:
+          | &nbsp;6435182.&nbsp;&nbsp;
+          br.hidden-sm-up
+          strong Copyright © SelectSpecs.com 2017.&nbsp;&nbsp;
+          router-link#link-to-sitemap(to="/sitemap").smaller.black-red-link Site Map
+          | &nbsp;|&nbsp;
+          router-link#link-to-terms(to="/terms").smaller.black-red-link Terms of sale
+          | &nbsp;|&nbsp;
+          router-link#link-to-privacy(to="/privacy").smaller.black-red-link Privacy

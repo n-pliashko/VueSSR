@@ -1,0 +1,435 @@
+#checkoutPage.page
+  // CheckoutUpperBar
+  PageHeader
+  // CheckoutHeaderSmall
+
+  main
+    div.loading#loader_checkout(v-show='showLoader || loading || currencyLoading')
+    section.message-wrapper(v-if='order.warnmessage')
+      #errorMessageBlock.error-block
+        p(v-if='order.warnmessage')
+          | {{ order.warnmessage }}
+        p(v-else)
+          | Unexpected error occurred
+    section.checkout-steps
+      .container-fluid.text-center
+        .text-center
+          span.step.checkout-done
+            router-link(v-if="!loggedInFromSsv4", :to="{ name: 'Basket' }")#basketSsv4Link.text-white Basket
+            a(v-else, :href='integrationHost+"/cart/index/"')#basketLink.text-white Basket
+          span.step.checkout-done.wider-step
+            span.text-white Checkout & Payments
+        h1 Checkout
+        p(v-if='order.order_number').d-lg-none
+          strong Order summary (inc.delivery):&nbsp;
+          span(v-html="currency.symbol")
+          span {{getAddPrice(order.final_total,order.shipping_cost)}}
+        p(v-if='order.order_number').small.d-lg-none.mb-2
+          em Full summary available before payment
+    section.order-summary(v-if='!!currencies && !loading && !currencyLoading && order.order_number')
+      .container-fluid.text-center.d-none
+        .row.py-3
+          .col-12.d-none.d-md-block
+            p.large(v-if='currencies != null && order.currency_id != undefined')
+              strong Order Summary:&nbsp;
+                span.text-danger
+                  span(v-html="currency.symbol")
+                  | {{getAddPrice(order.order_amount, order.shipping_cost)}}
+                  //span(v-else='') Loading...
+            p.m-1.smaller(v-if='activeShippingId && currencies != null && order.currency_id != undefined')
+              | Including delivery charge:&nbsp;
+              strong(v-if='order.shipping_cost != 0')
+                span(v-html="currency.symbol")
+                | {{getPrice(order.shipping_cost)}}
+              strong(v-else='') FREE
+              | .
+              //span  ({{deliveryMethods[activeShippingId]['delivery_method_name']}} mail selectded)
+            p.m-1.smaller(v-else="") Without shipping cost&nbsp;
+              | &nbsp;(shipping not selected)
+            //p.m-1.small Including delivery charge&nbsp;
+            //  strong £5.95
+            //  | &nbsp;(standard mail selected)
+            router-link#viewOrdersButton(v-if='!loggedInFromSsv4', :to='showOrderUrl').btn.view-orders View items in your order
+            router-link#viewOrdersLink(v-else, :to='integrationHost+"cart/index/"').btn.view-orders View items in your order
+          .col-12.d-block.d-md-none
+            p.large(v-if='currencies != null && order.currency_id != undefined')
+              strong Order Summary (inc delivery):&nbsp;
+                span.text-danger
+                  span(v-html="currency.symbol")
+                  | {{ getAddPrice(order.order_amount, order.shipping_cost) }}
+                a#expand-summary(data-toggle="collapse",
+                href="#collapse-summary",
+                aria-expanded="false",
+                aria-controls="collapse-summary").ml-3
+                  i.fa.fa-chevron-down
+            #collapse-summary.collapse
+              br
+              router-link(:to='showOrderUrl')
+                button#viewOrdersButtonMobile.btn.view-orders View items in your order
+    section(v-if='order.order_number').checkout-wrapper
+      .container-fluid
+        .row.inner-content-wrapper.py-3.pt-lg-0
+          .col-12.col-lg-8
+            section#stages-accordion(role="tablist", v-if='order.order_number')
+              .container-fluid
+                .row
+                  #stage-1.col-12.stage
+                    #section-1-header(role="tab").row
+                      .header-wrapper.col-12(:class="[[step == 0 ? inProgress : ''], [step >= 1 ? finished : '']]")
+                        h5(@click="toggleCurrentCollapse(1)").stage-header  1. Customer Details
+                          span(v-if='step >= 1')
+                            .tick
+                            button#section-1-expand.expand-section.d-md-none
+                              i.fa.change-chevron(:class="stepArrow.stepArrowUp1 ? 'fa-chevron-up' : 'fa-chevron-down'")
+                            button#editDetailsLink(@click="next_tick(0, true)").btn.edit-button Change
+                    #section-1-collapse(role="tabpanel",
+                    aria-labelledby="section-1-header",
+                    data-parent="#stages-accordion").collapse.multi-collapse.show
+                      hr.d-none.d-md-block.my-0
+                      .row(v-if='step == 0').px-lg-3.pt-md-2
+                        .already-customer(v-if='showLoginBlock()').col-12.col-lg-4
+                          .already-element.my-md-2
+                            p.mb-lg-3
+                              strong Already a customer?
+                              span.d-lg-none.ml-3
+                                button#loginModalButtonMobile(v-if='true',
+                                data-toggle="modal", data-target="#checkoutLoginModal").btn.login-button Sign In
+                                a#loginModalLinkMobile(v-else, :href='integrationHost+"/auth/login/"').btn.login-button Sign In
+                            p.d-none.d-lg-inline
+                              button#loginModalButton(v-if='true',
+                              data-toggle="modal", data-target="#checkoutLoginModal").btn.login-button Sign In
+                              a#loginModalLink(v-else, :href='integrationHost+"/auth/login/"').btn.login-button Sign In
+                          .already-element.my-2.d-none.d-lg-block(v-if='false')
+                            p.mb-3
+                              strong Sign in with your social accounts
+                            p
+                              button(type="button").btn.social-login-button.fb-button
+                                i.fa.fa-facebook
+                              button(type="button").btn.social-login-button.gp-button
+                                i.fa.fa-google-plus
+                              button(type="button").btn.social-login-button.tw-button
+                                i.fa.fa-twitter
+                          CheckoutLogin
+                        form(:class="showLoginBlock() ? 'col-lg-8' : ''").new-customer.col-12
+                          .pl-lg-4.mb-3(v-if='!order.profile_number')
+                            h5.my-2.m-lg-0
+                              strong.d-none.d-lg-inline Or continue as a new customer
+                              strong.d-lg-none Continue checkout as a new customer
+                            p.font-italic.small(style="line-height: 1.2;") You can add a password later if you would like to create account.
+                          br(v-else)
+                          .row.mb-2
+                            .col-12(:class="showLoginBlock() ? '' : 'col-lg-9'").text-right
+                              .form-group.row(v-if="step < 1")
+                                label(for='fullname_first').col-form-label.col-4.d-none.d-md-block Your full name:
+                                .col-6.col-md-4
+                                  input#fullname_first(v-model.trim='order.profile.first_name',
+                                  type='text',
+                                  name='firstname',
+                                  :disabled = 'disableFields>=1',
+                                  placeholder='First Name',
+                                  :class='[errors.first_name && errors.first_name !== true ? "error" : ""]').form-control
+                                  p(v-if='errors.first_name && errors.first_name !== true') {{errors.first_name}}
+                                .col-6.col-md-4
+                                  input#fullname_last(v-model.trim='order.profile.last_name',
+                                  type='text',
+                                  name='lastname',
+                                  :disabled = 'disableFields>=1',
+                                  placeholder='Last Name',
+                                  :class='[errors.last_name && errors.last_name !== true ? "error" : ""]').form-control
+                                  p(v-if='errors.last_name && errors.last_name !== true') {{errors.last_name}}
+                              .form-group.row(v-if="step < 1")
+                                label(for='reg_phone').col-form-label.col-4.d-none.d-md-block Telephone number:
+                                .col-12.col-md-8
+                                  input#reg_phone(v-model.trim='order.profile.phone',
+                                  type='tel',
+                                  name='phone',
+                                  @keydown='validatePhoneOnKeyDown',
+                                  placeholder='Phone',
+                                  :disabled = 'disableFields>=1',
+                                  :class='[errors.phone && errors.phone !== true ? "error" : ""]').form-control
+                                  p(v-if='errors.phone && errors.phone !== true') {{errors.phone}}
+                              .form-group.row(v-if="step < 1")
+                                label(for='reg_email').col-form-label.col-4.d-none.d-md-block Your email:
+                                .col-12.col-md-8
+                                  input#reg_email(v-model.trim='order.profile.email',
+                                  type='email',
+                                  name='email',
+                                  placeholder='Email',
+                                  :disabled = 'disableFields>=1',
+                                  :class='[errors.email && errors.email !== true ? "error" : ""]').form-control
+                                  p(v-if='errors.email && errors.email !== true') {{errors.email}}
+                                    button#loginModalButtonError(v-if="errors.email === 'Email already registered.'", data-toggle="modal", data-target="#checkoutLoginModal", @click.prevent='') Sign In
+                              //.form-group.row(v-if="step < 1")
+                              //  label(for='reg-country').col-form-label.col-4.d-none.d-md-block Your country:
+                              //  .col-12.col-md-6
+                              //    select#reg-country(@change='selectCountry',
+                              //    v-model='order.reg_country_id',
+                              //    name='country',
+                              //    :class='[errors.reg_country && errors.reg_country !== true ? "error" : ""]').form-control
+                              //      option(v-for='(country,index) in countryList',
+                              //      :value=' country.number ') {{ country.country_name }}
+                              //    p(v-if='errors.reg_country && errors.reg_country !== true') {{errors.reg_country}}
+                              .form-group.row
+                                .col-md-4
+                                .col-12.col-md-8
+                                  .save-details(v-if='showRegistrationBlock()').mb-3
+                                    label(for="saveDetails").form-check-label
+                                      input#saveDetails(type='checkbox',
+                                      :disabled = 'disableFields>=1',
+                                      v-model='showRegistration',
+                                      aria-controls="collapsePassField").form-check-input.mr-2
+                                      | Save your details for later?
+                                    p.small
+                                      em You can also do this after your order is placed
+                                    #collapsePassField(v-if='showRegistration').form-group.m-0
+                                      label(for="checkoutPassword").sr-only.col-form-label Password
+                                      input#checkoutPassword(type='password',
+                                      :disabled = 'disableFields>=1',
+                                      v-model='regdata.password',
+                                      :class='[errors.password && errors.password !== true ? "error" : ""]',
+                                      placeholder="Enter a password").form-control
+                                      .hide-show(@click="changePasswordVisibility")
+                                        span(v-model="showPassword") {{ showPassword }}
+                                      p(v-if='errors.password && errors.password !== true') {{errors.password}}
+                                  label.form-check-label.text-md-left.d-none.d-md-block
+                                    input#check-newsletter(v-model='order.profile.subscribed',
+                                    type='checkbox', :disabled = 'disableFields>=1').form-check-input.mr-2
+                                    | I want to receive the Newsletter for information on current offers, services and surveys.
+                                  .d-md-none.py-2
+                                    p.small
+                                      strong Subscribe to Newsletter & Offers?
+                                      | &nbsp;&nbsp;
+                                      span.form-check-inline.ml-1
+                                        label.form-check-label
+                                          input#checkNewsletterMobile(v-model='order.profile.subscribed',
+                                          type='checkbox').form-check-input
+                                          span.font-italic Yes, please
+                          .row.my-2
+                            .col-12
+                              button#continue-first-button(@click.prevent='next_tick(1)',
+                              v-if='!disableFields').btn.button-continue
+                                span(v-if='showRegistration') Register & Continue&nbsp;&nbsp;
+                                span(v-else) Continue&nbsp;&nbsp;
+                                  i.fi-play
+                      .row(v-else).py-3.text-left
+                        .col-11.col-md-12.mb-2.mx-auto
+                          .row
+                            p.col-6.col-md-4.col-lg-4.text-label Your full name:
+                            p.col-6.col-md-8.col-lg-8.input-text
+                              span#firstnameText(v-model='order.profile.first_name') {{ order.profile.first_name }}
+                              | &nbsp;
+                              span#lastnameText(v-model='order.profile.last_name') {{ order.profile.last_name }}
+                          .row
+                            p.col-6.col-md-4.col-lg-4.text-label Your email:
+                            p.col-6.col-md-8.col-lg-8.input-text
+                              u
+                                em
+                                  span#emailText(v-model='order.profile.email') {{ order.profile.email }}
+                          .row
+                            p.col-6.col-md-4.col-lg-4.text-label Telephone number:
+                            p.col-6.col-md-8.col-lg-8.input-text
+                              span#phoneText(v-model='order.profile.phone') {{ order.profile.phone }}
+                          //.row
+                          //  p.col-6.col-md-4.col-lg-4.text-label Your country:
+                          //  p.col-6.col-md-8.col-lg-8.input-text
+                          //    span#countryText(v-model='order.reg_country') {{ selectedCountryName }}
+
+                      .row
+                        .col-11.col-md-12.mx-auto
+                          button#editDetailsLinkMobile(v-if='step >= 1',
+                          @click="next_tick(0, true)").btn.edit-button-mobile  Edit
+                  #stage-2.col-12.stage
+                    #section-2-header(role="tab").row
+                      .header-wrapper.col-12(:class="[[step == 1 ? inProgress : ''], [step >= 2 ? finished : '']]")
+                        h5(@click="toggleCurrentCollapse(2)").stage-header 2. Delivery Address
+                          span(v-if='step >= 2')
+                            span.tick
+                            button#section-2-expand.expand-section.d-md-none
+                              i.fa(:class="stepArrow.stepArrowUp2 ? 'fa-chevron-up' : 'fa-chevron-down'")
+                            button#editAddressLink(@click="next_tick(1, true)").btn.edit-button Change
+                    #section-2-collapse(role="tabpanel",
+                    aria-labelledby="section-2-header",
+                    data-parent="#stages-accordion").address-zip.collapse.multi-collapse
+                      hr.d-none.d-md-block.my-0
+                      .row
+                        CheckoutAddressZip(show_same_checkbox='true',
+                        :debugLog='debugLog',
+                        :countryList = 'countryList',
+                        :changeVisiblDelivery='changeVisiblDelivery',
+                        :next_tick='next_tick',
+                        type='delivery',
+                        :data='order.deliveryAddress',
+                        :regCountry='order.reg_country',
+                        :searchCountryByCode2='searchCountryByCode2',
+                        :searchCountryById='searchCountryById',
+                        :show_delivery='show_delivery',
+                        :errorInAddress='errorInAddress',
+                        :selectCountry='selectCountry',
+                        :order='order')
+                        CheckoutAddressZip(:next_tick='next_tick',
+                        :debugLog='debugLog',
+                        v-if='!order.some_billship_addr',
+                        type='billing',
+                        :order='order',
+                        :searchCountryById='searchCountryById',
+                        :searchCountryByCode2='searchCountryByCode2',
+                        :selectCountry='selectCountry',
+                        :countryList = 'countryList',
+                        :regCountry='order.reg_country',
+                        :data='order.billingAddress')
+                      .row
+                        .col-11.col-md-12.mx-auto
+                          button#editAddressLinkMobile(v-if='step >= 2',
+                          @click="next_tick(1, true)").btn.edit-button-mobile  Edit
+                    // .row
+                      .col-12(v-if="showButton && !disableFields")
+                        button#continue-second-button(@click.prevent='commitEvent', :disabled='disabledNextButton').btn.button-continue
+                          span Continue&nbsp;&nbsp;
+                            i.fi-play
+                  #stage-3.col-12.stage
+                    #section-three-header.row(role="tab")
+                      .col-12.header-wrapper(:class="[[step == 2 ? inProgress : ''], [step >= 3 ? finished : '']]")
+                        h5(@click="toggleCurrentCollapse(3)").stage-header 3. Shipping Method
+                          span(v-if='step > 3')
+                            span.tick
+                            button#section-3-expand.expand-section.d-md-none
+                              i.fa(:class="stepArrow.stepArrowUp3 ? 'fa-chevron-up' : 'fa-chevron-down'")
+                            button#editDeliveryLink(@click="next_tick(2, true)").btn.edit-button Change
+                    #section-3-collapse(role="tabpanel",
+                    aria-labelledby="section-3-header",
+                    data-parent="#stages-accordion").collapse.multi-collapse.shipping
+                      CheckoutDelivery(:next_tick="next_tick",
+                      v-if='step >= 2',
+                      :deliveryMethods="deliveryMethods",
+                      :activeShippingId="activeShippingId",
+                      :order="order",
+                      :currencies="currencies",
+                      :setShippingId="setShippingId",
+                      :onSubmitForm="onSubmitForm")
+                      .row
+                        .col-11.col-md-12.mx-auto
+                          button#editDeliveryLinkMobile(v-if='step >= 3',
+                          @click="next_tick(2, true)").btn.edit-button-mobile  Edit
+                  #stage-4.col-12.stage
+                    #section-4-header.row(role="tab")
+                      .col-12.header-wrapper(:class="[[step == 4 ? inProgress : ''], [step > 4 ? finished : '']]")
+                        h5(@click="toggleCurrentCollapse(4)").stage-header 4. Order Summary & Payment
+                          span(v-if='step > 4')
+                            .tick
+                            button#section-4-expand.expand-section.d-md-none
+                              i.fa(:class="stepArrow.stepArrowUp4 ? 'fa-chevron-up' : 'fa-chevron-down'")
+                    #section-4-collapse(role="tabpanel", aria-labelledby="section-4-header", data-parent="#stages-accordion")
+                      .container-fluid(v-if='step >= 4').p-0.px-lg-3
+                        hr.d-none.d-md-block.my-0
+                        .row
+                          .col-12
+                            .sub-text
+                              p.small By processing to payment your reconfirming the items in your order are correct and you agree to our T&Cs
+                        br
+                        .d-lg-none
+                          .row
+                            .col-12
+                              .summary-collapse-wrapper.mb-2
+                                a#expandSummaryMobile(data-toggle="collapse",
+                                href="#orderSummaryMobile",
+                                aria-controls="orderSummaryMobile",
+                                aria-expanded="false",
+                                @click='showCartMobile = !showCartMobile')
+                                  p.small
+                                    strong Summary:&nbsp;
+                                      span(v-html="currency.symbol")
+                                      | {{getAddPrice(order.final_total,order.shipping_cost)}} (delivered)
+                                    i.fa(:class="showCartMobile ? 'fa-chevron-up' : 'fa-chevron-down'").float-right
+                                #orderSummaryMobile.summary-collapse.collapse
+                                  hr
+                                  CheckoutCartMobile(v-if='showMiniCart && deliveryMethods && !!currencies && !loading && !currencyLoading && order.order_number',
+                                  :getPrice='getPrice',
+                                  :deleteItemSsv4Request='deleteItemSsv4Request',
+                                  :debugLog='debugLog',
+                                  :shippingCost='getPrice(order.shipping_cost)',
+                                  :getAddPrice='getAddPrice',
+                                  :activeShippingId = 'activeShippingId',
+                                  :order = 'order',
+                                  :subTotal='getSubtPrice(getAddPrice(order.final_total, order.shipping_cost,true,true), getAddPrice((order.promo_discount ? order.promo_discount : 0), (order.total_save_two_for_one ? order.total_save_two_for_one : 0),true))')
+                              .comment-box.comment-box-mobile.d-lg-none
+                                a(data-toggle="collapse", role="button", aria-expanded="false",
+                                href="#commentBoxMobile", aria-controls="commentBoxMobile",
+                                @click='showAdditionalInfo = !showAdditionalInfo')
+                                  p.small
+                                    strong Add any additional information?
+                                    i.fa(:class="showAdditionalInfo ? 'fa-chevron-up' : 'fa-chevron-down'").float-right
+                                #commentBoxMobile.collapse
+                                  hr
+                                  .row
+                                    .col-12
+                                      textarea(v-model.trim='order.info', name='comment', @blur="saveComment",
+                                      placeholder='Please make us aware of anything else we need to know regarding this order', rows="4").form-control.mb-0
+                          br
+                        .row
+                          .frame.col-12
+                            PaymentFrame(v-if="step >= 4",
+                            :order_hash="order.hash",
+                            sandbox="1",
+                            :deliveryAddress='this.order.billingAddress',
+                            :payment_system_number="order.paymentMethodId")
+                          //.col-lg-6.d-none.d-lg-block
+                            .final-summary.my-2
+                              br
+                              h5
+                                strong(v-if='currencies != null')
+                                  | Final Summary:&nbsp;
+                                  span.text-danger
+                                  span(v-html="currency.symbol")
+                                  | {{exchange(parseFloat(order.final_total) + parseFloat(order.shipping_cost))}}
+                              p(v-if='activeShippingId != null').small
+                                | Including delivery charge of
+                                span.font-weight-bold(v-if='order.shipping_cost != 0')
+                                  spam(v-html="currency.symbol")
+                                  | {{exchange(order.shipping_cost)}}
+                                span.font-weight-bold(v-else='')  FREE
+                                span  ({{deliveryMethods[activeShippingId]['delivery_method_name']}} mail selected)
+                              br
+          .d-none.d-lg-block.col-lg-4
+            section#orderSummarySticky.sticky-top
+              //span(v-show='true') {{ parseInt(calculatePrice(order.final_total*100))+parseInt(calculatePrice(order.shipping_cost*100)) }} | {{ calculatePrice(order.shipping_cost) }} {{ getAddPrice(order.final_total, order.shipping_cost,true) }} {{ getAddPrice((order.promo_discount ? order.promo_discount : 0), (order.total_save_two_for_one ? order.total_save_two_for_one : 0),true) }}
+              CheckoutCart(v-if='showMiniCart && deliveryMethods && !!currencies && !loading && !currencyLoading && order.order_number',
+              :getPrice='getPrice',
+              :deleteItemSsv4Request='deleteItemSsv4Request',
+              :debugLog='debugLog',
+              :shippingCost='getPrice(order.shipping_cost)',
+              :getAddPrice='getAddPrice',
+              :setMoreInfoData='setMoreInfoData',
+              :activeShippingId = 'activeShippingId',
+              :order = 'order',
+              :subTotal='getSubtPrice(getAddPrice(order.final_total, order.shipping_cost,true,true), getAddPrice((order.promo_discount ? order.promo_discount : 0), (order.two4one ? order.two4one : 0),true))')
+              .comment-box
+                .container
+                  .row
+                    .col-12
+                      a(data-toggle="collapse", role="button", aria-expanded="false",
+                      href="#commentBoxDesktop", aria-controls="commentBoxDesktop",
+                      @click='showCartDesktop = !showCartDesktop')
+                        h5
+                          strong Add any additional information?
+                          i.fa(:class="showCartDesktop ? 'fa-chevron-up' : 'fa-chevron-down'").float-right
+                  #commentBoxDesktop.collapse
+                    hr
+                    .row
+                      .col-12
+                        textarea(v-model.trim='order.info', name='comment', @blur="saveComment",
+                        placeholder='Please make us aware of anything else we need to know regarding this order', rows="4").form-control.mb-0
+    section#checkoutFail(v-else='').message-wrapper
+      .container-fluid
+        .row.py-3.pt-lg-0
+          .col-12
+            #notFoundMessage.error-block
+              h1(v-if='order.error')
+                | {{ order.error }}
+              h1(v-else='')
+                span(v-if='!showLoader') Order not found
+  .trustpilot-indentation
+    TrustpilotWidget
+  PageFooter
+  ScrollToTop
+
+  CheckoutItemDetails(:moreInfo='moreInfo')

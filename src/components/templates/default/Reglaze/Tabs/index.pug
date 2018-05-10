@@ -1,0 +1,281 @@
+section.tabs-section.py-4
+  #tabStyle1
+    .row
+      .col-12
+        .container-fluid
+          ul#reglazeTabs(role='tablist').nav.nav-tabs
+            li.nav-item
+              a#panel1Label(data-toggle="tab", role="tab",
+              href="#panel1", aria-controls="panel1",
+              aria-selected="true").nav-link.active Information
+            li.nav-item
+              a#panel2Label(data-toggle="tab", role="tab",
+              href="#panel2", aria-controls="panel2",
+              aria-selected="false").nav-link Reviews (150)
+        #tabContents.tab-content
+          #panel1.tab-pane(role='tabpanel', aria-labelledby='panel1Label').fade.show.active.py-4
+            .steps
+              .container-fluid
+                .row
+                  .col-12.text-center
+                    p.largest Replacing your lenses is easy
+                    p
+                      em This is how it works...
+                    br
+                    .row.mb-4
+                      .col-12.col-md-6.col-lg-3
+                        .reglaze-tile
+                          p.largest Step 1
+                          p
+                            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/reglaze/step1.jpg?20171114194644').img-fluid.d-inline-block
+                          p
+                            | Choose the frame style you want to reglaze.
+                            br
+                            br
+                            em
+                              | (we can also reglaze sunglasses, with or without prescription lenses, but they must not have a curvature or oversized lenses - please see the "
+                              strong What you should know
+                              | " section below or contact us for more information if required)
+                      .col-12.col-md-6.col-lg-3
+                        .reglaze-tile
+                          p.largest Step 2
+                          p
+                            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/reglaze/step2.jpg?20171114194644').d-inline-block
+                          p
+                            | Enter your prescription and choose your lenses.
+                            br
+                            br
+                            em
+                              | (For varifocals/progressives, please ensure the minimum height of your frame is 26mm)
+                      .col-12.col-md-6.col-lg-3
+                        .reglaze-tile
+                          p.largest Step 3
+                          p
+                            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/reglaze/step3.jpg?20171114194644').d-inline-block
+                          p
+                            | Pay for your order and send your frames to us by insured post to:
+                            br
+                            br
+                            strong SelectSpecs.com
+                            br
+                            |  Lockwoods Yard, The Grove, Westgate on Sea, Kent, UK. CT8 8AS.
+                            br
+                            br
+                            |  Please include your order number, name and address with your frame.
+                      .col-12.col-md-6.col-lg-3
+                        .reglaze-tile
+                          p.largest Step 4
+                          p
+                            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/reglaze/step4.jpg?20171114194644').d-inline-block
+                          p
+                            | We'll fit your new lenses, complete our&nbsp;
+                            router-link(to='/info/quality-control/').blue-ul 14 point quality check
+                            |  and return your glasses to you within&nbsp;
+                            strong 7-14
+                            |  days.
+                            br
+                            br
+                            strong
+                              u Please note
+                            br
+                            |  we can only return your frames via insured post or courier.
+            .prices.mb-4
+              .container-fluid
+                .row
+                  .col-12.text-center
+                    p.largest Lens prices for reglaze orders
+                    p
+                      | This is an indication of our reglaze prices for&nbsp;
+                      strong clear lenses only
+                      | . More lens and tinted options are available once you start your order.
+                    p.small
+                      em
+                        | Prices correct as of October 2016 and are subject to change at any time. Prices are 'from' and can vary for higher prescriptions.
+                    br
+                    table.prices-table
+                      thead
+                        th(width='690') Our lenses - including standard coatings
+                        th(width='175') Single Vision
+                        th(width='175') Bifocal
+                        th(width='175') Varifocal
+                      tbody
+                        tr
+                          td Standard 1.50
+                          td {{calculatePrice(313.24/33.47, false, true)}}
+                          td {{calculatePrice(783.09/33.47, false, true)}}
+                          td {{calculatePrice(1252.95/33.47, false, true)}}
+                        tr
+                          td Trivex 1.53
+                          td(v-html="calculatePrice(2192.66/33.47, false, true)")
+                          td -
+                          td(v-html="calculatePrice(3445.61/33.47, false, true)")
+                        tr
+                          td Thin & Light 1.56
+                          td(v-html="calculatePrice(313.24/33.47, false, true)")
+                          td(v-html="calculatePrice(2036.04/33.47, false, true)")
+                          td(v-html="calculatePrice(2819.14/33.47, false, true)")
+                        tr
+                          td High Impact 1.56
+                          td(v-html="calculatePrice(469.86/33.47, false, true)")
+                          td(v-html="calculatePrice(2192.66/33.47, false, true)")
+                          td(v-html="calculatePrice(3132.37/33.47, false, true)")
+                        tr
+                          td Polycarbonate 1.59
+                          td(v-html="calculatePrice(313.24/33.47, false, true)")
+                          td(v-html="calculatePrice(1566.19/33.47, false, true)")
+                          td(v-html="calculatePrice(2819.14/33.47, false, true)")
+                        tr
+                          td Super Thin 1.60
+                          td(v-html="calculatePrice(626.47/33.47, false, true)")
+                          td(v-html="calculatePrice(3132.37/33.47, false, true)")
+                          td(v-html="calculatePrice(2505.90/33.47, false, true)")
+                        tr
+                          td Ultra Super Thin 1.67
+                          td(v-html="calculatePrice(1252.95/33.47, false, true)")
+                          td(v-html="calculatePrice(5638.27/33.47, false, true)")
+                          td(v-html="calculatePrice(3445.61/33.47, false, true)")
+                        tr
+                          td UltraX Super Thin 1.74
+                          td(v-html="calculatePrice(1879.42/33.47, false, true)")
+                          td -
+                          td(v-html="calculatePrice(6264.75/33.47, false, true)")
+                        tr
+                          td Elite Super Thin 1.76
+                          td(v-html="calculatePrice(5638.27/33.47, false, true)")
+                          td -
+                          td -
+            .info
+              .container-fluid
+                .row
+                  .col-12.text-center
+                    p.largest What you should know
+                    br
+                    p
+                      strong Frame Condition
+                      br
+                      |  Frames must be in good condition and not liable to break during the glazing process.
+                    br
+                    p
+                      strong Semi-Rimless/Rimless Frames
+                      br
+                      |  Semi-Rimless/Rimless frames must have at least one non-broken lens in order to be reglazed.
+                    br
+                    p
+                      strong Curved Frames / Oversized Lenses
+                      br
+                      |  Unfortunately, we're unable to reglaze frames or sunglasses with a curvature or large lenses. Please contact us if you're unsure if your frame is suitable.
+                      br
+                      br
+                      strong Varifocal/Progressive Lenses
+                      br
+                      |  If you're choosing to reglaze a frame with varifocal/progressive lenses, please ensure the minimum height of your frame is 26mm.  Unfortunately we're unable to glaze a frame with varifocal lenses if the height is less than this.
+                    br
+                    p
+                      strong Risk
+                      br
+                      |  All reglazes are done at the customers own risk. Ensure your frames are sent to us via an insured method, we cannot be held responsible for frames lost in the post.
+                    br
+                    p
+                      em
+                        strong
+                          u Please note
+                        br
+                        |  While we make every effort to ensure all reglaze orders are completed, there are occasions where we're unable to complete the reglaze due to damage, brittle frames or a frame design that is not suitable for new lenses to be fitted successfully. In these cases we will contact you to advise you and return your frame and offer a refund. Unfortunately, we cannot refund postage fees.
+                        br
+                        br
+                        |  If you feel your frames may not be suitable for reglaze or would like advice, please contact us (include a picture of the frame if possible) and we'll be happy to assist you before you place your order.
+                    br
+          #panel2.tab-pane(role='tabpanel', aria-labelledby='panel2Label').fade.py-4
+            .container-fluid
+              .row
+                .col-12
+                  TrustpilotWidget
+            .container-fluid
+              .row
+                .col-12
+                  hr
+                  p.largest.text-center Reglaze Service - Customer Reviews
+                  p.text-center
+                    router-link#addReviewLink(to='/reviews/write/0/100/', rel='nofollow').blue-ul Add your review
+                  div(itemprop='aggregateRating', itemscope='', itemtype='http://schema.org/AggregateRating')
+                    meta(itemprop='reviewCount', content='150')
+                    meta(itemprop='ratingValue', content='4.6')
+                  #productReviewRsv.col-12
+                    .text-center
+                      p.small
+                        strong 100%
+                        |  of customers recommend this product&nbsp;
+                        em (54 of 54)
+                      br
+                    .reglaze-review.row.mb-3(itemprop='review', itemscope='', itemtype='http://schema.org/Review')
+                      .col-12.col-md-4.col-lg-3.review-meta.text-left
+                        a(name='review_id')
+                        p.review-author(itemprop='author', itemscope='', itemtype='http://schema.org/Person')
+                          strong
+                            span(itemprop='name') J Spencer
+                            | ,&nbsp;
+                            span(itemprop='nationality') IE
+                        p.smallest
+                          em POSTED: 23rd August 2017
+                        div(itemprop='reviewRating', itemscope='', itemtype='http://schema.org/Rating')
+                          .product-rating.my-1
+                            p
+                              strong OVERALL
+                            .rateit(data-rateit-value='4.00',
+                            data-rateit-ispreset='true',
+                            data-rateit-readonly='true',
+                            data-rateit-mode="font")
+                          .review-helpful.my-3.mx-0
+                            | Was this review useful?  
+                            span.text-nowrap
+                              a.helpful(data-helpful='17561_1', href='#')
+                                i.fa.fa-thumbs-up
+                                | &nbsp;Yes
+                              a.helpful(data-helpful='17561_0', href='#')
+                                i.fa.fa-thumbs-down
+                                | &nbsp;No
+                      .col-12.col-md-8.col-lg-9.review-body.text-left
+                        .container-fluid
+                          .row
+                            .product-rating.float-left
+                              p
+                                strong
+                                  em Style
+                              .rateit(data-rateit-value='5.00',
+                              data-rateit-ispreset='true',
+                              data-rateit-readonly='true',
+                              data-rateit-mode="font")
+                            .product-rating.float-left
+                              p
+                                strong
+                                  em Quality
+                              .rateit(data-rateit-value='3.00',
+                              data-rateit-ispreset='true',
+                              data-rateit-readonly='true',
+                              data-rateit-mode="font")
+                            .product-rating.float-left
+                              p
+                                strong
+                                  em Value
+                              .rateit(data-rateit-value='4.00',
+                              data-rateit-ispreset='true',
+                              data-rateit-readonly='true',
+                              data-rateit-mode="font")
+                          hr.row.mt-0
+                          .row
+                            p(itemprop='name')
+                              strong Quality Matches the Price
+                          .row
+                            p.small(itemprop='description') The left arm has broken, but it was good for the price. They lasted for three months.
+                          hr.row
+                          .row
+                            p.small
+                              span.text-nowrap
+                                | [
+                                strong  Fit -
+                                |  As expected ]&nbsp;&nbsp;
+                              br.d-sm-none
+                              span.text-nowrap [ I would recommend this product to others ]
+
+                  #reviewShowMore.col-12
+                    button.btn.big-orange-button + Show 5 more

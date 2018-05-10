@@ -1,0 +1,66 @@
+.page
+  PageHeader
+
+  main
+    NavigationLinks.mb-3
+    section.container-fluid
+      .row.py-4
+        .col-6.col-md-7.col-lg-9
+          p.largest Reviewer
+          p
+            strong {{data.profile.first_name}} {{data.profile.last_name}}
+        .col-6.col-md-5.col-lg-3
+          select#sorting_select(name='sort').form-control
+            option(value='datedesc', selected='selected') Sort: Date Written (Newest First)
+            option(value='dateasc') Sort: Date Written (Oldest First)
+            option(value='ratingdesc') Sort: Rating (Highest First)
+            option(value='ratingasc') Sort: Rating (Lowest First)
+            option(value='awaiting') Sort: Products awaiting review
+    section.reviews-list
+      .container-fluid
+        .row
+          .col-12
+            .text-center
+              p.large
+                strong Your opinion counts! Rate your eyewear...
+              p.small
+                strong
+                  | You have {{items.has_no_review.length}} unreviewed product(s)  
+              p.small
+                em Why not review them today and help others with their buying decisions.
+              hr
+        .row(v-for='(item, key) in items.has_no_review')
+          .col-5.col-md-4.col-lg-3
+            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/1611_01_1.jpg').img-fluid
+          .col-7.col-md-8.col-lg-9
+            p.large
+              strong {{item.model_name}} - {{item.description}} ({{item.category_name}})
+            p.small
+              strong {{item.designer_name}}
+            p.small
+              em You have purchased this product, why not leave a review?
+            br
+            router-link#addReviewLink(:to="`/reviews/write/${item.id}/`").btn.orange-button Write your Review »
+            <br/><br/>
+    section
+      .container-fluid
+        .row(v-if='items.has_review == []')
+          .col-12
+            h3   You have not written any reviews.
+            p
+              | If you have purchased an item from us, why not write us a review. See&nbsp;
+              router-link(:to='{name: "Account/orders"}').blue-ul My Orders
+              |  to write a review on purchased products.
+        .row
+          .col-12.text-center
+            br
+            p
+              a.page(href='/account/reviews/1/datedesc/') «
+              router-link(to='/account/reviews/1/datedesc/') 1
+              a.page(href='/account/reviews/1/datedesc/') »
+            br
+
+
+
+  PageFooter
+  ScrollToTop

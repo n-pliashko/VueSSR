@@ -1,0 +1,12 @@
+<div class="new_user shipping_method">
+    <h2>Shipping Method</h2>
+    <ul>
+        <li v-on:click="changeShippingMethod(index)" class="shipping_methods width200"
+            :class="{'active':index == activeShippingId}" v-for="(method,index) in deliveryMethods">
+            <b>{{ method.delivery_method_name }}</b><br>
+            <span>{{method.delivery_method_description}}</span><br>
+            <span v-if="currencies != null">Price: <span v-if="method.price == 0">FREE</span><span v-else>{{currencies[order.currency_id]['symbol']}} {{method.price}}</span></span>
+        </li>
+    </ul>
+    <button v-on:click="commitMethod">Continue</button>
+</div>

@@ -1,0 +1,26 @@
+section.page-banner
+  .container-fluid
+    .row
+      .banner-wrapper.col-12.text-center
+        .sale-banner
+          p.sale-title
+            strong AW17 Sale - Now On!
+          p.largest.mb-0 Save up to 65% on eyewear + 10% OFF frames over &nbsp;
+            span(v-html="currency.symbol")
+            |{{exchange(1950)}} with code AUTUMN
+          br
+          p
+            router-link(to='/glasses/prescription/sale/c275/').btn.invert-button Glasses »
+            br
+            router-link(to='/sunglasses/designer/sale/c275/').btn.invert-button Sunglasses »
+          br
+          p
+            | Spend&nbsp;
+            strong {{calculatePrice(2819.25/33.47, false, true)}}+
+            |  for&nbsp;
+            strong FREE Delivery
+            | *. Select option at the checkout.
+          br
+          p.smallest
+            em
+              | *Does not apply to reglaze orders. Courier services also available for additional fees.

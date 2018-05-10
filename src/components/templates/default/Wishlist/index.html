@@ -1,0 +1,62 @@
+<div>
+    <div style="float: left; border-width: 1px; border-right-style: solid; padding-right: 15px; margin-right: 15px;">
+        <table border="1">
+            <caption>WishListItems</caption>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Group Name</th>
+                <th>Item ID</th>
+                <th>User ID</th>
+            </tr>
+            <tr v-for="e in list">
+                <td>
+                    <label for="gn" class="input_text">You full name:</label>
+                    <input type="radio" :value="e.id" v-model="picked" id="gn">
+                    {{ e.id }}
+                </td>
+                <td>{{ e.name }}</td>
+                <td>{{ e.item_id }}</td>
+                <td>{{ e.user_id }}</td>
+            </tr>
+        </table>
+        <span>Выбрано: {{ picked }}</span>
+        <a href="#" class="btn btn-success" @click.stop="DeleteItemRow">Delete row</a>
+        <br><br>
+        <form id="formi" method="POST" action="" enctype="multipart/form-data" v-model="formi">
+            <label for="iid">Item ID:</label>
+            <input v-model="formi.iid" name="iid" id="iid">
+            <label for="gd">Group ID:</label>
+            <input v-model="formi.gd" name="gd" id="gd">
+        </form>
+        <a href="#" class="btn btn-success" @click.stop="AddNewRow">Add new item row</a>
+    </div>
+    <div style="float: left;">
+        <table border="1">
+            <caption>WishListGroups</caption>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+            <tr v-for="e in groups">
+                <td>
+                    <label for="gl" class="input_text">You full name:</label>
+                    <input type="radio" :value="e.id" v-model="gpicked" id="gl">{{ e.id }}
+                </td>
+                <td>{{ e.name }}</td>
+            </tr>
+        </table>
+        <span>Выбрано: {{ gpicked }}</span>
+        <a href="#" class="btn btn-success" @click.stop="DeleteGroupRow">Delete row</a>
+        <a href="#" class="btn btn-success" @click.stop="EditGroupRow">Edit selected row</a>
+        <label for="egn"></label>
+        <input v-model="egn" id="egn">
+        <br><br>
+        <form id="formg" method="POST" action="" enctype="multipart/form-data">
+            <label for="gn">Group Name:</label>
+            <input v-model="formg.gn" name="gn" id="gn">
+        </form>
+        <a href="#" class="btn btn-success" @click.stop="AddNewGroupRow">Add new group row</a>
+    </div>
+</div>

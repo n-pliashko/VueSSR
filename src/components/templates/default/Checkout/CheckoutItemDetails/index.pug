@@ -1,0 +1,57 @@
+#detailsModal(tabindex='-1', role='dialog').modal.fade
+  .modal-dialog(v-if='moreInfo', role='document').centered
+    .modal-content
+      .modal-header
+        h5.modal-title
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+      .modal-body
+        .container
+          .row
+            .col-6
+              p
+                strong
+                  u Glasses Use
+              p.small Distance (Single Vision)
+
+              br
+
+              //p
+              //  strong
+              //    u Selected Lenses
+              //p.small Thin & Light 1.55 index -&nbsp;
+              //  strong.red $price.00
+              //p.small Clear 0.00 index -&nbsp;
+              //  strong.red $price.00
+            .col-6
+              p
+                strong
+                  u Prescription
+              table.table.table-sm
+                thead
+                  tr
+                    th(scope="col")
+                    th(scope="col") SPH
+                    th(scope="col") CYL
+                    th(scope="col") AXIS
+                    th(scope="col") ADD
+                tbody
+                  tr
+                    td(scope="row").text-left
+                      strong Right
+                    td {{ moreInfo.R_Sphere }}
+                    td {{ moreInfo.R_Cylinder }}
+                    td {{ moreInfo.R_Axis }}
+                    td {{ moreInfo.R_Addition }}
+                  tr
+                    td(scope="row").text-left
+                      strong Left
+                    td {{ moreInfo.L_Sphere }}
+                    td {{ moreInfo.L_Cylinder }}
+                    td {{ moreInfo.L_Axis }}
+                    td {{ moreInfo.L_Addition }}
+              .text-center
+                p.small
+                  strong Pupillary distance (PD):&nbsp;
+                  | {{ moreInfo.PD }}
+

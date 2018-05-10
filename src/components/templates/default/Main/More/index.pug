@@ -1,0 +1,33 @@
+section.more.text-center
+  .container-fluid.py-4
+    .row.row-eq-height
+      .col-6
+        p
+          img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/about/icon-cheap-glasses.jpg?20171020111122')
+        p.large
+          strong World's Cheapest Glasses
+        p.smallest
+          | from&nbsp;
+          strong
+            span(v-html="calculatePrice(250/33.47, false, true)")
+          |  with lenses
+          br
+          |  & coatings
+        br
+        p
+          router-link(to='/cheap-glasses/').btn.big-button More »
+      .col-6
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-lens-replacement.png?20171020111122')
+        p.large
+          strong
+            | Reglaze Service
+        p.smallest
+          | from&nbsp;
+          strong
+            span(v-html="calculatePrice(2665.50/33.47, false, true)")
+          |  with lenses
+          br
+          |  & coatings
+        br
+        p
+          router-link(to='/glasses/prescription/flash-sale/c393/').btn.big-button More »

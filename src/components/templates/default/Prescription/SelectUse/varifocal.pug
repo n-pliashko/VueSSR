@@ -1,0 +1,54 @@
+#varifocal-vision.tab-pane.fade(role="tabpanel")
+  h3
+    a.pointer(v-on:click="$parent.swapComponent('Multifocal')") Multifocal lenses
+    |  - Varifocal & Progressive
+  hr
+  .row.card-group
+    .card.verifocal-lenses
+      .card-header
+        p.card-title Standard Varifocal
+        p
+          em.card-text.small 4 progressive lens options
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse14.png')
+        a#standard-vision-continue.card-continue-button(v-on:click='$parent.nextStepRoute(14)') Continue >
+        hr
+        p.card-text.smaller Varifocal. For seeing things both close and in the distance
+      .card-footer
+        a#standard-vision-modal-link.show-modal-link(data-toggle="modal", data-target="#standard-vision-modal") Learn more...
+    .card.bifocal-lenses
+      .card-header
+        p.card-title Premium Varifocal
+        p
+          em.card-text.small 4 bifocal lens options
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse15.png')
+        a#premium-vision-continue.card-continue-button(v-on:click='$parent.nextStepRoute(15)') Continue >
+        hr
+        p.card-text.smaller Bifocal. For seeing things both close and in the distance
+      .card-footer
+        a#premium-vision-modal-link.show-modal-link(data-toggle="modal", data-target="#premium-vision-modal") Learn more...
+    .card.bifocal-lenses
+      .card-header
+        p.card-title Elite Varifocal
+        p
+          em.card-text.small 4 progressive lens options
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse16.png')
+        router-link#elite-vision-continue.card-continue-button(:to='{ name: $parent.nextStep, params: {useSubmit: 16}}') Continue >
+        hr
+        p.card-text.smaller Varifocal. For seeing things both close and in the distance
+      .card-footer
+        a#elite-vision-modal-link.show-modal-link(data-toggle="modal", data-target="#elite-vision-modal") Learn more...
+    .card.bifocal-lenses
+      .card-header
+        p.card-title Occupational Office
+        p
+          em.card-text.small 4 progressive lens options
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse11.png')
+        router-link#office-vision-continue.card-continue-button(:to='{ name: $parent.nextStep, params: {useSubmit: 11}}') Continue >
+        hr
+        p.card-text.smaller Varifocal. For seeing things both close and in the distance
+      .card-footer
+        a#office-vision-modal-link.show-modal-link(data-toggle="modal", data-target="#office-vision-modal") Learn more...

@@ -1,0 +1,28 @@
+section.links-section(v-if='user.email')
+  .container-fluid
+    .col-12.col-md-10.col-lg-8.mx-auto
+      h1 {{ title }}
+      p.small.text-nowrap
+        span.font-weight-bold Hello {{user.profile.first_name}}
+        span &nbsp;(
+          a#logoutLink(href="javascript:;", @click='onLogout').blue-ul Not&nbsp;
+            span {{user.profile.first_name}}
+            | ? Sign out
+          | )
+      br
+      p(v-if="['Account'].indexOf($route.name) < 0").small.text-capitalize.d-flex.flex-row.flex-wrap.justify-content-center.align-content-center
+        router-link(:to='{name: "Account"}').blue-ul my account
+        | &nbsp;|&nbsp;
+        router-link(:to='{name: "Account/orders"}').blue-ul orders
+        | &nbsp;|&nbsp;
+        router-link(:to='{name: "Wishlist"}').blue-ul wishlist
+        | &nbsp;|&nbsp;
+        router-link(:to='{name: "Account/prescriptions"}').blue-ul prescriptions
+        | &nbsp;|&nbsp;
+        router-link(:to='{name: "Account/reviews"}').blue-ul product reviews
+        | &nbsp;|&nbsp;
+        router-link(to='tickets').blue-ul tickets
+        | &nbsp;|&nbsp;
+        router-link(:to='{name: "Account/update"}').blue-ul profile
+        | &nbsp;|&nbsp;
+        router-link(:to='{name: "Account/password/"}').blue-ul settings

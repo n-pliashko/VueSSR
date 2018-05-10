@@ -1,0 +1,29 @@
+.filter-desktop(v-if='categories && Object.values(categories).length > 0 && $parent.$parent.filters[filterName]').d-none.d-md-block
+  .refine-block-header
+    span.filter-title
+      // TODO
+      a(data-toggle="collapse", aria-expanded='false', :href="'#' + blockId").blue-hovered-link {{title}}
+    span.sub-clear-link
+      // Better make it through "v-if"
+      a(:id="'clearFilters' + filterName",
+      :style="selectedFilterBlock.length !== 0 ? 'display: inline' : 'display:none'",
+      @click='clearAll').highlight Clear
+  ul(:id='blockId').refine-control.collapse.show
+    li(v-for='(cat, key) in categories', :class="[!('count_items' in cat) || 'count_items' in cat && cat.count_items > 0 || isLink ? '' : 'disactive']")
+      a(:id='filterName + key', :class="!('count_items' in cat) || 'count_items' in cat && cat.count_items > 0 || isLink ? '' : 'disabled'",
+        :href="isLink && linkTemplate ? reverseRoute(linkTemplate, cat) : ''", @click="scrollToTop").ellipsis
+        input(v-if='onlyOne == 0',
+        type='checkbox',
+        :name='filterName',
+        :value='cat.id',
+        :id="'input-' + filterName + key",
+        v-model='$parent.$parent.filters[filterName]')
+        input(v-if='onlyOne == 1',
+        type='radio',
+        :name='filterName',
+        :value='cat.id',
+        :id="'input-' + filterName + key",
+        v-model='$parent.$parent.filters[filterName]')
+        label(:for="'input-' + filterName + key").m-0
+          span.refine-category {{cat.name ? cat.name : ''}}
+          span.refine-count  {{cat.count_items && cat.count_items > 0 ? '(' + cat.count_items + ')' : ''}}

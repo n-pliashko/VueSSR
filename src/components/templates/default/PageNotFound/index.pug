@@ -1,0 +1,44 @@
+#error404page.page
+  PageHeader
+
+  main
+    section.container-fluid.my-5
+      .row.text-center
+        .col-12.col-lg-6
+          img.img-fluid(alt='Oops, we cannot find this page', src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/404.jpg?20171020111122')
+          br
+          br
+          br
+          br
+          p.largest We cannot find the page you were looking for!
+          p
+            | This may be down to an incorrect URL being used, a product that's no longer available, or a page that has simply been removed. Fortunately, we can point you in the right direction...
+          br
+          p.largest What were you looking for?
+          p
+            | I was looking for your&nbsp;
+            router-link#cheap404Link(to='/cheap-glasses/').blue-ul cheapest glasses
+          p
+            | I wanted a pair of&nbsp;
+            router-link#glasses404Link(to='/glasses/prescription/').blue-ul prescription glasses
+          p
+            | I was looking for some&nbsp;
+            router-link#sunglasses404Link(to='/sunglasses/designer/').blue-ul designer sunglasses
+          p
+            | I wanted to&nbsp;
+            router-link#reglaze404Link(to='/lens-replacement/').blue-ul reglaze my glasses
+          p
+            | I wanted to see a list of your&nbsp;
+            router-link#brands404Link(to='/brands/').blue-ul designer brands
+          p
+            | I just wanted the&nbsp;
+            router-link#home404Link(to='{name: "Main"}').blue-ul home page
+          br
+          p
+            | If you found this page from a link within the SelectSpecs.com website, please let us know by using our&nbsp;
+            router-link#customerService404Link.blue-ul(to='/customer-services/', title='Contact  SelectSpecs.com') Contact Page
+        .col-12.col-lg-6.d-none.d-lg-block
+          img.img-fluid(alt='Oops, we cannot find this page', src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/404glasses.jpg?20171020111122')
+
+  PageFooter
+  ScrollToTop

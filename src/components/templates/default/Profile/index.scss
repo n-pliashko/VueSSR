@@ -1,0 +1,10 @@
+.form-control {
+  font-size: .8rem !important;
+  height: calc(2.25rem + 2px);
+}
+
+.form-group.is-invalid-group {
+  label {
+    color: #c60f13;
+  }
+}

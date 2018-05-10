@@ -1,0 +1,39 @@
+.sidebar {
+  z-index: 1060;
+  position: absolute;
+  top: 0;
+  left: -250px;
+  min-height: 100vh;
+  height: 100%;
+  width: 250px;
+  background-color: #111;
+  line-height: 1.5;
+  .sidebar-text {
+    padding: .25rem;
+    line-height: 2;
+    .orange-text {
+      color: #fc4c02;
+      font-size: .8rem;
+    }
+    .home-link {
+      cursor: pointer;
+      font-size: .8rem;
+      text-decoration: underline;
+      &, &:hover, &:active, &:visited {
+        color: #fff;
+      }
+      &:hover, &:active {
+        text-decoration: none;
+      }
+    }
+    #menuCloseButton {
+      float: right;
+      line-height: 1;
+      font-size: 2em;
+      font-weight: 700;
+      color: #d20000;
+      cursor: pointer;
+      padding:0;
+    }
+  }
+}

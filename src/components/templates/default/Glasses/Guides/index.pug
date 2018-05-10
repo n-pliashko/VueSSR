@@ -1,0 +1,35 @@
+section.guides
+  .container-fluid
+    .row
+      .col-12.py-5.text-center
+        h2.main-header Guides & Useful Information
+        hr.short-hr
+        .container-fluid
+          .row.row-eq-height
+            .col-12.col-md-6.col-lg-4.ml-auto
+              .guide-wrapper
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/content-guides.jpg?20170829201433")
+                .text-wrapper
+                  p.large
+                    strong Buying Guides
+                  p.small View our guides to helping you choose the right product for you and your vision.
+                  br
+                router-link#guidesLink(to="/guides/").btn.big-button View Guides »
+            .col-12.col-md-6.col-lg-4.ml-auto
+              .guide-wrapper
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/home/content-how-to.jpg?20171206101624")
+                .text-wrapper
+                  p.large
+                    strong 'How To' Guides
+                  p.small Learn how to get the best out of your glasses or sunglasses.
+                  br
+                router-link#howToLink(to="/guides/how-to/").btn.big-button View Guides »
+            .col-12.col-md-6.col-lg-4.mr-auto
+              .guide-wrapper
+                img.img-fluid(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/content-health.jpg?20170829201433")
+                .text-wrapper
+                  p.large
+                    strong Eye Health & Advice
+                  p.small View our central resource of eye health information to help explain different eye conditions.
+                  br
+                router-link#eyehealthLink(to="/eye-health/").btn.big-button More »

@@ -1,0 +1,46 @@
+#shopping-page.page
+  PageHeader
+  main
+    Breadcrumbs(v-if="!searchTitle")
+    section(v-if="searchTitle").db-description
+      .container-fluid
+        .row
+          .col-12.text-center
+            h1.catalogue-title.search-title {{searchTitle}}
+            p.small.d-none.d-md-block
+            br
+    section(v-if="layout")
+      component(:is="layout")
+    section(v-else)
+      .white-background
+        .container-fluid
+          .row
+            .col-12.text-center.small(v-if='!searchTitle')
+              br.d-none.d-md-block
+              p.small(v-if="description", v-html="convertMenuContext(description)")
+              p.small(v-else-if="isBrandPage && designerDescription && designerDescription.description", v-html="designerDescription.description")
+              h1(v-else-if="isBrandPage").catalogue-title {{designer_name}} {{main_category_name ? main_category_name : ''}}
+              div(v-if="isBrandPage && (!designerDescription || !designerDescription.description)").d-none.d-md-block
+                hr
+                br
+                p.small
+                  strong You might also like our&nbsp;
+                    router-link(:id='"similar" + designer_name + "Link"', :to="{path: '/brands/' + reverseRouteName(designer_name), params: {parent_category: 'sunglasses'}}").blue-ul {{designer_name}} »
+              br
+              br
+      section.grey-background.py-3
+        .container-fluid
+          .row
+            .col-12.col-md-4.col-lg-3
+              FilterList
+            .col-12.col-md-8.col-lg-9
+              div
+                Sort
+                Filters.row.py-1
+                .loader-block#productsBlockLoader(v-show="showLoader")
+                  .loader
+                Items.row.py-1
+                noscript
+                  Pagination.text-center
+  PageFooter
+  ScrollToTop

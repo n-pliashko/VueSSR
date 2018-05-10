@@ -1,0 +1,55 @@
+#bifocal-vision.tab-pane.fade(role="tabpanel")
+  h3
+    strong
+      a.pointer(v-on:click="$parent.swapComponent('Multifocal')") Multifocal lenses
+      |  - Bifocal
+  hr
+  .row.card-group
+    .card.verifocal-lenses
+      .card-header
+        p.card-title.larger R28 Round Segment
+        p
+          em.card-text.small Bifocal
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse6.png')
+        a#R28-lenses-continue.card-continue-button(v-on:click='$parent.nextStepRoute(6)') Continue >
+        hr
+        p.card-text.smaller Varifocal. For seeing things both close and in the distance
+      .card-footer
+        a#R28-lenses-modal-link.show-modal-link(data-toggle="modal", data-target="#R28-lenses-modal") Learn more...
+    .card.bifocal-lenses
+      .card-header
+        p.card-title.larger D28 Flat Top
+        p
+          em.card-text.small Bifocal
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse7.png')
+        a#D28-lenses-continue.card-continue-button(v-on:click='$parent.nextStepRoute(7)') Continue >
+        hr
+        p.card-text.smaller Bifocal. For seeing things both close and in the distance
+      .card-footer
+        a#D28-lenses-modal-link.show-modal-link(data-toggle="modal", data-target="#D28-lenses-modal") Learn more...
+    .card.verifocal-lenses
+      .card-header
+        p.card-title D35 Flat Top
+        p
+          em.card-text.small Bifocal
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse10.png')
+        a#D35-lenses-continue.card-continue-button(v-on:click='$parent.nextStepRoute(10)') Continue >
+        hr
+        p.card-text.smaller Bifocal. For seeing things both close and in the distance
+      .card-footer
+        a#D35-lenses-modal-link.show-modal-link(data-toggle="modal", data-target="#D35-lenses-modal") Learn more...
+    .card.bifocal-lenses
+      .card-header
+        p.card-title C28 Curve Top
+        p
+          em.card-text.small Bifocal
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse13.png')
+        a#C28-lenses-continue.card-continue-button(v-on:click='$parent.nextStepRoute(13)') Continue >
+        hr
+        p.card-text.smaller Bifocal. For seeing things both close and in the distance
+      .card-footer
+        a#C28-lenses-modal-link.show-modal-link(data-toggle="modal", data-target="#C28-lenses-modal") Learn more...

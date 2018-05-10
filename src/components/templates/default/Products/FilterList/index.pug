@@ -1,0 +1,310 @@
+section.w-100.mb-2
+  #refinePanelMobile(role="tablist").d-md-none
+    #filtersHeadingMobile(role="tab", aria-expanded="false")
+      a#filterLabelMobile(data-toggle="collapse",
+        href="#collapseFiltersMobile",
+        aria-controls="collapseFiltersMobile",
+        aria-expanded='false').refine-collapse-header
+        strong Refine your search...
+    #collapseFiltersMobile(role='tabpanel',
+      aria-labelledby="filterLabelMobile",
+      data-parent="#refinePanelMobile").collapse
+      .results-note
+        p
+          | Results:&nbsp;
+          strong#resultsFoundTextMobile.refine-count 1256
+          | &nbsp;&nbsp;&nbsp;
+          a#clearFiltersMobile(href="/", @click='clearAllFilters()').clear-link Clear Filters
+        p.small
+          em (results will update below after applying filter)
+      ul#categoriesMobile(role="tablist")
+        div(v-if="$parent.filtersList",
+            v-for='(filter, key) in $parent.filtersList')
+          div(v-if="Array.isArray(filter)")
+            FilterBlockMobile(v-for='(one, idx) in filter',
+            :blockId="one.id + 'CollapseMobile'",
+            :key='one.name',
+            :title='one.title',
+            :categories='one.value',
+            :filterName='one.name',
+            :isLink = 'one.isLink ? one.isLink : false',
+            :linkTemplate = 'one.linkTemplate ? one.linkTemplate : false',
+            :onlyOne='\'onlyOne\' in one ? one.onlyOne : -1')
+          div(v-else)
+            FilterBlockMobile(
+            :blockId="filter.id + 'CollapseMobile'",
+            :key='filter.name',
+            :title='filter.title',
+            :categories='filter.value',
+            :filterName='filter.name',
+            :isLink = 'filter.isLink ? filter.isLink : false',
+            :linkTemplate = 'filter.linkTemplate ? filter.linkTemplate : false',
+            :onlyOne='\'onlyOne\' in filter ? filter.onlyOne : -1')
+        li(role="tab").price-slider-wrapper
+          a#priceCollapseLabel(href='#priceCollapse',
+            aria-controls='priceCollapse',
+            data-toggle="collapse",
+            aria-expanded='false').filters-collapse-title
+            | Price (
+            span(v-html="$parent.currency.symbol")
+            | )
+          // a#clear_price_mobile.underlined-link Clear
+          #priceCollapse(role='tabpanel',
+            aria-labelledby='priceCollapseLabel',
+            data-parent="#categoriesMobile").collapse
+            br
+            #priceSliderMobile.slider-block
+              input#priceFromInputMobile(name='priceFrom',
+                :min="0",
+                :add_max="_priceTo",
+                :max="$parent.calculatedItems['priceTo'] ? parseInt($parent.calculatedItems['priceTo']) : _priceTo",
+                :value='_priceFrom',
+                @input="handleInput('priceFrom', $event.target.value, $event)",
+                @keypress="checkInput",
+                @blur='changePrice').slider-range
+              span &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+              input#priceToInputMobile(name='priceTo',
+                :value='_priceTo',
+                :add_min="parseInt(_priceFrom) + 1",
+                :min="$parent.calculatedItems['priceFrom'] ? parseInt($parent.calculatedItems['priceFrom']) + 1 : parseInt(_priceFrom) + 1",
+                @input="handleInput('priceTo', $event.target.value, $event)",
+                @keypress="checkInput",
+                @blur='changePrice').slider-range
+            br
+        li(role="tab").framesize-sliders-wrapper
+          a#framesCollapseLabel(data-toggle="collapse", aria-expanded='false',
+          href='#framesCollapse', aria-controls='framesCollapse').filters-collapse-title
+            | Frame Size
+          // a#clear_framesize_mobile.underlined-link Clear
+          #framesCollapse.collapse(role='tabpanel', aria-labelledby='framesCollapseLabel', data-parent="#categoriesMobile")
+            .text-center
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/armlength.jpg',
+              alt='SizeArmLength')
+              p.m-0
+                strong Arm (mm)
+            #armSliderMobile.slider-block
+              input#armFromInputMobile(name='armFrom', :value='_armFrom',
+                :min="0",
+                :max="$parent.calculatedItems['armTo'] ? parseInt($parent.calculatedItems['armTo']) : _armTo",
+                :add_max="_armTo",
+                @keypress="checkInput",
+                @input="handleInput('armFrom', $event.target.value, $event)",
+                @blur='changeArm').slider-range
+              |  to&nbsp;
+              input#armToInputMobile(name='armTo', :value='_armTo',
+                :add_min="parseInt(_armFrom) + 1",
+                :min="$parent.calculatedItems['armFrom'] ? parseInt($parent.calculatedItems['armFrom']) + 1 : parseInt(_armFrom) + 1",
+                @keypress="checkInput",
+                @input="handleInput('armTo', $event.target.value, $event)",
+                @blur='changeArm').slider-range
+              |  mm
+            .text-center
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/bridgewidth.jpg', alt='SizeBridgeWidth')
+              p.m-0
+                strong Bridge (mm)
+            #bridgeSliderMobile.slider-block
+              input#bridgeFromInputMobile(name='bridgeFrom', :value='_bridgeFrom',
+                :min="0",
+                :max="$parent.calculatedItems['bridgeTo'] ? parseInt($parent.calculatedItems['bridgeTo']) : _bridgeTo",
+                :add_max="_bridgeTo",
+                @keypress="checkInput",
+                @input="handleInput('bridgeFrom', $event.target.value, $event)",
+                @blur='changeBridge').slider-range
+              |  to&nbsp;
+              input#bridgeToInputMobile(name='bridgeTo', :value='_bridgeTo',
+                :add_min="parseInt(_bridgeFrom) + 1",
+                :min="$parent.calculatedItems['bridgeFrom'] ? parseInt($parent.calculatedItems['bridgeFrom']) + 1 : parseInt(_bridgeFrom) + 1",
+                @keypress="checkInput",
+                @input="handleInput('bridgeTo', $event.target.value, $event)",
+                @blur='changeBridge').slider-range
+              |  mm
+            .text-center
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/lenswidth.jpg', alt='SizeLensWidth')
+              p.m-0
+                strong Lens (mm)
+            #widthSliderMobile.slider-block
+              input#widthFromInputMobile(name='lensFrom',
+                :value='_lensFrom',
+                :min="0",
+                :max="$parent.calculatedItems['lensTo'] ? parseInt($parent.calculatedItems['lensTo']) : _lensTo",
+                :add_max="_lensTo",
+                @keypress="checkInput",
+                @input="handleInput('lensFrom', $event.target.value, $event)",
+                @blur='changeLens').slider-range
+              |  to&nbsp;
+              input#widthToInputMobile(name='lensTo',
+                :value='_lensTo',
+                :add_min="parseInt(_lensFrom) + 1",
+                :min="$parent.calculatedItems['lensFrom'] ? parseInt($parent.calculatedItems['lensFrom']) + 1 : parseInt(_lensFrom) + 1",
+                @keypress="checkInput",
+                @input="handleInput('lensTo', $event.target.value, $event)",
+                @blur='changeLens').slider-range
+              |  mm
+            .slider-framesize.text-center
+              p.m-0
+                strong Need help finding your size?
+              p.smaller.m-0 Size details can be found on the frame arm or bridge, and can look like this:
+              br
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/framesize.jpg', title='FrameSizeN', alt='FrameSizeN')
+              br
+              br
+              p.m-0
+                strong What the numbers mean...
+              p.smaller.m-0
+                strong 55mm
+                |  = Lens Width
+              p.smaller.m-0
+                strong 18mm
+                |  = Bridge Width
+              p.smaller.m-0
+                strong 145mm
+                |  = Arm / Temple Length
+
+  #refinePanelDesktop.d-none.d-md-block
+    .refine-header
+      span.filter-title Refine By
+      span
+        a#clear_all_filters.clear-all-filters(
+        :style="isSelectedFilters ? 'display: inline' : 'display:none'",
+        @click="clearAllFilters()") Clear all filters
+    .price-slider-wrapper
+      .refine-block-header.d-md-block
+        span.filter-title Price (
+          span(v-html="$parent.currency.symbol")
+          | )
+        span.sub-clear-link
+          a#clear_price(href='/', style='display: none;', @click="clearAllFilters()") Clear
+      .slider-block(data-slider_name='price')
+        input#priceFromInput(name='priceFrom',
+          :min="0",
+          :add_max="_priceTo",
+          :max="$parent.calculatedItems['priceTo'] ? parseInt($parent.calculatedItems['priceTo']) : _priceTo",
+          :value='_priceFrom',
+          @input="handleInput('priceFrom', $event.target.value, $event)",
+          @keypress="checkInput",
+          @blur='changePrice').slider-range.outer-spin
+        span &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+        input#priceToInput(name='priceTo',
+          :value='_priceTo',
+          :add_min="parseInt(_priceFrom) + 1",
+          :min="$parent.calculatedItems['priceFrom'] ? parseInt($parent.calculatedItems['priceFrom']) + 1 : parseInt(_priceFrom) + 1",
+          @input="handleInput('priceTo', $event.target.value, $event)",
+          @keypress="checkInput",
+          @blur='changePrice').slider-range
+      hr.m-0
+
+    .loader#filterBlockLoader(:style="loading ? 'display: inline' : 'display:none'")
+    #categories
+      div(v-if="$parent.filtersList",
+        v-for='(filter, key) in $parent.filtersList')
+        div(v-if="Array.isArray(filter)")
+          FilterBlock(v-for='(one, idx) in filter',
+            :blockId="'filterBlock-' + one.id",
+            :key='one.name',
+            :title='one.title',
+            :categories='one.value',
+            :filterName='one.name',
+            :isLink = 'one.isLink ? one.isLink : false',
+            :linkTemplate = 'one.linkTemplate ? one.linkTemplate : false',
+            :onlyOne='\'onlyOne\' in one ? one.onlyOne : -1')
+        div(v-else)
+          FilterBlock(
+            :blockId="'filterBlock-' + filter.id",
+            :key='filter.name',
+            :title='filter.title',
+            :categories='filter.value',
+            :filterName='filter.name',
+            :isLink = 'filter.isLink ? filter.isLink : false',
+            :linkTemplate = 'filter.linkTemplate ? filter.linkTemplate : false',
+            :onlyOne='\'onlyOne\' in filter ? filter.onlyOne : -1')
+
+    .framesize-sliders-wrapper
+      .refine-block-header
+        span.filter-title Frame Size
+        //span
+          a#clear_framesize(href='/', @click="clearAllFilters()").highlight.small Clear
+      br
+      .text-center
+        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/armlength.jpg',
+        alt='SizeArmLength')
+        p
+          strong Arm (mm)
+      #arm-slider.slider-block(data-slider_name='arm')
+        input(name='armFrom', :value='_armFrom',
+          :min="0",
+          :max="$parent.calculatedItems['armTo'] ? parseInt($parent.calculatedItems['armTo']) : _armTo",
+          :add_max="_armTo",
+          @keypress="checkInput",
+          @input="handleInput('armFrom', $event.target.value, $event)",
+          @blur='changeArm').slider-range
+        |  to&nbsp;
+        input(name='armTo', :value='_armTo',
+          :add_min="parseInt(_armFrom) + 1",
+          :min="$parent.calculatedItems['armFrom'] ? parseInt($parent.calculatedItems['armFrom']) + 1 : parseInt(_armFrom) + 1",
+          @keypress="checkInput",
+          @input="handleInput('armTo', $event.target.value, $event)",
+          @blur='changeArm').slider-range
+        |  mm
+      .text-center
+        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/bridgewidth.jpg', alt='SizeBridgeWidth')
+        p
+          strong Bridge (mm)
+      #bridge-slider.slider-block(data-slider_name='bridge')
+        input.slider-range(name='bridgeFrom',
+          :value='_bridgeFrom',
+          :min="0",
+          :max="$parent.calculatedItems['bridgeTo'] ? parseInt($parent.calculatedItems['bridgeTo']) : _bridgeTo",
+          :add_max="_bridgeTo",
+          @keypress="checkInput",
+          @input="handleInput('bridgeFrom', $event.target.value, $event)",
+          @blur='changeBridge')
+        |  to&nbsp;
+        input.slider-range(name='bridgeTo',
+          :value='_bridgeTo',
+          :add_min="parseInt(_bridgeFrom) + 1",
+          :min="$parent.calculatedItems['bridgeFrom'] ? parseInt($parent.calculatedItems['bridgeFrom']) + 1 : parseInt(_bridgeFrom) + 1",
+          @keypress="checkInput",
+          @input="handleInput('bridgeTo', $event.target.value, $event)",
+          @blur='changeBridge')
+        |  mm
+      .text-center
+        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/lenswidth.jpg', alt='SizeLensWidth')
+        p
+          strong Lens (mm)
+      #width-slider.slider-block(data-slider_name='lens_width')
+        input.slider-range(name='lensFrom',
+          :value='_lensFrom',
+          :min="0",
+          :max="$parent.calculatedItems['lensTo'] ? parseInt($parent.calculatedItems['lensTo']) : _lensTo",
+          :add_max="_lensTo",
+          @keypress="checkInput",
+          @input="handleInput('lensFrom', $event.target.value, $event)",
+          @blur='changeLens')
+        |  to&nbsp;
+        input.slider-range(name='lensTo',
+          :value='_lensTo',
+          :add_min="parseInt(_lensFrom) + 1",
+          :min="$parent.calculatedItems['lensFrom'] ? parseInt($parent.calculatedItems['lensFrom']) + 1 : parseInt(_lensFrom) + 1",
+          @keypress="checkInput",
+          @input="handleInput('lensTo', $event.target.value, $event)",
+          @blur='changeLens')
+        |  mm
+      .slider-framesize.text-center
+        p
+          strong Need help finding your size?
+        p.smaller Size details can be found on the frame arm or bridge, and can look like this:
+        br
+        img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_jpg/framesize/framesize.jpg', title='FrameSizeN', alt='FrameSizeN')
+        br
+        br
+        p
+          strong What the numbers mean...
+        p.smaller
+          strong 55mm
+          |  = Lens Width
+        p.smaller
+          strong 18mm
+          |  = Bridge Width
+        p.smaller
+          strong 145mm
+          |  = Arm / Temple Length

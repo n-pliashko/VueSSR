@@ -1,0 +1,21 @@
+section.container-fluid.sales-links
+  .row
+    .col-12.col-md-6
+      .links-panel.py-2
+        .text
+          p.big-text {{calculatePrice(250/33.47, false, true)}}
+          p Collection
+          br
+          p.small
+            router-link(to='/cheap-glasses/').btn.big-button World's Cheapest Glasses »
+    .col-12.col-md-6
+      .links-panel.py-2
+        .text
+          p.big-text
+            strong 2
+            | for
+            strong 1
+          p Glasses from {{calculatePrice(1221.65/33.47, false, true)}}
+          br
+          p.small
+            router-link(to='/2for1-glasses/').btn.big-button Shop Now »

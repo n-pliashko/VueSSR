@@ -1,0 +1,52 @@
+#checkoutLoginModal(tabindex='-1', role='dialog', aria-hidden='true').modal.fade.mx-3
+  .modal-dialog(role='document')
+    .modal-content.text-center
+      .modal-header.mb-3
+        h1.modal-title Login to your account
+        button(type='button', data-dismiss='modal',
+        aria-label='Close').close
+          span ×
+      .modal-body
+        form.px-2.px-md-4.px-lg-5(name='popupLogin')
+          .form-group
+            label.sr-only Enter your email
+            .input-group
+              span#emailAddon.input-group-addon
+                i.fa.fa-user
+              input#checkoutLoginEmailInput(
+              type="email",
+              placeholder="Enter email",
+              aria-label="Email",
+              aria-describedby="emailAddon",
+              text="text",
+              v-model="email",
+              name="email",
+              @change="onChange").form-control
+          .form-group
+            label.sr-only Enter your password
+            .input-group
+              span#passAddon.input-group-addon
+                i.fa.fa-unlock-alt
+              input#checkoutLoginPassInput(
+              type="password",
+              placeholder="Enter password",
+              aria-label="Password",
+              aria-describedby="passAddon",
+              v-model="password",
+              name="password",
+              @change='onChange').form-control
+            p.red {{ meta.formError }}
+          button#checkoutLoginSubmit(type="button", @click.prevent='onSubmit').btn.login-button Login
+        p.small
+          #forgotPassCheckoutLink(@click.prevent='forgotPassword').blue-ul Forgot your password?
+        br
+        p.mb-3(v-if='false')
+          strong Sign in with your social accounts
+        p.mb-3(v-if='false')
+          button(type="button").btn.social-login-button.fb-button
+            i.fa.fa-facebook
+          button(type="button").btn.social-login-button.gp-button
+            i.fa.fa-google-plus
+          button(type="button").btn.social-login-button.tw-button
+            i.fa.fa-twitter
+

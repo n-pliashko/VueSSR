@@ -1,0 +1,72 @@
+#customerDescriptionModal(tabindex='-1', role='dialog', aria-hidden='true', @click="resetBars").modal.fade.large
+  .modal-dialog(role='document').centered
+    .modal-content
+      button#descriptionModalClose(data-dismiss='modal', aria-label='Close').close
+        span(aria-hidden="true") ×
+      .modal-header
+        .modal-title.text-left
+          p.large
+            strong 100%
+            | &nbsp;of customers describe this fit as:&nbsp;
+            strong As expected
+          p.small
+            em
+              | After the customer has received the product, we ask how they felt their new glasses fitted based based on the size information we have provided.  This is a breakdown of the data gathered so far...
+          br
+
+      .modal-body
+        .fit-product-guide-percents.fit-product-type-1
+          .row
+            .col-12.col-md-4.col-lg-3
+              p(:class="{ 'progress-text' : fitRating.tooSmall > 0 }").small.text-left Too small
+            .col-12.col-md-8.col-lg-9
+              .fit-product-guide-count(style='opacity: 1;') {{ fitRating.tooSmall }}
+              .fit-product-guide-progress.progress
+                span.progress-bar(role="progressbar",
+                :aria-valuenow="fitRating.tooSmall + '%'",
+                aria-valuemin="0",
+                aria-valuemax="100")
+        .fit-product-guide-percents.fit-product-type-2
+          .row
+            .col-12.col-md-4.col-lg-3
+              p(:class="{ 'progress-text' : fitRating.modSmall > 0 }").small.text-left Moderately small
+            .col-12.col-md-8.col-lg-9
+              .fit-product-guide-count(style='opacity: 1;') {{ fitRating.modSmall }}
+              .fit-product-guide-progress.progress
+                span.progress-bar(role="progressbar",
+                :aria-valuenow="fitRating.modSmall + '%'",
+                aria-valuemin="0",
+                aria-valuemax="100")
+        .fit-product-guide-percents.fit-product-type-3
+          .row
+            .col-12.col-md-4.col-lg-3
+              p(:class="{ 'progress-text' : fitRating.asExpected > 0 }").small.text-left As expected
+            .col-12.col-md-8.col-lg-9
+              .fit-product-guide-count(style='opacity: 1;') {{ fitRating.asExpected }}
+              .fit-product-guide-progress.progress
+                span.progress-bar(role="progressbar",
+                :aria-valuenow="fitRating.asExpected + '%'",
+                aria-valuemin="0",
+                aria-valuemax="100")
+        .fit-product-guide-percents.fit-product-type-4
+          .row
+            .col-12.col-md-4.col-lg-3
+              p(:class="{ 'progress-text' : fitRating.modLarge > 0 }").small.text-left Moderately large
+            .col-12.col-md-8.col-lg-9
+              .fit-product-guide-count(style='opacity: 1;') {{ fitRating.modLarge }}
+              .fit-product-guide-progress.progress
+                span.progress-bar(role="progressbar",
+                :aria-valuenow="fitRating.modLarge + '%'",
+                aria-valuemin="0",
+                aria-valuemax="100")
+        .fit-product-guide-percents.fit-product-type-5
+          .row
+            .col-12.col-md-4.col-lg-3
+              p(:class="{ 'progress-text' : fitRating.tooLarge > 0 }").small.text-left Too large
+            .col-12.col-md-8.col-lg-9
+              .fit-product-guide-count(style='opacity: 1;') {{ fitRating.tooLarge }}
+              .fit-product-guide-progress.progress
+                span.progress-bar(role="progressbar",
+                :aria-valuenow="fitRating.tooLarge + '%'",
+                aria-valuemin="0",
+                aria-valuemax="100")

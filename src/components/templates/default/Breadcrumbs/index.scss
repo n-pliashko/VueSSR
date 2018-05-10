@@ -1,0 +1,38 @@
+@import '../_Styles/mixins';
+
+.breadcrumb-section {
+  @include desktop {
+    margin-bottom: 1rem;
+  }
+  .breadcrumb {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    @include tablet {
+      padding: .6rem 2rem;
+    }
+    @include tablet-down {
+      padding: .6rem .5rem;
+    }
+    .breadcrumb-item {
+      font-weight: 700;
+      color: #b0b0b0;
+      float: left;
+      font-size: .65rem;
+      text-transform: uppercase;
+      & + .breadcrumb-item:before {
+        font-weight: 400;
+      }
+      a {
+        color: #b0b0b0;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+    .active {
+      color: #b0b0b0;
+      font-weight: 400;
+    }
+  }
+}

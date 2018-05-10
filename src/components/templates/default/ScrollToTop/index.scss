@@ -1,0 +1,17 @@
+@import "../_Styles/mixins";
+
+#backToTop {
+  @include size(50px);
+  bottom: 20px;
+  right: 20px;
+  position: fixed;
+  background: url('/static/scroll_top.png') no-repeat;
+
+  &:hover, &:focus {
+    background: url('/static/scroll_top_over.png') no-repeat;
+    cursor: pointer;
+  }
+}
+
+
+

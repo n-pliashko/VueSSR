@@ -1,0 +1,36 @@
+.delivery-panel {
+  ul {
+    list-style: disc outside;
+    margin-left: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    li {
+      font-size: .875rem;
+    }
+  }
+  .orange-block {
+    background-color:#ffecbe;
+    padding:0.5rem;
+    margin:2px 0;
+    min-height:310px;
+  }
+  .courier-price {
+    font-size: .8rem;
+    text-align: center;
+    padding: .5rem .1875rem;
+    th, td {
+      padding: .5rem .625rem .625rem;
+      vertical-align: middle;
+    }
+    th {
+      border: 3px solid #fff;
+      background: #a7d163;
+    }
+    td {
+      border: 3px solid #fff;
+    }
+    tr:nth-child(odd) {
+      background-color: #f1f1f1;
+    }
+  }
+}

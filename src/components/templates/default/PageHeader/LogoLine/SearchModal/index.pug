@@ -1,0 +1,24 @@
+#searchBox(tabindex='-1', role='dialog', aria-hidden='true').modal.fade
+  .modal-dialog(role='document').centered
+    .modal-content
+      .modal-header
+        h1#searchModalLabel.modal-title Search
+        button(type='button',
+          data-dismiss='modal',
+          aria-label='Close').close
+          span ×
+      .modal-body
+        form#searchform
+          .form-group
+            input(type='text',
+              placeholder='Search for product / brand...',
+              v-model='inputSearchText')#inputString.form-control
+          //.form-group.form-check
+            label(for="all").form-check-label
+              input#all(type="checkbox").form-check-input.mr-2
+              | Search all results
+          button#searchSubmitButton(type='submit',
+            data-dismiss='modal',
+            aria-label='Close',
+            @click='handleSubmit').btn.big-orange-button Search Now &nbsp;
+            i.fi-play

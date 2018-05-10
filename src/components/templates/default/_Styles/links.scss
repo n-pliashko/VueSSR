@@ -1,0 +1,56 @@
+// Links
+
+a {
+  color: #000;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  margin: 0;
+}
+
+a.blue-link {
+  color: #00799e;
+  &:hover, &:focus {
+    color: #00799e;
+    text-decoration: underline;
+  }
+}
+a.blue-hovered-link {
+  &:hover, &:focus{
+    color: #00799e;
+    background-color: transparent;
+  }
+}
+a.black-red-link {
+  color: #2a2a2a;
+  text-decoration: underline;
+  &:hover, &:focus{
+    color: #c00;
+    text-decoration: none;
+  }
+}
+a.underlined-link {
+  text-decoration: underline;
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+a.ununderlined-link {
+  text-decoration: none;
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+}
+
+a.blue-ul {
+  @extend a.blue-link, a.underlined-link;
+}
+a.black_ul {
+  @extend .black, a.underlined-link;
+}
+a.white_ul, a.white-ul {
+  @extend .white, a.underlined-link;
+}
+a.white {
+  @extend .white, a.ununderlined-link;
+}

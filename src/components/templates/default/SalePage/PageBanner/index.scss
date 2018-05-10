@@ -1,0 +1,54 @@
+@import '../../_Styles/mixins';
+
+.page-banner {
+  background-color: #c00;
+  .banner-wrapper {
+    max-width: 100%;
+    color: #fff;
+    @include tablet-down {
+      padding: 1rem 0;
+    }
+    @include tablet {
+      height: 425px;
+    }
+    .sale-banner {
+      position: relative;
+      @include tablet {
+        top: 3rem;
+      }
+      .sale-title {
+        text-align: center;
+        margin-bottom: 0;
+        @include tablet {
+          font-size: 2.25rem;
+          line-height: 3rem;
+          color: #fff;
+        }
+      }
+    }
+    .invert-button {
+      padding: 1rem .8rem;
+      margin-bottom: 1rem;
+      background-color: #fff;
+      color: #b00000;
+      border: 2px solid #b00000;
+      text-transform: uppercase;
+      white-space: inherit;
+      font: {
+        size: 1.2rem;
+        weight: 700;
+      }
+      @include tablet-down {
+        min-width: 14rem;
+      }
+      @include tablet {
+        min-width: 11rem;
+      }
+      &:hover, &:focus {
+        color: #fc4c02;
+        background-color: #fafafa;
+        border: 2px solid #fc4c02;
+      }
+    }
+  }
+}

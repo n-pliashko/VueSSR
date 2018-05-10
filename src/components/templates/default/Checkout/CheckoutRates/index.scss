@@ -1,0 +1,68 @@
+// Import main style settings
+@import '../../_Styles/mixins';
+
+.checkout-rates {
+  background-color: #f7f5f6;
+  .usp-checkout {
+    .product-header-h3 {
+      font-size: .95rem;
+      font-weight: bold;
+      margin: 0;
+    }
+    p {
+      font-size: .7rem;
+      line-height: inherit;
+      margin-bottom: .25rem;
+      strong {
+        font-size: .75rem;
+      }
+    }
+
+    .order {
+      height: 85px;
+      background: url('/static/order-by-phone.png') center no-repeat;
+    }
+    .secure {
+      height: 85px;
+      background: url('/static/secure-payments.png') center no-repeat;
+    }
+    .satisfaction {
+      height: 85px;
+      background: url('/static/100-guarantee.png') center no-repeat;
+    }
+  }
+  .checkout-carousel {
+    background-color: transparent;
+    line-height: 1.2;
+    word-wrap: break-word;
+    .time, .based, .based > strong, .under-based {
+      color: #aaa;
+    }
+    .rate-wrapper {
+      padding: 1rem 0;
+    }
+    .trust-pilot-pic {
+      background: url('/static/layout-sprite@2x.png') -280px 0 no-repeat;
+      background-size: 100rem;
+      height: 5rem;
+      width: 200px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.slick-dots {
+  bottom: 0;
+  li {
+    width: 10px;
+    button:before {
+      font-size: 16px;
+      color: #bbbbbb;
+    }
+  }
+  .slick-active {
+    button:before {
+      color: #bbbbbb;
+    }
+  }
+}

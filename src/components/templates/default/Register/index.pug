@@ -1,0 +1,283 @@
+#register-page.page
+  PageHeader
+  main
+    section
+      .container-fluid
+        .row
+          .col-12.text-center
+            br.d-none.d-md-block.d-lg-none
+            br
+            h1 Before you place your order...
+            p.small.m-0 We need the following information for delivery.
+            br
+    section.register-form
+      .container-fluid
+        .row
+          .col-12.col-md-8.col-lg-6.mx-auto
+            form#users(name='users',
+            action='/auth/register/',
+            method='post',
+            data-abide='sxauty-abide',
+            novalidate)
+              .row
+                .col-12
+                  .alert.callout(data-abide-error='', style='display: none;')
+                    p
+                      i.fi-alert
+                      |  Ensure you correct any highlighted errors before continuing.
+                  p.largest 1. About You
+                  hr
+              .form-group.row
+                .col-3.col-md-2
+                  label(for="rTitle").col-form-label Title
+                    br
+                    select#rTitle(v-model="data.title").form-control
+                      option(value='Mr.') Mr.
+                      option(value='Ms.') Ms.
+                      option(value='Mrs.') Mrs.
+                      option(value='Miss') Miss
+                      option(value='Dr.') Dr.
+                .col-4.col-md-5
+                  label(for="rFName").col-form-label First name
+                    span.text-danger  *
+                    input#rFName(v-model="data.first_name",
+                    type='text',
+                    required='',
+                    name='first_name',
+                    :class="meta.formError.profile.first_name && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.first_name").form-error {{meta.formError.profile.first_name}}
+                .col-5
+                  label(for="rLName").col-form-label Last name
+                    span.text-danger  *
+                    input#rLName(v-model="data.last_name",
+                    type='text',
+                    required='',
+                    name='last_name',
+                    :class="meta.formError.profile.last_name && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.last_name").form-error {{meta.formError.profile.last_name}}
+              .form-group.row
+                .col-6.col-md-5.ml-auto
+                  label(for="rBCountry").col-form-label Country of residence
+                    span.text-danger  *
+                    select#rBCountry(
+                    v-model="billing_address.country_id",
+                    required='',
+                    name='country_id',
+                    :class="meta.formError.profile.billingAddress.country_id && 'is-invalid'").form-control
+                      option(v-for="item in countries", :value="item.number" v-html="`${item.translation}`")
+                    span(v-if="meta.formError.profile.billingAddress.country_id").form-error {{meta.formError.profile.billingAddress.country_id}}
+                    input#rBCountryHidden(hidden='true', :country="billing_address.country_id")
+                .col-6.col-md-5
+                  label(for="rPhone").col-form-label Telephone number
+                    input#rPhone(v-model="data.phone",
+                    type='text',
+                    placeholder='Optional',
+                    pattern='^[\d \-\+()]+$',
+                    name='phone',
+                    :class="meta.formError.profile.phone && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.phone").form-error {{meta.formError.profile.phone}}
+              .form-group.row
+                .col-12.col-lg-7
+                  label(for="rEmail").col-form-label Your email address
+                    span.text-danger  *
+                    input#rEmail(v-model="data.email",
+                    type='email',
+                    placeholder='example@domain.com',
+                    required='',
+                    data-validator='emailIsRegisteredValidator',
+                    name='email',
+                    :class="meta.formError.profile.email && 'is-invalid'").form-control
+                    span(v-if="meta.formError.email").form-error {{meta.formError.email}}
+              #pwd-container.form-group.row
+                .col-6
+                  label(for="rPassword").col-form-label Password
+                    span.text-danger  *
+                    input#rPassword.has-tip(v-model="data.password",
+                    type='password',
+                    aria-haspopup='true',
+                    data-disable-hover='false',
+                    title='',
+                    required='',
+                    name='password',
+                    :class="meta.formError.password && 'is-invalid'").form-control
+                    span(v-if="meta.formError.password").form-error
+                        | {{meta.formError.password}}
+                    .hide-show(@click="changePasswordVisibility")
+                      span(v-model="showPassword") {{ showPassword }}
+              br
+              br
+              .row
+                .col-12
+                  p.largest 2. Billing & Delivery Addresses
+                  p.small You can add a different delivery address if required.
+                  hr
+              // div(v-if="billing_address.country_id === 223")
+                #postcodeLookupRow.form-group.row.mb-2
+                  .col-12
+                    label(for="rHZip").col-form-label Post Code
+                      span.text-danger  *
+                  .col-6.col-md-4
+                    input#rHZip(value='',
+                    name='b_zip_hidden',
+                    type='text',
+                    data-validator='maxLength50').form-control
+                  .col-6.col-md-5.col-lg-4
+                    button#b_find_address(type='button').btn.green-button Find Address
+                  br
+                  br
+                .form-group.row.mb-2
+                  #b_result_display.col-12.col-md-9.col-lg-8
+                    // select#crafty_postcode_lookup_result_option1().form-control
+                      option() Select your Address
+                    .text-error This postcode is not valid, please try again or enter your address manually
+                hr
+              .row
+                .form-group.col-12
+                  label(for="rBAddress1").col-form-label Address Line 1
+                    span.text-danger  *
+                    input#rBAddress1(v-model="billing_address.line1",
+                    type='text',
+                    required='',
+                    name='line1',
+                    :class="meta.formError.profile.billingAddress.line1 && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.billingAddress.line1").form-error {{meta.formError.profile.billingAddress.line1}}
+              .row
+                .form-group.col-12
+                  label(for="rBAddress2").col-form-label Address Line 2
+                    input#rBAddress2(v-model="billing_address.line2",
+                    type='text',
+                    name='line2',
+                    :class="meta.formError.profile.billingAddress.line2 && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.billingAddress.line2").form-error {{meta.formError.profile.billingAddress.line2}}
+              .row
+                .form-group.col-6
+                  label(for="rBCity").col-form-label Town / City
+                    span.text-danger  *
+                    input#rBCity(v-model="billing_address.town",
+                    type='text',
+                    required='',
+                    name='town',
+                    :class="meta.formError.profile.billingAddress.town && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.billingAddress.town").form-error {{meta.formError.profile.billingAddress.town}}
+                    //span.form-error This field is required.
+                .form-group.col-6
+                  label(for="rBState").col-form-label County / State
+                    span.text-danger  *
+                    input#rBState(v-model="billing_address.state",
+                    type='text',
+                    required='',
+                    name='state',
+                    :class="meta.formError.profile.billingAddress.state && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.billingAddress.state").form-error {{meta.formError.profile.billingAddress.state}}
+              .row
+                #postcodeNotGB(v-if='billing_address.country_id !== 223').form-group.col-6
+                  label(for="rBZip").col-form-label Post Code/Zip
+                    span.text-danger  *
+                    input#rBZip(v-model="billing_address.zip",
+                    type='text',
+                    required='',
+                    name='zip',
+                    :class="meta.formError.profile.billingAddress.zip && 'is-invalid'").form-control
+                    span(v-if="meta.formError.profile.billingAddress.zip").form-error {{meta.formError.profile.billingAddress.zip}}
+              .row
+                .form-group.col-12.text-center
+                  #ExtraDelAdd
+                    p.large
+                      strong Use this address for delivery?
+                    .form-check.form-check-inline.small.mt-2.px-3
+                      label(for="yesBill").form-check-label.font-weight-bold Yes
+                      input#yesBill(v-model="billing_as_delivery",
+                      :value="1",
+                      type="radio",
+                      style="margin-left: .3rem;").form-check-input
+                    .form-check.form-check-inline.small.mt-2.px-3
+                      label(for="noBill").form-check-label.font-weight-bold No
+                      input#noBill(v-model="billing_as_delivery",
+                      :value='0',
+                      type="radio",
+                      style="margin-left: .3rem;").form-check-input
+
+              #deliveryBlock(v-if="!billing_as_delivery")
+                br
+                br
+                .row
+                  .col-12
+                    p.font-weight-bold(style="font-size: 1.2rem;") 3. Delivery Address
+                    hr
+                .row
+                  .form-group.col-12
+                    label(for="rDAddress1").col-form-label Address Line 1
+                      span.text-danger  *
+                      input#rDAddress1(v-model="delivery_address.line1",
+                      type='text',
+                      name='d_line1',
+                      :class="meta.formError.profile.deliveryAddress.d_line1 && 'is-invalid'").form-control
+                      span(v-if="meta.formError.profile.deliveryAddress.d_line1").form-error {{meta.formError.profile.deliveryAddress.d_line1}}
+                .row
+                  .form-group.col-12
+                    label(for="rDAddress2").col-form-label Address Line 2
+                      input#rDAddress2(v-model="delivery_address.line2",
+                      type='text',
+                      name='d_line2',
+                      :class="meta.formError.profile.deliveryAddress.d_line2 && 'is-invalid'").form-control
+                      span(v-if="meta.formError.profile.deliveryAddress.d_line2").form-error {{meta.formError.profile.deliveryAddress.d_line2}}
+                .row
+                  .form-group.col-6
+                    label(for="rDCity").col-form-label Town / City
+                      span.text-danger  *
+                      input#rDCity(v-model="delivery_address.town",
+                      type='text',
+                      name='d_town',
+                      :class="meta.formError.profile.deliveryAddress.d_town && 'is-invalid'").form-control
+                      span(v-if="meta.formError.profile.deliveryAddress.d_town").form-error {{meta.formError.profile.deliveryAddress.d_town}}
+                  .form-group.col-6
+                    label(for="rDState").col-form-label County / State
+                      span.text-danger  *
+                      input#rDState(v-model="delivery_address.state",
+                      type='text',
+                      name='d_state',
+                      :class="meta.formError.profile.deliveryAddress.d_state && 'is-invalid'").form-control
+                      span(v-if="meta.formError.profile.deliveryAddress.d_state").form-error {{meta.formError.profile.deliveryAddress.d_state}}
+                .row
+                  .form-group.col-6
+                    label(for="rDZip").col-form-label Post Code/Zip
+                      span.text-danger  *
+                      input#rDZip(v-model="delivery_address.zip",
+                      type='text',
+                      name='d_zip',
+                      :class="meta.formError.profile.deliveryAddress.d_zip && 'is-invalid'").form-control
+                      span(v-if="meta.formError.profile.deliveryAddress.d_zip").form-error {{meta.formError.profile.deliveryAddress.d_zip}}
+                  .form-group.col-6
+                    label(for="rDCountry").col-form-label Country
+                      span.text-danger  *
+                      select#rDCountry(
+                      v-model="delivery_address.country_id",
+                      required='',
+                      name='d_country_id',
+                      :class="meta.formError.profile.deliveryAddress.d_country_id && 'is-invalid'").form-control
+                        //option(value="Select Value", selected) Select Value
+                        option(v-for="item in countries", :value="item.number" v-html="`${item.translation}`")
+                      span(v-if="meta.formError.profile.deliveryAddress.d_country_id").form-error {{meta.formError.profile.deliveryAddress.d_country_id}}
+              br
+              .row.text-center
+                .col-12
+                  label(for="User_Subscription", style="font-weight: 400").col-form-label.mb-2 Don't want to hear about great offers, discount codes and future promotions? Untick the box:																 
+                    input#User_Subscription(v-model="data.subscribed",
+                    value='1',
+                    checked='checked',
+                    type='checkbox').form-check-input.ml-1
+                  p.small
+                    em We value your privacy and will not share any personal data with others. All personal information can be managed in your online account.
+              br
+              .row
+                .col-12
+                  button#registerContinueButton(type='submit', name='submit', @click="onSubmit").btn.big-orange-button.mb-3 Continue »
+                  br
+                  br
+                  p.small.text-center
+                    i.fa.fa-lock
+                    |  SelectSpecs is secure and your details are protected.
+              br
+              br
+
+  PageFooter

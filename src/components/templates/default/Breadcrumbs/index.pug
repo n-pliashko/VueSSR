@@ -1,0 +1,7 @@
+section.breadcrumb-section
+  .container-fluid
+    .row
+      nav(aria-label='You are here:', role='navigation').breadcrumb.col-12
+        span.breadcrumb-item(v-for="(breadcrumb, key) in breadcrumbs")
+          span.active(v-if="key === breadcrumbs.length -1 ") {{breadcrumb.title}}
+          router-link(v-else, @click.native="rememberRoute(breadcrumb.path)",:to="breadcrumb.path",  :title='breadcrumb.title.toUpperCase()') {{breadcrumb.title}}

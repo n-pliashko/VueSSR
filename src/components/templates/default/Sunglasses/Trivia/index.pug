@@ -1,0 +1,66 @@
+section.trivia.text-center
+  .container-fluid.d-none.d-lg-block.py-4
+    .row
+      .col-md-4
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-sun-driving.png?20171114194644')
+        p.large
+          strong Choosing Sunglasses for Driving
+        p
+          | Not sure what sun lenses are best for driving? Don't worry, our&nbsp;
+          router-link#drivingGuideLink(to='/info/how-to-choose-safe-sunglasses-for-driving/').blue-ul guide to driving sunglasses
+          | &nbsp;will help you.
+        br
+      .col-md-4
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-sun-lens-replacement.png?20171114194644')
+        p.large
+          strong Replace your Sun Lenses!
+        p Do your sunglasses need new lenses? Perhaps a new prescription? Why not give your sunglasses a new lease of life with our premium lens replacement service starting from only&nbsp;
+          strong {{calculatePrice(783.09/33.47, false, true)}}
+          | &nbsp;plus sun lenses of your choice.
+          br
+          router-link#reglazeLink(to='/lens-replacement/').blue-ul More details »
+        br
+      .col-md-4
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-prescription-sun-lens.png?20171114194644')
+        p.large
+          strong Our Prescription Sun Lenses
+        p If you're confused about our prescription sun lenses, why not take a look at our guide&nbsp;
+          router-link#prescriptionGuideLink(to='/guides/lenses/sun/').blue-ul here »
+          | .
+        br
+
+  // Slick(aria-label='Sunglasses Information', ref="slick", :options="slickOptions").d-lg-none.pt-3
+    div
+      p
+        img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-sun-driving.png?20171114194644')
+      p.large
+        strong Choosing Sunglasses for Driving
+      p Not sure what sun lenses are best for driving? Don't worry, our&nbsp;
+        router-link#drivingGuideLinkMobile(to='/info/how-to-choose-safe-sunglasses-for-driving/').blue-ul guide to driving sunglasses
+        |  will help you.
+      br
+    div
+      p
+        img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-sun-lens-replacement.png?20171114194644')
+      p.large
+        strong Replace your Sun Lenses!
+      p
+        | Do your sunglasses need new lenses? Perhaps a new prescription? Why not give your sunglasses a new lease of life with our premium lens replacement service starting from only&nbsp;
+        strong {{calculatePrice(783.09/33.47, false, true)}}
+        |  plus sun lenses of your choice.
+        br
+        router-link#reglazeLinkMobile(to='/lens-replacement').blue-ul More details »
+      br
+    div
+      p
+        img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-prescription-sun-lens.png?20171114194644')
+      p.large
+        strong Our Prescription Sun Lenses
+      p
+        | If you're confused about our prescription sun lenses, why not take a look at our guide&nbsp;
+        router-link#prescriptionGuideLinkMobile(to='/guides/lenses/sun/').blue-ul here »
+      br
+  hr.d-lg-none

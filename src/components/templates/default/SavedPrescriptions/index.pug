@@ -1,0 +1,36 @@
+.page
+  PageHeader
+
+  main
+    NavigationLinks
+    section.container-fluid.mt-5
+      .row
+        .col-6
+          p.largest Your saved prescription
+          br
+        .col-6
+          .account-sprite
+            p
+              strong
+                router-link(to='/account/prescription_edit/', rel='nofollow').blue-ul Add your prescription »
+            p Store a new glasses prescription.
+
+      hr
+      .row
+        .col-12.text-center
+          br
+          br
+          br
+          br
+          br
+          p
+            | You have no saved prescriptions -&nbsp;
+            router-link(to='/account/prescription_edit/', rel='nofollow').dark-button  Add your prescription »
+          br
+          br
+          br
+          br
+          br
+
+  PageFooter
+  ScrollToTop

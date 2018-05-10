@@ -1,0 +1,76 @@
+// Import main style settings
+@import '../_Styles/mixins';
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+[class*="col-"] {
+  @include desktop-down {
+    padding-left: .625rem;
+    padding-right: .625rem;
+  }
+}
+
+.col-form-label {
+  width: 100%;
+  line-height: 1.5;
+  padding: 0;
+  @include desktop-down {
+    font-size: .8rem !important;
+  }
+}
+
+.form-control {
+  font-size: .8rem;
+  line-height: 1.25rem;
+}
+
+.form-check-label {
+  padding-left: 0;
+}
+
+input[type=radio] {
+  margin-top: .25rem;
+}
+input[type=checkbox] {
+  margin-top: .2rem;
+}
+
+.text-error {
+  font-size: .8rem;
+  color: #b00;
+  line-height: 1.5;
+}
+
+#ExtraDelAdd {
+  padding: .5rem 0 0;
+  background: #ecf0f1;
+  text-align: center;
+}
+
+label[for="rPassword"] {
+  position: relative;
+  .hide-show {
+    position: absolute;
+    top: 29px;
+    right: 10px;
+    text-transform: uppercase;
+    color: #48647c;
+    cursor: pointer;
+    font: {
+      size: .75rem;
+      weight: 700;
+    };
+  }
+}
+
+button.green-button {
+  background-color: #27ae61;
+  color: #fff;
+  padding: 11px 16px 12px;
+  font-size: .9rem;
+  text-transform: none;
+  width: 100%;
+  height: 38px;
+}

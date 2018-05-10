@@ -1,0 +1,97 @@
+#loginPage.page
+  PageHeader
+
+  .loading(v-if="loading")
+  main
+    section.container-fluid
+      .row
+        .col-12.col-md-8.col-lg-6.mx-auto
+          br
+          br.d-none.d-sm-block
+          h1.text-center Sign In
+          .login-wrapper
+            //.links(v-if='user.email').text-capitalize.col-12
+              h4.text-center Hello!
+              br
+              .links-wrapper.d-flex.justify-content-between
+                router-link(to='profile/edit').blue-ul edit profile
+                router-link(to='user/settings').blue-ul settings
+                router-link(to='account/orders').blue-ul orders
+              br
+              br
+            form#userLogin(name='login')
+              .row
+                .col-12.col-sm-10.col-lg-8.mx-auto
+                  br.d-none.d-sm-block
+                  .form-group
+                    label(for="email",
+                    :class="[ ((attemptInputEmail || attemptSubmit) && checkValidity()) ? familiarEmail ? 'text-danger' : 'text-danger' : 'valid' ]").form-control-label
+                      | Your email address
+                    input#email(@change='onChange',
+                    @focus="resetAttemptsEmail",
+                    :class="[ ((attemptInputEmail || attemptSubmit) && checkValidity()) ? familiarEmail ? 'danger' : 'invalid' : 'valid' ]",
+                    type='email',
+                    name='email',
+                    v-model='email',
+                    placeholder='email@domain.com',
+                    required).form-control
+                    .form-control-feedback(v-if="!!attemptInputEmail && missingEmail")
+                      | This field is required.
+                    .form-control-feedback(v-else-if="!!attemptInputEmail && invalidEmail")
+                      | Incorrect Email Format.
+                    //.form-control-feedback(v-if="attemptInputEmail && unfamiliarEmail") Your email address was not recognised.
+                    .form-control-feedback(
+                    v-else-if="(attemptInputEmail && familiarEmail) && !!checkValidity()" ,
+                    class="text-danger") You already have an account. Enter your password below.
+                  fieldset.form-group.mb-1
+                    label.form-control-label Do you have an account?
+                    .form-check
+                      label(for='accountNo').form-check-label
+                        input#accountNo(@change='onChange',
+                        type='radio',
+                        name='account',
+                        value='0',
+                        v-model='data.account').form-check-input.mr-2
+                        | &nbsp;&nbsp;No
+                    .form-check.mb-0
+                      label(for='accountYes').form-check-label
+                        input#accountYes(type='radio',
+                        name='account',
+                        value='1',
+                        @change='onChange',
+                        v-model='data.account').form-check-input.mr-2
+                        | &nbsp;&nbsp;Yes, my password is...
+                  // This only appears when customer selects 'yes' to password (hide #accountNo)
+                  .form-group#ShowPass(v-if='data.account').mb-3
+                    label(for="password",
+                    :class="[ (attemptSubmit && !checkPassword()) ? 'text-danger' : 'valid' ]").form-control-label
+                      | Password
+                    input(@change='onChange',
+                    @focus='resetAttemptsPassword',
+                    :class="[ (attemptSubmit && !checkPassword()) ? 'invalid' : 'valid' ]",
+                    type='password',
+                    name='password',
+                    v-model='password',
+                    required)#password.form-control
+                    .form-control-feedback(v-if="attemptSubmit && missingPassword") Enter Password
+                  p.small.text-right
+                    router-link#forgotPassLink(to='/auth/request_new_password/').blue-ul Forgotten your password?
+                  br
+                  button(@click='validateForm'
+                  /* :disabled = "!!attemptSubmit" */
+                  )#submit_btn.btn.big-orange-button.text-white
+                    | Continue Securely »
+                  p.small.text-center
+                    i.fa.fa-lock
+                    |  SelectSpecs is secure and your details are protected.
+                  br.d-none.d-sm-block
+          br
+          .text-center
+            img#worldpay(src="//www.worldpay.com/images/poweredByWorldPay.gif",
+            alt="WorldPay Payments Processing").figure-img.mx-1.mx-sm-2
+            img#trustwave(src="https://sealserver.trustwave.com/seal_image.php?customerId=3ae71cd99b73468e85fb4b463991cf08&size=105x54&style=",
+            style="cursor:pointer",
+            alt="This site is protected by Trustwave's Trusted Commerce program").figure-img.mx-1.mx-sm-2
+    br
+    br
+  PageFooter

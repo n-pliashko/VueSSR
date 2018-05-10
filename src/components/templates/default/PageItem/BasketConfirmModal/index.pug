@@ -1,0 +1,44 @@
+#basketConfirmModal(tabindex='-1', role='dialog', aria-hidden='true').modal.large.fade
+  .modal-dialog(role='document').centered
+    .modal-content
+      button#basketConfirmModalClose(type='button',
+      data-dismiss='modal',
+      aria-label='Close').close
+        span ×
+      .modal-header
+        h1.modal-title.text-center Would you like your prescription in these sunglasses?
+      .modal-body
+        .container-fluid.px-0
+          .row.text-center
+            .col-12.col-md-6
+              .rxSunPopup
+                p
+                  strong YES PLEASE
+                p.small
+                  strong I want my prescription in these sunglasses.
+                br
+                button#chooseLensesButton(@click='addToCart',
+                  data-dismiss='modal').btn.big-orange-button Choose Your Lenses »
+                br
+                br
+                p.smallest
+                  em
+                    | The manufacturers tinted lenses for this item will be removed and replaced with
+                    strong clear prescription lenses 
+                    | unless you select a sun lens option
+            .col-12.col-md-6
+              .rxSunPopup
+                p
+                  strong NO THANKS
+                p.small
+                  strong I want sunglasses only.
+                br
+                router-link#add-to-basket(:to='{name: "Basket"}',
+                  data-dismiss='modal',
+                  aria-label='Close',
+                  @click.native='addToCart').btn.big-orange-button.text-white Add to Basket »
+                br
+                br
+                p.smallest
+                  em
+                    | These sunglasses will be shipped to you with the manufacturers sun lenses, with no prescription.

@@ -1,0 +1,101 @@
+.info-accordion {
+  list-style: none outside;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  background: #fefefe;
+  li {
+    font-size: .875rem;
+    .collapse-title {
+      display: block;
+      padding: 1.2rem 0 1.2rem 2.25rem;
+      line-height: 1.2rem;
+      font-size: .95em;
+      font-weight: bold;
+      color: #000;
+      position: relative;
+      background: #f6f6f6;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      text-transform: capitalize;
+      &:before {
+        font-size: 1.5rem;
+        font-weight: 700;
+        content: '+';
+        position: absolute;
+        left: .75rem; right: 1rem;
+        top: 50%;
+        box-sizing: inherit;
+      }
+      &[aria-expanded="false"]:before {
+        content: '+';
+        margin-top: -0.7rem;
+        color: #27ae61;
+      }
+      &[aria-expanded="true"]:before {
+        content: '–';
+        margin-top: -0.8rem;
+        color: #fc4c02;
+      }
+      &:hover, &:focus, &:active {
+        background-color: #ecf0f1;
+      }
+    }
+  }
+  .info-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  .product-reviews {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .pr-review {
+    background: #ecf0f1;
+    padding: .2rem;
+    p {
+      margin-bottom: 0;
+    }
+
+    hr {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .review-helpful {
+      font-size: .75rem;
+      .helpful {
+        color: #000;
+        background: #fafafa;
+        border: 1px solid #878787;
+        padding: 2px 4px;
+        border-radius: 2px;
+        margin: 0 2px;
+        &:hover, &:focus {
+          background: #f0f0f0;
+          border: 1px solid #545454;
+          color: #000;
+        }
+      }
+    }
+
+    .review-body {
+      background: #fff;
+      padding: .6rem 1rem;
+      .product-rating {
+        width: 6.5rem;
+        margin: .25rem 0;
+      }
+    }
+  }
+
+  #reviewShowMore {
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-transform: initial;
+    margin: .25rem 0 1rem;
+    padding: 1.5rem 0;
+  }
+}

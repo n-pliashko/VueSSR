@@ -1,0 +1,40 @@
+// Import main style settings
+@import '../../_Styles/mixins';
+
+
+.homepage-banner {
+  @include desktop {
+    background: url('/static/homepage-bg-banner_may17.jpg') center center no-repeat #e0e0e0;
+    height: 450px;
+    max-width: 100%;
+
+    .content-wrapper {
+      padding-top: 11rem;
+      .text-wrapper {
+        height: auto;
+        strong {
+          font-size: 1.2rem;
+          line-height: 1;
+        }
+      }
+      .big-button {
+        background-color: #fafafa;
+        border: 1px solid #c00;
+        box-shadow: inset 1px 1px 0 0 #fc4c02,
+        inset -1px -1px 0 0 #fc4c02;
+        color: #b00000;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0 .5rem;
+        padding: 1rem .8rem;
+        min-width: 10rem;
+        text-transform: none;
+        &:hover {
+          color: #fc4c02;
+          border-color: #fc4c02;
+          background-color: #fafafa;
+        }
+      }
+    }
+  }
+}

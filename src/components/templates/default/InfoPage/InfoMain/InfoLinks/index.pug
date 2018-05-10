@@ -1,0 +1,142 @@
+.info-links
+  .d-none.d-md-block
+    .row
+      .col-12.col-md-6.col-lg-4
+        p.large
+          strong General
+        ul.help-links
+          li
+            router-link(to='/info/faq/', title='Frequently Asked Questions / FAQs').blue-ul Frequently Asked Questions / FAQs
+          li
+            router-link(to='/info/terms-of-sale/', title='Terms of Sale').blue-ul Terms of Sale
+          li
+            router-link(to='/info/payment-options/', title='100% Secure Payments / VAT').blue-ul 100% Secure Payments / VAT
+          li
+            router-link(to='/info/shipping-delivery/', title='Production and Delivery Timescales').blue-ul Production and Delivery Timescales
+          li
+            router-link(to='/info/returns/', title='Returns & Refunds Policy').blue-ul Returns & Refunds Policy
+          li
+            router-link(to='/info/privacy-policy/', title='Privacy and Cookie Policy').blue-ul Privacy and Cookie Policy
+          li
+            router-link(to='/info/free-glasses-with-eyetest/', title='FREE Glasses in our Store').blue-ul FREE Glasses in our Store
+      .col-12.col-md-6.col-lg-4
+        p.large
+          strong Eyewear
+        ul.help-links
+          li
+            router-link(to='/info/help-with-prescription/', title='Help with your Glasses Prescription').blue-ul Help with your Glasses Prescription
+          li
+            router-link(to='/info/free-thin-and-light-lenses/', title='FREE Thin & Light Prescription Lenses').blue-ul FREE Thin & Light Prescription Lenses
+          li
+            router-link(to='/info/getting-your-glasses-prescription/', title='Getting your Glasses Prescription').blue-ul Getting your Glasses Prescription
+          li
+            router-link(to='/info/pupillary-distance/', title='PD / Pupillary Distance').blue-ul PD / Pupillary Distance
+          li
+            router-link(to='/info/lens-technology/', title='Guide to Sunglasses Lens Technologies').blue-ul Guide to Sunglasses Lens Technologies
+          li
+            router-link(to='/info/vouchers/', title='Glasses Vouchers - NHS & Accor Eyecare').blue-ul Glasses Vouchers - NHS & Accor Eyecare
+          li
+            router-link(to='/info/caring-for-your-glasses/', title='Caring for your New Prescription Glasses').blue-ul Caring for your New Prescription Glasses
+          li
+            router-link(to='/info/glasses-guide-buying-glasses-online/', title='Glasses Guide – Buying Glasses Online').blue-ul Glasses Guide – Buying Glasses Online
+          li
+            router-link(to='/info/how-to-put-in-contact-lenses/', title='How to put Contact Lenses in').blue-ul How to put Contact Lenses in
+          li
+            router-link(to='/info/how-to-remove-contact-lenses/', title='How to Remove Contact Lenses').blue-ul How to Remove Contact Lenses
+          li
+            router-link(to='/info/contact-lenses-aftercare-information/', title='Contact Lenses: Aftercare & Information').blue-ul Contact Lenses: Aftercare & Information
+          li
+            router-link(to='/info/quality-control/', title='14-Point Quality Check').blue-ul 14-Point Quality Check
+      .col-12.col-md-6.col-lg-4
+        p.large
+          strong Research
+        ul.help-links
+          li
+            router-link(to='/info/face-shapes/', title='Choosing Glasses to suit your Face Shape').blue-ul Choosing Glasses to suit your Face Shape
+          li
+            router-link(to='/info/how-prescription-glasses-are-made/', title='How Prescription Glasses are Made').blue-ul How Prescription Glasses are Made
+          li
+            router-link(to='/info/eye-testing-advanced-oct-optical-coherence-tomography/', title='Eye Testing and Optical Coherence Tomography (OCT)').blue-ul Eye Testing and Optical Coherence Tomography (OCT)
+  .d-md-none
+    .row
+      ul#navHelpLinks.accordion.help-nav
+        li.collapse-item.with-arrows
+          router-link(to="/customer-services/", style="border-top: 1px solid #e2e6e7;")
+            img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/help/mob/customer-service.png?20171206101624', width='40px')
+            |  Contact Us
+        li.collapse-item.with-arrows
+          router-link(to="/store/")
+            img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/help/mob/shop-in-store.png?20171206101624', width='40px')
+            |  Shop In Store
+
+    ul#navHelpManyLinks(role='tablist').accordion.help-many-nav
+      li#navHeadingGeneral(role="tab")
+        a#navCollapseLabelGeneral(data-toggle="collapse", href='#navCollapseGeneral',
+          aria-controls='navCollapseGeneral', aria-expanded='false').nav-collapse-title General
+        #navCollapseGeneral(role='tabpanel', aria-labelledby='navCollapseLabelGeneral',
+          data-parent="#navHelpManyLinks").collapse
+          li.collapse-item
+            router-link(to='/info/faq/', title='Frequently Asked Questions / FAQs') Frequently Asked Questions / FAQs
+          li.collapse-item
+            router-link(to='/info/terms-of-sale/', title='Terms of Sale') Terms of Sale
+          li.collapse-item
+            router-link(to='/info/payment-options/', title='100% Secure Payments / VAT') 100% Secure Payments / VAT
+          li.collapse-item
+            router-link(to='/info/shipping-delivery/', title='Production and Delivery Timescales') Production and Delivery Timescales
+          li.collapse-item
+            router-link(to='/info/returns/', title='Returns & Refunds Policy') Returns & Refunds Policy
+          li.collapse-item
+            router-link(to='/info/privacy-policy/', title='Privacy and Cookie Policy') Privacy and Cookie Policy
+          li.collapse-item
+            router-link(to='/info/free-glasses-with-eyetest/', title='FREE Glasses in our Store') FREE Glasses in our Store
+      li#navHeadingEyewear(role="tab")
+        a#navCollapseLabelEyewear(data-toggle="collapse", href='#navCollapseEyewear',
+          aria-controls='navCollapseEyewear', aria-expanded='false').nav-collapse-title Eyewear
+        #navCollapseEyewear(role='tabpanel', aria-labelledby='navCollapseLabelEyewear',
+          data-parent="#navHelpManyLinks").collapse
+          li.collapse-item
+            router-link(to='/info/help-with-prescription/', title='Help with your Glasses Prescription') Help with your Glasses Prescription
+          li.collapse-item
+            router-link(to='/info/free-thin-and-light-lenses/', title='FREE Thin & Light Prescription Lenses') FREE Thin & Light Prescription Lenses
+          li.collapse-item
+            router-link(to='/info/getting-your-glasses-prescription/', title='Getting your Glasses Prescription') Getting your Glasses Prescription
+          li.collapse-item
+            router-link(to='/info/pupillary-distance/', title='PD / Pupillary Distance') PD / Pupillary Distance
+          li.collapse-item
+            router-link(to='/info/lens-technology/', title='Guide to Sunglasses Lens Technologies') Guide to Sunglasses Lens Technologies
+          li.collapse-item
+            router-link(to='/info/vouchers/', title='Glasses Vouchers - NHS & Accor Eyecare') Glasses Vouchers - NHS & Accor Eyecare
+          li.collapse-item
+            router-link(to='/info/caring-for-your-glasses/', title='Caring for your New Prescription Glasses') Caring for your New Prescription Glasses
+          li.collapse-item
+            router-link(to='/info/glasses-guide-buying-glasses-online/', title='Glasses Guide – Buying Glasses Online') Glasses Guide – Buying Glasses Online
+          li.collapse-item
+            router-link(to='/info/how-to-put-in-contact-lenses/', title='How to put Contact Lenses in') How to put Contact Lenses in
+          li.collapse-item
+            router-link(to='/info/how-to-remove-contact-lenses/', title='How to Remove Contact Lenses') How to Remove Contact Lenses
+          li.collapse-item
+            router-link(to='/info/contact-lenses-aftercare-information/', title='Contact Lenses: Aftercare & Information') Contact Lenses: Aftercare & Information
+          li.collapse-item
+            router-link(to='/info/quality-control/', title='14-Point Quality Check') 14-Point Quality Check
+      li#navHeadingResearch(role="tab")
+        a#navCollapseLabelResearch(data-toggle="collapse", href='#navCollapseResearch',
+          aria-controls='navCollapseResearch', aria-expanded='false').nav-collapse-title Research
+        #navCollapseResearch(role='tabpanel', aria-labelledby='navCollapseLabelResearch',
+          data-parent="#navHelpManyLinks").collapse
+          li.collapse-item
+            router-link(to='/info/face-shapes/', title='Choosing Glasses to suit your Face Shape') Choosing Glasses to suit your Face Shape
+          li.collapse-item
+            router-link(to='/info/how-prescription-glasses-are-made/', title='How Prescription Glasses are Made') How Prescription Glasses are Made
+          li.collapse-item
+            router-link(to='/info/eye-testing-advanced-oct-optical-coherence-tomography/', title='Eye Testing and Optical Coherence Tomography (OCT)') Eye Testing and Optical Coherence Tomography (OCT)
+      li#navHeadingChoose(role="tab")
+        a#navCollapseLabelChoose(data-toggle="collapse", href='#navCollapseChoose',
+          aria-controls='navCollapseChoose', aria-expanded='false').nav-collapse-title Help Me Choose
+        #navCollapseChoose(role='tabpanel', aria-labelledby='navCollapseLabelChoose',
+          data-parent="#navHelpManyLinks").collapse
+          li.collapse-item
+            router-link(to='/guides/') Buying Guides »
+          li.collapse-item
+            router-link(to='/eye-health/') Eye Health & Advice »
+          li.collapse-item
+            router-link(to='/fashion-lifestyle/') Fashion & Lifestyle Magazine »

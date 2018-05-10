@@ -1,0 +1,13 @@
+.modal-dialog {
+  //margin-top: 6.25rem !important;
+  overflow-y: hidden !important;
+  .modal-content {
+    padding: 1rem;
+    .modal-inner {
+      margin: 18px 0;
+      max-height: 450px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}

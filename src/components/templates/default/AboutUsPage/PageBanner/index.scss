@@ -1,0 +1,31 @@
+@import '../../_Styles/mixins';
+
+.page-banner {
+  background-color: #1d1e1f;
+  margin-bottom: 2rem;
+  .about-us-banner-big {
+    height: 200px;
+    max-width: 100%;
+    background: url('/static/about-head.jpg') center center no-repeat;
+  }
+  .about-us-banner-small {
+    height: 200px;
+    max-width: 100%;
+    background: url('/static/about-head.jpg') center center no-repeat;
+  }
+  .about-us-panel {
+    padding: .75rem 0 1rem;
+    color: #fff;
+    text-align: center;
+    h1 {
+      color: #fff;
+      font-size: 2rem;
+    }
+    .white-ul {
+      text-decoration: underline;
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+}

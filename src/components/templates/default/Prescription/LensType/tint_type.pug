@@ -1,0 +1,35 @@
+div
+  h2
+    strong Customise your lens package
+  br
+  hr
+  section.container
+    .row.card-group
+      .card(v-for='(type, id) in $parent.tintType',
+        :class="[!!type.disabled ? 'disabled' : '']")
+        .card-header.text-center
+          p.card-title(v-html='type.name')
+        .card-block.text-center(v-show='!type.show')
+          img.card-img-top.mb-4(:src='type.image')
+          p(v-html='type.description')
+          br
+          br
+        .card-block(v-show='type.show')
+          p.mb-1 Tint Colour
+          .d-flex.flex-row.flex-wrap.mb-2
+            div(v-for='colour in $parent.tintColour')
+              button.btn.big-orange-button.w-100(:class="$parent.chosenLensType.colour == colour.id ? 'selected' : ''",
+                :style="{backgroundColor: colour.web_hex, height: '20px'}",
+                v-on:click='$parent.selectColour(colour.id)')
+          p.mb-1 Tint Strength
+          .d-flex.flex-row.justify-content-center.mb-2
+            .btn-group(v-for='strength in $parent.tintStrength')
+              button.accent-button.mx-1(:class="$parent.chosenLensType.strength == strength.id ? 'selected' : ''",
+                v-on:click='$parent.selectStrength(strength.id)') {{strength.name}}
+          .row
+            router-link(:id="'tint-' + type.name + '-button'",
+              :to='{ name: $parent.nextStep, params: $parent.chosenLensType}',
+              :class="[$parent.disabledNext ? '' : 'disabled']").big-orange-button.text-capitalize.w-75.mx-auto.py-2 Choose
+        .card-footer
+          a.card-continue-button(v-show='!type.show', :id="'show-' + type.name + '-colours-button'", v-on:click='$parent.onChooseTint(id)') Show colours
+          a.card-continue-button(v-show='type.show', :id="'show-' + type.name + '-colours-button'", v-on:click='$parent.onChooseTint(id)') Hide colours

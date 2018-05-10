@@ -1,0 +1,19 @@
+section.brands-choice.text-center
+  .container-fluid
+    .row
+      .col-12.col-md-7.d-flex.flex-column.justify-content-center.align-items-center
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/glasses/chiara-visione.jpg?20171030191515', alt='Chiara Visione')
+      .col-12.col-md-5.d-flex.flex-column.justify-content-center.align-items-center
+        h2.main-header Chiara Visione
+        p A unique blend of fashionably retro frames for the fashion conscious man.
+        br
+        img.img-fluid.d-inline-block(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/glasses/chiara-visione_frame.jpg?20171030191515', width='350px', alt='Chiara Visione UCV1008')
+        br
+        br
+        p.dkGrey
+          strong Chiara Visione UCV1008
+        p.small
+          strong {{calculatePrice(2505.90/33.47, false, true)}}
+          |  with lenses
+        br
+        router-link#collectionLink(to='/brand/chiara-visione/').btn.big-button View Collection »

@@ -1,0 +1,8 @@
+select.form-control {
+  outline: transparent auto 5px;
+  &:focus {
+    outline-color: #e59700;
+    border: transparent 1px solid;
+    background-color: #ffffea;
+  }
+}

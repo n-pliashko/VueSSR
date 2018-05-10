@@ -1,0 +1,36 @@
+// Logos
+
+.logo {
+  display: block;
+  background: url('/static/layout-sprite-uk.png')
+    24px 3px;
+  background-size: 500px;
+  width: 224px;
+  height: 90px;
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    background-image: url('/static/layout-sprite-uk@2x.png');
+  }
+}
+.trust-pilot-logo {
+  background: url('/static/layout-sprite.png')
+    -140px 0;
+  height: 1.2em;
+  width: 4.7rem;
+  display: inline-block;
+  margin: 0 auto;
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    background-image: url('/static/layout-sprite@2x.png');
+  }
+}

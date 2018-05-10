@@ -1,0 +1,29 @@
+#deliveryInfoModal(tabindex='-1', role='dialog', aria-hidden='true').modal
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header.mb-3
+        button(type='button',
+        data-dismiss='modal',
+        aria-label='Close').close
+          span ×
+      .modal-body.text-left
+        p.small
+          strong Production:
+          |  90% of our orders are usually completed and dispatched within&nbsp;
+          strong 7-10 working days
+          | . On rare occasions, your order may take slightly longer but we will advise you if any significant delays are likely.
+        br
+        p.small
+          strong Delivery:
+          |  Based in Westgate on Sea, UK, we ship eyewear globally with a standard shipping rate starting from&nbsp;
+          strong £5.95
+          | , with FREE Super Saver delivery available for all orders over&nbsp;
+          strong £75
+          | . For faster delivery, we can ship your order to you by DPD or FedEx
+          em (depending on country)
+          | .
+        br
+        p.small
+          | For full details, please see our&nbsp;
+          router-link(to='/info/shipping-delivery/', target='_blank').blue-ul Production and Delivery Information
+          |  page.

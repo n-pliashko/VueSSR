@@ -1,0 +1,19 @@
+section.before-continue
+  h2
+    strong Before you continue
+  p Would you like use the same prescription and lenses as another item in your basket?
+  hr
+  .container
+    .row(v-if="$store.basket.order")
+      .card(v-for="(item, key) in $store.basket.order.orderItems", v-if='key != $parent.$parent.activeItem', :key="item.ordered_item_number")
+        .card-header
+          p.card-title Product:
+          p.card-text.font-weight-bold {{item.option.name}}
+        .card-block
+          em.card-text.small £ {{parseFloat(item.option.price).toFixed(2)}}
+          p.card-text
+            | {{item.option.description}}
+        .card-footer
+          router-link#continue-with-existing-btn(:to="{ name: 'Basket', params: {useItemOptions: item.ordered_item_number}}").card-continue-button.text-capitalize Use these options
+  br
+  button#continue-with-new-btn(type="button", v-on:click='$parent.swapComponent(null)').btn.big-orange-button.text-center Continue with new options >

@@ -1,0 +1,15 @@
+.logo-line-mini {
+  line-height: 3;
+  .btn:hover { cursor: pointer; }
+  #logoMobile {
+    height: 2.7rem; width: 130px;
+    background: url('/static/layout-sprite-uk.png') 0 -116px;
+    background-size: 500px;
+    display: inline-block;
+  }
+
+  #ordered-amount {
+    font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+    border-radius: 0;
+  }
+}

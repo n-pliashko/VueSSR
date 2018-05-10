@@ -1,0 +1,32 @@
+// Steps
+
+.step {
+  margin: 0 .25rem;
+  color: #fff;
+  font-weight: 700;
+  text-transform: capitalize;
+  white-space: nowrap;
+  height: 1rem;
+  border-radius: 3px;
+  clip-path: polygon(88% 0, 100% 50%, 88% 100%, 0 100%, 10% 50%, 0 0);
+  @media (max-width: 640px) {
+    font-size: .8rem;
+    line-height: 3rem;
+    padding: .35rem .75rem;
+  }
+  @media (min-width: 640px) {
+    font-size: .9rem;
+    line-height: 4;
+    padding: .55rem 2rem;
+  }
+}
+.wider-step {
+  clip-path: polygon(95% 0, 100% 50%, 95% 100%, 0 100%, 5% 50%, 0 0);
+}
+.checkout-done {
+  background: #88c62f;
+}
+.checkout-to-do {
+  background: #eaeaea;
+  color: #b6b6b6;
+}

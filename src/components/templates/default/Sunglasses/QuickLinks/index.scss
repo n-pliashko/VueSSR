@@ -1,0 +1,40 @@
+.type-wrapper {
+  background-color: #ecf0f1;
+  height: 100%;
+  img {
+    margin-bottom: 2.25rem;
+  }
+  .text-wrapper {
+    padding: 0 .5rem;
+  }
+  &.rx-sun {
+    background-color: #edfacf;
+  }
+  &.polar-sun {
+    background-color: #d5e7ff;
+  }
+}
+
+.tiles-container {
+  margin-left: .0625rem;
+  margin-right: .0625rem;
+  .tile-wrapper {
+    padding: .25rem;
+    a.tile {
+      display: block;
+      font-size: .75rem;
+      border: 3px solid #f0f0f0;
+      padding: .5rem 0;
+      margin: .25rem .1rem;
+      transition: border-color .25s ease-out,color .25s ease-out;
+      cursor: pointer;
+      &:hover {
+        color: #000;
+        border: 3px solid #fc4c02;
+      }
+      img {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+section
+  .page-banner.d-none.d-lg-block
+    .container-fluid.content-wrapper.text-center
+      .text-wrapper
+        br.d-none.d-md-block
+        p.large
+          strong Sunglasses from as little as {{calculatePrice(313.24/33.47, false, true)}}
+        p.small Prescription lenses also available.
+      br
+      router-link#menGlassesLink(to="/sunglasses/designer/mens/c10/").btn.big-button Shop Men's »
+      router-link#womenGlassesLink(to="/sunglasses/designer/ladies/c11/").btn.big-button Shop Women's »
+
+  //Slick(aria-label='Sunglasses Banners', ref="slick", :options="slickOptions").d-block.d-lg-none
+  //  router-link#menGlassesMobileLink(to="/sunglasses/designer/mens/c10/")
+  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-sunglasses.jpg?20171114194644', alt='mens sunglasse')
+  //  router-link#womenGlassesMobileLink(to="/sunglasses/designer/ladies/c11/")
+  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-sunglasses.jpg?20171114194644', alt='womens sunglasses')

@@ -1,0 +1,42 @@
+<div class="address">
+    <!--<p>asdfasdf</p>-->
+    <!--<input v-model="test" id="reg_phone" type="text"/>-->
+    <!--<p>{{ type }}</p>-->
+    <div v-if="showDeliveryForm == 1" class="new_user delivery_address">
+        <h2>{{ type.toUpperCase() }} ADDRESS</h2>
+        <label for="delivery_zip_code" class="input_text">Zip \ postal code:</label><input v-model="data.zip" id="delivery_zip_code" type="text"/><br>
+        <label for="delivery_address_line_1" class="input_text">Address line 1:</label><input v-model="data.line1" id="delivery_address_line_1" type="text"/><br>
+        <label for="delivery_address_line_2" class="input_text">Address line 2:</label><input v-model="data.line2" id="delivery_address_line_2" type="text"/><br>
+        <label for="delivery_city" class="input_text">City:</label><input v-model="data.town" id="delivery_city" type="text"/><br>
+        <label for="delivery_state" class="input_text">State:</label><input v-model="data.state" id="delivery_state" type="text"/><br>
+        <div v-if="show_same_checkbox">
+            <input v-model="regdata.some_billship_addr" v-on:change="changeVisiblToParrnet" class="checkbox_mail" type="checkbox"/><span>My billing adress the same as my shipping address.</span><br>
+        </div>
+
+        <button v-on:click="commitAddress">Continue</button>
+    </div>
+
+    <div v-else="" class="new_user delivery_address uk">
+        <h2>{{ type.toUpperCase() }} ADDRESS</h2>
+        <label for="delivery_zip_code_uk" class="input_text">Zip code:</label>
+        <input v-model="data.zip" id="delivery_zip_code_uk" type="text"/><br>
+        <ul>
+            <li v-on:click="saveAddress(index)" class="post_codes" :class="{'active':index == activePostCodeId}" v-for="(code,index) in postcode">
+                <b>Line 1:{{ code.line_1 }}</b><br>
+                <p>Line 2:{{ code.line_2 }}</p><br>
+                Organisation Name:{{ code.organisation_name }}<br>
+                Department Name:{{ code.department_name }}<br>
+                DPS:{{ code.dps }}<br>
+                {{ code.udpr }}<br>
+                <span>Edit</span><br>
+            </li>
+        </ul>
+        <!--<span>{{ postcode }}</span>-->
+
+        <button style="background-color: rgb(49,171,101)" v-on:click="findZipCode">Find zip</button>
+        <div v-if="show_same_checkbox">
+            <input v-model="regdata.some_billship_addr" v-on:change="changeVisiblToParrnet" class="checkbox_mail" type="checkbox"/><span>My billing adress the same as my shipping address.</span><br>
+        </div>
+        <button v-on:click="commitAddress">Continue</button>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+section
+  .page-banner.d-none.d-lg-block
+    .container-fluid.content-wrapper.text-center
+      .text-wrapper
+        br.d-none.d-md-block
+        p.large
+          strong Prescription glasses from {{calculatePrice(313.24/33.47, false, true)}}
+        p.small
+          | Including&nbsp;
+          strong FREE
+          | &nbsp;lenses & coatings
+        //p.small
+          | +&nbsp;
+          strong 10% OFF
+          | &nbsp;frames over&nbsp;
+          strong ₴1400
+          | &nbsp;this Halloween - use code:&nbsp;
+          strong SPOOKY10
+      br
+      router-link#menGlassesLink(to="/glasses/prescription/mens/c14").btn.big-button Shop Men's »
+      router-link#womenGlassesLink(to="/glasses/prescription/womens/c124").btn.big-button Shop Women's »
+
+  // Slick(aria-label='Glasses Banners', ref="slick", :options="slickOptions").d-lg-none
+    router-link(to='/cheap-glasses/')
+      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/sweet-deal.jpg?20171030191515', alt='cheap £6 glasses')
+    router-link(to='/glasses/prescription/mens/c10/')
+      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-glasses.jpg?20171030191515', alt='mens glasses')
+    router-link(to='/glasses/prescription/ladies/c11/')
+      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-glasses.jpg?20171030191515', alt='womens glasses')
+    router-link(to='/2for1-glasses/')
+      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/two-for-one.jpg?20171030191515', alt='2 for 1 glasses')

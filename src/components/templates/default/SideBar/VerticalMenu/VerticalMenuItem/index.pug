@@ -1,0 +1,26 @@
+li(v-if="menu.children").nav-item
+  a.nav-link(href="#",
+    class="open-submenu",
+    :data-target="target",
+    aria-expanded="false",
+    :id="target_id",
+    v-html="convertMenuContext(menu.content)")
+  ul.dropdown-menu.sidebar-submenu(v-if="menu.children",
+  aria-expanded="false", :class="target.replace('.', '')")
+    li.nav-item.back
+      a.nav-link.close-submenu(href="#", data-toggle="collapse",
+      :data-target="target", aria-expanded="false") &nbsp;&nbsp;&nbsp;&nbsp;Back
+    VerticalMenuItem(v-for="(menu, key) in menu.children",
+    :target_id="menu.id + 'Mobile'",
+    :menu="menu", :key="(menu.id ? menu.id : 'menu-id') + key",
+    :class="menu.children ? 'subnav' : ''", :target="target + key").nav-item
+li(v-else).nav-item
+  a.nav-link(v-if="menu.link && menu.link.search(/^http(s?):\\/\\//i) !== -1",
+  :href="menu.link",
+  :id="target_id",
+  v-html="convertMenuContext(menu.content)",
+  @click.native="closeSidebar")
+  router-link.nav-link(v-else, :to="menu.link ? menu.link : '#'",
+  :id="target_id",
+  v-html="convertMenuContext(menu.content)",
+  @click.native="closeSidebar")

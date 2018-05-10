@@ -1,0 +1,45 @@
+section.nav-section
+  ul#navContactLensesTypes.contact-lenses-nav
+    li.collapse-item.with-arrows
+      router-link(to="/contact-lenses/daily-disposables/c221/")
+        img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/mob/cl-daily.png?20171207190136', width='40px')
+        |  Daily
+    li.collapse-item.with-arrows
+      router-link(to="/contact-lenses/two-weekly-disposables/c257/")
+        img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/mob/cl-weekly.png?20171207190136', width='40px')
+        |  1-2 Weekly
+    li.collapse-item.with-arrows
+      router-link(to="/contact-lenses/monthly-disposables/c224/")
+        img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/mob/cl-monthly.png?20171207190136', width='40px')
+        |  Monthly
+    li.collapse-item.with-arrows
+      router-link(to="/accessories/contact-lenses/c196/")
+        |  Solutions & accessories
+  ul#navAccordionCategories(role='tablist').contact-lenses-nav
+    li#navHeadingCategories(role="tab")
+      a#navCollapseLabelCategories(data-toggle="collapse", href='#navCollapseCategories',
+        aria-controls='navCollapseCategories', aria-expanded='false').nav-collapse-title Lens Categories
+      #navCollapseCategories(role='tabpanel', aria-labelledby='navCollapseLabelCategories',
+        data-parent="#navAccordionCategories").collapse
+        li.collapse-item
+          router-link(to='/contact-lenses/colored-contact-lenses/c223/') Colours
+        li.collapse-item
+          router-link(to='/contact-lenses/toric-astigmatic-lenses/c226/') Toric / Astigmatism
+        li.collapse-item
+          router-link(to='/contact-lenses/multifocals/c222/') Multifocal Lenses
+        li.collapse-item
+          router-link(to='/contact-lenses/extended-wear-lenses/c255/') Extended Wear Lenses
+  ul#navAccordionBrands(role='tablist').contact-lenses-nav
+    li#navHeadingBrands(role="tab")
+      a#navCollapseLabelBrands(data-toggle="collapse", href='#navCollapseBrands',
+        aria-controls='navCollapseBrands', aria-expanded='false').nav-collapse-title Brands
+      #navCollapseBrands(role='tabpanel', aria-labelledby='navCollapseLabelBrands',
+        data-parent="#navAccordionBrands").collapse
+        li.collapse-item
+          router-link(to='/contact-lenses/bausch-lomb/d31498/') Bausch & Lomb
+        li.collapse-item
+          router-link(to='/contact-lenses/ciba-vision/d31497/') Ciba Vision / Alcon
+        li.collapse-item
+          router-link(to='/contact-lenses/coopervision/d31613/') CooperVision
+        li.collapse-item
+          router-link(to='/contact-lenses/johnson-johnson/d31612/') Johnson & Johnson

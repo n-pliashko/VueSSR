@@ -1,0 +1,54 @@
+#multifocal-vision.tab-pane.fade(role="tabpanel")
+  h3
+    strong Multifocal lenses
+  hr
+  .row.card-group
+    .card.verifocal-lenses
+      .card-header
+        p.card-title Varifocal Lenses
+        p
+          em.card-text.small 4 progressive lens options
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse4.png')
+        a#verifocal-vision-continue.card-continue-button(v-on:click="$parent.swapComponent('Varifocal', 'SS')") Continue >
+        hr
+        p.card-text.smaller Varifocal. For seeing things both close and in the distance
+      .card-footer
+        a#verifocal-vision-modal-link.show-modal-link(data-toggle="modal", data-target="#verifocal-vision-modal") Learn more...
+    .card.bifocal-lenses
+      .card-header
+        p.card-title Bifocal Lenses
+        p
+          em.card-text.small 4 bifocal lens options
+      .card-block
+        img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse4.png')
+        a#bifocal-vision-continue.card-continue-button(v-on:click="$parent.swapComponent('Bifocal', 'SS')") Continue >
+        hr
+        p.card-text.smaller Bifocal. For seeing things both close and in the distance
+      .card-footer
+        a#bifocal-vision-modal-link.show-modal-link(data-toggle="modal", data-target="#bifocal-vision-modal") Learn more...
+
+  #verifocal-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Elite Freeform Varifocal
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p This elite design is optimised for a single wearer for superior vision and comfort. Taking advantage of Digital Ray-Path® technology the optimised lenses provide clear vision through every point of the lens enabling wider, more comfortable visual fields in the distance, intermediate and near vision zones.
+          strong.modal-title Find out more about Digital Ray-Path Technology.
+          .embed-responsive.embed-responsive-4by3
+            video.embed-responsive-item(src="https://www.youtube.com/watch?v=bshe290sqrs")
+          strong.modal-title
+            a(href="#").black-red-link More Information
+  #bifocal-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Occupational Office Lenses
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p This premium design offers optimised digital Ray-Path technology with balanced power distribution between distance and near vision areas for enhanced vision across the whole lens including computer and office activities.
+          p The technology on these lenses is a big leap forward for varifocal lenses, and therefore is the lens of choice for new or exisiting wearers.

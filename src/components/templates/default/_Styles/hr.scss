@@ -1,0 +1,15 @@
+// HR
+
+hr {
+  max-width: 100%;
+  border-width: 0;
+  border-bottom: 1px solid #e2e6e7;
+}
+.short-hr {
+  width: 150px;
+  border-bottom: 3px solid #efefef;
+  margin: 1.25rem auto;
+}
+.thick-hr {
+  border-bottom: 7px solid #e2e6e7;
+}

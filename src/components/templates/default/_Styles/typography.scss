@@ -1,0 +1,289 @@
+// Typography
+@import "mixins";
+
+body, html {
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica Neue,Helvetica,Roboto,Arial,sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #222;
+  background: #fefefe;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  * {
+    transition: transform .3s ease-in-out;
+    &:active, &:hover, &:visited, &:focus {
+      text-decoration: none;
+      outline: 0;
+    }
+  }
+
+  @import "links";
+
+  blockquote, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, ul, ol, li, p, pre, td, th {
+    margin: 0;
+    padding: 0;
+  }
+  ul, ol, dl {
+    list-style: none outside;
+    line-height: 1.6;
+  }
+
+  // Fonts sizes
+
+  .largest {
+    font-size: 1.2rem;
+    font-weight: 700;
+    @include largeDesktop-down {
+      font-size: 1.125rem;
+    }
+  }
+  .x-larger {
+    font-size: 1.125rem;
+  }
+  .large {
+    font-size: 1.1rem;
+    @include largeDesktop-down {
+      font-size: 1rem;
+    }
+  }
+  p, .p {
+    font-size: .875rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+  .small {
+    font-size: .8rem;
+    @include largeDesktop-down {
+      font-size: .75rem;
+    }
+  }
+  .smaller {
+    font-size: .75rem;
+  }
+  .smallest {
+    font-size: .7rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Helvetica Neue, Helvetica, Roboto, Arial, sans-serif;
+    font-style: normal;
+    line-height: 1.4;
+    color: #222;
+    text-rendering: optimizeLegibility;
+    margin-top: 0;
+    margin-bottom: .5rem;
+  }
+  h1, .h1 {
+    font-weight: 700;
+    @include largeDesktop-down {
+      font-size: 1.25rem;
+      letter-spacing: -1px;
+    }
+    @include largeDesktop {
+      font-size: 1.5rem;
+      color: #2d3e50;
+    }
+  }
+  h1.catalogue-title {
+    font-weight: 700;
+    @include largeDesktop-down {
+      font-size: 1rem;
+      margin: .75rem 0;
+      letter-spacing: 0;
+    }
+    @include largeDesktop {
+      margin: 1rem 0;
+      font-size: 1.5rem;
+    }
+  }
+  h1.super-heading {
+    font-weight: 700;
+    color: #000;
+    @include largeDesktop-down {
+      font-size: 1.75rem;
+      letter-spacing: -1px;
+    }
+    @include largeDesktop {
+      font-size: 2.5rem;
+      letter-spacing: -1px;
+    }
+  }
+  h2, .h2 {
+    @include largeDesktop {
+      font-size: 1.35rem;
+    }
+    @include largeDesktop-down {
+      font-size: 1.125rem;
+    }
+  }
+  h2.main-header, h2.title {
+    color: #2d3e50;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    @include largeDesktop {
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+    @include largeDesktop-down {
+      font-size: 1.9rem;
+      line-height: 2.5rem;
+    }
+  }
+  h3, .h3 {
+    @include largeDesktop {
+      font-size: 1.2rem;
+    }
+    @include largeDesktop-down {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+  h4, .h4 {
+    font-weight: 700;
+    @include largeDesktop {
+      font-size: 1rem;
+    }
+    @include largeDesktop-down {
+      font-size: .9rem;
+    }
+  }
+
+  .counter {
+    cursor: pointer;
+    line-height: 2.5;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    height: auto;
+    margin: 0 5px;
+    padding: 0 6px;
+    left: -1px;
+    background: #ebebeb;
+    color: #32363b;
+    transition: all .2s ease;
+    &:hover {
+      background-color: #e1e2e2;
+    }
+    &:after {
+      top: 30%;
+      left: -4px;
+      content: "";
+      position: absolute;
+      border-width: 5px 8px 5px 0;
+      border-style: solid;
+      border-color: transparent #ebebeb transparent transparent;
+      display: block;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  // Sprites
+
+  .star-sprite {
+    @include size(16px);
+    padding: 2px;
+    margin-right: 1px;
+    border-radius: 2px;
+    background-color: #00aa18;
+    line-height: .8;
+    img {
+      @include size(12px);
+    }
+  }
+
+  // Colors
+
+  .grey-container {
+    background-color: #f7f5f6;
+    padding: 2rem 0;
+    margin-top: 1.5rem;
+  }
+  .grey-background {
+    background-color: #f0f0f0;
+  }
+  .white-background {
+    background-color: #fff;
+  }
+
+  // Different
+
+  .guide-box {
+    background: #fff;
+    padding: .75rem;
+    height: 100%;
+    .big-button {
+      margin-bottom: 1rem;
+    }
+    .img-fluid {
+      margin-bottom: .5rem;
+    }
+  }
+  .text-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .box-shadow {
+    @include largeDesktop {
+      box-shadow: 0 2px 2px silver;
+    }
+    @include largeDesktop-down {
+      box-shadow: none;
+    }
+  }
+
+  .highlight, .highlight-large {
+    cursor: pointer;
+    color: #000;
+    white-space: nowrap;
+    background: #ffe4a2;
+    text-decoration: underline !important;
+    &:hover {
+      background: #fbcf62;
+      text-decoration: none;
+    }
+  }
+  .highlight {
+    padding: 3px 6px;
+  }
+  .highlight-large {
+    padding: 16px 32px;
+    border: 1px solid #e8c672;
+    font-weight: bold;
+  }
+
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    margin: 0;
+    padding: 0 1em;
+  }
+  .has-tip {
+    font-weight: inherit;
+    border-bottom: dotted 1px #1970aa;
+    position: relative;
+    display: inline-block;
+    cursor: help;
+  }
+
+
+  @import
+    "buttons",
+    "modals",
+    "steps",
+    "forms", "validation",
+    "logo", "hr",
+    "navs",
+    "loader";
+}

@@ -1,0 +1,175 @@
+#addReviewPage.page
+  PageHeader
+
+  main
+    .container-fluid.pb-1
+      .row
+        .col-12.text-center
+          .loading(v-if="loading")
+          br
+          h1 Leave a product review
+          p
+            button#reviewGuideButton(data-toggle='modal',
+            data-target='#reviewGuideModal').btn Writing a review - guidelines
+          ReviewGuidesModal
+          br
+          hr
+    form#reviewForm(method='POST', action='', enctype='multipart/form-data').container-fluid.py-4.px-2.px-md-3
+      .row
+        .col-12.col-md-6
+          p.largest Review the following product...
+          p.small
+            strong {{item.designer_name}} {{item.name}} - {{item.model_name}} ({{item.category_name}})
+          p.smallest
+            strong SKU:
+            |  {{ss}}
+          img(src='https://d9qzjwuieyamt.cloudfront.net/public/en/res/images/items/stockpix/1611_01_1.jpg').img-fluid.w-100
+
+        .col-12.col-md-6
+          p.x-larger
+            strong Rating
+          p.smaller Rate the frame style, quality and value for money.
+          br
+
+          //label(for='riid') Item ID:
+            input#riid(v-model='formr.riid', name='riid')
+          //br
+          .form-group
+            label(for='rrst').form-control-label
+              p
+                strong Style:
+            input#rrst(v-model='formr.rrst',
+              type='range',
+              min="0",
+              max="5",
+              step='0.5',
+              name='rrst').form-control
+            .rateit.bigstars(data-rateit-backingfld="#rrst",
+              data-rateit-resetable="false",
+              data-rateit-value="0",
+              data-rateit-ispreset="true",
+              data-rateit-starwidth="32",
+              data-rateit-starheight="32").d-block
+          .form-group
+            label(for='rrq').form-control-label
+              p
+                strong Quality:
+            input#rrq(v-model='formr.rrq',
+              type='range',
+              min='0',
+              max='5',
+              step='0.5',
+              name='rrq').form-control
+            .rateit.bigstars(data-rateit-backingfld="#rrq",
+              data-rateit-resetable="false",
+              data-rateit-value="0",
+              data-rateit-ispreset="true",
+              data-rateit-starwidth="32",
+              data-rateit-starheight="32").d-block
+          .form-group
+            label(for='rrv').form-control-label
+              p
+                strong Value:
+            input#rrv(v-model='formr.rrv',
+              type='range',
+              min='0',
+              max='5',
+              step='0.5',
+              name='rrv').form-control
+            .rateit.bigstars(data-rateit-backingfld="#rrv",
+              data-rateit-resetable="false",
+              data-rateit-value="0",
+              data-rateit-ispreset="true",
+              data-rateit-starwidth="32",
+              data-rateit-starheight="32").d-block
+          .form-check.mb-0
+            p
+              strong Would you recommend this product to a friend?
+          .form-check.form-check-inline
+            label(for='rcpy').form-check-label
+              input#rcpy(name='rcpy', value='1', v-model='formr.rcp', checked='', type='radio').form-check-input
+              p Yes
+          .form-check.form-check-inline
+            label(for='rcpn').form-check-label.ml-2
+              input#rcpn(name='rcpn', value='0', v-model='formr.rcp', type='radio').form-check-input
+              p No
+          br
+          br
+          .form-group
+            label(for='fit').form-control-label
+              p
+                strong How did your glasses fit?
+            select#fit(v-model='formr.fit', name='fit').form-control
+              option(value='1') Too small
+              option(value='2') Moderately small
+              option(value='3') As expected
+              option(value='4') Moderately large
+              option(value='5') Too large
+          .row.mb-4.mb-md-0
+            .col-12.col-lg-6
+              .form-group
+                label(for='old').form-control-label
+                  p
+                    strong How old are you?
+                select#old(v-model='formr.old', name='old').form-control
+                  option(value='0') Select age (optional)
+                  option(value='1') 18-24
+                  option(value='2') 25-34
+                  option(value='3') 35-44
+                  option(value='4') 45-54
+                  option(value='5') 55+
+            .col-12.col-lg-6
+              .form-group
+                label(for='style').form-control-label
+                  p
+                    strong What's your style?
+                select#style(v-model='formr.style', name='style').form-control
+                  option(value='0') Select style (optional)
+                  option(value='1') Cool
+                  option(value='2') Classic
+                  option(value='3') Geeky
+                  option(value='4') Retro
+                  option(value='5') Other
+      .row
+        .col-12
+          .form-group
+            label(for='rti').form-control-label
+              p.largest Your Review
+            input#rti(v-model='formr.rti', name='rti', placeholder='Headline for your review').form-control
+          .form-group
+            label(for='rtt').sr-only Review:
+            textarea#rtt(v-model='formr.rtt',
+            name='rtt',
+            rows="6", cols="85",
+            placeholder='Write your review here describing what you like or dislike about the product.').form-control
+      .row.text-center
+        #ReviewAttachedError.col-12(style='display: none;')
+          #reviewImageAttachingError
+            p Oops, an error has occurred. We've been alerted and will fix ASAP.
+        #ReviewLoading.col-12(style='display: none;')
+          #reviewImageAttaching
+            p One moment, we're attaching your image...
+      .row(v-if='formr.image').mb-2
+        .col
+          .img-wrapper
+            img(:src='formr.image').float-left
+            i#removePhotoButton(@click='removeImage')
+              span.sr-only Remove image
+      .row
+        .col-12.col-md-6.ml-auto
+          .row
+            .col-12.col-md-6
+              .form-group.mb-2
+                label#uploadPhotoButton.btn.big-orange-button
+                  input(type='file', @change='onFileChange').form-control-file
+                  i.fa.fa-camera
+                  |   Add Photo
+
+            .col-12.col-md-6
+              .form-group.mb-2
+                a#submitReviewButton(href='#', @click.stop='commitMethod').btn.big-orange-button Submit Reviews
+      .row
+        br
+
+  PageFooter
+  ScrollToTop

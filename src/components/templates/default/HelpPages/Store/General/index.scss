@@ -1,0 +1,21 @@
+.store-banner-big {
+  height: 200px;
+  max-width: 100%;
+  background: url('/static/shop-in-store.jpg') center center no-repeat;
+}
+.store-banner-small {
+  height: 200px;
+  max-width: 100%;
+  background: url('/static/shop-in-store_mob.jpg') center center;
+}
+
+.about-us-store {
+  background-color: #1d1e1f;
+  margin-bottom: 2rem;
+  padding: .75rem 0 1rem;
+  color: #fff;
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+  }
+}

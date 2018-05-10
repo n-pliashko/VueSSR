@@ -1,0 +1,42 @@
+.account-links {
+  background-color: #eee;
+  padding: 1rem 0 3rem;
+}
+
+.acct-wrapper {
+  background-color: #fff;
+  padding: 2rem 0;
+}
+.acct-wrapper:not(:last-child) {
+  border-bottom: 2px solid #f7f5f6;
+}
+.account-sprite {
+  background: url('/static/account-sprite.png') no-repeat;
+  background-size: 250px;
+  padding-left: 4.5rem;
+}
+
+.acct-menu {
+  background-position: 0 0;
+}
+.acct-script {
+  background-position: 0 -145px;
+}
+.acct-helpdesk {
+  background-position: 0 -291px;
+}
+.acct-wishlist {
+  background-position: 0 -492px;
+}
+.acct-profile {
+  background-position: 0 -70px;
+}
+.acct-setting {
+  background-position: 0 -217px;
+}
+.acct-reviews {
+  background-position: 0 -362px;
+}
+.acct-basket {
+  background-position: 0 -427px;
+}

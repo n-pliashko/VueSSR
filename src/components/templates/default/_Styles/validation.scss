@@ -1,0 +1,23 @@
+// Validation
+
+.was-validated {
+  .form-control:invalid, .form-control.is-invalid, .form-control.invalid,
+  .custom-select:invalid, .custom-select.is-invalid {
+    background-color: rgba(198, 15, 19, .1);
+    border-color: #c60f13;
+    & + label {
+      color: #c60f13;
+    }
+  }
+}
+
+.alert-danger {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid hsla(0, 0%, 4%, .25);
+  border-radius: 3px;
+  position: relative;
+  color: #222;
+  background-color: #fcd6d6;
+  font-size: .875rem;
+}

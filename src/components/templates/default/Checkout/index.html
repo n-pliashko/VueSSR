@@ -1,0 +1,388 @@
+<div id="checkout-page" class="page">
+    <CheckoutUpperBar></CheckoutUpperBar>
+    <CheckoutHeader></CheckoutHeader>
+    <CheckoutHeaderSmall></CheckoutHeaderSmall>
+    <main>
+        <div id="error-message" v-if="order.warnmessage" class="error-block">
+            <p v-if="order.warnmessage">{{ order.warnmessage }}</p>
+            <p v-else="">Unexpected error occurred</p>
+        </div>
+        <section class="checkout-steps">
+            <div class="container-fluid text-center">
+                <div class="text-center">
+                    <span class="step checkout-done">
+                        <router-link id="link-to-basket" :to="{ name: 'Basket' }" class="text-white">1. Basket </router-link>
+                    </span>
+                    <span class="step checkout-done wider-step">
+                        <span class="text-white">2. Checkout & Payments</span>
+                    </span>
+                </div>
+                <h1 class="d-none d-md-block"><strong>Checkout</strong></h1>
+            </div>
+        </section>
+        <section v-if="!!currencies" class="order-summary">
+            <div class="container-fluid text-center">
+                <div class="row py-3">
+                    <div class="col-12 d-none d-md-block">
+                        <p v-if="currencies != null && order.currency_id != undefined" class="large">
+                            <strong>Order Summary:
+                                <span class="text-danger"> {{currencies[order.currency_id]['symbol']}}{{parseFloat(order.order_amount) + parseFloat(order.shipping_cost)}}</span>
+                            </strong>
+                        </p>
+                        <p v-if="activeShippingId && currencies != null && order.currency_id != undefined" class="m-1 smaller">Including delivery charge:&nbsp;
+                            <strong v-if="order.shipping_cost != 0">{{currencies[order.currency_id]['symbol']}}{{order.shipping_cost}}</strong>
+                            <strong v-else="">FREE</strong>.
+                            <!--span  ({{deliveryMethods[activeShippingId]['delivery_method_name']}} mail selectded)-->
+                        </p>
+                        <p v-else="" class="m-1 smaller">
+                            Without shipping cost (shipping not selected)
+                        </p>
+                        <!--p.m-1.small Including delivery charge&nbsp;-->
+                        <!--  strong £5.95-->
+                        <!--  | &nbsp;(standard mail selected)-->
+                        <router-link :to="showOrderUrl">
+                            <button id="view-orders-button" class="btn view-orders">View items in your order</button>
+                        </router-link>
+                    </div>
+                    <div class="col-12 d-block d-md-none">
+                        <p v-if="currencies != null && order.currency_id != undefined" class="large">
+                            <strong>Order Summary (inc delivery):
+                                <span class="text-danger"> {{currencies[order.currency_id]['symbol']}}{{parseFloat(order.order_amount) + parseFloat(order.shipping_cost)}}</span>
+                                <a id="expand-summary" data-toggle="collapse" href="#collapse-summary" aria-expanded="false" aria-controls="collapse-summary" class="ml-3">
+                                    <i class="fa fa-chevron-down"></i>
+                                </a>
+                            </strong>
+                        </p>
+                        <div id="collapse-summary" class="collapse"><br/>
+                            <router-link :to="showOrderUrl">
+                                <button id="view-orders-button-xs" class="btn view-orders">View items in your order
+                                </button>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="stages-accordion" v-if="order.order_number" role="tablist" class="inner-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="first-stage" class="col-12 stage">
+                        <div id="section-one-header" role="tab" class="row">
+                            <div :class="[[step == 0 ? inProgress : ''], [step >= 1 ? finished : '']]" class="header-wrapper col-12">
+                                <h2 class="stage-header">1. Customer Details
+                                    <span v-if="step >= 1" class="tick"></span>
+                                    <a id="expand-section-one" v-if="step >= 1" data-toggle="collapse" data-parent="#stages-accordion" href="#section-one-collapse" aria-expanded="true" aria-controls="section-one-collapse" class="expand-section d-md-none">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </a>
+                                </h2>
+                                <hr class="d-none d-md-block my-md-0"/>
+                            </div>
+                        </div>
+                        <div id="section-one-collapse" role="tabpanel" aria-labelledby="section-one-header" data-parent="#stages-accordion" class="collapse multi-collapse show">
+                            <div class="row px-lg-3">
+                                <div class="already-wrapper col-12 col-lg-3">
+                                    <div class="already-customer">
+                                        <div class="row">
+                                            <div class="already-element col-7 col-sm-6 col-lg-12">
+                                                <p class="float-right float-lg-none">
+                                                    <strong>Already a customer?</strong>
+                                                </p>
+                                            </div>
+                                            <div class="already-element col-5 col-sm-6 col-lg-12">
+                                                <router-link to="/login" class="float-left float-lg-none">
+                                                    <button id="sign-in-button" class="btn">Sign In</button>
+                                                </router-link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="new-customer col-12 col-lg-9">
+                                    <div class="pl-lg-4 mb-3">
+                                        <h5 class="my-2 m-lg-0">
+                                            <strong class="d-block d-md-none">Or continue as a new customer</strong>
+                                            <strong class="d-none d-md-block">Continue&nbsp;
+                                                <span v-if="order.profile_number">checkout</span>
+                                                <span v-else="">as a new customer</span>
+                                            </strong>
+                                        </h5>
+                                        <p style="line-height: 1.2;" class="font-italic small">You can add a password
+                                            later if you would like to create account.</p>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-12 col-md-6 text-right">
+                                            <div class="form-group row">
+                                                <label for="fullname_first" class="col-form-label col-4 col-xl-3">Your
+                                                    full name:</label>
+                                                <div class="col-4 col-xl-3">
+                                                    <input id="fullname_first" v-model="order.profile.first_name" type="text" :disabled="disableFields>=1" placeholder="First Name" :class="[errors.first_name && errors.first_name !== true ? &quot;error&quot; : &quot;&quot;]" class="form-control"/>
+                                                    <p v-if="errors.first_name && errors.first_name !== true">{{errors.first_name}}</p>
+                                                </div>
+                                                <div class="col-4 col-xl-3">
+                                                    <input id="fullname_last" v-model="order.profile.last_name" type="text" :disabled="disableFields>=1" placeholder="Last Name" :class="[errors.last_name && errors.last_name !== true ? &quot;error&quot; : &quot;&quot;]" class="form-control"/>
+                                                    <p v-if="errors.last_name && errors.last_name !== true">{{errors.last_name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="reg_email" class="col-form-label col-4 col-xl-3">Your email:</label>
+                                                <div class="col-8 col-xl-6">
+                                                    <input id="reg_email" v-model="order.profile.email" type="text" placeholder="Email" :disabled="disableFields>=1" :class="[errors.email && errors.email !== true ? &quot;error&quot; : &quot;&quot;]" class="form-control"/>
+                                                    <p v-if="errors.email && errors.email !== true"> {{errors.email}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="reg_phone" class="col-form-label col-4 col-xl-3">Telephone number:</label>
+                                                <div class="col-8 col-xl-6">
+                                                    <input id="reg_phone" v-model="order.profile.phone" type="text" placeholder="Phone" :disabled="disableFields>=1"
+                                                           :class="[errors.phone && errors.phone !== true ? &quot;error&quot; : &quot;&quot;]"
+                                                           class="form-control"/>
+                                                    <p v-if="errors.phone && errors.phone !== true">
+                                                        {{errors.phone}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="reg-country" class="col-form-label col-4 col-xl-3">Your
+                                                    country:</label>
+                                                <div class="col-8 col-xl-6">
+                                                    <select id="reg-country" @change="selectCountry"
+                                                            v-model="order.reg_country" :disabled="disableFields>=1"
+                                                            :class="[errors.reg_country && errors.reg_country !== true ? &quot;error&quot; : &quot;&quot;]"
+                                                            class="form-control">
+                                                        <option v-for="(country,index) in countryList"
+                                                                :value=" country.country_code_2 ">{{
+                                                            country.country_name }}
+                                                        </option>
+                                                    </select>
+                                                    <p v-if="errors.reg_country && errors.reg_country !== true">
+                                                        {{errors.reg_country}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div v-if="!order.profile_number" class="row d-none d-md-block mb-3">
+                                                <div class="col-12 px-0">
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input id="check-registration" v-model="showRegistration"
+                                                                   type="checkbox" :disabled="disableFields>=1"
+                                                                   class="form-check-input mr-2"/>I want to continue as
+                                                            a new user at SelectSpecs
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div v-if="showRegistration" class="row d-none d-md-block mb-2">
+                                                <div class="col-12 px-0">
+                                                    <div class="form-group row">
+                                                        <label for="password1" class="col-form-label col-12 col-md-4">Password:</label>
+                                                        <div class="col-12 col-md-8">
+                                                            <input id="password1" v-model="regdata.password"
+                                                                   type="password" :disabled="disableFields>=1"
+                                                                   :class="[errors.password && errors.password !== true ? &quot;error&quot; : &quot;&quot;]"
+                                                                   class="form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="password2" class="col-form-label col-12 col-md-4">Repeat
+                                                            password:</label>
+                                                        <div class="col-12 col-md-8">
+                                                            <input id="password2" v-model="regdata.password_rtp"
+                                                                   type="password" :disabled="disableFields>=1"
+                                                                   :class="[errors.password && errors.password !== true ? &quot;error&quot; : &quot;&quot;]"
+                                                                   class="form-control"/>
+                                                            <p v-if="errors.password && errors.password !== true">
+                                                                {{errors.password}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row d-none d-md-block">
+                                                <h5><strong>Newsletter Registration</strong></h5>
+                                                <p class="small my-1">We'd love to send you our&nbsp;<em
+                                                        class="orange-link">very best deals</em>&nbsp;and offers
+                                                    directly to you inbox.</p>
+                                                <label class="form-check-label text-md-left">
+                                                    <input id="check-newsletter" v-model="order.profile.subscribed"
+                                                           type="checkbox" :disabled="disableFields>=1"
+                                                           class="form-check-input mr-2"/>I want to receive the
+                                                    Newsletter for information on current offers, services and surveys.
+                                                </label>
+                                            </div>
+                                            <div class="row justify-content-center d-md-none py-2">
+                                                <p class="small"><strong>Subscribe to Newsletter & Offers?</strong>&nbsp;&nbsp;<span
+                                                        class="form-check-inline">
+                            <label class="form-check-label">
+                              <input id="check-newsletter-xs" v-model="order.profile.subscribed" type="checkbox"
+                                     class="form-check-input"/><span class="font-italic">Yes, please</span>
+                            </label></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row my-2">
+                                        <div class="col-12 px-lg-0">
+                                            <button id="continue-first-button" @click.prevent="next_tick(1)"
+                                                    v-if="!disableFields" :disabled="disabledNextButton"
+                                                    class="btn button-continue"><span data-toggle="collapse"
+                                                                                      data-target="#section-one-collapse"
+                                                                                      aria-controls="section-one-collapse"
+                                                                                      class="d-md-none">Continue&nbsp;&nbsp;<i
+                                                    class="fa fa-caret-right"></i></span><span
+                                                    class="d-none d-md-inline">Continue&nbsp;&nbsp;<i
+                                                    class="fa fa-caret-right"></i></span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="second-stage" class="col-12 stage">
+                        <div id="section-two-header" role="tab" class="row">
+                            <div :class="[[step == 1 ? inProgress : ''], [step >= 2 ? finished : '']]"
+                                 class="header-wrapper col-12">
+                                <h2 class="stage-header">2. Delivery Address<span v-if="step >= 2"
+                                                                                  class="tick"></span><a
+                                        id="expand-section-two" v-if="step >= 2" data-toggle="collapse"
+                                        data-parent="#stages-accordion" href="#section-two-collapse"
+                                        aria-expanded="false" aria-controls="section-two-collapse"
+                                        class="expand-section d-md-none"><i class="fa fa-chevron-down"></i></a></h2>
+                                <hr class="d-none d-md-block my-md-0"/>
+                            </div>
+                        </div>
+                        <div id="section-two-collapse" role="tabpanel" aria-labelledby="section-two-header"
+                             data-parent="#stages-accordion" class="address-zip collapse multi-collapse">
+                            <CheckoutAddressZip show_same_checkbox="true" :changeVisiblDelivery="changeVisiblDelivery"
+                                                :next_tick="next_tick" type="delivery" @commitParams="commitParams()"
+                                                :data="order.deliveryAddress" :regCountry="order.reg_country"
+                                                :showDeliveryForm="showDeliveryForm"></CheckoutAddressZip>
+                            <CheckoutAddressZip :next_tick="next_tick" v-if="!show_delivery && step >= 1"
+                                                type="billing" :regCountry="order.reg_country"
+                                                :data="order.billingAddress"
+                                                :showDeliveryForm="showDeliveryForm"></CheckoutAddressZip>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="third-stage" class="col-12 stage">
+                        <div id="section-three-header" role="tab" class="row">
+                            <div :class="[[step == 2 ? inProgress : ''], [step >= 3 ? finished : '']]"
+                                 class="col-12 header-wrapper">
+                                <h2 class="stage-header">3. Shipping Method<span v-if="step > 3" class="tick"></span><a
+                                        id="expand-section-three" v-if="step > 3" data-toggle="collapse"
+                                        data-parent="#stages-accordion" href="#section-three-collapse"
+                                        aria-expanded="false" aria-controls="section-three-collapse"
+                                        class="expand-section d-md-none"><i class="fa fa-chevron-down"></i></a></h2>
+                                <hr class="d-none d-md-block my-md-0"/>
+                            </div>
+                        </div>
+                        <CheckoutDelivery :next_tick="next_tick" :deliveryMethods="deliveryMethods"
+                                          :activeShippingId="activeShippingId" :order="order" :currencies="currencies"
+                                          :setShippingId="setShippingId"
+                                          :onSubmitForm="onSubmitForm"></CheckoutDelivery>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="fourth-stage" class="col-12 stage">
+                        <div id="section-four-header" role="tab" class="row">
+                            <div :class="[[step == 4 ? inProgress : ''], [step > 4 ? finished : '']]"
+                                 class="col-12 header-wrapper">
+                                <h2 class="stage-header">4. Payment<span v-if="step > 4" class="tick"></span><a
+                                        id="expand-section-four" v-if="step > 4" data-toggle="collapse"
+                                        data-parent="#stages-accordion" href="#section-four-collapse"
+                                        aria-expanded="false" aria-controls="section-four-collapse"><i
+                                        class="fa fa-chevron-down"></i></a></h2>
+                                <hr class="d-none d-md-block my-md-0"/>
+                            </div>
+                        </div>
+                        <div id="section-four-collapse" role="tabpanel" aria-labelledby="section-four-header"
+                             data-parent="#stages-accordion">
+                            <div v-if="order.paymentMethodId && step >= 4">
+                                <div class="row">
+                                    <div class="col-12 px-0 px-md-3">
+                                        <div class="sub-text">
+                                            <p class="small">By processing to payment your reconfirming the items in
+                                                your order are correct and you agree to our T&Cs</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="frame col-12 col-lg-6">
+                                        <PaymentFrame v-if="order.paymentMethodId && step >= 4"
+                                                      :order_hash="order.hash" sandbox="1"
+                                                      :payment_system_number="order.paymentMethodId"></PaymentFrame>
+                                    </div>
+                                    <div class="col-lg-6 d-none d-lg-block">
+                                        <div class="final-summary my-2"><br/>
+                                            <h5><strong v-if="currencies != null">Final Summary:<span
+                                                    class="text-danger"> {{currencies[order.currency_id]['symbol']}}{{parseFloat(order.order_amount) + parseFloat(order.shipping_cost)}}</span></strong>
+                                            </h5>
+                                            <p v-if="activeShippingId != null" class="small">Including delivery charge
+                                                of<span v-if="order.shipping_cost != 0" class="font-weight-bold"> {{currencies[order.currency_id]['symbol']}}{{order.shipping_cost}}</span><span
+                                                        v-else="" class="font-weight-bold"> FREE</span><span> ({{deliveryMethods[activeShippingId]['delivery_method_name']}} mail selected)</span>
+                                            </p><br/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-12
+                                .container-fluid.mx-0.px-0.px-md-3
+                                  .row.sub-text
+                                    .col-12.px-0
+                                      p.my-0.mx-2.mx-md-auto.small By processing to payment your reconfirming the items in your order are correct and you agree to our T&Cs
+                                  .row.py-3
+                                    PaymentFrame(v-if="order.paymentMethodId && step >= 3", :order_hash="order.hash", sandbox="1", :payment_system_number="order.paymentMethodId").col-12.col-md-6
+                                    .col-md-6.d-none.d-md-block
+                                      .final-summary
+                                        br
+                                        p.p.m-0
+                                          strong(v-if='currencies != null')
+                                            | Final Summary:
+                                            span.text-danger  {{currencies[order.currency_id]['symbol']}}{{parseFloat(order.order_amount) + parseFloat(order.shipping_cost)}}
+                                        p(v-if='activeShippingId != null').small
+                                          | Including delivery charge of
+                                          span.font-weight-bold  {{currencies[order.currency_id]['symbol']}}{{order.shipping_cost}}
+                                          span  ({{deliveryMethods[activeShippingId]['delivery_method_name']}} mail selected)
+                                        br
+                                  .row.pt-md-3
+                                    .col-12.px-0
+                                      button#continue-forth-button(v-on:click='onSubmit').btn.big-orange-button.button-continue Continue ▶
+                                      br
+                                      br
+                                //.container-fluid.mx-0.d-none.d-md-block
+                                  .row
+                                    .col-12.px-md-0
+                                      button#continue-forth-button(v-on:click='onSubmitForm',
+                                        data-toggle="modal",
+                                        data-target="#payment-modal").btn.big-orange-button Continue ▶
+                                      #payment-modal(tabindex="-1",
+                                        role="dialog",
+                                        aria-hidden="true").modal.modal-lg.fade
+                                        .modal-dialog(role="document")
+                                          //PaymentFrame(v-if='order.paymentMethodId && step >= 4',
+                                          //  :order_hash='order.hash',
+                                          //  sandbox='1',
+                                          //  :payment_system_number='order.paymentMethodId').modal-content
+                                          // ---------------
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="fail-checkout" v-else="">
+            <div id="not-found-message" class="error-block">
+                <p v-if="order.error">{{ order.error }}</p>
+                <p v-else="">Order not found</p>
+            </div>
+        </section>
+    </main>
+    <CheckoutRates></CheckoutRates>
+    <CheckoutFooter></CheckoutFooter>
+    <ScrollToTop></ScrollToTop>
+</div>

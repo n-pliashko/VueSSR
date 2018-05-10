@@ -1,0 +1,32 @@
+#basket-modal(tabindex='-1', role='dialog', aria-hidden='true').modal.fade
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        h1#basketModalLabel.modal-title Cart
+        button(type='button',
+          data-dismiss='modal',
+          aria-label='Close').btn.close
+          span ×
+      .modal-body
+        .row(v-if='!hasProducts')
+          .col-12
+            em Please add some products to cart.
+        .card(v-else='',
+            v-for='item in basket.order.orderItems',
+            :key='item.item_number').mb-2
+          .card-block
+            .float-none.float-sm-left.mb-2
+              h5.card-title
+                strong {{item.designerName}} {{item.modelName}} - {{item.option.description}}
+              p.card-text.ml-2 ${{parseFloat(item.option.price).toFixed(2)}}
+                span.ml-2 x {{item.quantity}}
+            img.float-none.float-sm-right(src="https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg")
+      .modal-footer.d-flex.flex-column
+        h5
+          strong.text-uppercase Total:&nbsp;
+          span ${{basket.order ? basket.order.final_total : '0.00'}}
+        button#open-checkout(type='button',
+          @click='checkout',
+          :disabled='!!!hasProducts').btn.big-orange-button
+          | Checkout
+        router-link(:to='{name: "Basket"}').blue-ul Go to basket

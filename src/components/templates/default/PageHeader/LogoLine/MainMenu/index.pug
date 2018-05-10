@@ -1,0 +1,28 @@
+nav#navMenuDesktop.d-none.d-lg-block
+  .row
+    .col-12
+      .nav-wrapper
+        v-list.nav.nav-tabs.justify-content-center
+          v-menu(v-for="(menu, key) in treeData",
+            :key="key", open-on-hover, offset-y,
+            class="main-nav nav-item")
+            a(v-if="menu.link && menu.link.search('/^http(s?):\\/\\//') !== -1",
+              :id="menu.id",
+              :href="menu.link",
+              slot="activator").nav-link.main-nav-link
+              span(v-html="convertMenuContext(menu.content)")
+              i.fa.pull-right.fa-caret-down(v-if="menu.children")
+            router-link(v-else, :to="menu.link ? menu.link : '#'",
+              :id="menu.id",
+              slot="activator").nav-link.main-nav-link
+              span(v-html="convertMenuContext(menu.content)")
+              i.fa.pull-right.fa-caret-down(v-if="menu.children")
+            v-list.mainnav-dropdown(v-if="menu.children")
+              v-list-tile(v-for="(menu, key) in menu.children",
+                :key="key",
+                :class="menu.children ? 'sub-nav' : ''")
+                SubMenuItem(:menu="menu",
+                  :onHover="true",
+                  :openDelay=300,
+                  :closeDelay=0,
+                  :target_id="menu.id").nav-item

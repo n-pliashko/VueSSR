@@ -1,0 +1,34 @@
+#promoBox(tabindex='-1', role='dialog', aria-hidden='true').modal.small.fade
+  .modal-dialog(role='document')
+    .modal-content
+      button#promoModalClose(type='button',
+      data-dismiss='modal',
+      aria-label='Close').close
+        span ×
+      .modal-body
+        .text-center
+          p.largest
+            u Autumn Offer
+          p
+            strong 10% OFF frames &amp; sunglasses over &nbsp;
+              span(v-html="currency.symbol")
+              |{{exchange(1950)}}
+          p.small Use code
+            span.red
+              strong  'AUTUMN'
+            |  at basket.
+          br
+          br
+          hr
+        .text-left
+          br
+          br
+          p
+            strong TERMS: 10% OFF Frames over &nbsp;
+              span(v-html="currency.symbol")
+              |{{exchange(1950)}}
+          p.small   1). Valid on frames & sunglasses over &nbsp;
+            span(v-html="currency.symbol")
+            |{{exchange(1950)}} only.
+          p.small   2). Does not include lenses.
+          p.small   3). Not valid on 2 for 1 collection.

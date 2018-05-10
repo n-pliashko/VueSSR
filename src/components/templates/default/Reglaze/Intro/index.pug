@@ -1,0 +1,14 @@
+section.container-fluid.mb-4
+  .row
+    .col-12.text-center
+      br.d-md-none
+      h1.black Reglaze My Glasses / Sunglasses
+      p
+        | Give your favourite pair of prescription glasses (or sunglasses) a new lease of life with our premium lens replacement service starting from only&nbsp;
+        strong
+          span(v-html="calculatePrice(1096.33/33.47, false, true)")
+        |  including thin lenses. Offering great value, this service is perfect for those looking to extend the life of their existing eyewear.
+      .d-none.d-lg-block
+        br
+        p
+          img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/reglaze/reglaze.jpg?20171114194644')

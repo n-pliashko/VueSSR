@@ -1,0 +1,53 @@
+#items
+  .col-6.col-lg-4.shop-item(v-for='item in $parent.calculatedItems.data')
+    .item-wrapper(:id='"item" + item.id + "Wrapper"', @mouseover="autoPlaySlick(item.id, $event)",@mouseout="stopPlaySlick(item.id, $event)")
+      router-link(@click.native="rememberRoute",
+        :to="'/' + ($parent.main_category_link.length > 0 ? $parent.main_category_link : (item.category_short_name ? reverseRouteName(item.category_short_name) : 'category')) + '/' + " +
+        "reverseRouteName(item.designer_name) + '/' + reverseRouteName(item.model_name) + '/ss' + parseFloat(item.id / 100).toFixed(2) + '.html'")
+        // Draft code for corner preview
+        .item-feature.two-for-one-item.d-none.d-md-block
+        em.item-prescription Prescription ready
+        div.productImg
+          img.item-photo.img-fluid.mb-2(v-if="item.src.length === 0", src="https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg", :alt="item.designer_name + ' - ' + item.model_name")
+          // Slick(v-else, :ref="'slick_' + item.id", :options="slickOptions")
+            div(v-for="img in item.src")
+              img.item-photo.img-fluid.mb-2(:src="img ? cdnUrl + '/' + img : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'", :alt="item.designer_name + ' - ' + item.model_name")
+        .item-designer-name.w-100.ellipsis
+          | {{item.designer_name}} {{item.model_name}}
+        // Draft code for options preview
+        .item-options(v-if='!item.options').d-none.d-md-block.mb-md-3 {{item.count_options > 1 ? item.count_options + ' options' : item.name}}
+        .item-no-options(v-else='item.options').d-none.d-md-block
+        .item-price
+          span.was(v-if="parseFloat(item.price_old) > parseFloat(item.price)")
+            span(v-html="$parent.currency.symbol")
+            | {{(parseFloat(item.price_old)).toFixed(2)}}
+          span.now
+            span(v-html="$parent.currency.symbol")
+            | {{(parseFloat(item.price)).toFixed(2)}}
+        .item-advantages
+          | FREE Lenses & Coatings.
+          br.d-sm-none
+        // Draft code for review stars preview
+        .item-rating(v-if='!item.rating').text-right.font-italic.mt-2.mb-3.mx-auto
+          .stars
+            // Draft code for reviews number preview
+            span (1)
+        .item-no-rating(v-else='item.rating').d-block.mt-2.mb-3.mx-auto
+        //router-link(to="/").btn.accent-button.text-uppercase.mb-3 Details »
+      .item-buttons
+        button(:id="'seeDetails' + item.id + 'Button'", type="button").btn.cat-button.details-button
+          router-link(:to="{ name: 'ItemPage', params: {item: parseFloat(item.id / 100).toFixed(2), category: reverseRouteName(item.category_name), designer: reverseRouteName(item.designer_name), model: reverseRouteName(item.model_name)}}")
+            span.d-md-none More
+            span.d-none.d-md-inline Details »
+        button(:id="'addToWishlist' + item.id + 'Button'",
+        type='button', @click='setSwitchWishlist(item.id)').btn.cat-button.wishlist-button
+          i.fa.fa-heart(v-if='$store.getters.isExistWishlist(item.id)', aria-hidden='true')
+          i.fa.fa-heart-o(v-else, aria-hidden='true')
+      //
+        .wish-enable(v-if='$store.getters.isExistWishlist(item.id)')
+          i.fa.fa-heart-o.nav-icons.wish-enable(@click='setSwitchWishlist(item.id)')
+        .wish-desible(v-if='!$store.getters.isExistWishlist(item.id)')
+          i.fa.fa-heart-o.nav-icons.wish-desible(@click='setSwitchWishlist(item.id)')
+  .col-12(v-if="!$parent.itemLoading && $parent.items.total == 0")
+    p.text-center
+      strong Sorry, no products matched your search. Please try another search term.

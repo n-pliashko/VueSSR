@@ -1,0 +1,460 @@
+#itemPage.page
+  PageHeader
+  Breadcrumbs.mb-md-3
+  main.d-none.d-lg-block
+    section.product-options
+      .container-fluid
+        .row.py-2
+          .col-12.col-lg-7.col-xl-8
+            .row.mb-3
+              .col-md-3.col-lg-2
+                //router-link#designerImg(:to="'/glasses/prescription/' + item.designer.designer_name + '/c' + item.designer.designer_number")
+                router-link#designerImg(:to="designerUrl")
+                  img.img-fluid(v-if="item.designer && item.designer.logo", :src="cdnUrl + '/res/' + item.designer.logo", :alt="item.designer.designer_name")
+              .col-12.col-md-9.col-lg-10
+                h1.product-name(v-if="item.designer") {{item.designer.designer_name}} {{item.model_name}}
+                .review-summary.d-flex.flex-row.align-items-start.align-items-md-center
+                  .rateit(data-rateit-mode="font",
+                  data-rateit-value='5',
+                  data-rateit-ispreset='true',
+                  data-rateit-readonly='true',
+                  title='Product reviews from our customers').d-inline-block
+                  p.smallest.ml-1
+                    strong
+                      span(itemprop='ratingValue') 4.8
+                      |  / 5
+                    |  (
+                    span(itemprop='reviewCount')
+                      a.blue-ul(href='#productReviewAnchor') 31
+                    | )  | &nbsp;
+                    span.customerRecommendation.text-success
+                      i.fa.fa-thumbs-up
+                      strong  100%
+                      |  of customers recommend this product
+            .row#item_images_block(v-if='!options[selected.option]')
+              .text-center.center
+                img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_gif/ajax-loader_big.gif')
+            .row(v-else)
+              // Slick#item_images_block(ref="slick", :options="slickOptions").col-12
+                div(v-for="image in options[selected.option].fullsized_images", :key="image.image_id")
+                  img.img-fluid(:src="cdnUrl + cdnUrlPrefix +  image.src")
+                div(v-if="!options[selected.option].fullsized_images || options[selected.option].fullsized_images.length === 0")
+                  img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/650default_uk.jpg')
+
+            .row
+              #item_media.media.col-12
+                p
+                  a#link360(href='#360Modal', data-toggle='modal', v-if="hasView360").blue-link
+                    i.fi-loop
+                    |  360°
+                  | &nbsp;&nbsp;
+                  a.blue-ul(href='#videoModal', data-toggle='modal') ► Video 1
+                  | &nbsp;&nbsp;
+                  a.blue-ul(href='#videoModal', data-toggle='modal') ► Video 2
+          .col-12.col-lg-5.col-xl-4
+            .price-and-options-wrapper.text-center
+              span#price_old_formatted(v-if='options[selected.option] && parseFloat(options[selected.option].price_old) > parseFloat(options[selected.option].price)')
+                span(v-html="currency.symbol")
+                | {{convertPrice(options[selected.option].price_old)}}
+              span#price_new(v-if='options[selected.option]')
+                span(v-html="currency.symbol")
+                | {{convertPrice(options[selected.option].price)}}
+              p.smallest
+                strong FREE
+                | &nbsp;Delivery.
+              .row
+                .col-12
+                  .productRXSun
+                    p.smallest
+                      strong Prescription ready (Min. PD = 55mm)
+                    p.smallest
+                      | Click '
+                      strong ADD TO BASKET
+                      | ' and follow instructions to continue.
+              .row
+                .col-12
+                  #optionsPanel
+                    form#sbm_form(v-if='options[selected.option]',
+                    method="post").container-fluid
+                    .row
+                      .col-12.col-md-6.col-lg-12
+                        p.text-left.font-weight-bold.mb-2 Colour & Size (mm):
+                        select#selectTypeInput(v-if="Object.keys(options).length > 1",
+                        v-model='selected.option').form-control.small.mb-3
+                          option(v-for='option in options',
+                          :value='option.option_number')
+                            | {{ option.option_number }} {{ option.description }} -&nbsp;
+                            span(v-html="currency.symbol")
+                            | {{convertPrice(option.price)}}
+                        p.small.only-option(v-else,
+                        v-for='option in options',
+                        :key='option.option_number')
+                          | {{ option.option_number }} {{ option.description }} -&nbsp;
+                          span(v-html="currency.symbol")
+                          | {{convertPrice(option.price)}}
+                        table#productTable.table.border-0.mb-3(cellpadding='10')
+                          thead.border-0
+                            tr
+                              th.select
+                              th.arm
+                                span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Arm") Arm
+                              th.bridge
+                                span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Bridge") Bridge
+                              th.lensw
+                                span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Lens") Lens
+                              th.lensh
+                                span.has-tooltip(data-toggle="tooltip" data-placement="top", title="Height") Height
+                              th.total
+                                a#sizeModalLink(href='#sizeGuideModal', data-toggle='modal',
+                                aria-controls='sizeGuideModal', tabindex='0').blue-ul Size help »
+                          tbody.border-0(v-if="options[selected.option]")
+                            tr(v-for='(frame_size, index) in options[selected.option].frame_sizes')
+                              td.select-highlight
+                                input(type='radio', name='frame_size[]', :value='index', v-model='selected.frameSizeIndex', :disabled="frame_size.status == 'DISCONTINUED' || frame_size.status == 'BACK_ORDERED'")
+                              td {{frame_size.arm}}
+                              td {{frame_size.bridge}}
+                              td.width-highlight {{frame_size.lens}}
+                              td {{frame_size.height}}
+                              td.total(v-if="frame_size.status === 'DISCONTINUED'")
+                                span Discontinued
+                              td.total(v-else-if="frame_size.status === 'BACK_ORDERED'")
+                                span Current unavailable
+                              td.total(v-else-if='index === defFrameSizeIndex')
+                                strong Fits Most
+                              td.total(v-else='')
+
+                        .customer-fit.pt-1
+                          p.smallest.text-center.m-0
+                            em
+                              | Customers suggest fit is&nbsp;
+                              strong
+                                a#customerDescriptionModalLink(href="#customerDescriptionModal",
+                                data-toggle="modal", @click='animateBars').blue-ul As expected (91%)
+                      .col-12.col-md-6.col-lg-12
+                        br.d-none.d-md-block.d-lg-none
+                        button#basketModalButton(data-toggle='modal',
+                        data-target='#basketConfirmModal',
+                        :disabled="!isActive || !selected.option",
+                        :class="!isActive ? 'disabled' : ''",
+                        @click='setSelectedItem(item.item_number)').btn.big-orange-button.text-center {{isActive  ? 'Add to basket »' : 'Out of stock'}}
+
+
+              .row
+                .col-12
+                  .shipping
+                    p.smallest
+                      i.fa.fa-clock-o(aria-hidden='true')
+                      | &nbsp;&nbsp;Order completed and shipped within&nbsp;
+                      strong 7-10
+                      | &nbsp;working days
+                .useful-links(style='margin-top:0.75rem;').w-100.text-center
+                  p.smallest
+                    a#lens-prices.blue-ul.text-nowrap(href='/price-list/', target='_blank') Our Lens Prices
+                    | &nbsp;&nbsp;|&nbsp;&nbsp;
+                    a#prod-delivery.blue-ul.text-nowrap(href='/info/shipping-delivery/', target='_blank') Production & Delivery
+                    | &nbsp;&nbsp;|&nbsp;&nbsp;
+                    a#returns.blue-ul.text-nowrap(href='/info/returns/', target='_blank') 14-Day Returns
+                .save.col-12
+                  button#saveToWishlistButton.btn.my-3(type='button',
+                  @click='setSwitchWishlist(item.item_number)')
+                    i.fa.fa-heart
+                    span(v-if="!$store.getters.isExistWishlist(item.item_number)")
+                      // i.fa.fa-heart-o
+                      | &nbsp;&nbsp;Save to wishlist
+                    span(v-else)
+                      // i.fa.fa-heart
+                      | &nbsp;&nbsp;Remove from wishlist
+    section.colours-options(v-if="Object.keys(options).length > 1")
+      hr
+      .container-fluid
+        .row.my-3
+          .col-12
+            p
+              strong Available Colours...
+          ul#availColourBar.list-inline(v-if='options && selected.option').col-12
+            li.list-inline-item.option(v-for='option in options',
+            :id='"option-" + option.option_number',
+            :class="selected.option === option.option_number ? 'selected': ''",
+            @click='setSelectedOption(option.option_number)')
+              span.has-tooltip(data-toggle="tooltip")
+                img(:src="option.thumbnail_images[0] ? cdnUrl + '/' + option.thumbnail_images[0].src : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'").img-fluid
+    hr.thick-hr
+    section.product-description(v-if='item.translation && item.translation.description')
+      .container-fluid.text-center
+        br
+        br
+        h2.product-header Product Overview
+        hr.short-hr
+        .row
+          .col-8.mx-auto
+            p(v-html="item.translation.description")
+        br
+        br
+        br
+      hr.thick-hr
+    section.product-details
+      .container-fluid.text-center
+        br
+        br
+        h2.product-header Product Details
+        hr.short-hr
+        .row.pr-name(v-if='options[item.def_option]')
+          .col-6.text-right
+            p
+              strong Product
+          .col-6.text-left
+            p
+              span(v-if="item.designer") {{ item.designer.designer_name }} {{ item.model_name }}
+        .row.pr-sku
+          .col-6.text-right
+            p
+              strong Product SKU
+          .col-6.text-left
+            p
+              span(itemprop='sku') SS{{ item.item_number / 100 }}
+        .row.pr-id(v-if='options[item.def_option] && defFrameSizeIndex > 0')
+          .col-6.text-right
+            p
+              strong  Product ID
+          .col-6.text-left
+            p
+              span {{ options[item.def_option].frame_sizes[defFrameSizeIndex].gtin }}
+        .row.pr-for
+          .col-6.text-right
+            p
+              strong Suitable for
+          .col-6.text-left
+            p
+              i.fa.fa-user.pink-icon
+              | &nbsp;&nbsp;
+              i.fa.fa-user.blue-icon
+        .row.pr-single
+          .col-6.text-right
+            p
+              strong Single Vision
+          .col-6.col-md-4.mr-auto.text-left
+            p
+              i.fa.fa-check.fa-lg.green-icon
+        .row.pr-progr
+          .col-6.text-right
+            p
+              strong Progressives
+          .col-6.text-left
+            p
+              i.fa.fa-check.fa-lg.green-icon
+              em &nbsp;&nbsp;Freeform varifocal from&nbsp;
+                strong {{calculatePrice(1164.29/33.47, false, true)}}
+        .row.pr-hinge
+          .col-6.text-right
+            p
+              strong Spring hinge
+          .col-6.text-left
+            p
+              i.fa.fa-close.fa-lg.red-icon
+        .row.pr-sunglass
+          .col-6.text-right
+            p
+              strong Available as Sunglasses
+          .col-6.text-left
+            p
+              i.fa.fa-check.fa-lg.green-icon
+
+        br
+        br
+        .row.pr-adv
+          .col-6.col-md-2.ml-auto
+            i.fa.fa-thumbs-o-up.fa-3x.blue-icon
+            br
+            p
+              strong 12 Months Warranty
+          .col-6.col-md-2.mr-auto
+            i.fa.fa-gift.fa-3x.blue-icon
+            br
+            p
+              strong Includes Case & Cloth
+        br
+        br
+      hr.thick-hr
+    section.product-usp
+      .container-fluid.text-center
+        br
+        br
+        .row
+          .col-12.col-sm-4.ml-lg-auto.col-lg-2.ml-lg-auto
+            p
+              img.usp-img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/product/order-by-phone.png?20170904091511')
+            h3.product-header Order by phone
+            p
+              | Call us on&nbsp;
+              strong
+                a(href='tel:03303801190').small 03303 801 190
+            p
+              em Mon. to Fri. 9am - 5.30pm GMT
+            br.d-sm-none
+          .col-12.col-sm-4.col-lg-2
+            p
+              img.usp-img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/product/secure-payments.png?20170904091511')
+            h3.product-header 100% Secure
+            p   by WorldPay & PayPal.
+            br.d-sm-none
+          .col-12.col-sm-4.mr-lg-auto.col-lg-2.mr-lg-auto
+            p
+              img.usp-img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/product/100-guarantee.png?20170904091511')
+            h3.product-header 100% Satisfaction
+            p   No quibble 14 day money back returns.
+            br.d-sm-none
+        hr.short-hr
+        ShareButtons
+        br
+        br
+        br
+      hr.thick-hr
+    section.product-help
+      .container-fluid.text-center.px-lg-5
+        br
+        br
+        h2.product-header Product Help
+        hr.short-hr
+        .row
+          .col-12.col-md-4
+            h3.product-header Will this frame suit me?
+            p.small
+              | Not sure if this frame is right for you? See our guide to face shapes & frame styles&nbsp;
+              router-link(to='/info/face-shapes/').blue-ul here
+              | .
+          .col-12.col-md-4
+            h3.product-header What lenses should I choose?
+            p.small
+              | Our virtual dispenser can recommend you the perfect lenses for your prescription - You can also find out more about our lenses&nbsp;
+              router-link(to='/guides/lenses/').blue-ul here
+              | &nbsp;or see our lens price list&nbsp;
+              router-link(to='/price-list/').blue-ul here
+              | .
+          .col-12.col-md-4
+            h3.product-header How and where are my glasses made?
+            p.small
+              | All prescription glasses are made to an incredibly high standard in one of our labs. Find out more&nbsp;
+              router-link(to='/about-us/lab/').blue-ul here
+              | .
+        .row
+          .col-12.col-md-4
+            h3.product-header Will these sunglasses suit me?
+            p.small
+              | Not sure if these sunglasses will suit you? Take a look at our guide to face shapes & frame styles&nbsp;
+              router-link(to='/info/face-shapes/').blue-ul here
+              | .
+          .col-12.col-md-4
+            h3.product-header Different sun lens technologies
+            p.small
+              | Unsure of the difference between polarised or transitions/photochromic technologies? Our handy guide to lenses explains all&nbsp;
+              router-link(to='/guides/lenses/').blue-ul here
+              | .
+          .col-12.col-md-4
+            h3.product-header What sunglasses do I need for driving?
+            p.small
+              | We always recommend polarised lenses for driving. Check out our guide to choosing safe sunglasses&nbsp;
+              router-link(to='/guides/how-to-choose-safe-sunglasses-for-driving/').blue-ul here
+              | .
+        br
+        br
+        br
+      hr.thick-hr
+    section#productReviewAnchor.product-reviews
+      .container.text-center.px-lg-5
+        br
+        br
+        h2.product-header Customer Reviews
+        p
+          | 78 Review(s) -&nbsp;
+          router-link(to='/designer-sunglasses/burberry/be4117/ss3.85.html#', rel='nofollow').blue-ul Add your review
+        hr.short-hr
+        #productReviewRsv.text-center
+          p.smaller
+            strong 94%
+            | &nbsp;of customers recommend this product&nbsp;
+            em (64 of 68)
+          br
+        .container-fluid
+          .pr-review.row.mb-3(itemprop='review', itemscope='', itemtype='http://schema.org/Review')
+            .col-12.col-md-4.col-lg-3.review-meta.text-left
+              a(name='review_id')
+              p.review-author(itemprop='author', itemscope='', itemtype='http://schema.org/Person')
+                strong
+                  span(itemprop='name') J Spencer
+                  | ,&nbsp;
+                  span(itemprop='nationality') IE
+              p.smallest
+                em POSTED: 23rd August 2017
+              div(itemprop='reviewRating', itemscope='', itemtype='http://schema.org/Rating')
+                .product-rating.my-1
+                  p
+                    strong OVERALL
+                  .rateit(data-rateit-value='4.00',
+                  data-rateit-ispreset='true',
+                  data-rateit-readonly='true',
+                  data-rateit-mode="font")
+                .review-helpful.my-3.mx-0
+                  | Was this review useful?  
+                  span.text-nowrap
+                    a.helpful(data-helpful='17561_1', href='#')
+                      i.fa.fa-thumbs-up
+                      | &nbsp;Yes
+                    a.helpful(data-helpful='17561_0', href='#')
+                      i.fa.fa-thumbs-down
+                      | &nbsp;No
+            .col-12.col-md-8.col-lg-9.review-body.text-left
+              .container-fluid
+                .row
+                  .product-rating.float-left
+                    p
+                      strong
+                        em Style
+                    .rateit(data-rateit-value='5.00',
+                    data-rateit-ispreset='true',
+                    data-rateit-readonly='true',
+                    data-rateit-mode="font")
+                  .product-rating.float-left
+                    p
+                      strong
+                        em Quality
+                    .rateit(data-rateit-value='3.00',
+                    data-rateit-ispreset='true',
+                    data-rateit-readonly='true',
+                    data-rateit-mode="font")
+                  .product-rating.float-left
+                    p
+                      strong
+                        em Value
+                    .rateit(data-rateit-value='4.00',
+                    data-rateit-ispreset='true',
+                    data-rateit-readonly='true',
+                    data-rateit-mode="font")
+                hr.row.mt-0
+                .row
+                  p(itemprop='name')
+                    strong Quality Matches the Price
+                .row
+                  p.small(itemprop='description') The left arm has broken, but it was good for the price. They lasted for three months.
+                hr.row
+                .row
+                  p.small
+                    span.text-nowrap
+                      | [
+                      strong  Fit -
+                      |  As expected ]&nbsp;&nbsp;
+                    br.d-md-none
+                    span.text-nowrap [ I would recommend this product to others ]
+        .container-fluid.p-0
+          #reviewShowMore.btn.big-orange-button + Show 5 more
+        br
+    div(style="padding: 2rem 0;background-color: #fafafa;border-top: 1px solid #e6e6e6;")
+      TrustpilotWidget
+  PageItemMobile.d-block.d-lg-none
+  PageFooter
+  ScrollToTop
+  // BasketConfirmModal
+  VideoModal
+  // Media360Modal(:images="view360Images")
+  SizeGuideModal
+  CustomerDescriptionModal
+

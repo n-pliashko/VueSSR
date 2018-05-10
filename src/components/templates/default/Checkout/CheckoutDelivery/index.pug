@@ -1,0 +1,86 @@
+div
+  hr.d-none.d-md-block.my-0
+  .row
+    .col-12
+      .sub-text
+        p.small Orders are normally completed and shipped within
+          strong  7-10
+          |  working days.
+  .row.options-wrapper.my-md-2
+    .col-12(v-for='(method,index) in deliveryMethods')
+      label(@click='changeShippingMethod(index)',
+      :disabled="disableFields",
+      :class="{'active':index == activeShippingId}").shipping-method.custom-control.custom-radio
+        .custom-control-description.container-fluid.my-auto
+          .row.mr-5
+            .col-3.col-lg-2.shipping-price
+              p.small(v-if='currencies != null')
+                strong
+                  span(v-if='method.total == 0') FREE
+                  span(v-else)
+                    span(v-html="currency.symbol")
+                    | {{calculatePrice(parseFloat(method.total))}}
+            .col-9.col-lg-8
+              p.small
+                strong {{ method.delivery_method_name }}
+              p.small.d-none.d-md-inline(v-html='method.delivery_method_description')
+            .col-3.col-lg-2.d-none.d-lg-block
+              .img-wrapper
+                img.img-fluid(:src="method.delivery_logo_link")
+          .row.d-md-none
+            .col-12.pr-5
+              p.small(v-html='method.delivery_method_description')
+        input(:id="'delivery-' + index",
+        type="radio", name="shipping-method",
+        :checked="{activeShippingId}").custom-control-input
+        span.custom-control-indicator
+      hr.my-2
+  //.row.py-2.d-md-none
+    .w-100(v-for='(method,index) in deliveryMethods')
+      label(@click='changeShippingMethod(index)', :disabled="disableFields",  :class="{'active':index == activeShippingId}").shipping-method.custom-control.custom-radio
+        input(:id="'delivery-' + index",
+        type="radio", name="shipping-method", :checked="{activeShippingId}").custom-control-input
+        span.custom-control-indicator
+        .custom-control-description.ml-5.my-auto
+          .row
+            .col-3.col-sm-2.my-auto.px-0.px-sm-2
+              .img-wrapper
+                img.img-fluid(:src="method.delivery_logo_link")
+            .col-9.col-sm-10.my-auto
+              p.mt-2
+                strong {{ method.delivery_method_name }}
+                span(v-if='currencies != null').price
+                  span(v-if='method.price == 0') FREE
+                  span(v-else='')
+                    span(v-html="currency.symbol")
+                    | {{exchange(parseFloat(method.price))}}
+              p.small.mb-2 {{method.delivery_method_description}}
+  //.row.py-2.d-none.d-md-block.px-2
+    .form-check(v-for='(method,index) in deliveryMethods')
+      label(@click='changeShippingMethod(index)', :class="{'active':index == activeShippingId}", :disabled="disableFields").shipping-method.custom-control.custom-radio
+        input(:id="'delivery-' + index",
+        type="radio", name="shipping-method").custom-control-input
+        span.custom-control-indicator.d-none
+        .custom-control-description
+          .row
+            .col-12
+              p
+                strong {{ method.delivery_method_name }}
+              p
+                span(v-if='currencies != null').price
+                  span(v-if='method.price == 0') FREE
+                  span(v-else='')
+                    span(v-html="currency.symbol")
+                    | {{exchange(parseFloat(method.price))}}
+              .img-wrapper.text-center
+                img(:src="method.delivery_logo_link")
+              p.small.mb-2 {{method.delivery_method_description}}
+  .row.py-2
+    .col-12
+      //p(v-if="activeShippingId").selected-method
+        span(v-if='!disableFields') {{deliveryMethods[activeShippingId]['delivery_method_name']}} Mail Selected
+      button#continue-third-button(@click='commitMethod',
+      v-if='!disableFields',
+      :disabled="!activeShippingId").btn.button-continue
+        span Continue&nbsp;&nbsp;
+          i.fi-play

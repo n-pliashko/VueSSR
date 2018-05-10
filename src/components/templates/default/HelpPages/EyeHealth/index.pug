@@ -1,0 +1,165 @@
+#kidsPage.page
+  PageHeader
+
+  .loading(v-if="loading")
+  main
+    Breadcrumbs
+    .container-fluid
+      .row
+        .col-12.text-center
+          h1.super-heading Eye Health & Advice
+          p Welcome to our central resource of eye health information.
+    .grey-container
+      .container-fluid.text-center
+        .row.row-eq-height
+          PreviewBlock(v-for="item in boxContents", :key="item.id",
+          :header="item.header", :text="item.text",
+          :img="item.img", :link="item.link", :linkText="item.linkText")
+        .row.row-eq-height
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-amblyopia.jpg?20171207190136').img-fluid
+              p
+                strong Amblyopia (Lazy Eye)
+              p.small A detailed overview of Amblyopia with causes, diagnosis and treatment.
+              br
+              p
+                router-link(to='/eye-health/amblyopia/').btn.big-button Amblyopia »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-myopia.jpg?20171207190136').img-fluid
+              p
+                strong Myopia (Short-Sighted)
+              p.small A detailed overview of Myopia with causes, diagnosis and treatment.
+              br
+              p
+                router-link(to='/eye-health/myopia/').btn.big-button Myopia »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-hyperopia.jpg?20171207190136').img-fluid
+              p
+                strong Hyperopia (Long-Sightedness)
+              p.small A detailed overview of Hyperopia with causes, diagnosis and treatment.
+              br
+              p
+                router-link(to='/eye-health/hyperopia/').btn.big-button Hyperopia »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-diabeticretinopathy.jpg?20171207190136').img-fluid
+              p
+                strong Diabetic Retinopathy
+              p.small
+                | A detailed overview of Diabetic retinopathy with causes, diagnosis and treatment.
+              br
+              p
+                router-link(to='/eye-health/diabetic-retinopathy/').btn.big-button Diabetic Retinopathy »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-cataract.jpg?20171207190136').img-fluid
+              p
+                strong Cataracts
+              p.small
+                | A detailed overview of cataracts with causes, diagnosis and treatment for both childhood and age-related cataracts.
+              br
+              p
+                router-link(to='/eye-health/cataracts/').btn.big-button Cataracts »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-blepharitis.jpg?20171207190136').img-fluid
+              p
+                strong Blepharitis (Eyelid Inflammation)
+              p.small A detailed overview of blepharitis with causes, diagnosis and treatment.
+              br
+              p
+                router-link(to='/eye-health/blepharitis/').btn.big-button Blepharitis »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-driving_digital-protection.jpg?20171207190136').img-fluid
+              p
+                strong Computer Eye Strain
+              p.small A detailed overview of what computer eye strain is and how it can be treated.
+              br
+              p
+                router-link(to='/eye-health/computer-eye-strain/').btn.big-button Computer Eye Strain »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-allergies.jpg?20171207190136').img-fluid
+              p
+                strong Eye Allergies
+              p.small A detailed overview of what common eye allergies exist and how to treat them.
+              br
+              p
+                router-link(to='/eye-health/eye-allergies/').btn.big-button Eye Allergies »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-conjunctivitus.jpg?20171207190136').img-fluid
+              p
+                strong Conjunctivitis (Red Eye)
+              p.small
+                | A detailed overview of what conjunctivitis is, how to spot the signs and how it can be treated.
+              br
+              p
+                router-link(to='/eye-health/conjunctivitis/').btn.big-button Conjunctivitis »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-irlens.jpg?20171207190136').img-fluid
+              p
+                strong Irlen Syndrome
+              p.small
+                | A detailed overview of what irlen syndrome is, how to spot the symptoms and how it can be treated.
+              br
+              p
+                router-link(to='/eye-health/irlen-syndrome/').btn.big-button Irlen Syndrome »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-dietary.jpg?20171207190136').img-fluid
+              p
+                strong Dietary Supplements
+              p.small An overview of dietary supplements to help ensure good healthy eyes.
+              br
+              p
+                router-link(to='/eye-health/dietary-supplements/').btn.big-button Dietary Supplements »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-eye-structure.jpg?20171207190136').img-fluid
+              p
+                strong Structure of the Eye
+              p.small Find out more about the different parts of the eye and the purpose they serve.
+              br
+              p
+                router-link(to='/eye-health/structure-of-the-eye/').btn.big-button Eye Structure »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-colour-blindness.jpg?20171207190136').img-fluid
+              p
+                strong Colour Blindness
+              p.small
+                | A detailed overview of what colour blindness is, how to spot the signs and how it can be treated.
+              br
+              p
+                router-link(to='/eye-health/colour-blindness/').btn.big-button Colour Blindness »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-eyetest.jpg?20171207190136').img-fluid
+              p
+                strong Do I need an eye test?
+              p.small An overview of why you need an eye test and how often you should have one.
+              br
+              p
+                router-link(to='/eye-health/do-i-need-an-eye-test/').btn.big-button Do I need an eye test? »
+
+  PageFooter

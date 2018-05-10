@@ -1,0 +1,36 @@
+section
+  .homepage-banner.d-none.d-lg-block
+    .container-fluid.content-wrapper.text-center
+      .text-wrapper
+        br
+        strong Prescription glasses from
+          span(v-html="calculatePrice(296.15/33.47, false, true)")
+        p including
+          span.font-weight-bold.text-uppercase &nbsp;free
+          |  lenses & coatings
+      br
+      br
+      router-link#bannerLinkToMen(to="/glasses/prescription/mens/c10/").big-button.text-uppercase Men
+      router-link#bannerLinkToLadies(to="/glasses/prescription/ladies/c11/").big-button.text-uppercase Women
+  div(v-swiper:mySwiper="swiperOption", aria-label='Home SS - Slider').swiper-container.d-lg-none
+    .swiper-wrapper
+      router-link(to='/glasses/prescription/mens/c10/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-glasses.jpg?20171020111122', alt='mens glasses')
+      router-link(to='/glasses/prescription/ladies/c11/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-glasses.jpg?20171020111122', alt='womens glasses')
+      router-link(to='/cheap-glasses/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/sweet-deal.jpg?20171020111122', alt='cheap £6 glasses')
+      router-link(to='/sunglasses/designer/prescription-compatible/c274/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/rx-sunglasses.jpg?20171020111122', alt='prescription sunglasses')
+    button.swiper-button-prev.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    button.swiper-button-next.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next
+  //Slick(aria-label='Home SS - Slider', ref="slick", :options="slickOptions").d-lg-none
+  //  router-link(to='/glasses/prescription/mens/c10/')
+  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-glasses.jpg?20171020111122', alt='mens glasses')
+  //  router-link(to='/glasses/prescription/ladies/c11/')
+  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-glasses.jpg?20171020111122', alt='womens glasses')
+  //  router-link(to='/cheap-glasses/')
+  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/sweet-deal.jpg?20171020111122', alt='cheap £6 glasses')
+  //  router-link(to='/sunglasses/designer/prescription-compatible/c274/')
+  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/rx-sunglasses.jpg?20171020111122', alt='prescription sunglasses')
+

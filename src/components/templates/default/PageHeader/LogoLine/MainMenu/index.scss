@@ -1,0 +1,48 @@
+@import '../../../_Styles/mixins';
+
+#navMenuDesktop {
+  background-color: #f0f0f0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  .nav-tabs {
+    border-bottom: 0;
+    margin: .25rem 0;
+    .main-nav.nav-item {
+      position: relative;
+      font-size: .85rem;
+      font-weight: 700;
+      &:hover, &:focus, &:active {
+        .mainnav-dropdown {
+          display: block;
+        }
+      }
+      .main-nav-link {
+        padding: 0 1.3rem;
+        line-height: 2.5;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 0;
+        transition: none;
+        &:hover, &:focus {
+          color: #000;
+          background-color: #d3d3d3;
+          border-color: transparent;
+        }
+        i.fa-caret-down {
+          vertical-align: middle;
+          line-height: 2.5;
+          color: #fc4c02;
+        }
+      }
+      .mainnav-dropdown {
+        display: none;
+        text-transform: none;
+        position: absolute;
+        z-index: 99;
+        width: 225px;
+        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
+        top: 35px;
+      }
+    }
+  }
+}

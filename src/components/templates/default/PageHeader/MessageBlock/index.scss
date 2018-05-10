@@ -1,0 +1,17 @@
+.message-wrapper {
+  min-height: 2.4rem;
+  .success-block, .error-block {
+    font-size: .9rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    padding: .75rem 0;
+    color: #fff;
+  }
+  .success-block {
+    background: #28ad60;
+  }
+  .error-block {
+    background: #ad0000;
+  }
+}

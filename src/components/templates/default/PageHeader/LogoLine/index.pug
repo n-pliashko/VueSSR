@@ -1,0 +1,94 @@
+section.logo-line
+  // Modal windows
+  SearchModal
+
+  // Displays on small screens
+  .container-fluid.px-0.d-md-none
+    .row
+      .col-12.py-1
+        .d-flex.justify-content-between
+          .float-left
+            button#sidebarOpenButtonMobile(v-if="['Checkout'].indexOf($route.name) < 0",
+            @click="openSidebar").btn.menu-open
+            router-link#siteLogoMobile(v-if='!ssv4Redirect', :to="{ name: 'Main' }").logo-mobile.ml-2
+            a(v-else='', :href='integrationHost').logo-mobile.ml-2
+          .float-right
+            a#searchLinkMobile(data-toggle="modal",
+            data-target="#searchBox").xs-button.mx-2
+              i.fa.fa-search.fa-lg
+            router-link#basketLinkMobile(:to='{name: "Basket"}').xs-button.mx-2
+              i.fa.fa-shopping-bag.fa-lg
+              span#orderedAmountTextMobile(v-if='basket.order && basket.order.totalItems > 0') {{basket.order.totalItems}}
+
+  // Displays on tablets
+  .container-fluid
+    .row
+      // First line
+      .col-12.d-none.d-md-block
+        .d-flex.justify-content-between.logo-row.text-center
+          .col-md-4.col-lg-5.px-0
+            .sprite-pic.delivery
+              strong.logo-text.mb-0
+                router-link#shippingHeaderLink(to="/info/shipping-delivery/").blue-hovered-link FREE Delivery
+              p.logo-text When you spend {{calculatePrice(2665.5/33.47, false, true)}}+
+            .sprite-pic.trust-pilot.d-none.d-lg-block
+              strong.logo-text.mb-0
+                router-link#ratesHeaderLink(to="/about-us/reviews/").blue-hovered-link Rated Excellent
+              p.logo-text Over&nbsp;
+                strong 17,000
+                | &nbsp;reviews
+          .col-md-4.col-lg-2.px-0
+            .logo-wrapper
+              router-link#siteLogo(v-if='!ssv4Redirect', :to="{ name: 'Main' }").logo
+              a(v-else='', :href='integrationHost').logo
+          .col-md-4.col-lg-5.px-0.py-2.d-flex.justify-content-end.align-items-center
+            ul.icons-list.list-inline(v-if="['Login', 'Register', 'Checkout'].indexOf($route.name) < 0")
+              li.list-inline-item.d-none.d-lg-inline-block
+                router-link(v-if='!ssv4Redirect', :to='{name: auth == \'authorized\' ? "Account" : "Login"}')#signin1Link.icon-button
+                  span(v-if='auth == \'authorized\'').mr-2.text-uppercase account & orders
+                  span(v-else).mr-2.text-uppercase sign in
+                  i.fa.fa-user-circle-o.nav-icons
+                a(v-if='ssv4Redirect', :href='ssv4UserData.id !== null && ssv4UserData.id !== undefined ? integrationHost+"account/profile/" : integrationHost+"auth/login/"')#signin2Link.icon-button
+                  span(v-if='ssv4UserData.id !== null && ssv4UserData.id !== undefined').mr-2.text-uppercase account & orders
+                  span(v-else='').mr-2.text-uppercase sign in
+                  i.fa.fa-user-circle-o.nav-icons
+              li.list-inline-item.d-none.d-lg-inline-block
+                a#searchLink(data-toggle="modal",
+                data-target="#searchBox").icon-button
+                  i.fa.fa-search.nav-icons
+              li.list-inline-item.d-none.d-lg-inline-block
+                router-link(v-if='!ssv4Redirect', :to='{name: "Wishlist"}')#wishlist1Link.icon-button
+                  i.fa.fa-heart-o.nav-icons
+                a(v-if='ssv4Redirect', :href='integrationHost+"wishlist/"')#wishlist2Link.icon-button
+                  i.fa.fa-heart-o.nav-icons
+                span#wishListCount {{wishListCount ? wishListCount : ''}}
+              li.list-inline-item.float-right
+                router-link(v-if='!ssv4Redirect', :to='{name: "Basket"}')#basket1Link.icon-button
+                  i.fa.fa-shopping-bag.nav-icons
+                  span#orderedAmountText(v-if='basketOrderCount > 0').basket {{basketOrderCount}}
+                a(v-if='ssv4Redirect', :href='integrationHost+"cart/index/"', :to='{name: "Basket"}')#basket2Link.icon-button
+                  i.fa.fa-shopping-bag.nav-icons
+      // Second line
+      .col-12(v-if="['Login', 'Register', 'Checkout'].indexOf($route.name) < 0").d-none.d-md-block.d-lg-none
+        .row.big-menu
+          .col-3.col-lg-2.text-center.d-flex.justify-content-center.align-items-center
+            button#sidebarOpenButtonTablet(@click="openSidebar").btn.menu-open.icon-button
+              // i.fa.fa-bars.pull-left.nav-icons
+            .title-bar-title Menu
+          .col-9.col-lg-10
+            ul.icons-list.list-inline.d-flex.flex-nowrap
+              li.list-inline-item
+                router-link#signinLinkTablet(:to='{name: user.user_number ? "Account" : "Login"}').icon-button
+                  span(v-if='user.user_number') account & orders
+                  span(v-else) sign in
+                  i.fa.fa-user-circle-o.nav-icons
+              li.list-inline-item
+                a#searchLinkTablet(data-toggle="modal", data-target="#searchBox").icon-button
+                  span search
+                  i.fa.fa-search.nav-icons
+              li.list-inline-item
+                router-link#wishlistLinkTablet(:to='{name: "Wishlist"}').icon-button
+                  span wishlist
+                  i.fa.fa-heart-o.nav-icons
+
+  MainMenu(v-if="['Login', 'Register', 'Checkout', 'Thank'].indexOf($route.name) < 0")

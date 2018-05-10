@@ -1,0 +1,108 @@
+#kidsPage.page
+  PageHeader
+
+  .loading(v-if="loading")
+  main.kids-glasses-wrapper
+    Breadcrumbs
+    .container-fluid
+      .row
+        .col-12.text-center
+          h1.super-heading Guide to Lenses
+          p
+            | Find out more about the different lenses we offer so you can decide what's right for you and your new glasses.
+            br
+            | For a comprehensive lens price list, please&nbsp;
+            router-link(to='/price-list/').blue-link.underlined-link see here
+    .grey-container
+      .container-fluid.text-center
+        .row.row-eq-height
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-lenses_sv.jpg?20171207190136').img-fluid
+              p
+                strong Single Vision
+              p.small Includes a single prescription over the whole lens, for distance, intermediate, or reading.
+              br
+              p
+                router-link(to='/guides/lenses/single-vision/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-lenses_vf.jpg?20171207190136').img-fluid
+              p
+                strong Progressives & Varifocal
+              p.small Distance, intermediate and near vision correction in a single pair of glasses.
+              br
+              p
+                router-link(to='/guides/lenses/progressives-varifocals/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-lenses_sun.jpg?20171207190136').img-fluid
+              p
+                strong Sun Lenses
+              p.small Transform any frame into sunglasses with 100% UV protection.
+              br
+              p
+                router-link(to='/guides/lenses/sun/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-lenses_transition.jpg?20171207190136').img-fluid
+              p
+                strong Transitions
+              p.small
+                | Activated by UV light, Transitions automatically adjust from clear to dark according to the lighting conditions.
+              br
+              p
+                router-link(to='/guides/lenses/transitions/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-driving_digital-protection.jpg?20171207190136').img-fluid
+              p
+                strong Digital & Blue Light
+              p.small
+                | Reduce glare and filter blue light from digital screens.
+              br
+              p
+                router-link(to='/guides/lenses/blue-light/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-lenses_coatings.jpg?20171207190136').img-fluid
+              p
+                strong Coatings
+              p.small
+                | Essential for clear and optimal vision whilst ensuring the longevity of your glasses.
+              br
+              p
+                router-link(to='/guides/lenses/coatings/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/lens-prices.jpg?20171207190136').img-fluid
+              p
+                strong Lens Prices
+              p.small
+                | Our lenses are competitively priced.
+                | See for yourself now.
+              br
+              p
+                router-link(to='/price-list/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                br
+                br
+                br
+              p.large
+                strong Looking for more guides?
+              p.small
+                | Find more comprehensive guides to help you with your buying research.
+              br
+              p
+                router-link(to='/guides/').btn.big-button More Guides »
+
+  PageFooter

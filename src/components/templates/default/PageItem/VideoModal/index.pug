@@ -1,0 +1,11 @@
+#videoModal(tabindex='-1', role='dialog', aria-hidden='true').modal.large.fade
+  .modal-dialog(role='document').centered
+    .modal-content.text-center
+      button#videoModalClose(type='button',
+      data-dismiss='modal',
+      aria-label='Close').close
+        span ×
+      .modal-body
+        .col-8.mx-auto
+          .embed-responsive.embed-responsive-16by9
+            iframe#largeVideo.embed-responsive-item(src='https://www.youtube.com/embed/SAKwKm1ZAXY', frameborder='0')

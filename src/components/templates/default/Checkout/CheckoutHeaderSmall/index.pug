@@ -1,0 +1,25 @@
+section.logo-line-mini.d-block.d-md-none
+  .container-fluid
+    .row.justify-content-between
+      #sidebarPanelMobile.float-left
+        button#sidebarOpenButtonMobile(aria-controls="sidebarNav",
+          aria-expanded="false").btn.menu-open
+          i.fa.fa-navicon
+        router-link#logoMobile(:to="{ name: 'Main' }").btn
+      .float-right
+        a#openSearchMobile(data-toggle="modal",
+          data-target="#searchModal").btn
+          i.fa.fa-search
+        SearchModal
+        router-link#openBasketMobile(:to="{ name: 'Basket' }").btn
+          i.fa.fa-shopping-cart
+            span#orderedAmountText(v-if="order").ml-1.badge.badge-danger 1
+  hr.m-0
+
+  Slideout(menu="#sidebarMobile",
+    panel="#sidebarPanelMobile",
+    :toggleSelectors="['', '#sidebarMobile .close-slideout']",
+    tolerance=0)
+    nav#sidebarMobile
+      SideBar(key="sidebarMobile")
+

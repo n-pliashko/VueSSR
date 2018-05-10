@@ -1,0 +1,25 @@
+section.page-banner
+  .about-us-banner-big.d-none.d-md-block
+  .about-us-banner-small.d-md-none
+
+  .container-fluid
+    .row
+      .col-12
+        .about-us-panel
+          h1 Our Reviews
+          p.large
+            | With over 10 years experience in the eye wear industry and over&nbsp;
+            strong 18,000
+            |  customer reviews, we're a brand you can trust.
+          br
+          p.small
+            router-link(to='/about-us/').white-ul About Us
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            router-link(to='/about-us/story/').white-ul Story
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            router-link(to='/about-us/lab/').white-ul Lab
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            router-link(to='/about-us/promise/').white-ul Promise
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            router-link(to='/about-us/reviews/').white-ul Reviews
+            // &nbsp; | &nbsp; <a href="/about-us/careers/" class="white_ul">Careers</a>

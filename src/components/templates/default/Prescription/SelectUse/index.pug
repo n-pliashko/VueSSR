@@ -1,0 +1,187 @@
+section#dispens-content-title.text-center
+  div(v-show='!currentComponent')
+    h2
+      strong How will you use your {{!!$parent.showLenses ? 'glasses' : 'sunglasses'}}?
+    br
+    ul.nav.nav-pills.flex-column.flex-sm-row.font-weight-bold(role="tablist")
+      li.nav-item.active.mb-3
+        a.nav-link(data-toggle="tab", href="#single-vision", role="tab") Single Vision
+      li.nav-item.mb-3
+        a.nav-link(data-toggle="tab", href="#varifocal-vision", role="tab") Varifocal & Progressive
+      li.nav-item.mb-3
+        a.nav-link(data-toggle="tab", href="#bifocal-vision", role="tab") Bifocal Vision
+      li.nav-item.mb-3
+        a.nav-link(data-toggle="tab", href="#multifocal-vision", role="tab") Multifocal Vision
+      li.nav-item.mb-3
+        a.nav-link.py-md-0.py-lg-2(data-toggle="tab", href="#fashion-vision", role="tab") Fashion / Non-Prescription Vision
+    br
+    .tab-content
+      #single-vision.tab-pane.active.fade.show(role="tabpanel")
+        h3
+          strong Single Vision
+        hr
+        .row.card-group
+          .card.distance-vision
+            .card-header
+              p.card-title Distance
+              p
+                em.card-text.small Single Vision
+            .card-block
+              img.card-img(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse5.png')
+              router-link#distance-vision-continue.card-continue-button(:to='{ name: $parent.nextStep, params: {useSubmit: 5}}') Continue >
+              hr
+              p.card-text.smaller For general use and for seeing things far away
+            .card-footer
+              a.show-modal-link#distance-vision-modal-link(data-toggle="modal", data-target="#distance-vision-modal") Learn more...
+          .card.reading-vision
+            .card-header
+              p.card-title Reading
+              p
+                em.card-text.small Single Vision
+            .card-block
+              img.card-img(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse3.png')
+              router-link#reading-vision-continue.card-continue-button(:to='{ name: $parent.nextStep, params: {useSubmit: 3}}') Continue >
+              hr
+              p.card-text.smaller For seeing thing up close
+            .card-footer
+              a.show-modal-link#reading-vision-modal-link(data-toggle="modal", data-target="#reading-vision-modal") Learn more...
+          .card.computer-vision
+            .card-header
+              p.card-title Computer / Intermediate
+              p
+                em.card-text.small Single Vision
+            .card-block
+              img.card-img(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse4.png')
+              router-link#computer-vision-continue.card-continue-button(:to='{ name: $parent.nextStep, params: {useSubmit: 4}}') Continue >
+              hr
+              p.card-text.smaller For computer work. Requires an Intermediate ADD or prescription
+            .card-footer
+              a.show-modal-link#computer-vision-modal-link(data-toggle="modal", data-target="#computer-vision-modal") Learn more...
+          .card.distance-reading-vision
+            .card-header
+              p.card-title Distance & Reading
+              p
+                em.card-text.small Multifocal
+            .card-block
+              img.card-img(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse4.png', width='150px;')
+              a#distance-reading-vision-continue.card-continue-button(v-on:click="swapComponent('Multifocal', 'SS')") Continue >
+              hr
+              p.card-text.smaller Varifocal & Bifocal. For seeing things both close and in the distance
+            .card-footer
+              a.show-modal-link#distance-reading-vision-modal-link(data-toggle="modal", data-target="#distance-reading-vision-modal") Learn more...
+      Bifocal
+      Multifocal
+      Varifocal
+      #fashion-vision.tab-pane.fade(role="tabpanel")
+          h3
+            strong Don't need prescription lenses?
+          em.smaller (Lucky you!)
+          hr
+          .card(v-if='!!$parent.showLenses')
+            .card-header
+              p.card-title Non Prescription
+              p
+                em.card-text.small Fashion Wear
+            .card-block
+              img.card-img.mb-2(src='https://ssresource.s3.amazonaws.com/res/images/prescriptions/prescuse2.png')
+              a#no-prescription-continue(v-on:click='onFashionWear(2)').card-continue-button Continue >
+              hr
+              .card-text.smaller No prescription required, but you wear glasses as a fashion accessory
+            .card-footer
+              a.show-modal-link#no-prescription-vision-link(data-toggle="modal", data-target="#no-prescription-vision-modal") Learn more...
+  .container(:is='currentComponent')
+
+  #distance-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Distance
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p Choose the Distance option if you are going to be using your glasses for Driving or any other general use including watching TV. If you required glasses specifically for computer use you should select Intermediate.
+          p If you are unsure we would recommend attaching a copy of your prescription to this order at the next stage, alternatively you can email, fax or post this to us so that we can verify this before proceeding.
+  #reading-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Reading
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p Choose the Reading option if you are going to be using your glasses for Reading or any activity that is within your arms reach.
+          p Usually a reading ADD power should be present on your prescription which we will require in addition to the general distance SPH, CYL and AXIS part of your prescription. Alternatively your reading prescription may have been written out in full separately from the distance prescription, if so, you should enter this for reading glasses.
+          p If you are unsure we would recommend attaching a copy of your prescription to this order at the next stage, alternatively you can email, fax or post this to us so that we can verify this before proceeding.          p If you are unsure we would recommend attaching a copy of your prescription to this order at the next stage, alternatively you can email, fax or post this to us so that we can verify this before proceeding.
+  #computer-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Intermediate
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p Choose the Intermediate option if you are going to be using your glasses for Computer work. An Intermediate ADD or a specific intermediate prescription will be required.
+          p If your prescription does not show an intermediate ADD or a specific intermediate prescription you should contact your optician to confirm this, as a normal reading ADD will only be applicable for reading glasses.
+          p If you are unsure we would recommend attaching a copy of your prescription to this order at the next stage, alternatively you can email, fax or post this to us so that we can verify this before proceeding.  #distance-reading-vision-modal.modal.fade
+  #distance-reading-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Distance & Reading
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p Choose the Distance option if you are going to be using your glasses for Driving or any other general use including watching TV. If you required glasses specifically for computer use you should select Intermediate.
+          p If you are unsure we would recommend attaching a copy of your prescription to this order at the next stage, alternatively you can email, fax or post this to us so that we can verify this before proceeding.
+  #no-prescription-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Distance
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p Choose the Distance option if you are going to be using your glasses for Driving or any other general use including watching TV. If you required glasses specifically for computer use you should select Intermediate.
+          p If you are unsure we would recommend attaching a copy of your prescription to this order at the next stage, alternatively you can email, fax or post this to us so that we can verify this before proceeding.
+  #standard-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Occupational Office Lenses
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p Occupational Office Lenses are designed specifically for near and intermediate distances for use generally in the office environment. These lenses offers an extremely wide near vision region using a very soft design that eliminates the swim effect and perceived lateral distortion.
+  #premium-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Occupational Office Lenses
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p Occupational Office Lenses are designed specifically for near and intermediate distances for use generally in the office environment. These lenses offers an extremely wide near vision region using a very soft design that eliminates the swim effect and perceived lateral distortion.
+  #elite-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Elite Freeform Varifocal
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p This elite design is optimised for a single wearer for superior vision and comfort. Taking advantage of Digital Ray-Path® technology the optimised lenses provide clear vision through every point of the lens enabling wider, more comfortable visual fields in the distance, intermediate and near vision zones.
+          strong.modal-title Find out more about Digital Ray-Path Technology.
+          .embed-responsive.embed-responsive-4by3
+            video.embed-responsive-item(src="https://www.youtube.com/watch?v=bshe290sqrs")
+          strong.modal-title
+            a(href="#").black-red-link More Information
+  #office-vision-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          strong.modal-title Occupational Office Lenses
+          button.close(type="button", data-dismiss="modal",  aria-label="Close")
+            span &times;
+        .modal-body.text-left
+          p This premium design offers optimised digital Ray-Path technology with balanced power distribution between distance and near vision areas for enhanced vision across the whole lens including computer and office activities.
+          p The technology on these lenses is a big leap forward for varifocal lenses, and therefore is the lens of choice for new or exisiting wearers.

@@ -1,0 +1,6 @@
+div
+  button.btn.accent-button.text-uppercase.mx-1(:disabled='disabledPrevious', v-on:click='loadPrevious')
+    | PREVIOUS
+  span.text-center.mx-2.font-weight-bold.small {{$parent.pagination.currentPage}}
+  button.btn.accent-button.text-uppercase.mx-1(:disabled='disabledNext', v-on:click='loadNext')
+    | NEXT

@@ -1,0 +1,80 @@
+.main-section
+  PageHeader
+  NavigationLinks(v-if='user.email')
+
+  .loading(v-if='loading')
+  main.settings-page
+    .container-fluid
+      .row
+        .col-12.col-md-8.col-lg-6.mx-auto(v-if="auth == 'authorized'")
+          .row
+            .col-12(v-if='meta.formError')
+              br
+              br
+              .alert.alert-danger(role="alert")
+                p
+                  i.fa.fa-exclamation-triangle.mr-2
+                  | Ensure you correct any highlighted errors before continuing.
+
+              h5.font-weight-bold Update Your Password
+              hr
+            .col-12
+              form#change-password-form(name='profile',
+                role="form",
+                v-if="auth == 'authorized'",
+                @submit="onSubmit",
+                novalidate="true")
+                .form-group.row.px-0
+                  .form-group.col-12.col-sm-6
+                    label(for='password').col-form-label Old Password
+                    input(type='password',
+                    v-model='password',
+                    required="true")#password.form-control
+                .form-group.row.px-0.mb-0
+                  .form-group.col-12.col-sm-6
+                    label(for='newPassword').col-form-label New Password
+                    input(type='password',
+                    v-model='newPassword',
+                    data-toggle="tooltip",
+                    data-placement="right",
+                    title="Your password must be at least 6 characters long, and contain at least one number",
+                    required="true")#newPassword.form-control.has-tip
+                .form-group.row.px-0
+                  .form-group.col-12.col-sm-6
+                    label(for='repeatNewPassword').col-form-label Retype New Password
+                    input(type='password',
+                    data-match="#newPassword",
+                    v-model='repeatNewPassword',
+                    data-toggle="tooltip",
+                    data-placement="right",
+                    title="Your password should match the above field",
+                    required="true")#repeatNewPassword.form-control.has-tip.custom-tooltip
+
+                br
+                h5.font-weight-bold Newsletter
+                p.small Would you like to receive our newsletter for product and industry news, fantastic offers, and discount codes?
+                hr
+
+                fieldset.form-group.row.mx-0
+                  .form-check
+                    label(for='subscribe').form-check-label
+                      input#subscribe(type='radio',
+                      value='1',
+                      v-model='subscribed').form-check-input.mr-2
+                      | Yes, please send me your newsletter!
+                  .form-check
+                    label(for='unsubscribe').form-check-label
+                      input#unsubscribe(type='radio',
+                      value='0',
+                      v-model='subscribed').form-check-input.mr-2
+                      | No thanks
+                button#submit_pass(type="submit").btn.big-orange-button
+                  | Update Account »
+
+                br
+                br
+    .wrapper.text-center
+      br
+      router-link(to='/login', v-if="auth == 'unauthorized'").blue-link Sign In
+
+  PageFooter

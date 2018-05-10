@@ -1,0 +1,31 @@
+section.logo-section-small
+  section.logo-section-big.d-none.d-md-block
+    .container-fluid
+      .logo-line.row.justify-content-center.justify-content-lg-start
+        router-link#site-logo(:to="{ name: 'Main' }").logo
+  section.usp-section-big.d-none.d-md-block
+    .container-fluid
+      .usp-line.row.justify-content-center
+        .col-6.col-lg-4.col-xl-3.py-1
+          .sprite-pic.delivery
+          .usp-text
+            p
+              strong
+                a.blue-hovered-link(href="#") FREE Delivery on orders £75.00+
+            p + 14 day money back guarantee
+        .col-lg-4.col-xl-3.py-1.d-none.d-lg-block
+          .sprite-pic.glasses
+          .usp-text
+            p
+              strong
+                a.blue-hovered-link(href="#") FREE Lenses & Coatings
+            p Big savings over the high street
+        .col-6.col-lg-4.col-xl-3.py-1
+          .sprite-pic.trust-pilot
+          .usp-text
+            p
+              strong
+                a.blue-hovered-link(href="#") Rated Excellent - Trustpilot
+            p with over
+              strong  14.000
+              |  reviews

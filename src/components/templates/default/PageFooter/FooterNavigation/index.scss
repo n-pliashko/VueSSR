@@ -1,0 +1,24 @@
+.footer-nav {
+  background-color: #f0f0f0;
+  .link-list {
+    line-height: 1.6;
+    .map-header {
+      text-transform: uppercase;
+      cursor: auto;
+      line-height: inherit;
+      font: {
+        size: .875rem;
+        weight: 700;
+      }
+    }
+    .map-link {
+      text-transform: uppercase;
+      line-height: inherit;
+      margin: .5rem 0;
+      font-size: .8rem;
+      @media (max-width: 1024px) {
+        font-size: .75rem;
+      }
+    }
+  }
+}

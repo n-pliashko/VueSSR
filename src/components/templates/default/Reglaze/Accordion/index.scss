@@ -1,0 +1,119 @@
+.reglaze-nav {
+  list-style: none outside;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  background: #fefefe;
+
+  .nav-collapse-title {
+    display: block;
+    line-height: 1.2rem;
+    padding: 1.2rem 0 1.2rem 2.25rem;
+    font-size: .95em;
+    font-weight: 700;
+    color: #000;
+    position: relative;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    background-color: #f6f6f6;
+    &:hover, &:focus {
+      background-color: #ecf0f1;
+    }
+    &:before {
+      box-sizing: inherit;
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: absolute;
+      left: .75rem;
+      top: 50%;
+    }
+    &[aria-expanded="false"]:before {
+      content: '+';
+      margin-top: -.7rem;
+      color: #27ae61;
+    }
+    &[aria-expanded="true"]:before {
+      content: '–';
+      margin-top: -.8rem;
+      color: #fc4c02;
+    }
+  }
+  .collapse {
+    padding: 2rem 0;
+  }
+}
+
+.prices-table {
+  font-size: .75rem;
+  padding: .5rem .1875rem;
+  margin-bottom: 1rem;
+  thead {
+    th {
+      border: 2px solid #fff;
+      background-color: #a7d163;
+      padding: .5rem .625rem .625rem;
+    }
+  }
+  tbody {
+    background-color: #fefefe;
+    tr:nth-child(even) {
+      background-color: transparent;
+    }
+    tr:nth-child(odd) {
+      background-color: #f1f1f1;
+    }
+    td {
+      border: 2px solid #fff;
+      padding: .5rem .625rem .625rem;
+    }
+  }
+}
+
+.reglaze-review {
+  background: #ecf0f1;
+  padding: .2rem;
+  p {
+    margin-bottom: 0;
+  }
+
+  hr {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .review-helpful {
+    font-size: .75rem;
+    .helpful {
+      color: #000;
+      background: #fafafa;
+      border: 1px solid #878787;
+      padding: 2px 4px;
+      border-radius: 2px;
+      margin: 0 2px;
+      &:hover, &:focus {
+        background: #f0f0f0;
+        border: 1px solid #545454;
+        color: #000;
+      }
+    }
+  }
+
+  .review-body {
+    background: #fff;
+    padding: .6rem 1rem;
+    .product-rating {
+      width: 6.5rem;
+      margin: .25rem 0;
+    }
+  }
+}
+
+#reviewShowMore {
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: initial;
+  margin: .25rem 0 1rem;
+  padding: 1.5rem 0;
+}
+
+

@@ -1,0 +1,47 @@
+div(v-swiper:mySwiper="swiperOption").swiper-container.mobile-usp-slider
+  .swiper-wrapper
+    p.small.text-center.swiper-slide
+      i.fa.fa-plane.fa-lg.red.mr-1(aria-hidden='true')
+      strong &nbsp;FREE Delivery&nbsp;
+      |  on orders over&nbsp;
+      strong {{calculatePrice(2808.0/33.47, false, true)}}
+    p.small.text-center.swiper-slide
+      i.fa.fa-eye.fa-lg.red.mr-1(aria-hidden='true')
+      strong &nbsp;FREE Lenses & Coatings
+    p.small.text-center.swiper-slide
+      i.fa.fa-star.fa-lg.red(aria-hidden='true')
+      i.fa.fa-star.fa-lg.red(aria-hidden='true')
+      i.fa.fa-star.fa-lg.red(aria-hidden='true')
+      i.fa.fa-star.fa-lg.red(aria-hidden='true')
+      i.fa.fa-star.fa-lg.red(aria-hidden='true').mr-1
+      |  &nbsp;Rated&nbsp;
+      strong Excellent
+      |  on Trust Pilot
+    p.small.text-center.swiper-slide
+      i.fa.fa-phone.fa-lg.red.mr-1(aria-hidden='true')
+      strong
+        | UK Support -&nbsp;
+        a(href='tel:03303801190') 03303 801 190
+// Slick(ref="slick", :options="slickOptions").mobile-usp-slider
+  p.small.text-center
+    i.fa.fa-plane.fa-lg.red.mr-1(aria-hidden='true')
+    strong &nbsp;FREE Delivery&nbsp;
+    |  on orders over&nbsp;
+    strong {{calculatePrice(2808.0/33.47, false, true)}}
+  p.small.text-center
+    i.fa.fa-eye.fa-lg.red.mr-1(aria-hidden='true')
+    strong &nbsp;FREE Lenses & Coatings
+  p.small.text-center
+    i.fa.fa-star.fa-lg.red(aria-hidden='true')
+    i.fa.fa-star.fa-lg.red(aria-hidden='true')
+    i.fa.fa-star.fa-lg.red(aria-hidden='true')
+    i.fa.fa-star.fa-lg.red(aria-hidden='true')
+    i.fa.fa-star.fa-lg.red(aria-hidden='true').mr-1
+    |  &nbsp;Rated&nbsp;
+    strong Excellent
+    |  on Trust Pilot
+  p.small.text-center
+    i.fa.fa-phone.fa-lg.red.mr-1(aria-hidden='true')
+    strong
+      | UK Support -&nbsp;
+      a(href='tel:03303801190') 03303 801 190

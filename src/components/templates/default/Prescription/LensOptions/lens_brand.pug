@@ -1,0 +1,17 @@
+div
+  h2
+    strong Finally, choose your lenses
+  p First, select your preferred brand
+  br
+  section.container
+    .row.card-group
+      .card(v-for='brand in lensBrand')
+        .card-header
+          p.card-title {{brand.name}}
+          p
+            em.small £{{brand.price === 0 ? 'FREE' : brand.price}}
+        .card-block
+          img.card-img.mb-3(:src='brand.image', style='height: 50px')
+          p.card-text.smaller(v-html='brand.description')
+        .card-footer
+          a.card-continue-button(:id="'continue-brand-' + brand.id + '-button'", v-on:click='onChooseBrand(brand.id)') Choose

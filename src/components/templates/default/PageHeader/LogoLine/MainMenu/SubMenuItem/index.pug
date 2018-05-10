@@ -1,0 +1,36 @@
+v-menu(v-if="menu.children",
+  :open-on-hover="onHover ? true: false",
+  :open-on-click="onClick ? true: false",
+  :close-delay="closeDelay",
+  :open-delay="openDelay",
+  offset-x, :class="'vmenu-' + menu.id")
+  a(v-if="menu.link && menu.link.search(/^http(s?):\\/\\//i) !== -1",
+    :id="target_id",
+    :href="menu.link",
+    slot="activator").nav-link
+    span(v-html="convertMenuContext(menu.content)")
+    i.fa.pull-right.fa-caret-right(v-if="menu.children")
+  router-link(v-else, :to=" menu.link ? menu.link : '#'",
+    :id="target_id",
+    slot="activator").nav-link
+    span(v-html="convertMenuContext(menu.content)")
+    i.fa.pull-right.fa-caret-right(v-if="menu.children")
+  v-list.subnav-dropdown(v-if="menu.children")
+    v-list-tile(v-for="(menu, key) in menu.children",
+      :id="menu.id",
+      :key="key", :class="menu.children ? 'sub-nav nav-item' : ''")
+      SubMenuItem(:menu="menu",
+        :onHover="onHover",
+        :onClick="onClick",
+        :closeDelay="closeDelay",
+        :openDelay="openDelay",
+        :target_id="menu.id + 'Link'",)
+v-list-tile-title(v-else)
+  a.nav-link(v-if="menu.link && menu.link.search(/^http(s?):\\/\\//i) !== -1",
+    :id="target_id",
+    :href="menu.link", :replace="true"
+    v-html="convertMenuContext(menu.content)")
+  router-link.nav-link(v-else,
+    :id="target_id",
+    :to="menu.link ? menu.link : '#'", :replace="true"
+    v-html="convertMenuContext(menu.content)")

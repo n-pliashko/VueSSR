@@ -1,0 +1,32 @@
+section.socials-links
+  .container-fluid
+    .row
+      .col-12
+        .grey-background
+          form(action="post").col-10.col-lg-6.mx-auto.mb-3
+            .form-group.row
+              label.sr-only(for="inputString") Enter your email address to receive our newsletter
+              input#inputString(type="email",
+                placeholder="Enter your email address to receive our newsletter").form-control.col-10.col-lg-8.mb-0
+              button#submitSubscribeButton(type="submit").col-2.col-lg-4.btn.black-button
+                span.d-none.d-lg-inline sign up
+                span.d-lg-none »
+        .row.py-3.justify-content-center
+          ul.list-inline.m-auto
+            li.list-inline-item.social-sprite
+              a#facebookLink(href="https://www.facebook.com/selectspecs").fb &nbsp;
+            li.list-inline-item.social-sprite
+              a#twitterLink(href="https://www.twitter.com/selectspecs").tw &nbsp;
+            li.list-inline-item.social-sprite
+              a#pinterestLink(href="https://uk.pinterest.com/selectspecs/").pi &nbsp;
+            li.list-inline-item.social-sprite
+              a#instagramLink(href="https://www.instagram.com/selectspecs/").ig &nbsp;
+            li.list-inline-item.social-sprite
+              a#youtubeLink(href="https://www.youtube.com/user/SelectSpecs").yt &nbsp;
+        br
+        .row
+          p.m-auto.small Visit our&nbsp;
+            router-link#magazineLink(to="/fashion-lifestyle/").blue-ul Fashion & Lifestyle
+            | &nbsp;magazine or&nbsp;
+            router-link#blogLink(to="/blog/").blue-ul Blog
+  hr

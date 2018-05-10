@@ -1,0 +1,111 @@
+.main-section
+  PageHeader
+  NavigationLinks
+
+  .loading(v-if='loading || orderLoading')
+  section.orders-page(v-if="auth == 'authorized'")
+    .container-fluid
+      br
+      .row
+        .col-6.col-md-7.col-lg-8
+          p.largest Order History
+        .col-6.col-md-5.col-lg-4
+          .form-group
+            label.sr-only.form-control-label Select period
+            select(v-model='period', @change='fetchOrders').form-control
+              option(value='6', selected) Last 6 month
+              option(value='2017') 2017
+              option(value='2016') 2016
+    hr
+    .container-fluid
+      .order-wrapper(v-for='order in processed').order-in-progress
+        .row
+          .col-12.col-md-4.col-lg-3
+            p
+              strong Order {{order.order_number}}&nbsp;
+              em ({{moment(order.created_at).format('D MMM YY')}})
+            p.small.dkGrey
+              strong Items:
+              |  {{order.totalitems}}&nbsp;&nbsp;  
+              em
+            hr.d-md-none
+          .col-12.col-md-5.col-lg-6.text-center
+            p.large.green
+              strong
+                i.fa.fa-clock-o(aria-hidden='true')
+                |   In Progress
+            p.small
+              | Your order is in production and can take up to&nbsp;
+              strong 7-10 working days
+              |  in accordance with our&nbsp;
+              router-link#prodGuidesLink(to='/info/shipping-delivery/').blue-ul production guidelines
+              | . View your order progress below.
+          .col-12.col-md-3.col-lg-3.text-center
+            br.d-lg-none
+            p
+              router-link#viewOrderLink(:to="`/account/view_order/${order.order_number}`").btn.accent-button View Order »
+
+      .order-wrapper(v-for='order in unprocessed')
+        .row
+          .col-12.col-md-4.col-lg-3
+            p
+              strong Order {{order.order_number}}&nbsp;
+                //router-link(:to="`/account/view_order/${order.order_number}/`")
+              em ({{moment(order.created_at).format('D MMM YY')}})
+            p.small.text-muted
+              strong Items: {{order.totalitems}}&nbsp;&nbsp;
+              em(v-html='`${currencies[order.currency_id].symbol}${order.final_total}`')
+            hr.d-sm-none
+          .col-12.col-md-5.col-lg-6.text-center
+            div(v-if="'PROCESSING_PAYMENT' == order.status")
+              p
+                strong Payment by - Processing...
+              p.small
+                | We're currently processing your payment. If you're paying by cheque, your order will remain with this status until we received your payment.
+            div(v-else-if="'PROCESSING_ORDER' == order.status")
+              p
+                strong Order received (payment is processing)
+              p.small
+                | We're currently processing your payment. Your order will be updated shortly (normally within 24 hours).
+            div(v-else="'WAIT_PAYMENT' == order.status")
+              p
+                strong Order received (awaiting payment)
+              p.small
+                | You've not paid for your order yet. You can do this now by clicking "pay now", you will be returned to the checkout page to view your order.
+          .col-12.col-md-3.col-lg-3.text-center
+            br.d-md-none
+            p
+              router-link(:to='`payments/${order.payment_record_id}`').btn.orange-button Pay Now »
+            p.small
+              a(@click='deleteOrder(order.order_number)', href="#").blue-ul Cancel order »
+
+      //  .card-block.row
+          .col-12.col-md-3
+            p.card-title
+              router-link(:to="`/account/view_order/${order.order_number}/`") Order {{order.order_number}}&nbsp;
+              small ({{moment(order.created_at).format('D MMM YY')}})
+            p
+              strong Items: {{order.totalitems}}&nbsp;
+              small(v-html='`${currencies[order.currency_id].symbol}${order.final_total}`')
+          .col-12.offset-md-1.col-md-8
+            p(v-if="'PROCESSING_PAYMENT' == order.payment.status")
+              strong Payment by - Processing...
+              p
+                | We're currently processing your payment. If you're paying by cheque, your order will remain with this status until we received your payment.
+            p(v-if="'PROCESSING_ORDER' == order.payment.status")
+              strong Order received (payment is processing)
+            p
+              | We're currently processing your payment. Your order will be updated shortly (normally within 24 hours).
+            p(v-if="'WAIT_PAYMENT' == order.payment.status")
+              strong Order received (awaiting payment)
+              p
+                | You've not paid for your order yet. You can do this now by clicking "pay now", you will be returned to the checkout page to view your order.
+              router-link(:to='`payments/${order.payment_record_id}`').mr-2.btn.accent-button Pay Now
+              button(@click='deleteOrder(order.order_number)').btn.accent-button Cancel
+
+  section.wrapper.text-center(v-else)
+    br
+    router-link(to='/login').blue-link Sign In
+    br
+
+  PageFooter

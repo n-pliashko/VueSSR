@@ -1,0 +1,7 @@
+nav
+  .fixed-top
+    .sidebar-text.text-left
+      span.font-weight-bold.orange-text.mr-1 Shop
+      router-link(:to="{name: 'Main'}", @click.native="closeSidebar").ml-1.home-link Home »
+      i#menuCloseButton(@click="closeSidebar").btn.mx-2.close-slideout ×
+    VerticalMenu

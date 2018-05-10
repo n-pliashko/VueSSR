@@ -1,0 +1,86 @@
+@import '../_Styles/mixins';
+
+h1 {
+  @include desktop-down {
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+  }
+  @include desktop {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+.links {
+  @include tablet {
+    min-height: 300px;
+  }
+}
+
+.login-wrapper {
+  padding: 1rem;
+  margin: .75rem 0;
+  border: 1px solid #ccc;
+  .form-check{
+    margin: .5rem 0;
+  }
+  .form-control-label {
+    font-weight: 700;
+  }
+  .form-check-label {
+    padding-left: 1.5rem;
+  }
+  .form-check-label, .form-control-label {
+    font-size: .875rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .form-control {
+    background-color: #fffeec;
+    &.invalid {
+      background-color: rgba(198, 15, 19, .1);
+      border-color: #c60f13;
+      &:focus {
+        background-color: #edf7ec;
+        border: 1px solid #8a8a8a;
+        outline: none;
+        box-shadow: 0 0 5px #cacaca;
+        transition: box-shadow .5s, border-color .25s ease-in-out;
+      }
+    }
+    &.valid {
+      @extend .form-control;
+    }
+  }
+  .form-control-feedback {
+    margin: .5rem 0;
+    color: #c60f13;
+    font: {
+      size: .75rem;
+      style: italic;
+    }
+  }
+
+  #ShowPass {
+    padding: .5rem 0 0 2rem;
+    margin-bottom: 0;
+  }
+
+  #submit_btn {
+    padding: 1.25rem 0;
+    width: 100%;
+    background: #fc4c02;
+    margin-bottom: 1rem;
+    @include desktop-down {
+      font-size: .875rem;
+    }
+    &:disabled {
+      cursor: pointer;
+      opacity: 1;
+    }
+    &:hover {
+      background-color: #c00;
+    }
+  }
+}

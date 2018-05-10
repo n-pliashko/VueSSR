@@ -1,0 +1,95 @@
+.col-12
+  form(name='addresses',
+  @submit="onSubmit({e:$event, address})",
+  novalidate="true",
+  role="form")
+    hr
+    h5.text-capitalize.text-center.font-weight-bold(v-if="'billing' == address.address_type") Billing Address
+    h5.text-capitalize.text-center.font-weight-bold(v-if="'delivery' == address.address_type") Delivery Address
+    h5.text-capitalize.text-center.font-weight-bold(v-if="'alt_delivery' == address.address_type") Alternative Delivery Address (Optional)
+    p.small.text-center(v-if="'alt_delivery' == address.address_type")  We will happily deliver an item to an alternative location such as a work address if required. Simply enter your alternative address details into the area on the right.
+
+    //.form-group.row.px-0.alert-wrapper
+      .alert.alert-danger(v-if='meta[address.address_type] && meta[address.address_type].formError', role="alert")
+        p(v-if='meta[address.address_type].formError') {{meta[address.address_type].formError}}
+        p(v-else='')
+          i.fa.fa-exclamation-triangle.mr-2
+            | Ensure you correct any highlighted errors before continuing.
+      .alert.alert-success(v-if='meta[address.address_type] && meta[address.address_type].formSuccess', role="alert")
+        p(v-if='meta[address.address_type].formSuccess') {{meta[address.address_type].formSuccess}}
+        p(v-else='')
+          i.fa.fa-exclamation-triangle.mr-2
+            | Your profile has been successfully updated
+    .form-group
+      label(:for='address.address_type + "AddL1"').col-form-label Address Line 1
+        span.text-danger &nbsp;*
+      input(:id='address.address_type + "AddL1"',
+      type='text',
+      v-model='address.line1',
+      required,
+      @change='change',
+      :class="errors.line1 && 'is-invalid'").form-control
+      em(v-if="errors.line1").invalid-feedback.smaller {{errors.line1}}
+    .form-group
+      label(:for='address.address_type + "AddL2"').col-form-label Address Line 2
+      input(:id='address.address_type + "AddL2"',
+      type='text',
+      v-model='address.line2',
+      @change='change',
+      :class="errors.line2 && 'is-invalid'").form-control
+      em(v-if="errors.line2").invalid-feedback.smaller {{errors.line2}}
+    .form-group
+      label(:for='address.address_type + "Town"').col-form-label Town / City
+        span.text-danger &nbsp;*
+      input(:id='address.address_type + "Town"',
+      type='text',
+      v-model='address.town',
+      required,
+      @change='change',
+      :class="errors.town && 'is-invalid'").form-control
+      em(v-if="errors.town").invalid-feedback.smaller {{errors.town}}
+    .form-row.px-0
+      .form-group.col-12.col-sm-6
+        label(:for='address.address_type + "State"').col-form-label County / State
+          span.text-danger &nbsp;*
+        input(:id='address.address_type + "State"',
+        type='text',
+        v-model='address.state',
+        required,
+        @change='change',
+        :class="errors.state && 'is-invalid'").form-control
+        em(v-if="errors.state").invalid-feedback.smaller {{errors.state}}
+      .form-group.col-12.col-sm-6
+        label(:for='address.address_type + "Zip"').col-form-label Post Code/Zip
+          span.text-danger &nbsp;*
+        input(:id='address.address_type + "Zip"',
+        type='text',
+        v-model='address.zip',
+        required,
+        @change='change',
+        :class="errors.zip && 'is-invalid'").form-control
+        em(v-if="errors.zip").invalid-feedback.smaller {{errors.zip}}
+    .form-group.row.px-0
+      .form-group.col-12.col-sm-6
+        label(:for='address.address_type + "Country"').col-form-label Country
+          span.text-danger &nbsp;*
+        select(:id='address.address_type + "Country"',
+        v-model='address.country_id',
+        required,
+        @change='change',
+        :class="errors.country_id && 'is-invalid'").form-control
+          option(v-for='country in countries',
+          :value='country.number') {{country.translation}}
+        em(v-if="errors.country_id").invalid-feedback.smaller {{errors.country_id}}
+        input(hidden='true', :country="address.country_id", :id="'hidden-' + address.address_type")
+    .alert.alert-danger(v-if='meta[address.address_type] && meta[address.address_type].formError', role="alert")
+      p(v-if='meta[address.address_type].formError')
+        i.fa.fa-exclamation-triangle.mr-2
+        | {{meta[address.address_type].formError}}
+      p(v-else='')
+        i.fa.fa-exclamation-triangle.mr-2
+        | Ensure you correct any highlighted errors before continuing.
+    .form-group.row.px-0
+      .form-group.col-12
+        button(:id='address.address_type + "UpdateButton"', type='submit').btn.big-orange-button.text-white
+          | update account »

@@ -1,0 +1,26 @@
+section.settings-forms
+  .container-fluid.py-3
+    .mobile-footer.form-row
+      .col-6
+        form#currency_form_mobile(action='', method='post')
+          input(type='hidden', name='current_url', value='/')
+          input#hash_mobile(type='hidden', name='hash')
+          select#curr_mobile.currency-dropdown(name='curr').form-control
+            option(value='gbp') £ GBP
+            option(value='eur') € EUR
+            option(value='usd') $ USD
+            option(value='jpy') ¥ JPY
+            option(value='aud') $ AUD
+            option(value='cad') $ CAD
+            option(value='uah', selected='selected') ₴ UAH
+            option(value='rub') р. RUB
+            option(value='nzd') $ NZD
+            option(value='cny') ¥ CNY
+      .col-6
+        select#lang_mobile.form-control
+          option(value='/welcome/lang/en/', selected='selected') UK: English
+          option(value='/welcome/lang/de/') De: Deutsch
+          option(value='/welcome/lang/cn/') Cn: Chinese
+          option(value='/welcome/lang/ca/') Ca: Canadian
+          option(value='/welcome/lang/au/') Au: Australian
+  hr.mt-0

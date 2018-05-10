@@ -1,0 +1,69 @@
+// Variables
+
+
+  // Typography
+
+$font-family-base:  Arial, 'Helvetica Neue';
+$font-size-base:    16px;
+$line-height-base:  1;
+
+  // Colors
+
+$menu-deep-grey:    #111;
+$menu-middle-grey:  #333;
+$menu-light-grey:   #545454;
+
+$dark-grey:         #707070;
+$grey:              #aaa;
+$footer-grey:       #eaeaea;
+$footer-link:       #dadada;
+$light-grey:        #f0f0f0;
+$light-light-grey:  #f6f6f6;
+$pink:              #c612bb;
+$deep-pink:         #812d4f;
+$crimson:           #8d0e00;
+$red:               #ad1100;
+$sales-red:         #f33a2b;
+$orange:            #fc4c02;
+$light-orange:      #ffb400;
+$green:             #00aa18;
+$link-light-blue:   #2ba6cb;
+$link-blue:         #00799e;
+$dark-blue:         #2d3e50;
+$blue:              #1460a6;
+$footer-black:      #202020;
+$black:             #304258;
+
+.white {
+  color: #fff;
+}
+.red {
+  color: $red;
+}
+a.red:hover {
+  color: #00799e;
+}
+.orange1 {
+  color: #fc4c02;
+}
+.orange2 {
+  color: $light-orange;
+}
+.blue {
+  color: $blue;
+}
+.pink {
+  color: $pink;
+}
+.green {
+  color: $green;
+}
+.grey {
+  color: $grey;
+}
+.dkGrey {
+  color: $dark-grey;
+}
+.black {
+  color: #000;
+}

@@ -1,0 +1,199 @@
+.col-12
+  .row
+    .selected-address(v-if='disableFields').col-11.col-md-12.mx-auto.py-3
+      p.large
+        strong {{type.charAt(0).toUpperCase()+type.slice(1)}} Address
+      .row
+        p.col-6.col-md-4.col-lg-4.text-label Your country:
+        p.col-6.col-md-8.col-lg-8.input-text
+          span#countryText(v-model='order.reg_country') {{ searchCountryById(data.country_id)['country_name'] }}
+      .row
+        p.col-6.col-md-4.col-lg-4.text-label Address line 1:
+        p.col-6.col-md-5.col-lg-8.input-text
+          span(:id='type + "ZipText"') {{ data.line1 }}
+      .row(v-if='data.line2 === ""')
+        p.col-6.col-md-4.col-lg-4.text-label Address line 2:
+        p.col-6.col-md-5.col-lg-8.input-text
+          span(:id='type + "AddressLine2Text"') {{ data.line2 }}
+      .row
+        p.col-6.col-md-4.col-lg-4.text-label City:
+        p.col-6.col-md-5.col-lg-8.input-text
+          span(:id='type + "CityText"') {{ data.town }}
+      .row
+        p.col-6.col-md-4.col-lg-4.text-label State:
+        p.col-6.col-md-5.col-lg-8.input-text
+          span(:id='type + "StateText"') {{ data.state }}
+      .row
+        p.col-6.col-md-4.col-lg-4.text-label Zip \ postal code:
+        p.col-6.col-md-5.col-lg-8.input-text
+          span(:id='type + "ZipText"') {{ data.zip }}
+    .delivery-form(v-if='(showDeliveryForm == 1 || lockForm == 1) && !disableFields').col-12.pt-4
+      .form-group.row
+        label(for='reg-country').col-form-label.col-md-3.col-lg-4.d-none.d-md-block Your country:
+        .col-12.col-md-9.col-lg-8.col-xl-6
+          select#reg-country(@change='changeBillAddress',
+          v-model='data.country_id',
+          name='country',
+          :class='[errors.reg_country && errors.reg_country !== true ? "error" : ""]').form-control
+            option(v-for='(country,index) in countryList',
+            :value=' country.number ') {{ country.country_name }}
+          p(v-if='errors.reg_country && errors.reg_country !== true') {{errors.reg_country}}
+      .form-group.row
+        p(v-if='errorInAddress!==""').red.smaller.checkout-zip-error {{ errorInAddress }}
+        label(v-if='data.country_id == 223',
+        :for='"delivery_zip_code__"+type').col-form-label.col-12.col-md-3.col-lg-4.long-label Your
+          strong  United Kingdom
+          |  delivery postcode:
+        label(v-else,
+        :for='"delivery_zip_code_"+type').col-form-label.col-md-3.col-lg-4 Zip \ postal code:
+        .col-7.col-md-5.col-lg-4.col-xl-3(v-if='data.country_id == 223')
+          input(v-model.trim='data.zip',
+          :id='"delivery_zip_code__"+type',
+          type='text',
+          :disabled = 'disableFields == true',
+          :class='[errors.zip ? "error" : ""]',
+          @keyup.enter="findZipCode").form-control
+          p.red.smaller.checkout-zip-error {{errors.zip}}
+        .col-12.col-md-9.col-lg-8.col-xl-6(v-else)
+          input(v-model.trim='data.zip',
+          :id='"delivery_zip_code_"+type',
+          type='text',
+          :disabled = 'disableFields == true',
+          :class='[errors.zip ? "error" : ""]').form-control
+          p.red.smaller.checkout-zip-error {{errors.zip}}
+        .col-5.col-md-4.col-xl-3.green-button-wrapper
+          button#findAddressButton(@click='findZipCode',
+          v-if='data.country_id === 223',
+          :disabled='disableFields').btn.green-button Find Address
+      .form-group.row
+        label(:for='"delivery_address_line_1_"+type').col-form-label.col-md-3.col-lg-4.d-none.d-md-block Address line 1:
+        .col-12.col-md-9.col-lg-8.col-xl-6
+          input(v-model.trim='data.line1',
+          :id='"delivery_address_line_1_"+type',
+          type='text',
+          :disabled = 'disableFields',
+          :class='[errors.line1 ? "error" : ""]').form-control
+          p.red.smaller {{errors.line1}}
+      .form-group.row
+        label(:for='"delivery_address_line_2_"+type').col-form-label.col-md-3.col-lg-4.d-none.d-md-block Address line 2:
+        .col-12.col-md-9.col-lg-8.col-xl-6
+          input(v-model.trim='data.line2',
+          :id='"delivery_address_line_2_"+type',
+          type='text',
+          :disabled = 'disableFields',
+          :class='[errors.line2 ? "error" : ""]').form-control
+          p.red.smaller {{errors.line2}}
+      .form-group.row
+        label(:for='"delivery_city_"+type').col-form-label.col-md-3.col-lg-4.d-none.d-md-block City:
+        .col-12.col-md-9.col-lg-8.col-xl-6
+          input(v-model.trim='data.town',
+          :id='"delivery_city_"+type',
+          type='text',
+          :disabled = 'disableFields',
+          :class='[errors.town ? "error" : ""]').form-control
+          p.red.smaller {{errors.town}}
+      .form-group.row
+        label(:for='"delivery_state_"+type').col-form-label.col-md-3.col-lg-4.d-none.d-md-block State:
+        .col-12.col-md-9.col-lg-8.col-xl-6
+          input(v-model.trim='data.state',
+          :id='"delivery_state_"+type',
+          type='text',
+          :disabled = 'disableFields',
+          :class='[errors.state ? "error" : ""]').form-control
+          p.red.smaller {{errors.state}}
+      .form-group.row
+        .col-md-3.col-lg-4.d-none.d-md-block
+        .form-check(v-if='show_same_checkbox').col-12.col-md-9.col-lg-8.col-xl-6
+          label.form-check-label.orange-text.text-left
+            input.form-check-input(v-model='order.some_billship_addr',
+            type='checkbox',
+            :disabled = 'disableFields')
+            |  My billing address is the same as my shipping address.
+    .delivery-form-uk.uk(v-else-if='!disableFields').col-12.pt-4
+      // Search address by zip form
+      .form-group.row
+        label(for='reg-country').col-form-label.col-12.col-md-3.col-lg-4.d-none.d-md-block Your country:
+        .col-12.col-md-9.col-lg-8.col-xl-6
+          select#regcountry(@change='changeBillAddress',
+          v-model='data.country_id',
+          name='country',
+          :class='[errors.reg_country && errors.reg_country !== true ? "error" : ""]').form-control
+            option(v-for='(country,index) in countryList',
+            :value=' country.number ') {{ country.country_name }}
+          p(v-if='errors.reg_country && errors.reg_country !== true') {{errors.reg_country}}
+      .form-group.row.mb-1
+        label(:for='"delivery_zip_code_uk"+type').col-form-label.col-12.col-md-3.col-lg-4.long-label Your
+          strong  United Kingdom
+          |  delivery postcode:
+        .col-7.col-md-5.col-lg-4.col-xl-3
+          input(v-model='data.zip',
+          :id='"delivery_zip_code_uk"+type',
+          type='text',
+          required,
+          :class='[errors.zip ? "error" : ""]',
+          @keyup.enter="findZipCode").form-control
+          p.red.smaller
+            em {{errors.zip}}
+          p(v-if='!showAdressessSelectBlock').smaller.my-2.text-right.d-none.d-md-inline
+            a#enterAddrManuallyLink(@click.prevent='showForm(1)', tabindex=0).blue-ul Enter address manually »
+        .col-5.col-md-4.col-xl-3.green-button-wrapper
+          button#findAddressUKButton(@click='findZipCode').btn.green-button Find Address
+      .form-group.row.d-md-none
+        .col-7.col-md-8.text-right
+          p(v-if='!showAdressessSelectBlock').smaller.my-2.text-right
+            a#enterAddrManuallyZipLink(@click.prevent='showForm(1)', tabindex=0).blue-ul Enter address manually »
+      // Search address by zip - results block
+      .form-group.row(v-if='showAdressessSelectBlock')
+        .col-12.text-left
+          p.small
+            strong Select your address from the list
+          .select-address
+            p.address-option(@click='saveAddress(index)',
+            :class="{'active':index == activePostCodeId}",
+            v-for='(code,index) in postcode')
+              | {{ code.line_1 }}
+              span(v-if="code.line_1") ,&nbsp;
+              | {{ code.line_2 }}
+              span(v-if="code.line_2") ,&nbsp;
+              | {{ code.organisation_name }}
+              span(v-if="code.organisation_name") ,&nbsp;
+              | {{ code.department_name }}
+              span(v-if="code.department_name") ,&nbsp;
+              | {{ code.dps }}
+              span(v-if="code.dps && code.udpr") ,&nbsp;
+              | {{ code.udpr }}
+        .col-12
+          p.smaller.my-2
+            strong Address not listed?
+            | &nbsp;&nbsp;
+            span
+              a(@click.prevent='showForm(1)', tabindex=0).blue-ul Enter address manually »
+
+      // When address is selected in the list - display it formatted
+      //.row(v-if='showAdressesSelectBlock').mb-2
+        .col-4.col-md-3.col-xl-2
+          p.col-form-label Choose address
+        .col-8.col-xl-6
+          .addresses-block
+            p.address-info {{ code.line_1 }}
+            p.address-info {{ code.line_2 }}
+            p.address-info {{ code.organisation_name }}
+            p.address-info {{ code.department_name }}
+            p.address-info {{ code.dps }}
+            p.address-info {{ code.udpr }}
+            p.small (
+              span.edit-trigger Edit
+              | )
+          .orange-text(v-if='show_same_checkbox')
+            label.form-check-label.text-left
+              input(v-model='regdata.some_billship_addr',
+              @change='changeVisiblToParrnet',
+              type='checkbox').form-check-input
+              | My billing address is the same as my shipping address
+
+    // Button should be removed somewhere up the DOM tree in order not to be duplicated
+    .col-12(v-if="(order.some_billship_addr || !show_same_checkbox) && !disableFields").py-2
+      button#continue-second-button(@click.prevent='commitEvent',
+      :disabled='disabledNextButton').btn.button-continue
+        span Continue&nbsp;&nbsp;
+          i.fi-play

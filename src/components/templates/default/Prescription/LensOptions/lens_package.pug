@@ -1,0 +1,27 @@
+div
+  h2
+    strong Customise your lens package
+  br
+  hr
+  section.container
+    .row.card-group
+      .card(v-for='(lens, id) in lensPackage',
+        :class="[!!lens.disabled ? 'disabled' : '']")
+        .card-header
+          p.card-title(v-html='lens.name')
+        .card-block.px-1(v-show='!lens.show')
+          img.card-img(:src='lens.image')
+          p.text-left.card-text
+            em.small(v-html='lens.description')
+        .card-block(v-show='lens.show')
+          p Select your coating and add to basket
+          p
+            strong Tint Strength
+          .form-check.small.text-left(v-for='coating in lens.coating')
+            label.form-check-label(:for="'coating' + coating.id")
+              input.form-check-input(:id="'coating' + coating.id", type='checkbox', v-model='coatingChecked', name='coating', :value='coating.id')
+            | {{coating.name}}
+          router-link.btn.accent-button.float-right(:id="'add-to-basket-' + lens.id", :to="{ name: 'Basket', params: {coating: coatingChecked}}") Add to Basket >
+        .card-footer
+          a.card-continue-button(v-show='!lens.show', :id="'lens-' + lens.id + '-button'", v-on:click='onChooseLens(id)') Expand
+          a.card-continue-button(v-show='lens.show', :id="'lens-' + lens.id + '-button'", v-on:click='onChooseLens(id)') Hide

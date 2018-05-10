@@ -1,0 +1,76 @@
+#reviewGuideButton {
+  font: {
+    size: .75rem;
+    weight: 400;
+  }
+  text-transform: none;
+  color: #fff;
+  background: #2d3e50;
+  padding: .4rem .5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  &:hover {
+    background-color: #48647c;
+  }
+}
+
+textarea.form-control {
+  background-color: #fff !important;
+  &:focus, &:hover {
+    background-color: #fff !important;
+  }
+}
+
+#reviewImageAttachingError, #reviewImageAttaching {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+#reviewImageAttachingError {
+  background: #f6cccc;
+}
+
+#reviewImageAttaching {
+  background: #e0e0e0;
+}
+
+#uploadPhotoButton, #uploadMorePhotoButton {
+  background: #d9d9d9;
+  color: #000;
+  border: 1px solid #ccc;
+  margin-bottom: 0;
+  &:hover {
+    background: #c00;
+    color: #fff;
+  }
+  .form-control-file {
+    opacity: 0;
+    height: 0;
+  }
+}
+
+.img-wrapper {
+  position: relative;
+  height: auto;
+  width: auto;
+  i {
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    background: url('/static/delete.png') no-repeat;
+    margin: -10px 0 0 80px;
+    z-index: 20;
+    cursor: pointer;
+    display: none;
+  }
+  img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+  }
+  &:hover {
+    cursor: pointer;
+    i {
+      display: block;
+    }
+  }
+}

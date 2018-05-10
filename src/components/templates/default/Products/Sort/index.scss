@@ -1,0 +1,36 @@
+// Import main style settings
+@import '../../_Styles/mixins';
+
+
+.search-sort-bar {
+  background: #fff;
+  @include desktop-down {
+    margin: 0 0 1rem;
+
+  }
+  @include desktop {
+    margin: 0 .2rem 1rem;
+    padding: .3rem;
+  }
+
+  .sortby {
+    margin-right: 1rem;
+    select {
+      font-size: .75rem;
+      margin: 0;
+      width: 8rem;
+    }
+  }
+  .results {
+    font-size: .75rem;
+    padding-top: .6rem;
+    line-height: 1.6;
+    .clear-all {
+      background: #ffe4a2;
+      white-space: nowrap;
+      padding: 3px 6px;
+      color: #000;
+      text-decoration: underline;
+    }
+  }
+}

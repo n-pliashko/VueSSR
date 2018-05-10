@@ -1,0 +1,24 @@
+section.search-sort-bar.row
+  .sortby.float-left
+    form(method='post')
+      label.sr-only(for='sortby') Sort by
+      select#sortby.selectbox(name='sort', v-model="selected").form-control
+        option(value='pageviews') Sort: popularity    
+        option(value='rating') Sort: rating
+        option(value='priceasc') Sort: low price
+        option(value='pricedesc') Sort: price high
+        option(value='model') Sort: A - Z
+        option(value='itemadded') Sort: newest
+  .results.float-left.d-none.d-md-block
+    | Results:&nbsp;
+    strong#totalFoundTextDesktop.total-found {{$parent.items.total}}
+    | .&nbsp;
+    span#group_switcher
+      | Grouped by model (
+      a#showAllOptionsLink.blue-ul(href) Show all colour options
+      | )
+  .results.float-left.d-md-none
+    | Results:&nbsp;
+    strong#totalFoundTextMobile.total-found {{$parent.items.total}}
+    | &nbsp;
+    a.clear-all(href='/', @click.native='clearAll') Clear Filters

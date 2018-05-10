@@ -1,0 +1,169 @@
+section.text-left
+  .step-description-wrapper
+    p.larger.mb-0.text-danger
+      strong 2.1 Add your prescription
+    p.small Add your prescription to receive a recommendation for the best lens for your needs.
+    br
+  form#presForm(method='POST', v-on:submit.prevent='prescriptionSubmit', enctype='multipart/form-data')
+    #dispens-content-left
+      #add-new-prescription
+        table.table.w-100
+          thead.thead-inverse
+            th.eye &nbsp;
+            th.value
+              | SPH
+              | (Sphere)
+            th.value
+              | CYL
+              | (Cylinder)
+            th.value
+              | AXIS
+            th.value
+              | ADD
+              | (Addition)
+          tbody
+            tr.rightEye
+              th.eye(scope="row")
+                p OD&nbsp;-&nbsp;
+                  span.font-italic (Right Eye)
+              td
+                select#R_Sphere.simple(name='R_Sphere').w-100
+                  option(v-for='r_sphere in options.SPH.OD', :value='r_sphere') {{r_sphere}}
+              td
+                select#R_Cylinder.simple(name='R_Cylinder').w-100
+                  option(v-for='r_cyl in options.CYL.OD') {{r_cyl}}
+              td
+                select#R_Axis.simple(name='R_Axis').w-100
+                  option(v-for='r_axis in options.AXIS.OD') {{r_axis}}
+              td
+                select#R_ADD.simple(name='R_ADD').w-100
+                  option(v-for='r_add in options.ADD.OD') {{r_add}}
+            tr.leftEye
+              th.eye(scope="row")
+                p OS&nbsp;-&nbsp;
+                  span.font-italic (Left Eye)
+              td
+                select#L_Sphere.simple(name='L_Sphere').w-100
+                  option(v-for='l_sphere in options.SPH.OS', :value='l_sphere') {{l_sphere}}
+              td
+                select#L_Cylinder.simple(name='L_Cylinder').w-100
+                  option(v-for='l_cyl in options.CYL.OS', :value='l_cyl') {{l_cyl}}
+              td
+                select#L_Axis.simple(name='L_Axis').w-100
+                  option(v-for='l_axis in options.AXIS.OS', :value='l_axis') {{l_axis}}
+              td
+                select#L_ADD.simple(name='L_ADD').w-100
+                  option(v-for='l_add in options.ADD.OS', :value='l_add') {{l_add}}
+        hr
+        .container
+          .form-check.form-check-inline
+            label(for='show-prism').font-weight-normal.form-check-label
+              input#show-prism.form-check-input.mr-2(type='checkbox', v-model='showPrism')
+              | Add a prism
+        hr
+        #prismBox(v-show='showPrism')
+          table.table.w-100
+            thead.thead-inverse
+              th
+              th.value Vertical Prism
+              th.value Base Direction
+              th.value Horizontal Prism
+              th.value Base Direction
+            tbody
+              tr.rightEye
+                th.eye(scope="row")
+                  p OD&nbsp;-&nbsp;
+                    span.font-italic (Right Eye)
+                td
+                  select(name='v_prism_re').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='v_prism in options.PRISM.OD.v', :value='v_prism') {{v_prism}}
+                td
+                  select(name='v_prism_re_dir').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='v_dir_prism in options.PRISM.OD.vDir', :value='v_dir_prism') {{v_dir_prism}}
+                td
+                  select(name='h_prism_re').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='h_prism in options.PRISM.OD.h', :value='h_prism') {{h_prism}}
+                td
+                  select(name='h_prism_re_dir').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='h_dir_prism in options.PRISM.OD.hDir', :value='h_dir_prism') {{h_dir_prism}}
+              tr.leftEye
+                th.eye(scope="row")
+                  p OS&nbsp;-&nbsp;
+                    span.font-italic (Left Eye)
+                td
+                  select(name='v_prism_le').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='v_prism in options.PRISM.OS.v', :value='v_prism') {{v_prism}}
+                td
+                  select(name='v_prism_le_dir').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='v_dir_prism in options.PRISM.OS.vDir', :value='v_dir_prism') {{v_dir_prism}}
+                td
+                  select(name='h_prism_le').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='h_prism in options.PRISM.OS.h', :value='h_prism') {{h_prism}}
+                td
+                  select(name='h_prism_le_dir').w-100
+                    option(selected='', value='0') n/a
+                    option(v-for='h_dir_prism in options.PRISM.OS.hDir', :value='h_dir_prism') {{h_dir_prism}}
+        p.larger.mb-0.text-danger
+          strong 2.2 Additional Information
+        br
+        table.table.w-100
+          tbody
+            tr.pupillary-distance
+              td
+                p.font-weight-bold What's your Pupillary Distance?
+              td
+                .pd_advanced.row(v-show='dualPD')
+                  .form-group.col-6
+                    select#PD_advanced.pd_advanced.w-100(name='pd_left')
+                      option(v-for='left in options.PD.left', :value='left') {{left}}
+                  .form-group.col-6
+                    select.pd_advanced.w-100(name='pd_right')
+                      option(v-for='right in options.PD.right', :value='right') {{right}}
+                select#PD_simple.simple.w-50(v-show='!dualPD', name='pd_dual')
+                  option(v-for='dual in options.PD.dual', :value='dual') {{dual}}
+              td
+                a.pd-option.mx-2(data-toggle="modal") What's this?
+                a.pd-option.mx-2(v-if='!!dualPD', v-on:click='dualPD = false') I have a single PD number
+                a.pd-option.mx-2(v-else='', v-on:click='dualPD = true') I have a dual PD number
+            tr
+              td
+                p.font-weight-bold Prescription name (optional)
+              td.form-group
+                label.form-control-label.sr-only(for='addName') Add additional information
+                input#addName.form-control(type='text', placeholder="August 2017")
+              td
+                a.pd-option.mx-2(data-toggle="modal") What's this?
+            tr
+              td(v-if='!addInfo')
+                p.font-weight-bold.mb-0 Need to add some additional information?&nbsp;
+                p.pd-option(v-on:click='addInfo = true') Click here
+              td(v-else='addInfo')
+                p.font-weight-bold Additional information (optional)
+              td.form-group
+                div(v-show='addInfo')
+                  label.form-control-label.sr-only(for='addInfo') Add additional information
+                  textarea#addInfo.form-control(cols='35', rows='5', name='add_info')
+        hr
+        .container
+          .form-check.form-check-inline
+            label.form-check-label.small(for='confirm-prescription')
+              input#confirm-prescription.form-check-input.mr-2(v-model='confirm', type='checkbox', name='confirm-prescription')
+              | I confirm that my prescription is correct with the correct&nbsp;
+              strong '+'
+              | &nbsp;and&nbsp;
+              strong '-'
+              | &nbsp;
+              strong SPH
+              | &nbsp;and&nbsp;
+              strong CYL
+              | &nbsp;values, my prescription is not over 2 years old, I am over 16 years old, and that I'm neither registered blind or partially blind.
+        hr
+        .container.text-center.text-md-right
+          button.btn.big-orange-button.w-50(type='submit', :disabled='!confirm') Continue to lens options >

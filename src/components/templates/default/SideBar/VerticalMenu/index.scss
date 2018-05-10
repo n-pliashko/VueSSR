@@ -1,0 +1,25 @@
+.sidebar-text {
+  padding: .25rem .5rem;
+  background-color: #111111;
+  line-height: 2;
+  .orange-text {
+    color: #fc4c02;
+    font-size: .8rem;
+  }
+}
+
+.sidebar-menu-wrapper {
+  height: 450px;
+  width: 250px;
+  position: relative;
+  overflow: hidden;
+  background-color: #333;
+}
+.sidebar-links-wrapper {
+  width: 250px;
+  .fa {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: .25rem;
+  }
+}

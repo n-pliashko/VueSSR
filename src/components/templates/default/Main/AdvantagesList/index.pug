@@ -1,0 +1,64 @@
+section.advantages
+  .container-fluid
+    .row
+      .col-12.text-center
+        br
+        br
+        br
+        h5.h1 Glasses, sunglasses & contact lenses from SelectSpecs.com
+        hr.short-hr.my-4.d-none.d-md-block
+        p
+          strong
+            u Why choose us?
+        p.small Online since
+          strong  2005
+          |  - well established with 12+ years experience.
+        p.small Prescription glasses from only
+          strong(v-html="calculatePrice(250/33.47, false, true)")
+          |  including lenses & coatings.
+        p.small
+          strong FREE
+          |  lenses & coatings - up to 70% saving compared with the high street.&nbsp;
+          a.blue-ul(href="/price-list/") View our lens prices.
+        p.small 100% satisfaction. Guaranteed - 14 day money back returns.
+        p.small All prescription glasses are made to a very high standard using the same materials as used by high street opticians - see our &nbsp;
+          a.blue-ul(href="/about-us/lab/") lab process here.
+        p.small Authorised retailer for over
+          strong 200
+          |  designer brands including&nbsp;
+          a.blue-ul(href="/glasses/prescription/ray-ban/d43/") Ray-Ban
+          | ,&nbsp;
+          a.blue-ul(href="/glasses/prescription/oakley/d391/") Oakley
+          | ,&nbsp;
+          a.blue-ul(href="/glasses/prescription/tiffany-co-/d31593/") Tiffany & Co.
+          | ,&nbsp;
+          router-link(to="/glasses/prescription/tom-ford/d284/").blue-ul Tom Ford
+          | , and more.
+        p.small Friendly & helpful customer services team -
+          strong  UK call centre.
+        p.small Our&nbsp;
+          a.blue-ul(href="/store/") high street
+          |  store and offices are based in Westgate on Sea, Kent, UK.
+        p.small On site laboratory using the most cutting edge equipment available in the optics industry today.
+        p.small
+          strong Worldwide
+          |  shipping available, with
+          strong  free delivery on orders over
+            span(v-html="calculatePrice(2665.50/33.47, false, true)")
+        p.small Rated as
+          strong  Excellent
+          |  with over
+          strong  16,000
+          |  reviews.*
+        br
+        p.small Ordering with SelectSpecs online is quick and hassle-free. Give us a call on
+          strong  03303 801 190
+          |  and one of our friendly customer service advisers will be happy to take your order over the phone.
+        br
+        p.small.font-italic *16,000+ reviews on independent review site Trust Pilot.
+        br
+    .row
+      .col-12.text-center
+        ShareButtons
+        br
+        br

@@ -1,0 +1,41 @@
+@import '../../_Styles/mixins';
+
+.pack-deals {
+  h2.main-header {
+    color: #2d3e50;
+    letter-spacing: -1px;
+    @include largeDesktop-down {
+      font-size: 1.9rem;
+      line-height: 2.5rem;
+    }
+    @include largeDesktop {
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+  }
+  a.big-button {
+    color: #d03e00;
+  }
+  .slick-dots {
+    position: initial;
+    li {
+      margin: 0;
+      button:before {
+        font-size: 14px;
+        opacity: .2;
+      }
+    }
+    li.slick-active, li:hover {
+      button:before {
+        opacity: 1;
+        color: #fff;
+        font-size: 12px;
+        text-shadow:  1px 1px #000,
+        1px -1px #000,
+        -1px 1px #000,
+        -1px -1px #000;
+      }
+    }
+  }
+}
+

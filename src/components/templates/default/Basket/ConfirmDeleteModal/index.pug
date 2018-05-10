@@ -1,0 +1,17 @@
+#basketConfirmDeleteModal(tabindex='-1', role='dialog', aria-hidden='true').modal.fade
+  .modal-dialog.centered(role='document')
+    .modal-content
+      .modal-header.mb-3
+        h1.modal-title Are you sure that you would like to remove this item?
+        button#confirmDeleteModalClose(type='button',
+        data-dismiss='modal',
+        aria-label='Close').close
+          span ×
+      .modal-body
+        .row
+          .col-12.col-md-6
+            button#deleteYesButton(@click='$parent.removeItem(itemID)',
+              data-dismiss='modal',
+              aria-label='Close').btn.big-orange-button Yes
+          .col-12.col-md-6
+            button#deleteNotButton(data-dismiss='modal', aria-label='Close').btn.big-orange-button Cancel

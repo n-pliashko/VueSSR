@@ -1,0 +1,101 @@
+.page
+  PageHeader
+
+  .loading(v-if="loading")
+  main
+    Breadcrumbs
+    .container-fluid
+      .row
+        .col-12.text-center
+          h1.super-heading Buying Guides & Advice
+          p Welcome to our Guides and 'How to' information hub.
+    .grey-container
+      .container-fluid.text-center
+        .row.row-eq-height
+          PreviewBlock(v-for="item in boxContents", :key="item.id",
+            :header="item.header", :text="item.text",
+            :img="item.img", :links="item.links", :blockType="blockType")
+          br
+        //.row.row-eq-height
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-lenses.jpg?20171207190136').img-fluid
+              p
+                strong Guide to Lenses
+              p.small The lenses we offer and technology available.
+              br
+              p
+                router-link(to='/guides/lenses/').btn.big-button View Guides »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-face-shapes.jpg?20171207190136').img-fluid
+              p
+                strong Guide to Face Shapes
+              p.small A guide to finding the right frame style to suit your face shape.
+              br
+              p
+                router-link(to='/info/face-shapes/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-frame-size.jpg?20171207190136').img-fluid
+              p
+                strong Guide to Frame Measurements
+              p.small We'll decipher the numbers on your glasses and explain what they mean.
+              br
+              p
+                router-link(to='/guides/how-to/find-right-sized-glasses/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-driving-sun.jpg?20171207190136').img-fluid
+              p
+                strong Guide to Safe Sunglasses for Driving
+              p.small Find the perfect sunglasses for driving in the summer or winter sun.
+              br
+              p
+                router-link(to='/guides/how-to-choose-safe-sunglasses-for-driving/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-kids-sun.jpg?20171207190136').img-fluid
+              p
+                strong Guide to Kids Sunglasses
+              p.small Ensuring your childrens eyes are protected from harmful UV rays.
+              br
+              p
+                router-link(to='/guides/kids-sunglasses/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/guide-to-goggles.jpg?20171207190136').img-fluid
+              p
+                strong Guide to Goggles
+              p.small Everything you need to know about goggles for maximum protection and comfort.
+              br
+              p
+                router-link(to='/guides/ski-mx-goggles/').btn.big-button View Guide »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/health-eye-structure.jpg?20171207190136').img-fluid
+              p
+                strong Guide to Eye Health
+              p.small Find out more about different eye conditions and ways to ensure good eye health.
+              br
+              p
+                router-link(to='/eye-health/').btn.big-button View Guides »
+          .col-12.col-md-6.col-lg-3
+            .guide-box.box-shadow
+              p
+                img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/featured-pages/hub-index/howto.jpg?20171207190136').img-fluid
+              p
+                strong 'How to' Guides
+              p.small A series of guides on how to get the best out of your glasses or sunglasses.
+              br
+              p
+                router-link(to='/guides/how-to/').btn.big-button View Guides »
+
+  PageFooter
