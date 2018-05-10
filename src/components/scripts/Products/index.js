@@ -55,26 +55,7 @@ export default {
       exchange: (state) => state.currency.exchange,
       exchangeBack: (state) => state.currency.exchangeBack,
       backRoute: (state) => state.backRoute,
-      calculatePrice: (state) => state.calculatePrice,
-      items: (state) => {
-        let items = {
-          data: [],
-          total: 0,
-          priceFrom: '',
-          priceTo: '',
-          armFrom: '',
-          armTo: '',
-          bridgeFrom: '',
-          bridgeTo: '',
-          lensFrom: '',
-          lensTo: '',
-          inWishlist: false
-        }
-        if (state.promiseData && state.promiseData.catalogue && state.promiseData.catalogue.items) {
-          Object.assign(items, state.promiseData.catalogue.items)
-        }
-        return items
-      }
+      calculatePrice: (state) => state.calculatePrice
     }),
     isHistoryAvailable: function () {
       return !!(window.history && window.history.pushState)
@@ -226,6 +207,19 @@ export default {
         },
         emulateJSON: true
       },
+      items: {
+        data: [],
+        total: 0,
+        priceFrom: '',
+        priceTo: '',
+        armFrom: '',
+        armTo: '',
+        bridgeFrom: '',
+        bridgeTo: '',
+        lensFrom: '',
+        lensTo: '',
+        inWishlist: false
+      },
       pagination: {
         currentPage: 1,
         skip: 0,
@@ -327,10 +321,6 @@ export default {
   },
   destroyed: function () {
     document.body.removeEventListener('scroll', this.handleScroll)
-    this.$store.dispatch('clearPromiseData')
-  },
-  asyncData ({route, store}) {
-    return this.loadComponents(0, 1)
   },
   methods: {
     loadAllCategories () {
@@ -384,7 +374,7 @@ export default {
           .then(response => response.data)
           .then(json => {
             self.designerDescription = json
-            // self.$emit('updateHead')
+            self.$emit('updateHead')
           })
       }
     },
@@ -446,35 +436,7 @@ export default {
         }
       }
 
-      return this.$store.dispatch('loadCatalogue', data, append).then(() => {
-        if (self.pagination.skip > self.items.total) {
-          self.pagination.skip = 0
-          self.pagination.currentPage = 1
-        }
-        if (self.search_term && self.items.total === 1) {
-          let oneItem = self.items.data[0]
-          self.$router.push({
-            name: 'ItemPage',
-            params: {
-              item: parseFloat(oneItem.id / 100).toFixed(2),
-              designer: reverseRouteName(oneItem.designer_name),
-              model: reverseRouteName(oneItem.model_name)
-            }
-          })
-        }
-      }).then(() => {
-        if (self.items.total === 0 && (self.filters.price_from || self.filters.price_to)) {
-          self.findRangePrice()
-        }
-        if (onlyItems) {
-          self.itemLoading = false
-        }
-        self.loading = false
-      })
-        .catch(res => {
-          return res
-        })
-      /* return this.$axios.post(this.apiHost + config.prefix + config.products.searchProducts, data, Object.assign({}, requestOpt, this.requestOptions))
+      return this.$axios.post(this.apiHost + config.prefix + config.products.searchProducts, data, Object.assign({}, requestOpt, this.requestOptions))
         .then(r => self.$store.dispatch(auth.AUTH_ACTION_SUCCESS, r), e => self.$store.dispatch(auth.AUTH_ACTION_ERROR, e))
         .then(response => response.data)
         .then(json => {
@@ -538,7 +500,7 @@ export default {
         })
         .catch(res => {
           return res
-        }) */
+        })
     },
     generateBreadcrumbs: function () {
       let breadcrumbs = []
@@ -980,7 +942,7 @@ export default {
     }
   },
   watch: {
-    'generatedBreadcrumbs': {
+    'breadcrumbs': {
       handler: function () {
         if (this.breadcrumbs && this.generatedBreadcrumbs && this.breadcrumbs.length === 1 && this.generatedBreadcrumbs.length > 0) {
           this.$store.dispatch('setBreadcrumbs', this.generatedBreadcrumbs)
@@ -999,7 +961,7 @@ export default {
     'pagination.currentPage': {
       handler: function () {
         this.loadComponents(0, 1)
-        // this.$emit('updateHead')
+        this.$emit('updateHead')
       },
       deep: true
     },
@@ -1016,6 +978,7 @@ export default {
     },
     'routerObj': {
       handler: function () {
+        console.log('routerObj watch')
         if (!this.page) {
           let self = this
           this.generateBreadcrumbs()

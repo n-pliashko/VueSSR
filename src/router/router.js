@@ -4,6 +4,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import axios from 'axios'
 
+import { createStore } from '../store'
+
 import Login from '@/components/scripts/Login/index.vue'
 import Logout from '@/components/scripts/Logout/index.vue'
 import Profile from '@/components/scripts/Profile/index.vue'
@@ -90,127 +92,194 @@ const components = {
   Store
 }
 import config from '@/../config'
-import store from '../store'
+
+const store = createStore()
 
 Vue.use(Router)
 
-
-/*
- let http = axios.create({
- baseURL: config.apiHost + config.prefix
- })
-
- http.get(config.routes.getPagesRoutes, {}, {
- headers: {
- 'X-Requested-With': 'XMLHttpRequest'
- },
- emulateJSON: true
- }).then(response => response.data)
- .then((data) => {
- let routes = []
- Object.values(data).map(page => {
- let filtered = routes.filter(obj => obj.name === page.name)
- routes.push({
- name: page.name
- })
-
- router.addRoutes([{
- path: '/' + page.path.replace(/^\//, ''),
- name: filtered.length > 0 ? page.name + filtered.length : page.name,
- component: components[page.component]
- }])
- })
- router.addRoutes([{
- path: '*',
- name: 'PageNotFound',
- component: PageNotFound
- }])
- })
-
- http.get(config.routes.getRedirects, {}, {
- headers: {
- 'X-Requested-With': 'XMLHttpRequest'
- },
- emulateJSON: true
- }).then(response => response.data)
- .then((data) => {
- let redirects = []
- Object.values(data).map(obj => {
- let redirect = '/' + obj.path.replace(/(\/){2,}/, '/').replace(/(^\/)|(\/$)/, '')
- let path = '/' + obj.redirect.replace(/(\/){2,}/, '/').replace(/(^\/)|(\/$)/, '')
- if (redirect && path !== redirect) {
- let route = [{
- path: path,
- redirect: redirect
- }]
- redirects = redirects.concat(route)
- router.addRoutes(route)
- }
- })
- store.dispatch('setRedirects', redirects)
- }) */
-
 export function createRouter () {
-  return new Router({
+
+  const router = new Router({
     mode: 'history',
     routes: [
       {
-        path: '/glasses/prescription',
-        name: 'Glasses',
-        component: Glasses,
+        path: '/logout',
+        name: 'Logout',
+        component: Logout
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: Register,
         props: {
-          breadcrumb: 'PRESCRIPTION GLASSES'
+          breadcrumb: 'Register'
         }
       },
       {
-        path: '/sunglasses/designer',
-        name: 'Sunglasses',
-        component: Sunglasses,
+        path: '/account/update',
+        name: 'Account/update',
+        component: Profile,
         props: {
-          breadcrumb: 'DESIGNER SUNGLASSES'
+          title: 'Profile'
         }
       },
       {
-        path: '/',
-        name: 'Main',
-        component: Main,
+        path: '/account/password/',
+        name: 'Account/password/',
+        component: Settings,
         props: {
-          breadcrumb: 'HOME'
+          title: 'Settings'
         }
       },
       {
-        path: '/brands',
-        name: 'BrandList',
-        component: BrandList,
+        path: '/account/profile',
+        name: 'Account',
+        component: Account,
         props: {
-          breadcrumb: 'BRAND DIRECTORY - A TO Z'
+          title: 'My Account'
         }
       },
       {
-        path: '/contact-lenses',
-        name: 'ContactLenses',
-        component: ContactLenses,
+        path: '/account/orders',
+        name: 'Account/orders',
+        component: Orders,
         props: {
-          breadcrumb: 'Contact Lenses'
+          title: 'Orders'
         }
       },
       {
-        path: '/lens-replacement',
-        name: 'Reglaze',
-        component: Reglaze,
+        path: '/account/reviews',
+        name: 'Account/reviews',
+        component: ReviewsList,
         props: {
-          breadcrumb: 'Lens Replacement & Reglaze Service '
+          title: 'Product Reviews'
         }
       },
       {
-        path: '/sale',
-        name: 'SalePage',
-        component: SalePage,
+        path: '/reviews/write/:item_id',
+        name: 'Reviews',
+        component: Review,
         props: {
-          breadcrumb: 'Sale'
+          title: 'Add or EditProduct Review'
         }
-      }
+      },
+      {
+        path: '/account/prescriptions',
+        name: 'Account/prescriptions',
+        component: SavedPrescriptions,
+        props: {
+          title: 'Prescriptions'
+        }
+      },
+      {
+        path: '/account/view_order/:id(\\d+)/',
+        name: 'Account/order/view',
+        component: Order,
+        props: true
+      },
+      {
+        path: '/catalogue/index/term/:search_term',
+        name: 'ProductListSearch',
+        component: Products,
+        props: true
+      },
+      {
+        path: '/:menu(.+)?/prescription/select_use',
+        name: 'SelectUse',
+        component: Prescription,
+        props: {stage: 'SelectUse'}
+      },
+      {
+        path: '/:menu(.+)?/prescription/prescriptions',
+        name: 'Prescriptions',
+        component: Prescription,
+        props: {stage: 'Prescriptions'}
+      },
+      {
+        path: '/:menu(.+)?/prescription/lens_type',
+        name: 'LensType',
+        component: Prescription,
+        props: {stage: 'LensType'}
+      },
+      {
+        path: '/:menu(.+)?/prescription/lens_options',
+        name: 'LensOptions',
+        component: Prescription,
+        props: {stage: 'LensOptions'}
+      },
+      {
+        path: '/payments/:order_id',
+        name: 'Payments',
+        component: Payments
+      },
+      {
+        path: '/accessories',
+        name: 'ProductListAccessories',
+        component: Products,
+        props: true
+      },
+      {
+        path: '/:category?/:designer?/:model?/(.+)?/ss:item(\\d+\\.?\\d+).html',
+        name: 'ItemPage',
+        component: PageItem
+      },
     ]
   })
+
+  let http = axios.create({
+    baseURL: config.apiHost + config.prefix
+  })
+
+  http.get(config.routes.getPagesRoutes, {}, {
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    emulateJSON: true
+  }).then(response => response.data)
+    .then((data) => {
+      let routes = []
+      Object.values(data).map(page => {
+        let filtered = routes.filter(obj => obj.name === page.name)
+        routes.push({
+          name: page.name
+        })
+
+        router.addRoutes([{
+          path: '/' + page.path.replace(/^\//, ''),
+          name: filtered.length > 0 ? page.name + filtered.length : page.name,
+          component: components[page.component]
+        }])
+      })
+      router.addRoutes([{
+        path: '*',
+        name: 'PageNotFound',
+        component: PageNotFound
+      }])
+    })
+
+  http.get(config.routes.getRedirects, {}, {
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    emulateJSON: true
+  }).then(response => response.data)
+    .then((data) => {
+      let redirects = []
+      Object.values(data).map(obj => {
+        let redirect = '/' + obj.path.replace(/(\/){2,}/, '/').replace(/(^\/)|(\/$)/, '')
+        let path = '/' + obj.redirect.replace(/(\/){2,}/, '/').replace(/(^\/)|(\/$)/, '')
+        if (redirect && path !== redirect) {
+          let route = [{
+            path: path,
+            redirect: redirect
+          }]
+          redirects = redirects.concat(route)
+          router.addRoutes(route)
+        }
+      })
+      store.dispatch('setRedirects', redirects)
+    })
+
+  return router
 }
 

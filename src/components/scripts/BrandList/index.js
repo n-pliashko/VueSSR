@@ -44,6 +44,9 @@ export default {
   destroyed () {
     this.$store.dispatch('clearPromiseData')
   },
+  created() {
+    this.$store.dispatch('loadBrandsList')
+  },
   methods: {
     reverseRouteName: function (str) {
       return reverseRouteName(str)

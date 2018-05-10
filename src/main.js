@@ -30,6 +30,21 @@ window.globalEvents = new Vue()
 
 const router = createRouter()
 const store = createStore()
+
+router.beforeEach((to, from, next) => {
+  const {path} = to
+  let menuData = {
+    link: path
+  }
+
+  console.log('to:::', path)
+  if (from.path !== path) {
+    store.dispatch('getMenuDescription', [menuData, to])
+  }
+  // document.body.scrollTo(0, 0)
+  next()
+})
+
 sync(store, router)
 
 export function createApp () {

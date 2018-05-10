@@ -8,13 +8,13 @@ export default {
       swiperOption: {
         loop: true,
         slidesPerView: 1,
+        roundLengths: true,
         autoplay: false,
-        autoHeight: true,
         speed: 700,
         centeredSlides: true,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.slick-next',
+          prevEl: '.slick-prev'
         }
       },
       slickOptions: {
