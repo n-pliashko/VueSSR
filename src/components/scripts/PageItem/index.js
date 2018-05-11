@@ -1,5 +1,6 @@
+import Vue from 'vue'
 import { mapState } from 'vuex'
-
+import VueAwesomeSwiper from 'vue-awesome-swiper/dist/ssr'
 import PageHeader from '@/components/scripts/PageHeader/index.vue'
 import PageItemMobile from '@/components/scripts/PageItem/PageItemMobile/index.vue'
 import Breadcrumbs from '@/components/scripts/Breadcrumbs/index.vue'
@@ -13,6 +14,7 @@ import PageFooter from '@/components/scripts/PageFooter/index.vue'
 import ScrollToTop from '@/components/scripts/ScrollToTop/index.vue'
 // import Media360Modal from '@/components/scripts/PageItem/360MediaModal/index.vue'
 
+Vue.use(VueAwesomeSwiper)
 import config from '@/../config'
 import { reverseRouteName } from '@/../config/helper'
 // import Slick from 'vue-slick'
@@ -21,7 +23,7 @@ import $ from 'jquery'
 export default {
   name: 'PageItem',
   components: {
-   // Slick,
+    // Slick,
     // BasketConfirmModal,
     CustomerDescriptionModal,
     SizeGuideModal,
@@ -86,6 +88,33 @@ export default {
         credentials: true
       },
       designerUrl: '#',
+      swiperOption: {
+        loop: true,
+        slidesPerView: 1,
+        centeredSlides: true,
+        speed: 500,
+        effect: 'fade',
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        virtual:{
+          slides: ['https://d9qzjwuieyamt.cloudfront.net/res/images/items/650default_uk.jpg'],
+          renderSlide: function(slide, index) {
+            console.log(index, slide)
+            return '<img class="img-fluid" src="' + slide  + '">'
+          }
+        },
+        on: {
+          init: function () {
+            console.log('swiper initialized::', this);
+            this.update()
+          },
+          slideChange: function () {
+            console.log('slideChange')
+          }
+        }
+      },
       slickOptions: {
         autoplay: false,
         pauseOnDotsHover: true,
@@ -140,16 +169,28 @@ export default {
     }
   },
   beforeUpdate () {
-    if (this.selected.option > 0 && this.options[this.selected.option] &&
-      this.$refs.slick && this.$refs.slick.$el.slick.$slides && this.changeSlick) {
-      this.$refs.slick.destroy()
-    }
+    /* if (this.selected.option > 0 && this.options[this.selected.option] &&
+     this.$refs.slick && this.$refs.slick.$el.slick.$slides && this.changeSlick) {
+     this.$refs.slick.destroy()
+     } */
+    console.log('beforeUpdate:::', this.swiper)
+    /* if (this.selected.option > 0 && this.options[this.selected.option] &&
+      this.swiper && this.changeSlick) {
+      this.swiper.destroy()
+    } */
   },
   updated () {
-    if (this.selected.option > 0 && this.options[this.selected.option] &&
-      this.$refs.slick && this.$refs.slick.$el.slick.$slides && this.changeSlick) {
-      this.$refs.slick.create(this.slickOptions)
-    }
+    /* if (this.selected.option > 0 && this.options[this.selected.option] &&
+     this.$refs.slick && this.$refs.slick.$el.slick.$slides && this.changeSlick) {
+     this.$refs.slick.create(this.slickOptions)
+     } */
+    console.log('updated::::', this.swiper)
+    console.log(this.selected.option > 0 && this.options[this.selected.option] &&
+      this.swiper && this.changeSlick)
+   /* if (this.selected.option > 0 && this.options[this.selected.option] &&
+      this.swiper && this.changeSlick) {
+      this.swiper.create()
+    }*/
   },
   mounted () {
     let itemNumber = this.$route.params.item
@@ -162,7 +203,12 @@ export default {
   methods: {
     fetchItem (itemId) {
       let self = this
-      return this.$axios.get(this.apiHost + config.prefix + config.products.itemFetch, Object.assign({}, this.requestOptions, {params: {item_number: itemId, lang: this.lang}}))
+      return this.$axios.get(this.apiHost + config.prefix + config.products.itemFetch, Object.assign({}, this.requestOptions, {
+        params: {
+          item_number: itemId,
+          lang: this.lang
+        }
+      }))
         .then(data => {
           if (data.data.item && Object.keys(data.data.item).length > 1 && data.data.item.options) {
             self.item = data.data.item
@@ -171,6 +217,14 @@ export default {
             self.item.designer_number = self.item.designer.designer_number
             self.options = data.data.item.options
             self.selected.option = self.item.def_option
+
+            if (self.options[self.selected.option].fullsized_images && self.options[self.selected.option].fullsized_images.length > 0) {
+              self.swiperOption.virtual.slides = Object.values(self.options[self.selected.option].fullsized_images).map(image => self.cdnUrl + self.cdnUrlPrefix + image.src)
+              if (self.swiper) {
+                self.swiper.virtual.update()
+              }
+            }
+            console.log(self.swiperOption)
             /**
              * @todo if all frame sizes not IN_STOCK status user would put wrong item to basket
              */

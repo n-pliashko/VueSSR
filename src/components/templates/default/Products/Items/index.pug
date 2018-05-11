@@ -1,18 +1,19 @@
 #items
   .col-6.col-lg-4.shop-item(v-for='item in $parent.calculatedItems.data')
-    .item-wrapper(:id='"item" + item.id + "Wrapper"', @mouseover="autoPlaySlick(item.id, $event)",@mouseout="stopPlaySlick(item.id, $event)")
+    .item-wrapper(:id='"item" + item.id + "Wrapper"', @mouseover="autoPlaySlick(item.id, $event)", @mouseout="stopPlaySlick(item.id, $event)")
       router-link(@click.native="rememberRoute",
-        :to="'/' + ($parent.main_category_link.length > 0 ? $parent.main_category_link : (item.category_short_name ? reverseRouteName(item.category_short_name) : 'category')) + '/' + " +
-        "reverseRouteName(item.designer_name) + '/' + reverseRouteName(item.model_name) + '/ss' + parseFloat(item.id / 100).toFixed(2) + '.html'")
+      :to="'/' + ($parent.main_category_link.length > 0 ? $parent.main_category_link : (item.category_short_name ? reverseRouteName(item.category_short_name) : 'category')) + '/' + " +
+      "reverseRouteName(item.designer_name) + '/' + reverseRouteName(item.model_name) + '/ss' + parseFloat(item.id / 100).toFixed(2) + '.html'")
         // Draft code for corner preview
         .item-feature.two-for-one-item.d-none.d-md-block
         em.item-prescription Prescription ready
         div.productImg
           img.item-photo.img-fluid.mb-2(v-if="item.src.length === 0", src="https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg", :alt="item.designer_name + ' - ' + item.model_name")
-          div(v-else, v-swiper="swiperOption", :instanceName="'swipper_' + item.id").swiper-container
-            .swiper-wrapper
-            div(v-for="img in item.src").swiper-slide
-              img.item-photo.img-fluid.mb-2(:src="img ? cdnUrl + '/' + img : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'", :alt="item.designer_name + ' - ' + item.model_name")
+          div(v-else)
+            .swiper-container(v-swiper="swiperOption", :instanceName="'swiper_' + item.id")
+              .swiper-wrapper
+                div(v-for="(img, index) in item.src", :key="index").swiper-slide
+                  img.item-photo.img-fluid.mb-2(:src="img ? cdnUrl + '/' + img : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'", :alt="item.designer_name + ' - ' + item.model_name")
           // Slick(v-else, :ref="'slick_' + item.id", :options="slickOptions")
             div(v-for="img in item.src")
               img.item-photo.img-fluid.mb-2(:src="img ? cdnUrl + '/' + img : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'", :alt="item.designer_name + ' - ' + item.model_name")

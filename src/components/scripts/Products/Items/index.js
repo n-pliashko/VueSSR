@@ -18,11 +18,12 @@ export default {
       category_name: this.$parent.categoryObj !== null ? this.$parent.categoryObj.name : '',
       swiperOption: {
         loop: true,
+        /*autoplay: {
+          disableOnInteraction: false
+        },*/
+        autoplayDisableOnInteraction: false,
         slidesPerView: 1,
-        autoplay: false,
-        autoHeight: true,
-        speed: 700,
-        centeredSlides: true
+        // speed: 700
       },
       slickOptions: {
         infinite: true,
@@ -59,15 +60,18 @@ export default {
       this.$store.dispatch('setRouterBack', {path: path, params: {category_name: this.category_name}})
     },
     autoPlaySlick (id, event) {
-      console.log('autoPlaySlick', this)
-      let ref = 'swipper_' + id
+      let ref = 'swiper_' + id
      /*
       let ref = 'slick_' + id
      if (this.$refs[ref]) {
         this.$refs[ref][0].play()
       }*/
      if (this[ref]) {
-       this[ref].autoplay.start()
+       this[ref].params.autoplay.enabled = true
+       this[ref].params.autoplay.disableOnInteraction = false
+       // this[ref].autoplay.running = true
+       // this[ref].autoplay.start()
+       console.log('autoPlaySlick', this[ref])
      }
     },
     stopPlaySlick (id, event) {
@@ -76,10 +80,14 @@ export default {
         this.$refs[ref][0].goTo(0)
         this.$refs[ref][0].pause()
       }*/
-      let ref = 'swipper_' + id
+      let ref = 'swiper_' + id
       if (this[ref]) {
-        this[ref].autoplay.stop()
+        this[ref].params.autoplay.enabled = false
+        this[ref].params.autoplay.disableOnInteraction = false
+        // this[ref].autoplay.running = false
+        // this[ref].autoplay.stop()
         this[ref].slideTo(1, 1000, false)
+        console.log('stopPlaySlick', this[ref])
       }
     }
   },

@@ -37,7 +37,6 @@ router.beforeEach((to, from, next) => {
     link: path
   }
 
-  console.log('to:::', path)
   if (from.path !== path) {
     store.dispatch('getMenuDescription', [menuData, to])
   }

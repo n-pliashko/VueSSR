@@ -109,7 +109,7 @@ export default {
       deep: true
     },
     'selected.option': function () {
-      if (this.$refs.slick) {
+     /* if (this.$refs.slick) {
         this.$refs.slick.destroy()
       }
       if (this.$refs.slick) {
@@ -118,7 +118,7 @@ export default {
             this.$refs.slick.create()
           }
         })
-      }
+      }*/
     }
   }
 }

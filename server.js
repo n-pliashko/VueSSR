@@ -1,9 +1,9 @@
 //express server
-const express = require('express');
-const server = express();
-const fs = require('fs');
-const path = require('path');
-var config = require('./config');
+const express = require('express')
+const server = express()
+const fs = require('fs')
+const path = require('path')
+var config = require('./config')
 
 const PORT = 8081// process.env.PORT || config.port
 const HOST = process.env.HOST || 'localhost'
@@ -43,46 +43,45 @@ global.URL = require('url').URL
 
 propagateToGlobal(win)
 
-
 //obtain bundle
-const bundle =  require('./dist/server.bundle.js');
+const bundle = require('./dist/server.bundle.js')
 //get renderer from vue server renderer
 const renderer = require('vue-server-renderer').createRenderer({
-    //set template
-    template: fs.readFileSync('./index.html', 'utf-8')
-});
+  //set template
+  template: fs.readFileSync('./index.html', 'utf-8')
+})
 
 var staticPath = path.posix.join(config.assetsPublicPath, config.assetsSubDirectory)
 server.use(staticPath, express.static('./static'))
-server.use('/dist', express.static(path.join(__dirname, './dist')));
+server.use('/dist', express.static(path.join(__dirname, './dist')))
 
 //start server
 server.get('*', (req, res) => {
 
-    bundle.default({ url: req.url }).then((app) => {
-        //context to use as data source
-        //in the template for interpolation
-        const context = {
-          globals: {
-            __INITIAL_STATE__: app.$store.state
-          }
-        };
+  bundle.default({url: req.url}).then((app) => {
+    //context to use as data source
+    //in the template for interpolation
+    const context = {
+      globals: {
+        __INITIAL_STATE__: app.$store.state
+      }
+    }
 
-        renderer.renderToString(app, context, function (err, html) {
-            if (err) {
-              if (err.code === 404) {
-                res.status(404).end('Page not found')
-              } else {
-                res.status(500).end('Internal Server Error')
-              }
-            } else {
-              res.end(html)
-            }
-          });
-    }, (err) => {
-        console.log(err);
-    });
-});
+    renderer.renderToString(app, context, function (err, html) {
+      if (err) {
+        if (err.code === 404) {
+          res.status(404).end('Page not found')
+        } else {
+          res.status(500).end('Internal Server Error')
+        }
+      } else {
+        res.end(html)
+      }
+    })
+  }, (err) => {
+    console.log(err)
+  })
+})
 
-server.listen(PORT);
-console.log('> Starting dev server...');
+server.listen(PORT)
+console.log('> Starting dev server...')
