@@ -38,12 +38,12 @@
               #item_images_block.col-12
                 div(v-if="!options[selected.option].fullsized_images || options[selected.option].fullsized_images.length === 0")
                   img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/650default_uk.jpg')
-                dev(v-else, v-swiper:swiper="swiperOption").swiper-container
-                  // .swipper-wraper
-                    div(v-for="image in options[selected.option].fullsized_images", :key="image.image_id").swiper-slide
+                div(v-else, v-swiper:swiperItem="swiperOption").swiper-container
+                  .swiper-wrapper
+                    div(v-for="image in options[selected.option].fullsized_images").swiper-slide
                       img.img-fluid(:src="cdnUrl + cdnUrlPrefix +  image.src")
-                  .swiper-button-prev.swiper-button-white(v-if="options[selected.option].fullsized_images.length > 0")
-                  .swiper-button-next.swiper-button-white(v-if="options[selected.option].fullsized_images.length > 0")
+                  button.slick-prev.slick-arrow(v-if="options[selected.option].fullsized_images.length > 1", aria-label="Previous") Previous
+                  button.slick-next.slick-arrow(v-if="options[selected.option].fullsized_images.length > 1", aria-label="Next") Next
               // Slick#item_images_block(ref="slick", :options="slickOptions").col-12
                 div(v-for="image in options[selected.option].fullsized_images", :key="image.image_id")
                   img.img-fluid(:src="cdnUrl + cdnUrlPrefix +  image.src")

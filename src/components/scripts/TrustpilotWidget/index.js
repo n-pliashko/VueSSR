@@ -1,8 +1,5 @@
-// import Slick from 'vue-slick'
-
 export default {
   name: 'TrustpilotWidget',
-  // components: { Slick },
   data () {
     return {
       slickOptions: {

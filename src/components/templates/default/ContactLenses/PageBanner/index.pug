@@ -11,6 +11,12 @@ section
       router-link#monthlyLensesLink(to="/contact-lenses/monthly-disposables/c224/").btn.big-button Monthlies »
       router-link#weeklyLensesLink(to="/contact-lenses/two-weekly-disposables/c257").btn.big-button Weeklies »
 
+  .swiper-container(v-swiper:swiperBaner="swiperOption", aria-label='Contact Lenses').d-lg-none
+    .swiper-wrapper
+      router-link#contactLensesMobileLink(to="/").swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/home/slider/contact-lenses.jpg?20171207190136', alt='Contact lenses')
+    //button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    //button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next
   // Slick(aria-label='Contact Lenses', ref="slick", :options="slickOptions").d-lg-none
     router-link#contactLensesMobileLink(to="/")
       img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/banners/home/slider/contact-lenses.jpg?20171207190136', alt='Contact lenses')

@@ -204,8 +204,8 @@ export default {
       requestOptions: {
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
-        },
-        emulateJSON: true
+        }
+        // emulateJSON: true
       },
       items: {
         data: [],

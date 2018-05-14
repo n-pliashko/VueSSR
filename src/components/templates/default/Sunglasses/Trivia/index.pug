@@ -31,7 +31,41 @@ section.trivia.text-center
           router-link#prescriptionGuideLink(to='/guides/lenses/sun/').blue-ul here »
           | .
         br
-
+  .swiper-container(v-swiper:swiper="swiperOption", aria-label='Sunglasses Information').d-lg-none.pt-3
+    .swiper-wrapper
+      div.swiper-slide
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-sun-driving.png?20171114194644')
+        p.large
+          strong Choosing Sunglasses for Driving
+        p Not sure what sun lenses are best for driving? Don't worry, our&nbsp;
+          router-link#drivingGuideLinkMobile(to='/info/how-to-choose-safe-sunglasses-for-driving/').blue-ul guide to driving sunglasses
+          |  will help you.
+        br
+      div.swiper-slide
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-sun-lens-replacement.png?20171114194644')
+        p.large
+          strong Replace your Sun Lenses!
+        p
+          | Do your sunglasses need new lenses? Perhaps a new prescription? Why not give your sunglasses a new lease of life with our premium lens replacement service starting from only&nbsp;
+          strong {{calculatePrice(783.09/33.47, false, true)}}
+          |  plus sun lenses of your choice.
+          br
+          router-link#reglazeLinkMobile(to='/lens-replacement').blue-ul More details »
+        br
+      div.swiper-slide
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-prescription-sun-lens.png?20171114194644')
+        p.large
+          strong Our Prescription Sun Lenses
+        p
+          | If you're confused about our prescription sun lenses, why not take a look at our guide&nbsp;
+          router-link#prescriptionGuideLinkMobile(to='/guides/lenses/sun/').blue-ul here »
+        br
+    button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next
+    ul.slick-dots.white-dots
   // Slick(aria-label='Sunglasses Information', ref="slick", :options="slickOptions").d-lg-none.pt-3
     div
       p

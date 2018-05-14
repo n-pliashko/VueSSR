@@ -21,6 +21,16 @@ section.staff-picks.py-4.py-lg-5
               router-link(to="/goggles/snow-ski-goggles/c352/").btn.big-button More Ski Goggles »
               router-link(to="/goggles/mx-goggles/c365/").btn.big-button More MX Goggles »
 
+        .swiper-container(v-swiper:swiper="swiperOption", aria-label='Featured Glasses').d-lg-none
+          .swiper-wrapper
+            router-link(to="/goggles/bolle/scarlett/ss1412.05.html").swiper-slide
+              img.img-fluid.mx-auto(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/bolle-scarlett.jpg?20171002142954")
+            router-link(to="/goggles/vuarnet/vk1101/ss1280.01.html").swiper-slide
+              img.img-fluid.mx-auto(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/vuarnet-vk1101.jpg?20171002142954")
+          button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+          button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next
+          ul(role="tablist").slick-dots.white-dots
+
         // Slick(aria-label='Featured Glasses', ref="slick", :options="slickOptions").d-lg-none
           //router-link(to="#")
             img.img-fluid.mx-auto(src="https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/staff-picks/oakley-flight-deck-xm.jpg?20171002142954")

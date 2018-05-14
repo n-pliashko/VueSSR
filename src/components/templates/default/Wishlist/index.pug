@@ -34,10 +34,11 @@
                     em.item-prescription Prescription ready
                     div.productImg
                       img.item-photo.img-fluid.mb-2(v-if="item.src.length === 0", src="https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg", :alt="item.designer_name + ' - ' + item.model_name")
-                      // Slick(v-else, :ref="'slick_' + item.id", :options="slickOptions")
-                        div(v-for="img in item.src")
-                          img.item-photo.img-fluid.mb-2(:src="img ? cdnUrl + '/' + img : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'", :alt="item.designer_name + ' - ' + item.model_name")
-                    .item-designer-name.w-100.ellipsis
+                      .swiper-container(v-else, v-swiper="swiperOption", :instanceName="'swiper_' + item.id")
+                        .swiper-wrapper
+                          div(v-for="img in item.src").swiper-slide
+                            img.item-photo.img-fluid.mb-2(:src="img ? cdnUrl + '/' + img : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'", :alt="item.designer_name + ' - ' + item.model_name")
+                      .item-designer-name.w-100.ellipsis
                       | {{item.designer_name}} {{item.model_name}}
                     // Draft code for options preview
                     .item-options(v-if='!item.options').d-none.d-md-block.mb-md-3 {{item.count_options > 1 ? item.count_options + ' options' : item.name}}

@@ -95,24 +95,8 @@ export default {
         speed: 500,
         effect: 'fade',
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        virtual:{
-          slides: ['https://d9qzjwuieyamt.cloudfront.net/res/images/items/650default_uk.jpg'],
-          renderSlide: function(slide, index) {
-            console.log(index, slide)
-            return '<img class="img-fluid" src="' + slide  + '">'
-          }
-        },
-        on: {
-          init: function () {
-            console.log('swiper initialized::', this);
-            this.update()
-          },
-          slideChange: function () {
-            console.log('slideChange')
-          }
+          nextEl: '.slick-next',
+          prevEl: '.slick-prev'
         }
       },
       slickOptions: {
@@ -168,31 +152,15 @@ export default {
       }
     }
   },
-  beforeUpdate () {
-    /* if (this.selected.option > 0 && this.options[this.selected.option] &&
-     this.$refs.slick && this.$refs.slick.$el.slick.$slides && this.changeSlick) {
-     this.$refs.slick.destroy()
-     } */
-    console.log('beforeUpdate:::', this.swiper)
-    /* if (this.selected.option > 0 && this.options[this.selected.option] &&
-      this.swiper && this.changeSlick) {
-      this.swiper.destroy()
-    } */
-  },
   updated () {
-    /* if (this.selected.option > 0 && this.options[this.selected.option] &&
-     this.$refs.slick && this.$refs.slick.$el.slick.$slides && this.changeSlick) {
-     this.$refs.slick.create(this.slickOptions)
-     } */
-    console.log('updated::::', this.swiper)
-    console.log(this.selected.option > 0 && this.options[this.selected.option] &&
-      this.swiper && this.changeSlick)
-   /* if (this.selected.option > 0 && this.options[this.selected.option] &&
-      this.swiper && this.changeSlick) {
-      this.swiper.create()
-    }*/
+    console.log('updated::::', this.swiperItem)
+    if (this.selected.option > 0 && this.options[this.selected.option] &&
+      this.swiperItem && this.changeSlick) {
+      this.swiperItem.update()
+      this.swiperItem.slideTo(1, 1000, false)
+    }
   },
-  mounted () {
+  mounted() {
     let itemNumber = this.$route.params.item
     let clearItemNumber = itemNumber.toString().replace('.', '')
     this.fetchItem(clearItemNumber).then(() => {
@@ -218,19 +186,12 @@ export default {
             self.options = data.data.item.options
             self.selected.option = self.item.def_option
 
-            if (self.options[self.selected.option].fullsized_images && self.options[self.selected.option].fullsized_images.length > 0) {
-              self.swiperOption.virtual.slides = Object.values(self.options[self.selected.option].fullsized_images).map(image => self.cdnUrl + self.cdnUrlPrefix + image.src)
-              if (self.swiper) {
-                self.swiper.virtual.update()
-              }
-            }
-            console.log(self.swiperOption)
             /**
              * @todo if all frame sizes not IN_STOCK status user would put wrong item to basket
              */
             self.defFrameSizeIndex = self.selected.frameSizeIndex = self.options[self.item.def_option].frame_sizes.findIndex(obj => obj.status === 'IN_STOCK')
             if (category_number) {
-              self.$http.get(self.apiHost + config.prefix + config.routes.findByCategory + '/' + category_number, self.requestOptions).then(response => response.json())
+              self.$axios.get(self.apiHost + config.prefix + config.routes.findByCategory + '/' + category_number, self.requestOptions).then(response => response.data)
                 .then(json => {
                   if (json.url) {
                     let itemPath = '/' + json.url + '/' + self.reverseRouteName(self.item.designer.designer_name) + '/' + self.reverseRouteName(self.item.model_name) + '/ss' + parseFloat(self.item.item_number / 100).toFixed(2) + '.html'

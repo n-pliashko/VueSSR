@@ -48,55 +48,59 @@ section.trivia.text-center
             router-link#refundLink(to='/info/returns/').blue-ul T&Cs apply
         br
 
-  // Slick(aria-label='Glasses Information', ref="slick", :options="slickOptions").d-lg-none
-    div
-      p
-        img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-free-lenses.png?20171030191515')
-      p
-        strong Free thin lenses
-      p.small
-        | We offer 1.5 or 1.56 thin & light lenses, free of charge as standard*. You can also find our full lens price list&nbsp;
-        router-link#freeThinLensesLinkMobile(to='/price-list/').blue-ul here
-        | .
-      br
-      p.small
-        | We offer a wide selection of lenses, Transition and tinted options at great prices.&nbsp;
-        router-link#priceListLinkMobile(to='/glasses/ray-ban/rx5154-clubmaster-1-2/ss110.02.html').blue-ul View price list »
-      br
-      br
-    div
-      p
-        img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-anti-reflection.png?20171030191515')
-      p
-        strong Free lens coatings
-      p.small
-        | We believe basic lens coatings shouldn't be an additional extra, so all our lenses come complete with the necessary coatings completely free.
-      br
-    div
-      p
-        img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-free-delivery.png?20171030191515')
-      p
-        strong Free international delivery
-      p.small
-        | Spend over {{calculatePrice(2808.0/33.47, false, true)}} and we can ship your order free of charge to any where in the world. See our production and delivery details&nbsp;
-        router-link#interDeliveryLinkMobile(to='/info/shipping-delivery/').blue-ul here
-        | .
-      br
-      p.small
-        | Orders for prescription glasses are normally completed and shipped within&nbsp;
-        strong 7-10
-        | &nbsp;working days.&nbsp;
-        router-link#shipmentLinkMobile(to='/info/shipping-delivery/').blue-ul More details »
-      br
-    div
-      p
-        img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-return-exchange.png?20171030191515')
-      p
-        strong Easy returns & exchanges
-      p.small
-        | We hope you don't need to, but if you're not completely satisfied with your product, you can return for a full refund or exchange.
+  .swiper-container(v-swiper:swiper="swiperOption", aria-label='Glasses Information').d-lg-none.pt-3
+    .swiper-wrapper
+      div.swiper-slide
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-free-lenses.png?20171030191515')
+        p
+          strong Free thin lenses
+        p.small
+          | We offer 1.5 or 1.56 thin & light lenses, free of charge as standard*. You can also find our full lens price list&nbsp;
+          router-link#freeThinLensesLinkMobile(to='/price-list/').blue-ul here
+          | .
         br
-        em
-          router-link#refundLinkMobile(to='/info/returns/').blue-ul T&Cs apply
-      br
+        p.small
+          | We offer a wide selection of lenses, Transition and tinted options at great prices.&nbsp;
+          router-link#priceListLinkMobile(to='/glasses/ray-ban/rx5154-clubmaster-1-2/ss110.02.html').blue-ul View price list »
+        br
+        br
+      div.swiper-slide
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-anti-reflection.png?20171030191515')
+        p
+          strong Free lens coatings
+        p.small
+          | We believe basic lens coatings shouldn't be an additional extra, so all our lenses come complete with the necessary coatings completely free.
+        br
+      div.swiper-slide
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-free-delivery.png?20171030191515')
+        p
+          strong Free international delivery
+        p.small
+          | Spend over {{calculatePrice(2808.0/33.47, false, true)}} and we can ship your order free of charge to any where in the world. See our production and delivery details&nbsp;
+          router-link#interDeliveryLinkMobile(to='/info/shipping-delivery/').blue-ul here
+          | .
+        br
+        p.small
+          | Orders for prescription glasses are normally completed and shipped within&nbsp;
+          strong 7-10
+          | &nbsp;working days.&nbsp;
+          router-link#shipmentLinkMobile(to='/info/shipping-delivery/').blue-ul More details »
+        br
+      div.swiper-slide
+        p
+          img.img-fluid.mx-auto(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/general/icon-return-exchange.png?20171030191515')
+        p
+          strong Easy returns & exchanges
+        p.small
+          | We hope you don't need to, but if you're not completely satisfied with your product, you can return for a full refund or exchange.
+          br
+          em
+            router-link#refundLinkMobile(to='/info/returns/').blue-ul T&Cs apply
+        br
+    button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next
+    ul(role="tablist").slick-dots.white-dots
   hr.d-lg-none

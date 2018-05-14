@@ -28,7 +28,7 @@ import Main from '@/components/scripts/Main/index.vue'
 import Wishlist from '@/components/scripts/Wishlist/index.vue'
 import Review from '@/components/scripts/Review/index.vue'
 import ReviewsList from '@/components/scripts/ReviewsList/index.vue'
-// import Goggles from '@/components/scripts/Goggles/index.vue'
+import Goggles from '@/components/scripts/Goggles/index.vue'
 import ContactLenses from '@/components/scripts/ContactLenses/index.vue'
 import Glasses from '@/components/scripts/Glasses/index.vue'
 import Sunglasses from '@/components/scripts/Sunglasses/index.vue'
@@ -44,7 +44,7 @@ import KidsGlasses from '@/components/scripts/KidsGlasses/index.vue'
 import BuyingGuides from '@/components/scripts/HelpPages/BuyingGuides/index.vue'
 import EyeHealth from '@/components/scripts/HelpPages/EyeHealth/index.vue'
 import HowToGuides from '@/components/scripts/HelpPages/HowToGuides/index.vue'
-// import GuideToLenses from '@/components/scripts/HelpPages/GuideToLenses/index.vue'
+import GuideToLenses from '@/components/scripts/HelpPages/GuideToLenses/index.vue'
 import LensPrices from '@/components/scripts/HelpPages/LensPrices/index.vue'
 import Store from '@/components/scripts/HelpPages/Store/index.vue'
 
@@ -71,7 +71,7 @@ const components = {
   Wishlist,
   Review,
   ReviewsList,
-// Goggles,
+  Goggles,
   ContactLenses,
   Glasses,
   Sunglasses,
@@ -87,7 +87,7 @@ const components = {
   BuyingGuides,
   EyeHealth,
   HowToGuides,
-// GuideToLenses,
+  GuideToLenses,
   LensPrices,
   Store
 }

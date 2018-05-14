@@ -27,7 +27,7 @@ main
         .text-center
           img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_gif/ajax-loader_big.gif')
       .row(v-else)
-        Slick#item_images_block_mobile(ref="slick", :options="slickOptions").col-12
+        // Slick#item_images_block_mobile(ref="slick", :options="slickOptions").col-12
           div(v-for="image in options[selected.option].fullsized_images", :key="image.image_id")
             img.img-fluid(:src="cdnUrl + cdnUrlPrefix + image.src")
           div(v-if="!options[selected.option].fullsized_images || options[selected.option].fullsized_images.length === 0")
@@ -69,7 +69,7 @@ main
           br
           br.d-none.d-md-block
         // Displayed vice-versa for test purposes
-        Slick#availColourBarMobile(v-if='options && selected.option', ref="color_mobile_slick", :options="slickOptionsColours").col-12
+        // Slick#availColourBarMobile(v-if='options && selected.option', ref="color_mobile_slick", :options="slickOptionsColours").col-12
           div(v-for='option in options',
             :id='"option-" + option.option_number',
             :class="selected.option === option.option_number ? 'selected': ''",

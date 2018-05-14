@@ -8,7 +8,6 @@ import config from '@/../config'
 import Vue from 'vue'
 import VueRes from 'vue-resource'
 import { reverseRouteName } from '@/../config/helper'
-// import Slick from 'vue-slick'
 
 Vue.use(VueRes)
 
@@ -19,7 +18,6 @@ export default {
     Breadcrumbs,
     NavigationLinks,
     PageFooter
-   // Slick
   },
   computed: {
     ...mapState({
@@ -55,6 +53,15 @@ export default {
     return {
       cdnUrl: config.cdnUrl,
       fgrname: 'pageitem',
+      swiperOption: {
+        loop: true,
+        slidesPerView: 1,
+        roundLengths: true,
+        autoplay: false,
+        speed: 700,
+        centeredSlides: true,
+        setWrapperSize: true
+      },
       slickOptions: {
         infinite: true,
         autoplay: false,

@@ -20,12 +20,16 @@ section
       router-link#menGlassesLink(to="/glasses/prescription/mens/c14").btn.big-button Shop Men's »
       router-link#womenGlassesLink(to="/glasses/prescription/womens/c124").btn.big-button Shop Women's »
 
-  // Slick(aria-label='Glasses Banners', ref="slick", :options="slickOptions").d-lg-none
-    router-link(to='/cheap-glasses/')
-      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/sweet-deal.jpg?20171030191515', alt='cheap £6 glasses')
-    router-link(to='/glasses/prescription/mens/c10/')
-      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-glasses.jpg?20171030191515', alt='mens glasses')
-    router-link(to='/glasses/prescription/ladies/c11/')
-      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-glasses.jpg?20171030191515', alt='womens glasses')
-    router-link(to='/2for1-glasses/')
-      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/two-for-one.jpg?20171030191515', alt='2 for 1 glasses')
+  .swiper-container(v-swiper:swiperBaner="swiperOption", aria-label='Glasses Banners').d-lg-none
+    .swiper-wrapper
+      router-link(to='/cheap-glasses/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/sweet-deal.jpg?20171030191515', alt='cheap £6 glasses')
+      router-link(to='/glasses/prescription/mens/c10/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-glasses.jpg?20171030191515', alt='mens glasses')
+      router-link(to='/glasses/prescription/ladies/c11/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-glasses.jpg?20171030191515', alt='womens glasses')
+      router-link(to='/2for1-glasses/').swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/two-for-one.jpg?20171030191515', alt='2 for 1 glasses')
+    button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next
+

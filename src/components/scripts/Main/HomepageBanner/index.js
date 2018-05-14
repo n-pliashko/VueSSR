@@ -1,8 +1,5 @@
-// import Slick from 'vue-slick'
-
 export default {
   name: 'HomepageBanner',
-  // components: { Slick },
   data () {
     return {
       swiperOption: {
@@ -12,6 +9,7 @@ export default {
         autoplay: false,
         speed: 700,
         centeredSlides: true,
+        setWrapperSize: true,
         navigation: {
           nextEl: '.slick-next',
           prevEl: '.slick-prev'

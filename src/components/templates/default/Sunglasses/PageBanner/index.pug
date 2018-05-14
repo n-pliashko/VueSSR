@@ -9,9 +9,11 @@ section
       br
       router-link#menGlassesLink(to="/sunglasses/designer/mens/c10/").btn.big-button Shop Men's »
       router-link#womenGlassesLink(to="/sunglasses/designer/ladies/c11/").btn.big-button Shop Women's »
-
-  //Slick(aria-label='Sunglasses Banners', ref="slick", :options="slickOptions").d-block.d-lg-none
-  //  router-link#menGlassesMobileLink(to="/sunglasses/designer/mens/c10/")
-  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-sunglasses.jpg?20171114194644', alt='mens sunglasse')
-  //  router-link#womenGlassesMobileLink(to="/sunglasses/designer/ladies/c11/")
-  //    img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-sunglasses.jpg?20171114194644', alt='womens sunglasses')
+  .swiper-container(v-swiper:swiperBaner="swiperOption", aria-label='Sunglasses Banners').d-block.d-lg-none
+    .swiper-wrapper
+      router-link#menGlassesMobileLink(to="/sunglasses/designer/mens/c10/").swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mens-sunglasses.jpg?20171114194644', alt='mens sunglasse')
+      router-link#womenGlassesMobileLink(to="/sunglasses/designer/ladies/c11/").swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ladies-sunglasses.jpg?20171114194644', alt='womens sunglasses')
+    button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next

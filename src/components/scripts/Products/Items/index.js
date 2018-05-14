@@ -1,11 +1,9 @@
 import { mapState } from 'vuex'
 import { reverseRouteName, getSearchString } from '@/../config/helper'
 import config from '@/../config'
-// import Slick from 'vue-slick'
 
 export default {
   name: 'Items',
- // components: {Slick},
   computed: {
     ...mapState({
       routerObj: (state) => state.pageMenuDescription
@@ -23,7 +21,7 @@ export default {
         },*/
         autoplayDisableOnInteraction: false,
         slidesPerView: 1,
-        // speed: 700
+        speed: 700
       },
       slickOptions: {
         infinite: true,
@@ -69,8 +67,8 @@ export default {
      if (this[ref]) {
        this[ref].params.autoplay.enabled = true
        this[ref].params.autoplay.disableOnInteraction = false
-       // this[ref].autoplay.running = true
-       // this[ref].autoplay.start()
+       this[ref].autoplay.running = true
+       this[ref].autoplay.start()
        console.log('autoPlaySlick', this[ref])
      }
     },
@@ -84,8 +82,8 @@ export default {
       if (this[ref]) {
         this[ref].params.autoplay.enabled = false
         this[ref].params.autoplay.disableOnInteraction = false
-        // this[ref].autoplay.running = false
-        // this[ref].autoplay.stop()
+        this[ref].autoplay.running = false
+        this[ref].autoplay.stop()
         this[ref].slideTo(1, 1000, false)
         console.log('stopPlaySlick', this[ref])
       }

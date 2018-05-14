@@ -11,8 +11,11 @@ section
       router-link#mxGogglesLink(to="/goggles/mx-goggles/c365/").btn.big-button MX »
       router-link#swimGogglesLink(to="/accessories/swimming-goggles/c100/").btn.big-button Swim »
 
-  // Slick(aria-label='Ski Goggles', ref="slick", :options="slickOptions").d-lg-none
-    router-link#skiGogglesMobileLink(to="/goggles/snow-ski-goggles/c352/")
-      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ski-goggles.jpg?20171023183726', alt='Ski / Snow Goggles')
-    router-link#mxGogglesMobileLink(to="/goggles/mx-goggles/c365/")
-      img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mx-goggles.jpg?20171023183726', alt='Motocross Goggles')
+  .swiper-container(v-swiper:swiperBaner="swiperOption", aria-label='Ski Goggles').d-lg-none
+    .swiper-wrapper
+      router-link#skiGogglesMobileLink(to="/goggles/snow-ski-goggles/c352/").swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/ski-goggles.jpg?20171023183726', alt='Ski / Snow Goggles')
+      router-link#mxGogglesMobileLink(to="/goggles/mx-goggles/c365/").swiper-slide
+        img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/banners/home/slider/mx-goggles.jpg?20171023183726', alt='Motocross Goggles')
+    button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next

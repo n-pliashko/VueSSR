@@ -1,10 +1,20 @@
-// import Slick from 'vue-slick'
-
 export default {
   name: 'PageBanner',
-  // components: { Slick },
   data () {
     return {
+      swiperOption: {
+        loop: true,
+        slidesPerView: 1,
+        roundLengths: true,
+        autoplay: false,
+        speed: 700,
+        centeredSlides: true,
+        setWrapperSize: true,
+        navigation: {
+          nextEl: '.slick-next',
+          prevEl: '.slick-prev'
+        }
+      },
       slickOptions: {
         infinite: true,
         autoplay: false,

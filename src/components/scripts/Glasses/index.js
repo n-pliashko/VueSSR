@@ -7,7 +7,7 @@ import BrandsCarousel from '@/components/scripts/BrandsCarousel/index.vue'
 import BrandsChoice from '@/components/scripts/Glasses/BrandsChoice/index.vue'
 import NavAccordion from '@/components/scripts/Glasses/NavAccordion/index.vue'
 import StaffPicks from '@/components/scripts/Glasses/StaffPicks/index.vue'
-// import Trivia from '@/components/scripts/Glasses/Trivia/index.vue'
+import Trivia from '@/components/scripts/Glasses/Trivia/index.vue'
 import Description from '@/components/scripts/Glasses/Description/index.vue'
 import Guides from '@/components/scripts/Glasses/Guides/index.vue'
 import TrustpilotWidget from '@/components/scripts/TrustpilotWidget/index.vue'
@@ -27,7 +27,7 @@ export default {
     BrandsChoice,
     NavAccordion,
     StaffPicks,
-   // Trivia,
+    Trivia,
     Description,
     Guides,
     TrustpilotWidget,

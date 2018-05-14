@@ -9,10 +9,12 @@ import { createStore } from './store'
 import { mapState } from 'vuex'
 import axios from 'axios'
 import storeVue from './store/storeVue'
+// import MatchHeight from 'jquery-match-height'
 
-// Vue.config.productionTip = false
+Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.use(VueHead)
+// Vue.use(MatchHeight)
 Vue.use(VueAwesomeSwiper)
 Vue.mixin({
   computed: {

@@ -1,8 +1,5 @@
-// import Slick from 'vue-slick'
-
 export default {
   name: 'BrandsCarousel',
-  // components: { Slick },
   data () {
     return {
       swiperOption: {
@@ -15,12 +12,10 @@ export default {
         autoHeight: true,
         centeredSlides: true,
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.slick-next',
+          prevEl: '.slick-prev'
         },
         breakpoints: {
-          300: {
-          },
           600: {
             slidesPerView: 4
           },
@@ -60,5 +55,9 @@ export default {
         ]
       }
     }
+  },
+  mounted() {
+    console.log('mounted')
+    this.swiperBrands.update()
   }
 }

@@ -24,26 +24,30 @@ section.guides.text-center
           router-link(to='/info/contact-lenses-aftercare-information/').blue-ul here
           | .
     br
-  // Slick(aria-label='Contact lens help', ref="slick", :options="slickOptions").d-lg-none
-    div
-      img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/icon-cl-insert.png?20171207190136')
-      strong.large How do I put contact lenses in?
-      p.small
-        | Contact lenses can be fiddly to put in, but our handy guide will help you, find it&nbsp;
-        router-link(to='/info/how-to-put-in-contact-lenses/').blue-ul here
-        | .
-    div
-      img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/icon-cl-remove.png?20171207190136')
-      strong.large How do I remove my contact lenses?
-      p.small
-        | Removing your lenses is straightforward. Our guide will show you how to remove your lenses easily. See&nbsp;
-        router-link(to='/info/how-to-remove-contact-lenses/').blue-ul here
-        | .
-    div
-      img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/icon-cl-aftercare.png?20171207190136')
-      strong.large Aftercare and information
-      p.small
-        | Things to know to ensure you're happy and comfortable with your new contact lenses. See&nbsp;
-        router-link(to='/info/contact-lenses-aftercare-information/').blue-ul here
-        | .
+  .swiper-container(v-swiper:swiper="swiperOption", aria-label='Contact lens help').d-lg-none.pt-3
+    .swiper-wrapper
+      div.swiper-slide
+        img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/icon-cl-insert.png?20171207190136')
+        strong.large How do I put contact lenses in?
+        p.small
+          | Contact lenses can be fiddly to put in, but our handy guide will help you, find it&nbsp;
+          router-link(to='/info/how-to-put-in-contact-lenses/').blue-ul here
+          | .
+      div.swiper-slide
+        img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/icon-cl-remove.png?20171207190136')
+        strong.large How do I remove my contact lenses?
+        p.small
+          | Removing your lenses is straightforward. Our guide will show you how to remove your lenses easily. See&nbsp;
+          router-link(to='/info/how-to-remove-contact-lenses/').blue-ul here
+          | .
+      div.swiper-slide
+        img(src='https://d9qzjwuieyamt.cloudfront.net/5.2.23/res/images/icons/general/icon-cl-aftercare.png?20171207190136')
+        strong.large Aftercare and information
+        p.small
+          | Things to know to ensure you're happy and comfortable with your new contact lenses. See&nbsp;
+          router-link(to='/info/contact-lenses-aftercare-information/').blue-ul here
+          | .
+    button.slick-prev.slick-left.slick-arrow.slick-triangle(aria-label="Previous") Previous
+    button.slick-next.slick-right.slick-arrow.slick-triangle(aria-label="Next") Next
+    ul(role="tablist").slick-dots.white-dots
   br

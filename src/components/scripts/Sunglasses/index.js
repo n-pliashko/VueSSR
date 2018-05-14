@@ -6,7 +6,7 @@ import QuickLinks from '@/components/scripts/Sunglasses/QuickLinks/index.vue'
 import BrandsCarousel from '@/components/scripts/BrandsCarousel/index.vue'
 import NavAccordion from '@/components/scripts/Sunglasses/NavAccordion/index.vue'
 import StaffPicks from '@/components/scripts/Sunglasses/StaffPicks/index.vue'
-// import Trivia from '@/components/scripts/Sunglasses/Trivia/index.vue'
+import Trivia from '@/components/scripts/Sunglasses/Trivia/index.vue'
 import Description from '@/components/scripts/Sunglasses/Description/index.vue'
 import TrustpilotWidget from '@/components/scripts/TrustpilotWidget/index.vue'
 import PageFooter from '@/components/scripts/PageFooter/index.vue'
@@ -24,7 +24,7 @@ export default {
     BrandsCarousel,
     NavAccordion,
     StaffPicks,
-   // Trivia,
+    Trivia,
     Description,
     TrustpilotWidget,
     PageFooter,
