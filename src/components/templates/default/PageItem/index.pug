@@ -220,7 +220,7 @@
               strong Product SKU
           .col-6.text-left
             p
-              span(itemprop='sku') SS{{ item.item_number / 100 }}
+              span(itemprop='sku', v-if="item.item_number") SS{{ item.item_number / 100 }}
         .row.pr-id(v-if='options[item.def_option] && defFrameSizeIndex > 0')
           .col-6.text-right
             p
@@ -461,7 +461,7 @@
   PageItemMobile.d-block.d-lg-none
   PageFooter
   ScrollToTop
-  // BasketConfirmModal
+  BasketConfirmModal
   VideoModal
   // Media360Modal(:images="view360Images")
   SizeGuideModal

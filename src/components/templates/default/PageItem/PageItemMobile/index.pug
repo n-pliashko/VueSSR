@@ -3,7 +3,7 @@ main
     .container-fluid.my-md-3
       .row.general
         .col-9
-          h1.product-name(itemprop='name') Vista M208
+          h1.product-name(itemprop='name', v-if="item.designer") {{item.designer.designer_name}} {{item.model_name}}
           .review-summary
             .rateit.float-left(data-rateit-value='4.5',
             data-rateit-ispreset='true',
@@ -27,11 +27,13 @@ main
         .text-center
           img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_gif/ajax-loader_big.gif')
       .row(v-else)
-        // Slick#item_images_block_mobile(ref="slick", :options="slickOptions").col-12
-          div(v-for="image in options[selected.option].fullsized_images", :key="image.image_id")
-            img.img-fluid(:src="cdnUrl + cdnUrlPrefix + image.src")
-          div(v-if="!options[selected.option].fullsized_images || options[selected.option].fullsized_images.length === 0")
-            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/650default_uk.jpg')
+        div(v-if="!options[selected.option].fullsized_images || options[selected.option].fullsized_images.length === 0")
+          img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/650default_uk.jpg')
+        .swiper-container#item_images_block_mobile(v-else, v-swiper:swiperMobItem="swiperOption").col-12
+          .swiper-wrapper
+            div(v-for="image in options[selected.option].fullsized_images").swiper-slide
+              img.img-fluid(:src="cdnUrl + cdnUrlPrefix + image.src")
+          ul.slick-dots.white-dots
       .row.prices
         .col-10
           .price-wrapper
@@ -69,25 +71,18 @@ main
           br
           br.d-none.d-md-block
         // Displayed vice-versa for test purposes
-        // Slick#availColourBarMobile(v-if='options && selected.option', ref="color_mobile_slick", :options="slickOptionsColours").col-12
-          div(v-for='option in options',
-            :id='"option-" + option.option_number',
-            :class="selected.option === option.option_number ? 'selected': ''",
-            @click='$parent.setSelectedOption(option.option_number)')
-            span.has-tooltip(data-toggle="tooltip")
-              img(:src="option.thumbnail_images[0] ? cdnUrl + '/' + option.thumbnail_images[0].src : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'",
-              :style="selected.option === option.option_number ? 'selected': ''").img-fluid
-        //Slick#availColourBar(v-else, ref="slick", :options="slickOptionsColours").col-12
-          div
-            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_1.jpg', alt='Black ')
-          div
-            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_2.jpg', alt='Blue ')
-          div
-            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_3.jpg', alt='Brown ')
-          div
-            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_4.jpg', alt='Gold ')
-          div
-            img.img-fluid(src='https://d9qzjwuieyamt.cloudfront.net/res/images/items/mini_pix/60_13_5.jpg', alt='Gunmetal ')
+        .col-12
+          .swiper-container#availColourBarMobile(v-if='options && selected.option', v-swiper:swiperColours="swiperOptionColours")
+            .swiper-wrapper
+              div(v-for='option in options',
+              :id='"option-" + option.option_number',
+              :class="selected.option === option.option_number ? 'selected': ''",
+              @click='$parent.setSelectedOption(option.option_number)').swiper-slide
+                span.has-tooltip(data-toggle="tooltip")
+                  img(:src="option.thumbnail_images[0] ? cdnUrl + '/' + option.thumbnail_images[0].src : 'https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg'",
+                  :style="selected.option === option.option_number ? 'selected': ''").img-fluid
+            button.slick-prev.slick-arrow(v-if="Object.values(options).length > 3", aria-label="Previous") Previous
+            button.slick-next.slick-arrow(v-if="Object.values(options).length > 3", aria-label="Next") Next
       .row.options-wrapper
         .col-12
           p.text-left

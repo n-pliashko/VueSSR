@@ -1,8 +1,6 @@
 import { mapState } from 'vuex'
-import $ from 'jquery'
 
-// import Slick from 'vue-slick'
-// import BasketConfirmModal from '@/components/scripts/PageItem/BasketConfirmModal/index.vue'
+import BasketConfirmModal from '@/components/scripts/PageItem/BasketConfirmModal/index.vue'
 import InfoAccordion from '@/components/scripts/PageItem/PageItemMobile/InfoAccordion/index.vue'
 import ShareButtons from '@/components/scripts/ShareButtons/index.vue'
 import TrustpilotWidget from '@/components/scripts/TrustpilotWidget/index.vue'
@@ -13,8 +11,7 @@ import { reverseRouteName } from '@/../config/helper'
 export default {
   name: 'PageItem',
   components: {
-   // Slick,
-    // BasketConfirmModal,
+    BasketConfirmModal,
     InfoAccordion,
     ShareButtons,
     TrustpilotWidget
@@ -32,7 +29,7 @@ export default {
     options: function () { return this.$parent.options },
     selected: function () { return this.$parent.selected },
     defFrameSizeIndex: function () { return this.$parent.defFrameSizeIndex },
-    addedState: function () { return this.item && this.item.item_number ? this.$store.getters.isExistWishlist(this.item.item_number): false }
+    addedState: function () { return this.item && this.item.item_number ? this.$store.getters.isExistWishlist(this.item.item_number) : false }
   },
   data () {
     return {
@@ -51,6 +48,36 @@ export default {
         dots: true,
         pauseOnDotsHover: true
       },
+      swiperOption: {
+        loop: true,
+        slidesPerView: 1,
+        centeredSlides: true,
+        speed: 500,
+        watchOverflow: true,
+        autoHeight: true,
+        pagination: {
+          el: '.slick-dots',
+          type: 'bullets',
+          bulletElement: 'li',
+          // dynamicBullets: true,
+          bulletActiveClass: 'slick-active',
+          bulletClass: '',
+          clickable: true,
+          renderBullet: function (index, className) {
+            return '<li class="' + className + '"><button>' + (index + 1) + '</button></li>'
+          }
+        }
+      },
+      swiperOptionColours: {
+        slidesPerView: 3,
+        spaceBetween: 3,
+        speed: 500,
+        navigation: {
+          nextEl: '.slick-next',
+          prevEl: '.slick-prev'
+        },
+        watchOverflow: true
+      },
       slickOptionsColours: {
         autoplay: false,
         pauseOnDotsHover: true,
@@ -65,6 +92,12 @@ export default {
       wishlist: {
         state: false
       }
+    }
+  },
+  mounted() {
+    if (this.swiperMobItem) {
+      this.swiperMobItem.pagination.render()
+      this.swiperMobItem.update()
     }
   },
   methods: {
@@ -109,16 +142,20 @@ export default {
       deep: true
     },
     'selected.option': function () {
-     /* if (this.$refs.slick) {
-        this.$refs.slick.destroy()
+      if (this.swiperMobItem) {
+        this.swiperMobItem.pagination.render()
+        this.swiperMobItem.slideToLoop(0, 100, false)
       }
-      if (this.$refs.slick) {
-        this.$nextTick(() => {
-          if (this.$refs.slick) {
-            this.$refs.slick.create()
-          }
-        })
-      }*/
+      /* if (this.$refs.slick) {
+       this.$refs.slick.destroy()
+       }
+       if (this.$refs.slick) {
+       this.$nextTick(() => {
+       if (this.$refs.slick) {
+       this.$refs.slick.create()
+       }
+       })
+       }*/
     }
   }
 }

@@ -10,6 +10,7 @@ import Pagination from '@/components/scripts/Pagination/index.vue'
 import PageFooter from '@/components/scripts/PageFooter/index.vue'
 import ScrollToTop from '@/components/scripts/ScrollToTop/index.vue'
 import Breadcrumbs from '@/components/scripts/Breadcrumbs/index.vue'
+import axiosCancel from 'axios-cancel'
 
 import { mapState } from 'vuex'
 import config from '@/../config'
@@ -193,19 +194,14 @@ export default {
       client: null,
       generatedBreadcrumbs: null,
       menuOr: false,
-      previousRequest: {
-        items: null,
-        filters: null,
-        range_price: null
-      },
       layout: false,
       loading: false,
       itemLoading: false,
       requestOptions: {
         headers: {
           'X-Requested-With': 'XMLHttpRequest'
-        }
-        // emulateJSON: true
+        },
+        emulateJSON: true
       },
       items: {
         data: [],
@@ -419,21 +415,13 @@ export default {
         Object.assign(data, {filter_groups: this.routerObj.catalogue.filter_groups})
       }
 
+      let requestId = onlyItems ? 'itemsRequest' : 'filtersRequest'
+      axiosCancel(this.$axios, {
+        debug: false
+      });
+
       let requestOpt = {
-        before (request) {
-          if (onlyItems) {
-            if (self.previousRequest.items) {
-              self.previousRequest.items.abort()
-            }
-            self.previousRequest.items = request
-          }
-          if (onlyFilters) {
-            if (self.previousRequest.filters) {
-              self.previousRequest.filters.abort()
-            }
-            self.previousRequest.filters = request
-          }
-        }
+        requestId: requestId
       }
 
       return this.$axios.post(this.apiHost + config.prefix + config.products.searchProducts, data, Object.assign({}, requestOpt, this.requestOptions))
@@ -636,15 +624,16 @@ export default {
       }
 
       let self = this
+      let requestId = 'rangePriceRequest'
       let requestOpt = {
-        before (request) {
-          if (self.previousRequest.range_price) {
-            self.previousRequest.range_price.abort()
-          }
-          self.previousRequest.range_price = request
-        }
+        requestId: requestId
       }
-      return this.$axios.post(this.apiHost + config.prefix + config.products.getRangePrice, data, Object.assign({}, requestOpt, this.requestOptions)).then(response => response.data)
+
+      axiosCancel(this.$axios, {
+        debug: false
+      });
+      return this.$axios.post(this.apiHost + config.prefix + config.products.getRangePrice, data, Object.assign({}, requestOpt, this.requestOptions))
+        .then(response => response.data)
         .then(json => {
           if (json.min_price) {
             let min_price = parseInt(this.convertPrice(json.min_price))
@@ -1013,6 +1002,7 @@ export default {
       deep: true
     },
     '$route' (to, from) {
+      document.body.scrollTop = 0
       this.navigation = {
         location: window.location.href,
         protocol: window.location.protocol,

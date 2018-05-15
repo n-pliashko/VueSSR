@@ -135,6 +135,15 @@ h3.product-header {
     .slick-next {
       right: .5rem;
     }
+    .swiper-wrapper {
+      div.selected {
+        img {
+          opacity: 1;
+          border: 1px solid silver;
+        }
+      }
+    }
+
     .slick-slide {
       height: auto;
       font-size: .875rem;

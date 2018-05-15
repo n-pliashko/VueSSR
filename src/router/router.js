@@ -2,6 +2,7 @@
 /* eslint no-eval: 0 */
 import Vue from 'vue'
 import Router from 'vue-router'
+import VueHead from 'vue-head'
 import axios from 'axios'
 
 import { createStore } from '../store'
@@ -96,6 +97,7 @@ import config from '@/../config'
 const store = createStore()
 
 Vue.use(Router)
+Vue.use(VueHead)
 
 export function createRouter () {
 

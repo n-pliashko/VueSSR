@@ -1,10 +1,8 @@
-import Vue from 'vue'
 import { mapState } from 'vuex'
-import VueAwesomeSwiper from 'vue-awesome-swiper/dist/ssr'
 import PageHeader from '@/components/scripts/PageHeader/index.vue'
 import PageItemMobile from '@/components/scripts/PageItem/PageItemMobile/index.vue'
 import Breadcrumbs from '@/components/scripts/Breadcrumbs/index.vue'
-// import BasketConfirmModal from '@/components/scripts/PageItem/BasketConfirmModal/index.vue'
+import BasketConfirmModal from '@/components/scripts/PageItem/BasketConfirmModal/index.vue'
 import CustomerDescriptionModal from '@/components/scripts/PageItem/CustomerDescriptionModal/index.vue'
 import SizeGuideModal from '@/components/scripts/PageItem/SizeGuideModal/index.vue'
 import VideoModal from '@/components/scripts/PageItem/VideoModal/index.vue'
@@ -14,17 +12,14 @@ import PageFooter from '@/components/scripts/PageFooter/index.vue'
 import ScrollToTop from '@/components/scripts/ScrollToTop/index.vue'
 // import Media360Modal from '@/components/scripts/PageItem/360MediaModal/index.vue'
 
-Vue.use(VueAwesomeSwiper)
 import config from '@/../config'
 import { reverseRouteName } from '@/../config/helper'
-// import Slick from 'vue-slick'
 import $ from 'jquery'
 
 export default {
   name: 'PageItem',
   components: {
-    // Slick,
-    // BasketConfirmModal,
+    BasketConfirmModal,
     CustomerDescriptionModal,
     SizeGuideModal,
     VideoModal,
@@ -93,11 +88,13 @@ export default {
         slidesPerView: 1,
         centeredSlides: true,
         speed: 500,
+        autoHeight: true,
         effect: 'fade',
         navigation: {
           nextEl: '.slick-next',
           prevEl: '.slick-prev'
-        }
+        },
+        watchOverflow: true
       },
       slickOptions: {
         autoplay: false,
@@ -156,8 +153,8 @@ export default {
     console.log('updated::::', this.swiperItem)
     if (this.selected.option > 0 && this.options[this.selected.option] &&
       this.swiperItem && this.changeSlick) {
+      this.swiperItem.slideToLoop(0, 100, false)
       this.swiperItem.update()
-      this.swiperItem.slideTo(1, 1000, false)
     }
   },
   mounted() {

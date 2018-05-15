@@ -17,19 +17,19 @@ section
       data-parent="#productInfoAccordion").collapse
         br
         .col-12
-          .row
+          .row(v-if="$parent.item")
             .col-5
               p.small
                 strong Product
             .col-7
-              p.small Vista M208
-          .row
+              p.small(v-if="$parent.item.designer") {{ $parent.item.designer.designer_name }} {{ $parent.item.model_name }}
+          .row(v-if="$parent.item")
             .col-5
               p.small
                 strong Product SKU
             .col-7
               p.small
-                span(itemprop='sku') ss60.13
+                span(itemprop='sku') SS{{ $parent.item.item_number / 100 }}
           .row
             .col-5
               p.small

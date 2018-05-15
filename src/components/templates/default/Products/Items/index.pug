@@ -8,7 +8,8 @@
         .item-feature.two-for-one-item.d-none.d-md-block
         em.item-prescription Prescription ready
         div.productImg
-          img.item-photo.img-fluid.mb-2(v-if="item.src.length === 0", src="https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg", :alt="item.designer_name + ' - ' + item.model_name")
+          img(v-if="!item.src", src="https://d9qzjwuieyamt.cloudfront.net/res/images/_gif/preload_230x115.gif")
+          img.item-photo.img-fluid.mb-2(v-else-if="item.src.length === 0", src="https://d9qzjwuieyamt.cloudfront.net/res/images/items/140default_uk.jpg", :alt="item.designer_name + ' - ' + item.model_name")
           .swiper-container(v-else, v-swiper="swiperOption", :instanceName="'swiper_' + item.id")
             .swiper-wrapper
               div(v-for="img in item.src").swiper-slide

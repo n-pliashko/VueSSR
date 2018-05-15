@@ -1,9 +1,9 @@
 import { mapState } from 'vuex'
-import $ from 'jquery'
-import Vue from 'vue'
-import MatchHeight from 'jquery-match-height'
+// import $ from 'jquery'
+// import Vue from 'vue'
+// import MatchHeight from 'jquery-match-height'
 
-Vue.use(MatchHeight)
+// Vue.use(MatchHeight)
 
 export default {
   name: 'BasketConfirmModal',
@@ -67,6 +67,6 @@ export default {
     }
   },
   mounted: function () {
-    $('.rxSunPopup').matchHeight()
+   // $('.rxSunPopup').matchHeight()
   }
 }

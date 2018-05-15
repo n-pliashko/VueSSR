@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
-    // MetaData
-    // ProjectVersion
+    MetaData
+    ProjectVersion
     #pageWrapper
       SideBar(v-if="show")#sidebarNav.d-lg-none
       #mainWrapper
@@ -20,16 +20,15 @@
   export default {
     name: 'mainApp',
     components: {
-      // ProjectVersion,
-      // MetaData
+      ProjectVersion,
+      MetaData,
       SideBar
     },
     computed: {
       ...mapState({
         redirects: (state) => state.redirects
       }),
-      show: function() {
-        console.log(this.$route.name, ['Checkout'].indexOf(this.$route.name) < 0)
+      show: function () {
         return ['Checkout'].indexOf(this.$route.name) < 0
       }
     },
@@ -38,6 +37,11 @@
         this.$store.dispatch('closeSidebar')
       }
     },
+    watch: {
+      '$route' (to, from) {
+        window.scrollTo(0,0)
+      }
+    }
     /* watch: {
      'redirects': {
      handler: function () {

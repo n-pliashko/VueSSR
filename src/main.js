@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import VueHead from 'vue-head'
 import VueResource from 'vue-resource'
 import VueAwesomeSwiper from 'vue-awesome-swiper/dist/ssr'
 import App from './App.vue'
@@ -13,7 +12,6 @@ import storeVue from './store/storeVue'
 
 Vue.config.productionTip = false
 Vue.use(VueResource)
-Vue.use(VueHead)
 // Vue.use(MatchHeight)
 Vue.use(VueAwesomeSwiper)
 Vue.mixin({
