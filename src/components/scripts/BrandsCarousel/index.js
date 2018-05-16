@@ -57,7 +57,8 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted')
-    this.swiperBrands.update()
+    if (this.swiperBrands) {
+      this.swiperBrands.update()
+    }
   }
 }

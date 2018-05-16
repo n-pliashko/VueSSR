@@ -1,6 +1,6 @@
 #items
-  .col-6.col-lg-4.shop-item(v-for='item in $parent.calculatedItems.data')
-    .item-wrapper(:id='"item" + item.id + "Wrapper"', @mouseover="autoPlaySlick(item.id, $event)", @mouseout="stopPlaySlick(item.id, $event)")
+  .col-6.col-lg-4.shop-item(v-for='item in $parent.calculatedItems.data', @mouseover="autoPlaySlick(item.id, $event)", @mouseout="stopPlaySlick(item.id, $event)")
+    .item-wrapper(:id='"item" + item.id + "Wrapper"')
       router-link(@click.native="rememberRoute",
       :to="'/' + ($parent.main_category_link.length > 0 ? $parent.main_category_link : (item.category_short_name ? reverseRouteName(item.category_short_name) : 'category')) + '/' + " +
       "reverseRouteName(item.designer_name) + '/' + reverseRouteName(item.model_name) + '/ss' + parseFloat(item.id / 100).toFixed(2) + '.html'")

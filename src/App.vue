@@ -17,6 +17,8 @@
   // import PageFooter from '@/components/scripts/PageFooter/index.vue'
   import { mapState } from 'vuex'
 
+  import $ from 'jquery'
+
   export default {
     name: 'mainApp',
     components: {
@@ -32,14 +34,22 @@
         return ['Checkout'].indexOf(this.$route.name) < 0
       }
     },
+    mounted() {
+      this.scrollToTop()
+    },
     methods: {
       closeSidebar: function () {
         this.$store.dispatch('closeSidebar')
+      },
+      scrollToTop() {
+        $(document.body).animate({
+          scrollTop: 0
+        }, 50)
       }
     },
     watch: {
       '$route' (to, from) {
-        window.scrollTo(0,0)
+        this.scrollToTop()
       }
     }
     /* watch: {

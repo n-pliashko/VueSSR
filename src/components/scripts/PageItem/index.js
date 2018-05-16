@@ -10,7 +10,7 @@ import ShareButtons from '@/components/scripts/ShareButtons/index.vue'
 import TrustpilotWidget from '@/components/scripts/TrustpilotWidget/index.vue'
 import PageFooter from '@/components/scripts/PageFooter/index.vue'
 import ScrollToTop from '@/components/scripts/ScrollToTop/index.vue'
-// import Media360Modal from '@/components/scripts/PageItem/360MediaModal/index.vue'
+//import Media360Modal from '@/components/scripts/PageItem/360MediaModal/index.vue'
 
 import config from '@/../config'
 import { reverseRouteName } from '@/../config/helper'
@@ -29,8 +29,8 @@ export default {
     ShareButtons,
     TrustpilotWidget,
     PageFooter,
-    ScrollToTop
-    // Media360Modal
+    ScrollToTop,
+    //Media360Modal
   },
   computed: {
     ...mapState({
@@ -91,8 +91,8 @@ export default {
         autoHeight: true,
         effect: 'fade',
         navigation: {
-          nextEl: '.slick-next',
-          prevEl: '.slick-prev'
+          nextEl: '#item_images_block .slick-next',
+          prevEl: '#item_images_block .slick-prev'
         },
         watchOverflow: true
       },
@@ -153,11 +153,11 @@ export default {
     console.log('updated::::', this.swiperItem)
     if (this.selected.option > 0 && this.options[this.selected.option] &&
       this.swiperItem && this.changeSlick) {
-      this.swiperItem.slideToLoop(0, 100, false)
       this.swiperItem.update()
+      this.swiperItem.slideTo(1, 100, false)
     }
   },
-  mounted() {
+  created() {
     let itemNumber = this.$route.params.item
     let clearItemNumber = itemNumber.toString().replace('.', '')
     this.fetchItem(clearItemNumber).then(() => {

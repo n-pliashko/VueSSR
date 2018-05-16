@@ -1,4 +1,5 @@
 import 'babel-loader!../../../../assets/js/spritespin/spritespin.js'
+import $ from 'jquery'
 
 export default {
   name: 'Media360Modal',
@@ -50,7 +51,7 @@ export default {
       img.src = this.img360_url[0]
     },
     loadSpritespin (first360height, mult) {
-      window.jQuery('#block360').spritespin({
+      $('#block360').spritespin({
         source: this.img360_url.reverse(),
         width: parseInt(605),
         height: parseInt(first360height * mult),

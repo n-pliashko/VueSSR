@@ -10,7 +10,10 @@ export default {
       currencies: (state) => state.currency.allCurrency,
       selectedCurrency: (state) => state.currency.selected,
       calculatePrice: (state) => state.calculatePrice
-    })
+    }),
+    loadedCurrencies() {
+      return Object.values(this.currencies).length > 0
+    }
   },
   methods: {
     setCurrency(e) {

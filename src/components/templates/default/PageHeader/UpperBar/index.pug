@@ -65,13 +65,13 @@ section#SiteHeader.upper-bar
                 i.fa.fa-envelope-open-o
                 | Contact Us
           li#site-flag.nav-item.dropdown.currency-section
-            a#currency-dropdown(data-toggle="dropdown", aria-expanded="false").dropdown-toggle
+            a#currency-dropdown(v-if="loadedCurrencies", data-toggle="dropdown", aria-expanded="false").dropdown-toggle
               img.mr-1(src="https://d9qzjwuieyamt.cloudfront.net/res/images/_png/flags/uk-small.png")
               span(v-if="currencies[selectedCurrency]")
                 span(v-html="currencies[selectedCurrency].symbol")
                 |  {{currencies[selectedCurrency].currency_name}}
               span.arrow
-            #currency-dropdown-menu.currency.dropdown-menu
+            #currency-dropdown-menu.currency.dropdown-menu(v-if="loadedCurrencies")
               p.dropdown-header Change currency
               form#currency_form(method="post").dropdown-item.mb-3.p-0
                 input(type="hidden", name="current_url", value="/auth/login/")

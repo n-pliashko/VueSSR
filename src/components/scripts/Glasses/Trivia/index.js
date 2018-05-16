@@ -1,11 +1,3 @@
-/*
-import $ from 'jquery'
-import Vue from 'vue'
-import MatchHeight from 'jquery-match-height'
-
-Vue.use(MatchHeight)
-*/
-
 export default {
   name: 'Trivia',
   data () {
@@ -26,9 +18,13 @@ export default {
           el: '.slick-dots',
           type: 'bullets',
           bulletActiveClass: 'slick-active',
+          bulletClass: 'pagination-bullet',
           clickable: true,
           renderBullet: function (index, className) {
-            return '<li role="presentation" class="' + className + '"><button role="tab">' + (index + 1) + '</button></li>';
+            if (index === 0) {
+              className += ' slick-active'
+            }
+            return '<li role="presentation" class="' + className + '"><button role="tab">' + (index + 1) + '</button></li>'
           }
         }
       },
@@ -48,6 +44,14 @@ export default {
     }
   },
   mounted: function () {
-   // $('.guide-to-wrapper').matchHeight()
+    if (this.swiper) {
+      this.swiper.update()
+      this.swiper.pagination.render()
+    }
+  },
+  updated() {
+    if (this.swiper) {
+      this.swiper.pagination.render()
+    }
   }
 }

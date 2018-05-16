@@ -53,17 +53,25 @@ export default {
         slidesPerView: 1,
         centeredSlides: true,
         speed: 500,
-        watchOverflow: true,
+        loopAdditionalSlides: 0,
         autoHeight: true,
+        effect: 'fade',
+        navigation: {
+          nextEl: '#item_images_block_mobile .slick-next',
+          prevEl: '#item_images_block_mobile .slick-prev'
+        },
+        watchOverflow: true,
         pagination: {
           el: '.slick-dots',
           type: 'bullets',
-          bulletElement: 'li',
-          // dynamicBullets: true,
           bulletActiveClass: 'slick-active',
-          bulletClass: '',
+          bulletClass: 'pagination-bullet',
           clickable: true,
           renderBullet: function (index, className) {
+            console.log('renderBullet::', index, className)
+            if (index === 0) {
+              className += ' slick-active'
+            }
             return '<li class="' + className + '"><button>' + (index + 1) + '</button></li>'
           }
         }
@@ -73,8 +81,8 @@ export default {
         spaceBetween: 3,
         speed: 500,
         navigation: {
-          nextEl: '.slick-next',
-          prevEl: '.slick-prev'
+          nextEl: '#availColourBarMobile .slick-next',
+          prevEl: '#availColourBarMobile .slick-prev'
         },
         watchOverflow: true
       },
@@ -97,7 +105,12 @@ export default {
   mounted() {
     if (this.swiperMobItem) {
       this.swiperMobItem.pagination.render()
-      this.swiperMobItem.update()
+    }
+  },
+  updated () {
+    console.log('updated mobile::::', this.swiperMobItem)
+    if (this.swiperMobItem) {
+      this.swiperMobItem.pagination.render()
     }
   },
   methods: {
@@ -143,8 +156,9 @@ export default {
     },
     'selected.option': function () {
       if (this.swiperMobItem) {
+        this.swiperMobItem.update()
+        this.swiperItem.slideTo(1, 100, false)
         this.swiperMobItem.pagination.render()
-        this.swiperMobItem.slideToLoop(0, 100, false)
       }
       /* if (this.$refs.slick) {
        this.$refs.slick.destroy()

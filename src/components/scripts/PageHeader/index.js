@@ -10,5 +10,10 @@ export default {
     UpperBar,
     LogoLine,
     MessageBlock
+  },
+  computed: {
+    showCarousel () {
+      return ['Register', 'Login', 'Reviews', 'SalePage'].indexOf(this.$route.name) < 0
+    },
   }
 }

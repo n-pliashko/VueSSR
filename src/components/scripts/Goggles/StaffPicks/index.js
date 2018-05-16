@@ -19,8 +19,12 @@ export default {
           el: '.slick-dots',
           type: 'bullets',
           bulletActiveClass: 'slick-active',
+          bulletClass: 'pagination-bullet',
           clickable: true,
           renderBullet: function (index, className) {
+            if (index === 0) {
+              className += ' slick-active'
+            }
             return '<li role="presentation" class="' + className + '"><button role="tab">' + (index + 1) + '</button></li>';
           }
         }
@@ -35,6 +39,17 @@ export default {
         dots: true,
         arrows: false
       }
+    }
+  },
+  mounted: function () {
+    if (this.swiper) {
+      this.swiper.update()
+      this.swiper.pagination.render()
+    }
+  },
+  updated() {
+    if (this.swiper) {
+      this.swiper.pagination.render()
     }
   }
 }

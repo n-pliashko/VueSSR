@@ -23,7 +23,6 @@ export default {
       }
     }),
     path: function () {
-      console.log('PATH:::', this.routerObj && this.routerObj.categoryPath ? this.routerObj.categoryPath : this.$route.path)
       return this.routerObj && this.routerObj.categoryPath ? this.routerObj.categoryPath : this.$route.path
     }
   },

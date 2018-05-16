@@ -1,9 +1,7 @@
-// import Slick from 'vue-slick'
 import {mapState} from 'vuex'
 
 export default {
   name: 'ExcellentCarousel',
-  // components: { Slick },
   data () {
     return {
       swiperOption: {

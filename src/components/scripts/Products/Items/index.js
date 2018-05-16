@@ -14,14 +14,21 @@ export default {
       cdnUrl: config.cdnUrl,
       currentRoute: this.$route,
       category_name: this.$parent.categoryObj !== null ? this.$parent.categoryObj.name : '',
+      timerSwiper: null,
       swiperOption: {
         loop: true,
-        /*autoplay: {
-          disableOnInteraction: false
-        },*/
+        autoplay: false,
         autoplayDisableOnInteraction: false,
+        loopAdditionalSlides: 0,
+        setWrapperSize: true,
         slidesPerView: 1,
-        speed: 700
+        speed: 700,
+        watchOverflow: true,
+        lazyLoading: true,
+        navigation: {
+          nextEl: '.slick-next',
+          prevEl: '.slick-prev'
+        }
       },
       slickOptions: {
         infinite: true,
@@ -59,33 +66,21 @@ export default {
     },
     autoPlaySlick (id, event) {
       let ref = 'swiper_' + id
-     /*
-      let ref = 'slick_' + id
-     if (this.$refs[ref]) {
-        this.$refs[ref][0].play()
-      }*/
-     if (this[ref]) {
-       this[ref].params.autoplay.enabled = true
-       this[ref].params.autoplay.disableOnInteraction = false
-       this[ref].autoplay.running = true
-       this[ref].autoplay.start()
-       console.log('autoPlaySlick', this[ref])
-     }
+      if (this[ref] && this[ref].slides && this[ref].slides.length > 3) {
+        this.timerSwiper = setInterval(() => {
+          if (this[ref]) {
+            this[ref].slideNext()
+          }
+        }, 1000)
+      }
     },
     stopPlaySlick (id, event) {
-     /* let ref = 'slick_' + id
-      if (this.$refs[ref]) {
-        this.$refs[ref][0].goTo(0)
-        this.$refs[ref][0].pause()
-      }*/
       let ref = 'swiper_' + id
       if (this[ref]) {
-        this[ref].params.autoplay.enabled = false
-        this[ref].params.autoplay.disableOnInteraction = false
-        this[ref].autoplay.running = false
-        this[ref].autoplay.stop()
-        this[ref].slideTo(1, 1000, false)
-        console.log('stopPlaySlick', this[ref])
+        if (this.timerSwiper) {
+          clearInterval(this.timerSwiper)
+        }
+        this[ref].slideTo(1, 100, false)
       }
     }
   },

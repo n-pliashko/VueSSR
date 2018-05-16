@@ -11,15 +11,19 @@ export default {
         centeredSlides: true,
         setWrapperSize: true,
         navigation: {
-          nextEl: '.slick-next',
-          prevEl: '.slick-prev'
+          nextEl: '.staff-picks .slick-next',
+          prevEl: '.staff-picks .slick-prev'
         },
         pagination: {
-          el: '.slick-dots',
+          el: '.staff-picks .slick-dots',
           type: 'bullets',
           bulletActiveClass: 'slick-active',
+          bulletClass: 'pagination-bullet',
           clickable: true,
           renderBullet: function (index, className) {
+            if (index === 0) {
+              className += ' slick-active'
+            }
             return '<li class="' + className + '"><button role="tab">' + (index + 1) + '</button></li>';
           }
         }
@@ -37,6 +41,17 @@ export default {
         prevArrow: '<button class="slick-prev slick-left slick-arrow slick-triangle" aria-label="Previous" type="button">Previous</button>',
         nextArrow: '<button class="slick-next slick-right slick-arrow slick-triangle" aria-label="Next" type="button">Next</button>'
       }
+    }
+  },
+  mounted() {
+    if (this.swiper) {
+      this.swiper.update()
+      this.swiper.pagination.render()
+    }
+  },
+  updated() {
+    if (this.swiper) {
+      this.swiper.pagination.render()
     }
   }
 }

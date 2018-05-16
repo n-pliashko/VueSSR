@@ -33,7 +33,7 @@ main
           .swiper-wrapper
             div(v-for="image in options[selected.option].fullsized_images").swiper-slide
               img.img-fluid(:src="cdnUrl + cdnUrlPrefix + image.src")
-          ul.slick-dots.white-dots
+          ul.slick-dots
       .row.prices
         .col-10
           .price-wrapper
