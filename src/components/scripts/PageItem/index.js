@@ -10,7 +10,7 @@ import ShareButtons from '@/components/scripts/ShareButtons/index.vue'
 import TrustpilotWidget from '@/components/scripts/TrustpilotWidget/index.vue'
 import PageFooter from '@/components/scripts/PageFooter/index.vue'
 import ScrollToTop from '@/components/scripts/ScrollToTop/index.vue'
-//import Media360Modal from '@/components/scripts/PageItem/360MediaModal/index.vue'
+import Media360Modal from '@/components/scripts/PageItem/360MediaModal/index.vue'
 
 import config from '@/../config'
 import { reverseRouteName } from '@/../config/helper'
@@ -30,7 +30,7 @@ export default {
     TrustpilotWidget,
     PageFooter,
     ScrollToTop,
-    //Media360Modal
+    Media360Modal
   },
   computed: {
     ...mapState({
@@ -86,15 +86,23 @@ export default {
       swiperOption: {
         loop: true,
         slidesPerView: 1,
+        loopedSlides: 1,
+        loopFillGroupWithBlank: true,
         centeredSlides: true,
         speed: 500,
         autoHeight: true,
         effect: 'fade',
+        observer: true,
         navigation: {
           nextEl: '#item_images_block .slick-next',
           prevEl: '#item_images_block .slick-prev'
         },
-        watchOverflow: true
+        watchOverflow: true,
+        on: {
+          slideChange: function(e) {
+            console.log('slide changed:::', e)
+          }
+        }
       },
       slickOptions: {
         autoplay: false,
@@ -149,10 +157,17 @@ export default {
       }
     }
   },
+  beforeUpdate() {
+    console.log('beforeUpdate::::', this.swiperItem)
+    if (this.selected.option > 0 && this.options[this.selected.option] &&
+      this.swiperItem && this.changeSlick) {
+    }
+  },
   updated () {
     console.log('updated::::', this.swiperItem)
     if (this.selected.option > 0 && this.options[this.selected.option] &&
       this.swiperItem && this.changeSlick) {
+      // this.swiperItem.init()
       this.swiperItem.update()
       this.swiperItem.slideTo(1, 100, false)
     }
@@ -317,6 +332,8 @@ export default {
         this.$emit('updateHead')
       },
       deep: true
+    },
+    'selected.option': function () {
     }
   }
 }

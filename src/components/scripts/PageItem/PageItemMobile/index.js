@@ -156,9 +156,12 @@ export default {
     },
     'selected.option': function () {
       if (this.swiperMobItem) {
-        this.swiperMobItem.update()
-        this.swiperItem.slideTo(1, 100, false)
-        this.swiperMobItem.pagination.render()
+        this.swiperMobItem.destroy(false, false)
+        this.$nextTick().then(()=> {
+          this.swiperMobItem.init()
+          this.swiperMobItem.slideTo(1, 100, false)
+          this.swiperMobItem.pagination.render()
+        })
       }
       /* if (this.$refs.slick) {
        this.$refs.slick.destroy()
