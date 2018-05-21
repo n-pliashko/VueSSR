@@ -11,7 +11,6 @@ export default {
       this.$parent.filters[filterName].splice(index, 1)
     },
     setFilterValues (obj) {
-      console.log('setFilterValues', obj.name, this.$parent.filters[obj.name])
       if (this.$parent.filters[obj.name]) {
         let values = []
         this.$parent.filters[obj.name].map(filter => {

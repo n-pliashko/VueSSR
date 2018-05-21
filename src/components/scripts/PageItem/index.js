@@ -1,4 +1,5 @@
 import { mapState } from 'vuex'
+import Vue from 'vue'
 import PageHeader from '@/components/scripts/PageHeader/index.vue'
 import PageItemMobile from '@/components/scripts/PageItem/PageItemMobile/index.vue'
 import Breadcrumbs from '@/components/scripts/Breadcrumbs/index.vue'
@@ -65,6 +66,7 @@ export default {
     return {
       item: {},
       changeSlick: false,
+      activeSwiperIndex: 1,
       cdnUrl: config.cdnUrl,
       cdnUrlPrefix: config.cdnUrlPrefix,
       options: {},
@@ -97,12 +99,7 @@ export default {
           nextEl: '#item_images_block .slick-next',
           prevEl: '#item_images_block .slick-prev'
         },
-        watchOverflow: true,
-        on: {
-          slideChange: function(e) {
-            console.log('slide changed:::', e)
-          }
-        }
+        watchOverflow: true
       },
       slickOptions: {
         autoplay: false,
@@ -157,27 +154,25 @@ export default {
       }
     }
   },
-  beforeUpdate() {
-    console.log('beforeUpdate::::', this.swiperItem)
-    if (this.selected.option > 0 && this.options[this.selected.option] &&
-      this.swiperItem && this.changeSlick) {
-    }
-  },
   updated () {
-    console.log('updated::::', this.swiperItem)
     if (this.selected.option > 0 && this.options[this.selected.option] &&
       this.swiperItem && this.changeSlick) {
-      // this.swiperItem.init()
+      let slides = $('#item_images_block .swiper-slide:not(.swiper-slide-duplicate)').removeAttr('class').attr('class', 'swiper-slide')
+      this.swiperItem.removeAllSlides()
+      this.swiperItem.appendSlide(slides)
       this.swiperItem.update()
       this.swiperItem.slideTo(1, 100, false)
+      this.changeSlick = false
+      let self = this
+      this.swiperItem.on('slideChange', function () {
+        self.activeSwiperIndex = this.activeIndex
+      })
     }
   },
   created() {
     let itemNumber = this.$route.params.item
     let clearItemNumber = itemNumber.toString().replace('.', '')
-    this.fetchItem(clearItemNumber).then(() => {
-      this.changeSlick = true
-    })
+    this.fetchItem(clearItemNumber)
     // this.getWishlistStateItem(clearItemNumber)
   },
   methods: {
@@ -334,6 +329,7 @@ export default {
       deep: true
     },
     'selected.option': function () {
+      this.changeSlick = true
     }
   }
 }

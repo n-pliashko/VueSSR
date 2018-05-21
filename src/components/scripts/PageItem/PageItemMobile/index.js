@@ -68,7 +68,6 @@ export default {
           bulletClass: 'pagination-bullet',
           clickable: true,
           renderBullet: function (index, className) {
-            console.log('renderBullet::', index, className)
             if (index === 0) {
               className += ' slick-active'
             }
@@ -108,8 +107,12 @@ export default {
     }
   },
   updated () {
-    console.log('updated mobile::::', this.swiperMobItem)
-    if (this.swiperMobItem) {
+    if (this.swiperMobItem && this.$parent.changeSlick) {
+      let slides = $('#item_images_block_mobile .swiper-slide:not(.swiper-slide-duplicate)').removeAttr('class').attr('class', 'swiper-slide')
+      this.swiperMobItem.removeAllSlides()
+      this.swiperMobItem.appendSlide(slides)
+      this.swiperMobItem.update()
+      this.swiperMobItem.slideTo(this.$parent.activeSwiperIndex, 100, false)
       this.swiperMobItem.pagination.render()
     }
   },
@@ -154,25 +157,13 @@ export default {
       },
       deep: true
     },
-    'selected.option': function () {
-      if (this.swiperMobItem) {
-        this.swiperMobItem.destroy(false, false)
-        this.$nextTick().then(()=> {
-          this.swiperMobItem.init()
-          this.swiperMobItem.slideTo(1, 100, false)
-          this.swiperMobItem.pagination.render()
-        })
-      }
-      /* if (this.$refs.slick) {
-       this.$refs.slick.destroy()
-       }
-       if (this.$refs.slick) {
-       this.$nextTick(() => {
-       if (this.$refs.slick) {
-       this.$refs.slick.create()
-       }
-       })
-       }*/
+    '$parent.activeSwiperIndex': {
+      handler: function() {
+        if (this.swiperMobItem) {
+          this.swiperMobItem.slideTo(this.$parent.activeSwiperIndex, 100, false)
+        }
+      },
+      deep: true
     }
   }
 }

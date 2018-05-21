@@ -5,131 +5,136 @@ section.nav-section
         aria-controls='navCollapseGender', aria-expanded='false').nav-collapse-title Gender
       #navCollapseGender(role='tabpanel', aria-labelledby='navCollapseLabelGender',
         data-parent="#navAccordionGlasses").collapse
-        li.collapse-item
-          router-link(to='/glasses/prescription/mens/c10/') Men's
-        li.collapse-item
-          router-link(to='/glasses/prescription/ladies/c11/') Women's
+        ul#navSubCollapseGender.sub-collapse
+          li.collapse-item
+            router-link(to='/glasses/prescription/mens/c10/') Men's
+          li.collapse-item
+            router-link(to='/glasses/prescription/ladies/c11/') Women's
     li#navHeadingFrame(role="tab")
       a#navCollapseLabelFrame(data-toggle="collapse", href='#navCollapseFrame',
         aria-controls='navCollapseFrame', aria-expanded='false').nav-collapse-title Frame Type / Style
       #navCollapseFrame(role='tabpanel', aria-labelledby='navCollapseLabelFrame',
         data-parent="#navAccordionGlasses").collapse
-        li.collapse-item
-          router-link(to='/glasses/prescription/full-rim/c171/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-square.png?20171030191515', width='65px')
-            |    Full Rim
-        li.collapse-item
-          router-link(to='/glasses/prescription/semi-rimless/c15/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-sr.png?20171030191515', width='65px')
-            |    Semi-Rimless
-        li.collapse-item
-          router-link(to='/glasses/prescription/rimless/c14/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-rimless.png?20171030191515', width='65px')
-            |    Rimless
-        li.collapse-item
-          router-link(to='/glasses/prescription/aviator/c25/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-aviator.png?20171030191515', width='65px')
-            |    Aviator
-        li.collapse-item
-          router-link(to='/glasses/prescription/wayfarer/c89/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-retro.png?20171030191515', width='65px')
-            |    Wayfarer Style
-        li.collapse-item
-          router-link(to='/glasses/prescription/round-or-oval/c44/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-round.png?20171030191515', width='65px')
-            |    Round
-        li.collapse-item
-          router-link(to='/glasses/prescription/square-or-rectangular/c80/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-square.png?20171030191515', width='65px')
-            |    Square
-        li.collapse-item
-          router-link(to='/glasses/prescription/cat-eye/c279/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-cateye.png?20171030191515', width='65px')
-            |    Cat Eye
-        li.collapse-item
-          router-link(to='/glasses/prescription/horn-rimmed/c278/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-horn.png?20171030191515', width='65px')
+        ul#navSubHeadingFrame.sub-collapse
+          li.collapse-item
+            router-link(to='/glasses/prescription/full-rim/c171/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-square.png?20171030191515', width='65px')
+              |    Full Rim
+          li.collapse-item
+            router-link(to='/glasses/prescription/semi-rimless/c15/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-sr.png?20171030191515', width='65px')
+              |    Semi-Rimless
+          li.collapse-item
+            router-link(to='/glasses/prescription/rimless/c14/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-rimless.png?20171030191515', width='65px')
+              |    Rimless
+          li.collapse-item
+            router-link(to='/glasses/prescription/aviator/c25/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-aviator.png?20171030191515', width='65px')
+              |    Aviator
+          li.collapse-item
+            router-link(to='/glasses/prescription/wayfarer/c89/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-retro.png?20171030191515', width='65px')
+              |    Wayfarer Style
+          li.collapse-item
+            router-link(to='/glasses/prescription/round-or-oval/c44/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-round.png?20171030191515', width='65px')
+              |    Round
+          li.collapse-item
+            router-link(to='/glasses/prescription/square-or-rectangular/c80/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-square.png?20171030191515', width='65px')
+              |    Square
+          li.collapse-item
+            router-link(to='/glasses/prescription/cat-eye/c279/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-cateye.png?20171030191515', width='65px')
+              |    Cat Eye
+          li.collapse-item
+            router-link(to='/glasses/prescription/horn-rimmed/c278/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/icons/frame-style/mob/style-horn.png?20171030191515', width='65px')
             |    Horn Rimmed
     li#navHeadingBrands(role="tab")
       a#navCollapseLabelBrands(data-toggle="collapse", href='#navCollapseBrands',
         aria-controls='navCollapseBrands', aria-expanded='false').nav-collapse-title Brands
       #navCollapseBrands(role='tabpanel', aria-labelledby='navCollapseLabelBrands',
         data-parent="#navAccordionGlasses").collapse
-        li.collapse-item
-          router-link(to='/glasses/prescription/ray-ban/d43/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/ray-ban.png?20171030191515', width='65px')
-            |    Ray-Ban
-        li.collapse-item
-          router-link(to='/glasses/prescription/oakley/d391/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/oakley.png?20171030191515', width='65px')
-            |    Oakley
-        li.collapse-item
-          router-link(to='/glasses/prescription/oliver-peoples/d31936/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/oliver-peoples.png?20171030191515', width='65px')
-            |    Oliver Peoples
-        li.collapse-item
-          router-link(to='/glasses/prescription/tom-ford/d284/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/tom-ford.png?20171030191515', width='65px')
-            |    Tom Ford
-        li.collapse-item
-          router-link(to='/glasses/prescription/tiffany-co-/d31593/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/tiffany.png?20171030191515', width='65px')
-            |    Tiffany & Co.
-        li.collapse-item
-          router-link(to='/glasses/prescription/michael-kors/d409/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/michaelkors.png?20171030191515', width='65px')
-            |    Michael Kors
-        li.collapse-item
-          router-link(to='/glasses/prescription/mont-blanc/d285/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/mont-blanc.png?20171030191515', width='65px')
-            |    Mont-Blanc
-        li.collapse-item
-          router-link(to='/glasses/prescription/prada/d111/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/prada.png?20171030191515', width='65px')
-            |    Prada
-        li.collapse-item
-          router-link(to='/glasses/prescription/dior/d61/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/dior.png?20171030191515', width='65px')
-            |    Dior
-        li.collapse-item
-          router-link(to='/glasses/prescription/jimmy-choo/d395/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/jimmychoo.png?20171030191515', width='65px')
-            |    Jimmy Choo
-        li.collapse-item
-          router-link(to='/glasses/prescription/celine/d31595/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/celine.png?20171030191515', width='65px')
-            |    Celine
-        li.collapse-item
-          router-link(to='/brands/')
-            img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/view-all-brands.png?20171030191515', width='65px')
-            |    View All Brands »
+        ul#navSubCollapseBrands.sub-collapse
+          li.collapse-item
+            router-link(to='/glasses/prescription/ray-ban/d43/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/ray-ban.png?20171030191515', width='65px')
+              |    Ray-Ban
+          li.collapse-item
+            router-link(to='/glasses/prescription/oakley/d391/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/oakley.png?20171030191515', width='65px')
+              |    Oakley
+          li.collapse-item
+            router-link(to='/glasses/prescription/oliver-peoples/d31936/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/oliver-peoples.png?20171030191515', width='65px')
+              |    Oliver Peoples
+          li.collapse-item
+            router-link(to='/glasses/prescription/tom-ford/d284/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/tom-ford.png?20171030191515', width='65px')
+              |    Tom Ford
+          li.collapse-item
+            router-link(to='/glasses/prescription/tiffany-co-/d31593/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/tiffany.png?20171030191515', width='65px')
+              |    Tiffany & Co.
+          li.collapse-item
+            router-link(to='/glasses/prescription/michael-kors/d409/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/michaelkors.png?20171030191515', width='65px')
+              |    Michael Kors
+          li.collapse-item
+            router-link(to='/glasses/prescription/mont-blanc/d285/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/mont-blanc.png?20171030191515', width='65px')
+              |    Mont-Blanc
+          li.collapse-item
+            router-link(to='/glasses/prescription/prada/d111/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/prada.png?20171030191515', width='65px')
+              |    Prada
+          li.collapse-item
+            router-link(to='/glasses/prescription/dior/d61/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/dior.png?20171030191515', width='65px')
+              |    Dior
+          li.collapse-item
+            router-link(to='/glasses/prescription/jimmy-choo/d395/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/jimmychoo.png?20171030191515', width='65px')
+              |    Jimmy Choo
+          li.collapse-item
+            router-link(to='/glasses/prescription/celine/d31595/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/celine.png?20171030191515', width='65px')
+              |    Celine
+          li.collapse-item
+            router-link(to='/brands/')
+              img(src='https://d9qzjwuieyamt.cloudfront.net/res/images/_png/brand/view-all-brands.png?20171030191515', width='65px')
+              |    View All Brands »
 
     li#navHeadingColour(role="tab")
       a#navCollapseLabelColour(data-toggle="collapse", href='#navCollapseColour',
         aria-controls='navCollapseColour', aria-expanded='false').nav-collapse-title Colour
       #navCollapseColour(role='tabpanel', aria-labelledby='navCollapseLabelColour',
         data-parent="#navAccordionGlasses").collapse
-        li.collapse-item
-          router-link(to='/glasses/prescription/black/clr1/') Black Frames
-        li.collapse-item
-          router-link(to='/glasses/prescription/grey/clr5/') Grey & Dark Frames
-        li.collapse-item
-          router-link(to='/glasses/prescription/brown-havana-tortoise/clr2/') Havana & Tortoise Frames
-        li.collapse-item
-          router-link(to='/glasses/prescription/blue/clr3/') Blue Frames
-        li.collapse-item
-          router-link(to='/glasses/prescription/red/clr8/') Red Frames
-        li.collapse-item
-          router-link(to='/glasses/prescription/pink/clr7/') Pink Frames
+        ul#navSubCollapseColours.sub-collapse
+          li.collapse-item
+            router-link(to='/glasses/prescription/black/clr1/') Black Frames
+          li.collapse-item
+            router-link(to='/glasses/prescription/grey/clr5/') Grey & Dark Frames
+          li.collapse-item
+            router-link(to='/glasses/prescription/brown-havana-tortoise/clr2/') Havana & Tortoise Frames
+          li.collapse-item
+            router-link(to='/glasses/prescription/blue/clr3/') Blue Frames
+          li.collapse-item
+            router-link(to='/glasses/prescription/red/clr8/') Red Frames
+          li.collapse-item
+            router-link(to='/glasses/prescription/pink/clr7/') Pink Frames
 
     li#navHeadingOffers(role="tab")
       a#navCollapseLabelOffers(data-toggle="collapse", href='#navCollapseOffers',
         aria-controls='navCollapseOffers', aria-expanded='false').nav-collapse-title Offers
       #navCollapseOffers(role='tabpanel', aria-labelledby='navCollapseLabelOffers',
         data-parent="#navAccordionGlasses").collapse
-        li.collapse-item
-          router-link(to='/cheap-glasses/') {{calculatePrice(250.0/33.47, false, true)}} Cheap Glasses
-        li.collapse-item
-          router-link(to='/2for1-glasses/') 2 for 1 Collection
-        li.collapse-item
-          router-link(to='/glasses/prescription/sale/c275/') Sale & Clearance
+        ul#navSubCollapseOffers.sub-collapse
+          li.collapse-item
+            router-link(to='/cheap-glasses/') {{calculatePrice(250.0/33.47, false, true)}} Cheap Glasses
+          li.collapse-item
+            router-link(to='/2for1-glasses/') 2 for 1 Collection
+          li.collapse-item
+            router-link(to='/glasses/prescription/sale/c275/') Sale & Clearance

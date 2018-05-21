@@ -10,6 +10,8 @@ import ScrollToTop from '@/components/scripts/ScrollToTop/index.vue'
 import { mapState } from 'vuex'
 import config from '@/../config'
 let Handlebars = require('handlebars/dist/handlebars.min.js')
+import axiosCancel from 'axios-cancel'
+const qs = require('qs')
 
 export default {
   name: 'CheapGlasses',
@@ -17,7 +19,6 @@ export default {
     return {
       cdnUrl: config.cdnUrl,
       cdnUrlPrefix: config.cdnUrlPrefix,
-      previousRequest: null,
       layout: false,
       modalData: {},
       loading: true,
@@ -145,15 +146,16 @@ export default {
         Object.assign(data, {filters: Object.values(this.routerObj.catalogue.filters)})
       }
 
+      let requestId = 'cheapGlassesRequest'
+      axiosCancel(this.$axios, {
+        debug: false
+      });
+
       let requestOpt = {
-        before (request) {
-          if (self.previousRequest) {
-            self.previousRequest.abort()
-          }
-          self.previousRequest = request
-        }
+        requestId: requestId
       }
-      return this.$axios.post(this.apiHost + config.prefix + config.products.cheapGlasses, data, Object.assign({}, requestOpt, this.requestOptions)).then(response => response.data)
+
+      return this.$axios.post(this.apiHost + config.prefix + config.products.cheapGlasses, qs.stringify(data), Object.assign({}, requestOpt, this.requestOptions)).then(response => response.data)
         .then(json => {
           if (json.items) {
             if (append && self.items.data) {

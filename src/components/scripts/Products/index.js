@@ -19,6 +19,7 @@ import * as auth from '../../../store/authorization'
 
 let Handlebars = require('handlebars/dist/handlebars.min.js')
 let elasticsearch = require('elasticsearch')
+const qs = require('qs')
 
 export default {
   name: 'products',
@@ -365,7 +366,7 @@ export default {
         if (this.designerObj) {
           data.designer_number = this.designerObj.id
         }
-        return this.$axios.post(this.apiHost + config.prefix + config.products.getDesignerDescription, data, this.requestOptions)
+        return this.$axios.post(this.apiHost + config.prefix + config.products.getDesignerDescription, qs.stringify(data), this.requestOptions)
           .then(r => self.$store.dispatch(auth.AUTH_ACTION_SUCCESS, r), e => self.$store.dispatch(auth.AUTH_ACTION_ERROR, e))
           .then(response => response.data)
           .then(json => {
@@ -424,7 +425,7 @@ export default {
         requestId: requestId
       }
 
-      return this.$axios.post(this.apiHost + config.prefix + config.products.searchProducts, data, Object.assign({}, requestOpt, this.requestOptions))
+      return this.$axios.post(this.apiHost + config.prefix + config.products.searchProducts, qs.stringify(data), Object.assign({}, requestOpt, this.requestOptions))
         .then(r => self.$store.dispatch(auth.AUTH_ACTION_SUCCESS, r), e => self.$store.dispatch(auth.AUTH_ACTION_ERROR, e))
         .then(response => response.data)
         .then(json => {
@@ -632,7 +633,7 @@ export default {
       axiosCancel(this.$axios, {
         debug: false
       });
-      return this.$axios.post(this.apiHost + config.prefix + config.products.getRangePrice, data, Object.assign({}, requestOpt, this.requestOptions))
+      return this.$axios.post(this.apiHost + config.prefix + config.products.getRangePrice, qs.stringify(data), Object.assign({}, requestOpt, this.requestOptions))
         .then(response => response.data)
         .then(json => {
           if (json.min_price) {
@@ -967,7 +968,6 @@ export default {
     },
     'routerObj': {
       handler: function () {
-        console.log('routerObj watch')
         if (!this.page) {
           let self = this
           this.generateBreadcrumbs()
