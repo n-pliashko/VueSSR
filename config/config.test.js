@@ -3,9 +3,9 @@ var path = require('path')
 module.exports = {
   env: require('./test.env'),
   port: 1111,
-  apiHost: 'https://yii.omnismain.com',
-  integrationHost: 'https://ss-brahmin.omnismain.com',
-  cdnUrl: 'https://d9qzjwuieyamt.cloudfront.net',
+  apiHost: 'some_host',
+  integrationHost: 'some_host',
+  cdnUrl: 'some_host',
   cdnUrlPrefix: '/public/en/',
   prefix: '/rest',
   integrationPrefix: '/api',
@@ -26,11 +26,11 @@ module.exports = {
   menu: require('./Components/menu').dev,
   routes: require('./Components/routes').dev,
   elastic: {
-    host: 'yii.omnismain.com',
+    host: 'some_host',
     protocol: 'https',
     port: 443,
-    index: 'ssyii',
-    type: 'items'
+    index: 'some_index',
+    type: 'some_type'
   },
   designers: require('./Components/designers').dev,
   reviews: require('./Components/reviews').dev,
