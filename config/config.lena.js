@@ -4,9 +4,9 @@ module.exports = {
   env: require('./dev.env'),
   port: 1111,
   //apiHost: 'http://localhost:1111',
-  apiHost: 'https://dev-yii.omnismain.com',
-  integrationHost: 'https://ss-brahmin.omnismain.com',
-  cdnUrl: 'https://d9qzjwuieyamt.cloudfront.net',
+  apiHost: 'some_host',
+  integrationHost: 'some_host',
+  cdnUrl: 'some_host',
   cdnUrlPrefix: '/public/en/',
   prefix: '/rest',
   integrationPrefix: '/api',
@@ -16,7 +16,7 @@ module.exports = {
   proxyTable: {
     // proxy all requests starting with /api to jsonplaceholder
     '/api': {
-      target: 'http://ssyii',
+      target: 'some_host',
       changeOrigin: true,
       pathRewrite: {
         '^/api': ''
@@ -36,11 +36,11 @@ module.exports = {
   menu: require('./Components/menu').dev,
   routes: require('./Components/routes').dev,
   elastic: {
-    host: 'yii.omnismain.com',
+    host: 'some_host',
     protocol: 'https',
     port: 443,
-    index: 'ssyii',
-    type: 'items'
+    index: 'some_index',
+    type: 'some_type'
   },
   designers: require('./Components/designers').dev,
   reviews: require('./Components/reviews').dev,
