@@ -3,9 +3,9 @@ var path = require('path')
 module.exports = {
   env: require('./local.env'),
   port: 1111,
-  apiHost: 'https://yii.dev',
-  integrationHost: 'https://ss-brahmin.omnismain.com',
-  cdnUrl: 'https://d9qzjwuieyamt.cloudfront.net',
+  apiHost: 'some_host',
+  integrationHost: 'some_host',
+  cdnUrl: 'some_host',
   cdnUrlPrefix: '/public/en/',
   prefix: '/rest',
   integrationPrefix: '/api',
