@@ -1,16 +1,16 @@
 module.exports = {
   prod: {
-    host: 'prod-yii.omnismain.com',
+    host: 'some_host',
     protocol: 'https',
     port: 443,
-    index: 'live_yii',
-    type: 'items'
+    index: 'some_index',
+    type: 'some_type'
   },
   dev: {
-    host: 'yii.omnismain.com',
+    host: 'some_host',
     protocol: 'https',
     port: 443,
-    index: 'ssyii',
-    type: 'items'
+    index: 'some_index',
+    type: 'some_type'
   }
 }
